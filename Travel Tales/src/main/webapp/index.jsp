@@ -145,6 +145,5 @@
 				</a>
 			</article>
     </div>
-
 </body>
 </html>
