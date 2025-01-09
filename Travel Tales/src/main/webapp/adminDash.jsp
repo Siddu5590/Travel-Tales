@@ -27,7 +27,7 @@
             display: block;
         }
          main {
-            background-image: url('img.jpg'); /* Replace with your image URL */
+            background-image: url('assets/Tours.jpg'); /* Replace with your image URL */
             background-size: cover; /* Make the image cover the entire main area */
             background-repeat: no-repeat; /* Prevent repeating */
             background-position: center; /* Center the image */
