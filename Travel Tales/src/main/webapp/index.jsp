@@ -14,7 +14,7 @@
         .carousel-inner img {
             width: 100%;
             height: 500px;
-            border-radius: 5px;
+           
         }
         .category{
         	margin:20px;
@@ -81,12 +81,15 @@
 	
 }
 .search-bar{
-    margin-left: 500px;
+	margin-top:30px;
+	width:300px;
+	margin-left:450px;
 }
     </style>
 </head>
 <body>
-    <div id="carouselExampleIndicators" class="carousel slide mt-3" data-bs-ride="carousel">
+<%@include file="header.jsp" %>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -130,14 +133,10 @@
     </div>
 
 
-    <nav class="navbar bg-body-tertiary mt-5">
-        <div class="container-fluid search-bar">
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-        </div>
-      </nav>
+    <form class="d-flex search-bar" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search city name..." aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
 
     <div class="category">
         <h3>Top Rated Places...</h3>
@@ -153,5 +152,7 @@
 				</a>
 			</article>
     </div>
+    
+    <%@include file="footer.jsp" %>
 </body>
 </html>

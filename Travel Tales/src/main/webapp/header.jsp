@@ -23,7 +23,9 @@
 .nav-item a{
   position: relative;
   float: right;
+  font-size: 20px;
 } 
+
 
   .navbar-brand {
     color: white;
@@ -34,7 +36,7 @@
   }
 
   .nav-link:hover {
-    color: white; /* Changes color on hover */
+    color: blue; /* Changes color on hover */
   }
 
 
@@ -43,7 +45,7 @@
 <body>
   <nav class="navbar navbar-expand-lg bg-dark">
     <div class="container-fluid bg-dark">
-      <a class="navbar-brand" href="#" style="color: white;">Travel Tales</a>
+      <a class="navbar-brand" href="index.jsp" style="color: white;">Travel Tales</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -58,7 +60,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#" style="color: white;">Home</a>
+            <a class="nav-link active" aria-current="page" href="index.jsp" style="color: white;">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#" style="color: white;">About us</a>
@@ -69,8 +71,12 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#" style="color: white;">Gallery</a>
           </li>
+          <%if(session.getAttribute("uname")!=null) { %>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#" style="color: white;">Booking</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" style="color: white;">Status</a>
           </li>
           <li class="nav-item dropdown">
             <a
@@ -99,16 +105,16 @@
               </li>
             </ul>
           </li>
+          <%} else { %>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="signup.jsp" style="color: white;">Signup</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="login.jsp" style="color: white;">Login</a>
+          </li>
+          <%} %>
         </ul>
-        <!-- <form class="d-flex ms-3" role="search">
-          <input
-            class="form-control me-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form> -->
+        
       </div>
     </div>
   </nav>

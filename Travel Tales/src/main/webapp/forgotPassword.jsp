@@ -22,7 +22,7 @@
             border: 1px solid #dee2e6;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-top: 150px;
+            margin-top: 50px;
             margin-left: 230px;
         }
         .validation-list {
@@ -46,9 +46,10 @@
     </style>
 </head>
 <body>
+<%@include file="header.jsp" %>
     <div class="reset-password-container">
         <h3 class="text-center">Reset Password</h3>
-        <form id="resetPasswordForm">
+        <form id="resetPasswordForm" action="signup" method="post">
             <div class="mb-3">
                 <label for="email" class="form-label"><strong>Email ID</strong></label>
                 <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
@@ -71,7 +72,7 @@
                 </ul>
             </div>
             
-            <button type="submit" class="btn btn-primary w-100">Reset Password</button>
+            <button type="submit" class="btn btn-primary w-100" name="forgot">Reset Password</button>
         </form>
     </div>
 

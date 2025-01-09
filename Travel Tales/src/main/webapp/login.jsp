@@ -14,19 +14,18 @@
     <style>
         .card{
 
-            margin-top: 150px;
+            margin-top: 50px;
             margin-left: 100px;
             padding-bottom: 30px;
         }
         #a1{
-            margin-left: 160px;
-            padding-top: 30px;
-            margin-top: 20px;
+            margin-left: 250px;
             
         }
         
     </style>
 </head>
+<%@include file="header.jsp" %>
 <body class="body" style="background: url('/login2.jpg') no-repeat center center fixed; background-size: cover; color: white;">
   
     <div class="container mt-5">
@@ -37,7 +36,7 @@
                         <h4>Login</h4>
                     </div>
                     <div class="card-body">
-                        <form id="loginForm" action="login" method="post">
+                        <form id="loginForm" action="signup" method="post">
                             <div class="mb-3">
                                 <label for="email" class="form-label"><strong>Email</strong></label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
@@ -46,11 +45,11 @@
                                 <label for="password" class="form-label"><strong>Password</strong></label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
                             </div>
+                            <a id="a1" href="forgotPassword.jsp" class="forgot">Forget password?</a>
                             <center>
-                                <button type="submit" class="btn btn-primary w-25">Login</button>
+                                <button type="submit" class="btn btn-primary w-25 mb-3 mt-3" name="login">Login</button>
                             </center>
-                            <br>
-                            <a id="a1" href="#">Forget password?</a>
+                            
                         </form>
                     </div>
                 </div>
