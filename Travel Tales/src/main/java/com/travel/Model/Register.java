@@ -7,11 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.travel.Entity.Customer;
 
 import jakarta.servlet.http.HttpSession;
 
 public class Register {
+	
 
+	Customer c=new Customer();
 	private Connection con;
 	HttpSession se;
 	
@@ -72,34 +75,43 @@ public class Register {
 	}
 
 	public String login(String mail, String password) {
-		String status = "", email = "", name = "", id = "",phone="";
-		
-			try {
-				
-				Statement st = null;
-				ResultSet rs = null;
-				st = con.createStatement();
-				rs = st.executeQuery("select * from customer where email='" + mail + "' and password='" + password + "';");
-				boolean b = rs.next();
-				if (b == true) {
-					id = rs.getString("id");
-					name = rs.getString("name");
-					email = rs.getString("email");
-					phone=rs.getString("phone");
-					
-					se.setAttribute("uname", name);
-					se.setAttribute("email", email);
-					se.setAttribute("id", id);
-					se.setAttribute("phone", phone);
-					status = "success";
-				} else
-					status = "failure";
-			} catch (Exception e) {
-				e.printStackTrace();
+		String status1="" ,id="";
+		String uname="" ,emails="";
+		String phones="";
+		String query="SELECT * FROM CUSTOMER WHERE EMAIL='"+mail +"'and Password='"+password+"';";
+
+		try {
+		Statement st=null;
+		ResultSet rs=null;
+		st=con.createStatement();
+		rs=st.executeQuery(query);
+		boolean b=rs.next();
+		if(b==true) {
+			id=rs.getString("id");
+			uname=rs.getString("name");
+			emails=rs.getString("email");
+			phones=rs.getString("phone");
+			se.setAttribute("uname", uname);
+			se.setAttribute("email", emails);
+			se.setAttribute("phone", phones);
+			se.setAttribute("id", id);
+			
+			status1="success";
 			
 		}
-		return status;
+		else {
+			status1="failure";
+		}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return status1;
+		
 	}
+
 
 	public String forgotPass(String email, String password) {
 		PreparedStatement ps;
