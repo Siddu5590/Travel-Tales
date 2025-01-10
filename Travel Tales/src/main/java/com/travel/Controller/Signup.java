@@ -23,7 +23,7 @@ public class Signup extends HttpServlet {
 		
 		try {
 //			Customer Register
-			if(req.getParameter("btn")!=null) {
+			if(req.getParameter("signup")!=null) {
 				String name=req.getParameter("Fname");
 				String phone=req.getParameter("phno");
 				String mail=req.getParameter("mail");
