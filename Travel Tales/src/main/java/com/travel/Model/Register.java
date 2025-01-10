@@ -72,19 +72,8 @@ public class Register {
 	}
 
 	public String login(String mail, String password) {
-		String status = "", eid = "sidduswamy@gmail.com", pwd = "Siddu@9591", email = "", name = "", id = "";
-		if (mail.equals(eid) && password.equals(pwd)) {
-			
-			id = "1";
-			name = "Siddu";
-			email = "sidduswamy@gmail.com";
-			
-			se.setAttribute("uname", name);
-			se.setAttribute("email", email);
-			se.setAttribute("id", id);
-			status = "adm success";
-			
-		} else {
+		String status = "", email = "", name = "", id = "",phone="";
+		
 			try {
 				
 				Statement st = null;
@@ -96,15 +85,18 @@ public class Register {
 					id = rs.getString("id");
 					name = rs.getString("name");
 					email = rs.getString("email");
+					phone=rs.getString("phone");
+					
 					se.setAttribute("uname", name);
 					se.setAttribute("email", email);
 					se.setAttribute("id", id);
+					se.setAttribute("phone", phone);
 					status = "success";
 				} else
 					status = "failure";
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+			
 		}
 		return status;
 	}

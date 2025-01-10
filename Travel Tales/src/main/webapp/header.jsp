@@ -107,7 +107,7 @@
           </li>
           <%} else { %>
           <li class="items nav-item">
-            <a class="nav-link active" aria-current="page" href="signup.jsp" style="color: white;">Signup</a>
+            <a class="nav-link active" aria-current="page" href="register.jsp" style="color: white;">Signup</a>
           </li>
           <li class="items nav-item">
             <a class="nav-link active" aria-current="page" href="login.jsp" style="color: white;">Login</a>

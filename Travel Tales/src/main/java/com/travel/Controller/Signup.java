@@ -1,5 +1,6 @@
 package com.travel.Controller;
 
+import com.travel.Entity.Customer;
 import com.travel.Model.Register;
 
 import jakarta.servlet.RequestDispatcher;
@@ -18,6 +19,7 @@ public class Signup extends HttpServlet {
 		
 		HttpSession sesssion=req.getSession();
 		Register reg=new Register(sesssion);
+		Customer c=new Customer();
 		
 		try {
 //			Customer Register
@@ -57,13 +59,16 @@ public class Signup extends HttpServlet {
 				String password=req.getParameter("password");
 				
 				String status=reg.login(mail, password);
-				if (status.equals("adm success")) {
-					RequestDispatcher rd = req.getRequestDispatcher("adminDash.jsp");
-					rd.forward(req, res);
-				}
-				else if(status.equals("success")) {
+				
+				if(status.equals("success")) {
+					if(c.getCustomer_id()==1) {
+						RequestDispatcher rd=req.getRequestDispatcher("adminDash.jsp");
+						rd.forward(req, res);
+					}
+					else {
 					RequestDispatcher rd=req.getRequestDispatcher("index.jsp");
 					rd.forward(req, res);
+				}
 				}
 				else if(status.equals("failure")) {
 					req.setAttribute("status", "Invalid Credentials.!!");
