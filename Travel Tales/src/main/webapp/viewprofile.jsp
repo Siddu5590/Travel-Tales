@@ -18,8 +18,8 @@
             background-size: cover;
         }
         .form-container {
-            max-width: 400px;
-            margin: 0 auto;
+            max-width: 500px;
+            margin: 20px auto;
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -69,68 +69,36 @@
 </head>
 <body>
 <%@include file="header.jsp" %>
-<div class="form-container">
+<div class="form-container shadow-lg p-3 mb-5 rounded">
     <h2>View Profile</h2>
     <form id="profileForm">
         <div class="form-group">
             <label for="customerId">Customer ID</label>
-            <input type="text" id="customerId" name="customerId">
-               <!-- //readonly value="12345"> -->
+            <input type="text" id="customerId" name="customerId" class="form-control w-100" value="<%=session.getAttribute("id")%>" disabled="disabled">
         </div>
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
+            <input type="text" id="name" name="name" class="form-control w-100" value="<%=session.getAttribute("uname")%>" required>
         </div>
         <div class="form-group">
             <label for="phone">Phone</label>
-            <input type="text" id="phone" name="phone" required>
+            <input type="text" id="phone" name="phone" class="form-control w-100" value="<%=session.getAttribute("phone")%>" required>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" class="form-control w-100" value="<%=session.getAttribute("email")%>" required>
         </div>
-        <div class="form-group">
-            <button type="submit" class="update-btn">Update Profile</button>
-            <button type="button" class="back-btn" onclick="window.history.back();">Back</button>
-        </div>
+        <%if(session.getAttribute("uname")!=null){ %>
+        <center><div class="form-group">
+            <button type="submit" class="update-btn w-75">Update Profile</button>
+            <button type="button" class="back-btn w-75" onclick="window.history.back();">Back</button>
+        </div></center>
+        <%} %>
     </form>
 </div>
 
 <script>
-    $(document).ready(function () {
-        $("#profileForm").validate({
-            rules: {
-                name: {
-                    required: true,
-                    minlength: 3
-                },
-                phone: {
-                    required: true,
-                    digits: true,
-                    minlength: 10,
-                    maxlength: 15
-                },
-                email: {
-                    required: true,
-                    email: true
-                }
-            },
-            messages: {
-                name: {
-                    required: "Please enter your name.",
-                    minlength: "Name must be at least 3 characters long."
-                },
-                phone: {
-                    required: "Please enter your phone number.",
-                    digits: "Please enter only digits.",
-                    minlength: "Phone number must be at least 10 digits.",
-                    maxlength: "Phone number must not exceed 15 digits."
-                },
-                email: {
-                    required: "Please enter your email address.",
-                    email: "Please enter a valid email address."
-                }
-            },
+    
             submitHandler: function (form) {
                 alert("Profile updated successfully!");
                 form.submit();

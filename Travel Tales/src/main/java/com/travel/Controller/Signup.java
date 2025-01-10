@@ -28,10 +28,10 @@ public class Signup extends HttpServlet {
 //			Customer Register
 			if(req.getParameter("signup")!=null) {
 				String name=req.getParameter("name");
-				String phone=req.getParameter("phno");
-				String mail=req.getParameter("mail");
-				String password=req.getParameter("password");
-				String confirm=req.getParameter("confirm");
+				String phone=req.getParameter("phone");
+				String mail=req.getParameter("email");
+				String password=req.getParameter("pw");
+				String confirm=req.getParameter("cp");
 				
 				if(password.equals(confirm)) {
 					String status=reg.signup(name,phone,mail,password);
@@ -53,6 +53,11 @@ public class Signup extends HttpServlet {
 						rd.forward(req, res);
 					}
 					
+				}
+				else {
+					req.setAttribute("status", "Password Mismatch.!!");
+					RequestDispatcher rd=req.getRequestDispatcher("register.jsp");
+					rd.forward(req, res);
 				}
 				
 			}
@@ -101,14 +106,19 @@ public class Signup extends HttpServlet {
 					
 				 if(status.equals("success")) {
 					 	req.setAttribute("status", "Password Updated Successfully...");
-						RequestDispatcher rd=req.getRequestDispatcher("fotgotPassword.jsp");
+						RequestDispatcher rd=req.getRequestDispatcher("forgotPassword.jsp");
 						rd.forward(req, res);
 					}
 					else if(status.equals("failure")) {
-						req.setAttribute("status", "Failed to update password.!!");
-						RequestDispatcher rd=req.getRequestDispatcher("fotgotPassword.jsp");
+						req.setAttribute("failure", "Failed to update password.!!");
+						RequestDispatcher rd=req.getRequestDispatcher("forgotPassword.jsp");
 						rd.forward(req, res);
 					}
+				}
+				else {
+					req.setAttribute("failure", "Password Mismatch.!!");
+					RequestDispatcher rd=req.getRequestDispatcher("forgotPassword.jsp");
+					rd.forward(req, res);
 				}
 			}
 			
