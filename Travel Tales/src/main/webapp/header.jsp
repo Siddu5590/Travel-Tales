@@ -20,7 +20,7 @@
   position: relative;
   float: right;
 }
-.nav-item a{
+.items a{
   position: relative;
   float: right;
   font-size: 20px;
@@ -59,28 +59,28 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
+          <li class="items nav-item">
             <a class="nav-link active" aria-current="page" href="index.jsp" style="color: white;">Home</a>
           </li>
-          <li class="nav-item">
+          <li class="items nav-item">
             <a class="nav-link active" aria-current="page" href="#" style="color: white;">About us</a>
           </li>
-          <li class="nav-item">
+          <li class="items nav-item">
             <a class="nav-link active" aria-current="page" href="#" style="color: white;">Places</a>
           </li>
-          <li class="nav-item">
+          <li class="items nav-item">
             <a class="nav-link active" aria-current="page" href="#" style="color: white;">Gallery</a>
           </li>
           <%if(session.getAttribute("uname")!=null) { %>
-          <li class="nav-item">
+          <li class="items nav-item">
             <a class="nav-link active" aria-current="page" href="#" style="color: white;">Booking</a>
           </li>
-          <li class="nav-item">
+          <li class="items nav-item">
             <a class="nav-link active" aria-current="page" href="#" style="color: white;">Status</a>
           </li>
-          <li class="nav-item dropdown">
+          <li class="items nav-item dropdown">
             <a
-              class="nav-link dropdown-toggle"
+              class="items nav-link dropdown-toggle"
               href="#"
               role="button"
               data-bs-toggle="dropdown"
@@ -106,10 +106,10 @@
             </ul>
           </li>
           <%} else { %>
-          <li class="nav-item">
+          <li class="items nav-item">
             <a class="nav-link active" aria-current="page" href="signup.jsp" style="color: white;">Signup</a>
           </li>
-          <li class="nav-item">
+          <li class="items nav-item">
             <a class="nav-link active" aria-current="page" href="login.jsp" style="color: white;">Login</a>
           </li>
           <%} %>
