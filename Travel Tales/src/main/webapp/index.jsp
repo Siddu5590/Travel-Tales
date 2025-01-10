@@ -14,7 +14,7 @@
         .carousel-inner img {
             width: 100%;
             height: 500px;
-            border-radius: 5px;
+           
         }
         .category{
         	margin:20px;
@@ -81,25 +81,30 @@
 	
 }
 .search-bar{
-    margin-left: 500px;
+	margin-top:30px;
+	width:300px;
+	margin-left:450px;
 }
     </style>
 </head>
 <body>
-    <div id="carouselExampleIndicators" class="carousel slide mt-3" data-bs-ride="carousel">
+<%@include file="header.jsp" %>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 5"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 5"></button>
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active" data-bs-interval="2000">
             <img src="assets/image1.jpg" class="d-block w-100" alt="Slide 1">
           </div>
           <div class="carousel-item" data-bs-interval="2000">
-            <img src="assets/image2.webp" class="d-block w-100" alt="Slide 2">
+            <img src="assets/image2.jpg" class="d-block w-100" alt="Slide 2">
           </div>
           <div class="carousel-item" data-bs-interval="2000">
             <img src="assets/image3.jpg" class="d-block w-100" alt="Slide 3">
@@ -109,6 +114,12 @@
           </div>
           <div class="carousel-item" data-bs-interval="2000">
             <img src="assets/image5.jpg" class="d-block w-100" alt="Slide 5">
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img src="assets/image6.jpg" class="d-block w-100" alt="Slide 5">
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img src="assets/image7.jpg" class="d-block w-100" alt="Slide 5">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -122,14 +133,10 @@
     </div>
 
 
-    <nav class="navbar bg-body-tertiary mt-5">
-        <div class="container-fluid search-bar">
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-        </div>
-      </nav>
+    <form class="d-flex search-bar" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search city name..." aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
 
     <div class="category">
         <h3>Top Rated Places...</h3>
@@ -145,5 +152,7 @@
 				</a>
 			</article>
     </div>
+    
+    <%@include file="footer.jsp" %>
 </body>
 </html>
