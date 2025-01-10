@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +21,7 @@
 
             jQuery.validator.addMethod("checkemail", function(value, element) {
                 return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value) || /^[0-9]{10}$/.test(value);
-            });
+            }"Please enter a valid email or phone number");
             jQuery(document).ready(function($) {
                 $("#signup").validate({
                     
@@ -33,12 +31,13 @@
                         },
                         email: {
                             required: true,
-                            mail: true
+                            checkemail: true
                         },
                         phone: {
                             required: true,
                             minlength: 10,
-                            maxlength: 10
+                            maxlength: 10,
+                            digits: true
                         },
                         pw: {
                             required: true,
@@ -47,7 +46,7 @@
                         cp: {
                             required: true,
                             minlength: 6,
-                            equalTo: "#password"
+                            equalTo: "#pw"
                         }
                     },
                     messages: {
@@ -56,21 +55,22 @@
                         },
                         email: {
                             required: "Please enter the email.",
-                            mail: "Please enter valid email id"
+                            checkmail: "Please enter valid email id"
                         },
                         phone: {
-                            required: "Please enter the number.",
-                            minlength: "Please enter the  10 digit number .",
-                            maxlength: "less than or equal to 10 digits."
+                            required: "Please enter your phone number.",
+                            minlength: "Phone number must be exactly 10 digits.",
+                            maxlength: "Phone number must be exactly 10 digits.",
+                            digits: "Please enter a valid phone number (only digits are allowed)"
                         },
                         pw: {
                             required: "Please enter the password.",
                             minlength: "Please enter the password greater than or equal to  6.",
                         },
                         cp: {
-                            required: "Please re-enter the password.",
+                            required: "Please confirm your password.",
                             minlength: "Please enter the password greater than or equal to 6.",
-                            equalTo: "mismatch password"
+                            equalTo: "Password confirmation does not match"
                         }
                     }
                 });
@@ -158,7 +158,7 @@
   <br><br>
   <label>Enter Your Mail ID:</label>
   <br>
-  <input type="email" name="mail" class="ip" id="email" placeholder="Mail ID" required>
+  <input type="email" name="email" class="ip" id="email" placeholder="Mail ID" required>
   <br><br>
   <label>Enter Your Password:</label>
   <br>
