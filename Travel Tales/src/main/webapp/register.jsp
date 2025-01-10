@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,19 +20,19 @@
 // value---> "current value of the validated element".
 //elememt---> " element to be validated ".
 
-            jQuery.validator.addMethod("checkemail", function(value, element) {
+             jQuery.validator.addMethod("checkemail", function(value, element) {
                 return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value) || /^[0-9]{10}$/.test(value);
             });
             jQuery(document).ready(function($) {
                 $("#signup").validate({
-                    
+                    //ignore: [],
                     rules: {
                         name: {
                             required: true
                         },
                         email: {
                             required: true,
-                            mail: true
+                            checkemail: true
                         },
                         phone: {
                             required: true,
@@ -47,7 +46,7 @@
                         cp: {
                             required: true,
                             minlength: 6,
-                            equalTo: "#password"
+                            equalTo: "#pw"
                         }
                     },
                     messages: {
@@ -56,19 +55,19 @@
                         },
                         email: {
                             required: "Please enter the email.",
-                            mail: "Please enter valid email id"
+                            email: "Please enter valid email id"
                         },
                         phone: {
                             required: "Please enter the number.",
                             minlength: "Please enter the  10 digit number .",
-                            maxlength: "less than or equal to 10 digits."
+                            maxlength: "more than 10 digits."
                         },
                         pw: {
                             required: "Please enter the password.",
                             minlength: "Please enter the password greater than or equal to  6.",
                         },
                         cp: {
-                            required: "Please re-enter the password.",
+                            required: "Please reenter the password.",
                             minlength: "Please enter the password greater than or equal to 6.",
                             equalTo: "mismatch password"
                         }
@@ -150,23 +149,23 @@
   <br>
   <label>Enter Your Full Name:</label>
   <br>
-  <input type="text" name="Fullname" class="ip" id="name" placeholder="Full Name" required>
+  <input type="text" name="name" class="ip" id="name" placeholder="Full Name" required>
   <br><br>
   <label>Enter Your Phone Number:</label>
   <br>
-  <input type="tel" name="phno" class="ip" id="phone" placeholder="Phone Number" required>
+  <input type="tel" name="phone" class="ip" id="phone" placeholder="Phone Number" required>
   <br><br>
   <label>Enter Your Mail ID:</label>
   <br>
-  <input type="email" name="mail" class="ip" id="email" placeholder="Mail ID" required>
+  <input type="email" name="email" class="ip" id="email" placeholder="Mail ID" required>
   <br><br>
   <label>Enter Your Password:</label>
   <br>
-  <input type="password" name="password" class="ip" id="pw" placeholder="Password" required>
+  <input type="password" name="pw" class="ip" id="pw" placeholder="Password" required>
   <br><br>
   <label>Confirm Your Password:</label>
   <br>
-  <input type="password" name="confirm" class="ip" id="cp" placeholder="Confirm password" required>
+  <input type="password" name="cp" class="ip" id="cp" placeholder="Confirm password" required>
   <br><br>
   <input type="submit" value="SignUp" name="signup" class="btn">
   <p>Already Have an Account? <a href="login.jsp">Login Here</a></p>
