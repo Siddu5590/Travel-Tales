@@ -27,21 +27,30 @@
             display: block;
         }
          main {
-            background-image: url('assets/Tours.jpg'); /* Replace with your image URL */
+            background-image:url('assets/Tours.jpg');/* Replace with your image URL */
             background-size: cover; /* Make the image cover the entire main area */
             background-repeat: no-repeat; /* Prevent repeating */
             background-position: center; /* Center the image */
             min-height: 100vh; /* Ensure it fits the viewport height */
             color: white; /* Adjust text color for readability */
         }
+        .card-title{
+            text-align:center;
+        }
+        .card:hover{
+        	transform: scale(1.1);
+ 			transition: transform 0.3s ease;
+        }
     </style>
 </head>
 <body>
+    <div class="container-fluid ">
+
 
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <nav class="col-md-3 col-lg-2 sidebar">
+            <nav class="col-md-3 col-lg-2 sidebar shadow-lg p-3 mb-5 bg-body-tertiary">
                 <h5 class="mb-3">DashBoard</h5>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2">
@@ -70,7 +79,7 @@
             <div class="container mt-5">
                 <div class="d-flex justify-content-center gap-3">
                     <!-- Card 1 -->
-                    <div class="card shadow" style="width: auto;">
+                    <a href="page.jsp" class="card shadow" style="width: auto;">
                         <div class="card-body">
                             <h5 class="card-title">Total Categories</h5>
                         </div>
@@ -78,8 +87,8 @@
                         <div class="card-body">
                             <h5 class="card-title">0</h5>
                         </div>
-                    </div>
-                    <div class="card shadow" style="width: auto;">
+                    </a>
+                    <a href="page.jsp" class="card shadow" style="width: auto;">
                         <div class="card-body">
                             <h5 class="card-title">Total Bookings</h5>
                         </div>
@@ -87,8 +96,8 @@
                         <div class="card-body">
                             <h5 class="card-title">0</h5>
                         </div>
-                    </div>
-                    <div class="card shadow" style="width: auto;">
+                    </a>
+                    <a href="page.jsp" class="card shadow" style="width: auto;">
                         <div class="card-body">
                             <h5 class="card-title">Total Guides</h5>
                         </div>
@@ -96,9 +105,9 @@
                         <div class="card-body">
                             <h5 class="card-title">0</h5>
                         </div>
-                    </div>
+                    </a>
                     <!-- Card 2 -->
-                    <div class="card shadow" style="width: auto;">
+                    <a href="page.jsp" class="card shadow" style="width: auto;">
                         <div class="card-body">
                             <h5 class="card-title">Total users</h5>
                         </div>
@@ -107,9 +116,9 @@
                             <h5 class="card-title">0</h5>
                             
                         </div>
-                    </div>
+                    </a>
                     <!-- Card 3 -->
-                    <div class="card shadow" style="width: auto;">
+                    <a href="page.jsp" class="card shadow" style="width: auto;">
                         <div class="card-body">
                             <h5 class="card-title">Total Places</h5>
                         </div>
@@ -117,9 +126,9 @@
                         <div class="card-body">
                             <h5 class="card-title">0</h5>
                         </div>
-                    </div>
+                    </a>
                      <!-- Card 3 -->
-                     <div class="card shadow" style="width: auto;">
+                     <a href="page.jsp" class="card shadow" style="width: auto;">
                         <div class="card-body">
                             <h5 class="card-title">Total Feedbacks</h5>
                         </div>
@@ -127,7 +136,7 @@
                         <div class="card-body">
                             <h5 class="card-title">0</h5>
                         </div>
-                    </div>
+                    </a>
                     
                 </div>
             </div>
