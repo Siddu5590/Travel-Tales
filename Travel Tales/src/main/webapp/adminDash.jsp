@@ -118,7 +118,7 @@
                         </div>
                     </a>
                     <!-- Card 3 -->
-                    <a href="page.jsp" class="card shadow" style="width: auto;">
+                    <a href="viewPlace.jsp" class="card shadow" style="width: auto;">
                         <div class="card-body">
                             <h5 class="card-title">Total Places</h5>
                         </div>
