@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'branch2' of https://github.com/Siddu5590/Travel-Tales.git
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,12 +23,12 @@
 // value---> "current value of the validated element".
 //elememt---> " element to be validated ".
 
-            jQuery.validator.addMethod("checkemail", function(value, element) {
+             jQuery.validator.addMethod("checkemail", function(value, element) {
                 return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value) || /^[0-9]{10}$/.test(value);
             }"Please enter a valid email or phone number");
             jQuery(document).ready(function($) {
                 $("#signup").validate({
-                    
+                    //ignore: [],
                     rules: {
                         name: {
                             required: true
@@ -55,20 +59,34 @@
                         },
                         email: {
                             required: "Please enter the email.",
+<<<<<<< HEAD
                             checkmail: "Please enter valid email id"
+=======
+                            email: "Please enter valid email id"
+>>>>>>> branch 'branch2' of https://github.com/Siddu5590/Travel-Tales.git
                         },
                         phone: {
+<<<<<<< HEAD
                             required: "Please enter your phone number.",
                             minlength: "Phone number must be exactly 10 digits.",
                             maxlength: "Phone number must be exactly 10 digits.",
                             digits: "Please enter a valid phone number (only digits are allowed)"
+=======
+                            required: "Please enter the number.",
+                            minlength: "Please enter the  10 digit number .",
+                            maxlength: "more than 10 digits."
+>>>>>>> branch 'branch2' of https://github.com/Siddu5590/Travel-Tales.git
                         },
                         pw: {
                             required: "Please enter the password.",
                             minlength: "Please enter the password greater than or equal to  6.",
                         },
                         cp: {
+<<<<<<< HEAD
                             required: "Please confirm your password.",
+=======
+                            required: "Please reenter the password.",
+>>>>>>> branch 'branch2' of https://github.com/Siddu5590/Travel-Tales.git
                             minlength: "Please enter the password greater than or equal to 6.",
                             equalTo: "Password confirmation does not match"
                         }
@@ -150,11 +168,11 @@
   <br>
   <label>Enter Your Full Name:</label>
   <br>
-  <input type="text" name="Fullname" class="ip" id="name" placeholder="Full Name" required>
+  <input type="text" name="name" class="ip" id="name" placeholder="Full Name" required>
   <br><br>
   <label>Enter Your Phone Number:</label>
   <br>
-  <input type="tel" name="phno" class="ip" id="phone" placeholder="Phone Number" required>
+  <input type="tel" name="phone" class="ip" id="phone" placeholder="Phone Number" required>
   <br><br>
   <label>Enter Your Mail ID:</label>
   <br>
@@ -162,11 +180,11 @@
   <br><br>
   <label>Enter Your Password:</label>
   <br>
-  <input type="password" name="password" class="ip" id="pw" placeholder="Password" required>
+  <input type="password" name="pw" class="ip" id="pw" placeholder="Password" required>
   <br><br>
   <label>Confirm Your Password:</label>
   <br>
-  <input type="password" name="confirm" class="ip" id="cp" placeholder="Confirm password" required>
+  <input type="password" name="cp" class="ip" id="cp" placeholder="Confirm password" required>
   <br><br>
   <input type="submit" value="SignUp" name="signup" class="btn">
   <p>Already Have an Account? <a href="login.jsp">Login Here</a></p>
