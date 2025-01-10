@@ -44,7 +44,12 @@
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <div class="container-fluid ">
+=======
+
+    <div class="container-fluid">
+>>>>>>> branch 'branch1' of https://github.com/Siddu5590/Travel-Tales.git
         <div class="row">
             <!-- Sidebar -->
             <nav class="col-md-3 col-lg-2 sidebar shadow-lg p-3 mb-5 bg-body-tertiary">
