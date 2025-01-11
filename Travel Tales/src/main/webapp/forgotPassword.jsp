@@ -6,7 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password</title>
-    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -22,7 +25,7 @@
             border: 1px solid #dee2e6;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-top: 150px;
+            margin-top: 50px;
             margin-left: 230px;
         }
         .validation-list {
@@ -46,9 +49,10 @@
     </style>
 </head>
 <body>
+<%@include file="header.jsp" %>
     <div class="reset-password-container">
         <h3 class="text-center">Reset Password</h3>
-        <form id="resetPasswordForm">
+        <form id="resetPasswordForm" action="signup" method="post">
             <div class="mb-3">
                 <label for="email" class="form-label"><strong>Email ID</strong></label>
                 <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
@@ -71,13 +75,14 @@
                 </ul>
             </div>
             
-            <button type="submit" class="btn btn-primary w-100">Reset Password</button>
+            <button type="submit" class="btn btn-primary w-100" name="forgot">Reset Password</button>
         </form>
     </div>
 
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+    
         const newPassword = document.getElementById('newPassword');
         const confirmPassword = document.getElementById('confirmPassword');
 
@@ -116,19 +121,29 @@
             }
         }
 
-        document.getElementById('resetPasswordForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            if (confirmPassword.value !== newPassword.value) {
-                confirmPassword.classList.add('is-invalid');
-                alert('Passwords do not match.');
-                return;
-            } else {
-                confirmPassword.classList.remove('is-invalid');
-                alert('Password reset successfully!');
-             
-            }
+        
+        
+        <% if (request.getAttribute("status") != null) { 
+            String message = (String) request.getAttribute("status");
+            request.removeAttribute("status");
+        %>
+        Swal.fire({
+            icon:"success",
+            title: 'success...',
+            text: "<%= message %>"
         });
+        <% } %>
+        
+        <% if (request.getAttribute("failure") != null) { 
+            String message = (String) request.getAttribute("failure");
+            request.removeAttribute("failure");
+        %>
+        Swal.fire({
+            icon:"error",
+            title: 'Oops...',
+            text: "<%= message %>"
+        });
+        <% } %>
     </script>
 </body>
 </html>
