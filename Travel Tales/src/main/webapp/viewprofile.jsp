@@ -97,6 +97,7 @@
     </form>
 </div>
 
+<%@include file="footer.jsp" %>
 <script>
     
             submitHandler: function (form) {

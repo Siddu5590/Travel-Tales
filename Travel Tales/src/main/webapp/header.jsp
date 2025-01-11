@@ -89,7 +89,7 @@
           </li>
           <%if(session.getAttribute("uname")!=null) { %>
           <li class="items nav-item">
-            <a class="nav-link active" aria-current="page" href="#" style="color: white;">Booking</a>
+            <a class="nav-link active" aria-current="page" href="booking.jsp" style="color: white;">Booking</a>
           </li>
           <li class="items nav-item">
             <a class="nav-link active" aria-current="page" href="#" style="color: white;">Status</a>

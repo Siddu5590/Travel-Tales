@@ -17,7 +17,7 @@
     }
     .form-container {
       max-width: 400px;
-      max-height: 800px;
+      max-height: 850px;
       margin: 50px auto;
       padding: 30px;
       background:white;
@@ -32,8 +32,8 @@
     }
   </style>
 </head>
-<body class="body" style="background:url('/booking.jpeg') no-repeat center center fixed;background-size: cover; color: rgb(12, 2, 2);">
-
+<body class="body" style="background:url('assets/booking.jpg') no-repeat center center fixed;background-size: cover; color: rgb(12, 2, 2);">
+<%@include file="header.jsp" %>
 <div class="form-container">
   <h3 class="text-center mb-4">Booking Form</h3>
   <form id="travelForm">
@@ -68,6 +68,8 @@
     <button type="button" class="btn btn-primary w-100" id="submitButton">Submit</button>
   </form>
 </div>
+
+<%@include file="footer.jsp" %>
 
 <script>
   $(document).ready(function () {
