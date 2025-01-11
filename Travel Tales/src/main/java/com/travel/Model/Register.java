@@ -136,5 +136,90 @@ public class Register {
 		
 			
 		}
+	public String update(String id,String name,String email,String phone)
+	{
+		String status="";
+		PreparedStatement ps=null;
+		
+		try {
+		Statement st=null;
+		ResultSet rs=null;
+		
+		st=con.createStatement();
+		rs=st.executeQuery("select * from customer where phone='"+phone+"' or email='"+email+"';");
+		
+		boolean res=rs.next();
+		if(res==true) {
+			status="existed";
+		}
+		else {
+			ps=con.prepareStatement("insert into customer values(0,?,?,?,)");
+			ps.setString(1, name);
+			ps.setString(2, email);
+			ps.setString(3, phone);
+			
+		
+			
+			int a=ps.executeUpdate();
+			if(a>0) {
+				status="success";
+			}
+			else {
+				status="failure";
+			}
+		}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return status;
+	}
+
+	public String updatedata(int id, String name, String mail, String phone) {
+		String status="";
+		PreparedStatement ps=null;
+		
+		try {
+		Statement st=null;
+		ResultSet rs=null;
+		
+		st=con.createStatement();
+		rs=st.executeQuery("select * from customer where phone='"+phone+"' or email='"+mail+"';");
+		
+		boolean res=rs.next();
+		if(res==true) {
+			status="existed";
+		}
+		else {
+			ps=con.prepareStatement("update customer set name=?, phone=?,email=? where id='"+id+"';");
+			ps.setString(1, name);
+			ps.setString(2, mail);
+			ps.setString(3, phone);
+		
+			
+			int a=ps.executeUpdate();
+			if(a>0) {
+				status="success";
+			}
+			else {
+				status="failure";
+			}
+		}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					return status;
+				}
+		
 	
-}
+	}
+	
+		
+	
+	
+
