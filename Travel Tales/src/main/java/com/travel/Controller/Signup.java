@@ -63,6 +63,7 @@ public class Signup extends HttpServlet {
 			}
 			//Customer Login
 			else if(req.getParameter("login")!=null) {
+				
 				String mail=req.getParameter("email");
 				String password=req.getParameter("password");
 				
@@ -123,13 +124,12 @@ public class Signup extends HttpServlet {
 			}
 			// update profile
 			else if(req.getParameter("update")!=null) {
-				int id=Integer.parseInt(req.getParameter("customerid"));
 				String name=req.getParameter("name");
 				String phone=req.getParameter("phone");
 				String mail=req.getParameter("email");
 				
 				
-				String status=reg.updatedata(id,name,mail,phone);
+				String status=reg.updatedata(name,mail,phone);
 					
 					if(status.equals("existed"))
 					{
@@ -143,7 +143,7 @@ public class Signup extends HttpServlet {
 						rd.forward(req, res);
 					}
 					else if(status.equals("failure")) {
-						req.setAttribute("status", "Failed to Signup.!!");
+						req.setAttribute("failure", "Failed to Signup.!!");
 						RequestDispatcher rd=req.getRequestDispatcher("viewprofile.jsp");
 						rd.forward(req, res);
 					}
