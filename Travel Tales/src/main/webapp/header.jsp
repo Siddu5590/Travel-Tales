@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -24,7 +25,7 @@
 }
 .dropdown-item{
 	position: relative;
-	left:20px;
+	left:30px;
 	background:none;
 	padding:5px;
 }
@@ -88,7 +89,7 @@
           </li>
           <%if(session.getAttribute("uname")!=null) { %>
           <li class="items nav-item">
-            <a class="nav-link active" aria-current="page" href="#" style="color: white;">Booking</a>
+            <a class="nav-link active" aria-current="page" href="booking.jsp" style="color: white;">Booking</a>
           </li>
           <li class="items nav-item">
             <a class="nav-link active" aria-current="page" href="#" style="color: white;">Status</a>
@@ -103,11 +104,11 @@
               aria-expanded="false"
               style="color: white;"
             >
-              <%=session.getAttribute("uname") %>
+             <i class="fa-solid fa-user"></i> <%= session.getAttribute("uname") %>
             </a>
             
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item mb-2 bg-transparent" href="#">View User</a></li>
+              <li><a class="dropdown-item mb-2 bg-transparent" href="viewprofile.jsp">View User</a></li>
               <li><a class="dropdown-item mb-2 bg-transparent" href="#">Reset Pin</a></li>
               <li><hr class="dropdown-divider"></li>
               <li>
@@ -138,8 +139,8 @@
     	    request.removeAttribute("logout");
     	%>
     	Swal.fire({
-    	    icon: "error",
-    	    title: "Oops...",
+    	    icon: "success",
+    	    title: "Success...",
     	    text: "<%= message %>"
     	});
     	<% } %>

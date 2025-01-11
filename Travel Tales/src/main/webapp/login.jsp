@@ -23,18 +23,21 @@
         }
         #a1{
             margin-left: 250px;
+            color:black;
+            font-weight: bold;
+            font-size: 18px;
             
         }
         
     </style>
 </head>
 <%@include file="header.jsp" %>
-<body class="body" style="background: url('/login2.jpg') no-repeat center center fixed; background-size: cover; color: white;">
+<body class="body" style="background: url('assets/login2.jpg') no-repeat center center fixed; background-size: cover; color: white;">
   
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card w-75" style="background-color: rgba(255, 255, 255, 0.9);">
+                <div class="card w-75 shadow-lg p-3 mb-5 rounded" style="background-color: transparent;">
                     <div class="card-header text-center">
                         <h4>Login</h4>
                     </div>
