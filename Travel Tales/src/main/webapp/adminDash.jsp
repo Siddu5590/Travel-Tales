@@ -71,6 +71,9 @@
                     <li class="nav-item mb-2">
                         <a href="page4.html" class="nav-link">Guides</a>
                     </li>
+                    <li class="nav-item mb-2">
+                        <a href="addCity.jsp" class="nav-link">Cities</a>
+                    </li>
                 </ul>
             </nav>
             <!-- Main Content -->

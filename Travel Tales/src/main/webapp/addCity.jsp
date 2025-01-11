@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Add Place</title>
+<title>Add City</title>
 <style>
     
     * {
@@ -82,26 +82,37 @@
         background-color: #ffb700;
         transform: scale(1.05);
     }
+    #msg {
+	background: green;
+	color: black;
+	border: 1px solid green;
+	width: 24%;
+	font-weight: bold;
+	font-size: 25px;
+	padding: 5px;
+	}
 </style>
 </head>
 <body>
 <%@include file="header.jsp" %>
-<form action="product" method="post">
-    <h1>Add New Place</h1>
-    <label>Place Name:</label>
-    <input type="text" name="name" placeholder="Enter Place name"><br>
+		<center>
+		<%
+		if (request.getAttribute("status") != null) {
+		%>
+		<div id="msg"><%=request.getAttribute("status")%></div>
+		<%
+		}
+		%>
+		</center>
+<form method="POST" action="city" >
+    <h1>Add New City</h1>
+    <label>City Name:</label>
+    <input type="text" name="name" placeholder="Enter City name" required><br>
     
-    <label>Place Image:</label>
-    <input type="text" name="image" placeholder="Enter Place image"><br>
+    <label>City Image:</label>
+    <input type="text" name="image" placeholder="Enter City image" required><br>    
     
-    <label>Location:</label>
-    <input type="text" name="loc" placeholder="Enter Location"><br>
-    
-    <label>Place Description:</label>
-    <input type="text" name="description" placeholder="Enter Place Description"><br>
-    
-    
-    <button type="submit" name="addPlace">Add Product</button>
+    <input type="submit" name="addCity" value="submit">
 </form>
 <%@include file="footer.jsp" %>
 </body>
