@@ -126,8 +126,8 @@ public class Signup extends HttpServlet {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
 	
+	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {

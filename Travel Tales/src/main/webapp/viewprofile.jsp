@@ -69,6 +69,7 @@
 </head>
 <body>
 <%@include file="header.jsp" %>
+<% %>
 <div class="form-container shadow-lg p-3 mb-5 rounded">
     <h2>View Profile</h2>
     <form id="profileForm">
