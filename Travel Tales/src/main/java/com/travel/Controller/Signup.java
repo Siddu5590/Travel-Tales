@@ -122,6 +122,34 @@ public class Signup extends HttpServlet {
 				}
 			}
 			// update profile
+			else if(req.getParameter("update")!=null) {
+				int id=Integer.parseInt(req.getParameter("customerid"));
+				String name=req.getParameter("name");
+				String phone=req.getParameter("phone");
+				String mail=req.getParameter("email");
+				
+				
+				String status=reg.updatedata(id,name,mail,phone);
+					
+					if(status.equals("existed"))
+					{
+						req.setAttribute("failure", "User Already Existed.!!");
+						RequestDispatcher rd=req.getRequestDispatcher("viewprofile.jsp");
+						rd.forward(req, res);
+					}
+					else if(status.equals("success")) {
+						req.setAttribute("status", "Account Created Successfully...");
+						RequestDispatcher rd=req.getRequestDispatcher("viewprofile.jsp");
+						rd.forward(req, res);
+					}
+					else if(status.equals("failure")) {
+						req.setAttribute("status", "Failed to Signup.!!");
+						RequestDispatcher rd=req.getRequestDispatcher("viewprofile.jsp");
+						rd.forward(req, res);
+					}
+					
+				}
+			
 			
 		}
 		catch (Exception e) {

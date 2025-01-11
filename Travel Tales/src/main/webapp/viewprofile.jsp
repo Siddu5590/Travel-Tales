@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Profile</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.3/jquery.validate.min.js"></script>
@@ -69,7 +70,7 @@
 </head>
 <body>
 <%@include file="header.jsp" %>
-<% %>
+
 <div class="form-container shadow-lg p-3 mb-5 rounded">
     <h2>View Profile</h2>
     <form id="profileForm">
@@ -99,13 +100,28 @@
 </div>
 
 <script>
-    
-            submitHandler: function (form) {
-                alert("Profile updated successfully!");
-                form.submit();
-            }
-        });
-    });
+<% if (request.getAttribute("status") != null) { 
+    String message = (String) request.getAttribute("status");
+    request.removeAttribute("status");
+%>
+Swal.fire({
+    icon:"success",
+    title: 'Success...',
+    text: "<%= message %>"
+});
+<% } %>
+
+<% if (request.getAttribute("failure") != null) { 
+    String message = (String) request.getAttribute("failure");
+    request.removeAttribute("failure");
+%>
+Swal.fire({
+    icon:"error",
+    title: 'Oooops..',
+    text: "<%= message %>"
+});
+<% } %>
+          
 </script>
 
 </body>
