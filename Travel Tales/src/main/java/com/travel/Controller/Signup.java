@@ -38,24 +38,24 @@ public class Signup extends HttpServlet {
 					
 					if(status.equals("existed"))
 					{
-						req.setAttribute("status", "User Already Existed.!!");
+						req.setAttribute("failure", "User Already Existed.!!");
 						RequestDispatcher rd=req.getRequestDispatcher("register.jsp");
 						rd.forward(req, res);
 					}
 					else if(status.equals("success")) {
 						req.setAttribute("status", "Account Created Successfully...");
-						RequestDispatcher rd=req.getRequestDispatcher("register.jsp");
+						RequestDispatcher rd=req.getRequestDispatcher("login.jsp");
 						rd.forward(req, res);
 					}
 					else if(status.equals("failure")) {
-						req.setAttribute("status", "Failed to Signup.!!");
+						req.setAttribute("failure", "Failed to Signup.!!");
 						RequestDispatcher rd=req.getRequestDispatcher("register.jsp");
 						rd.forward(req, res);
 					}
 					
 				}
 				else {
-					req.setAttribute("status", "Password Mismatch.!!");
+					req.setAttribute("failure", "Password Mismatch.!!");
 					RequestDispatcher rd=req.getRequestDispatcher("register.jsp");
 					rd.forward(req, res);
 				}
@@ -121,13 +121,14 @@ public class Signup extends HttpServlet {
 					rd.forward(req, res);
 				}
 			}
+			// update profile
 			
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
