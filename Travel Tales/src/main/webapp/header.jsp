@@ -6,15 +6,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
       .dropdown:hover .dropdown-menu {
   display: block;
-  margin-top: 0.125em;
+  background-color:none;
+  margin-top:37px;
 }
-
+.dropdown-menu{
+	position: relative;
+	right: 0;
+		
+}
+.dropdown-item{
+	position: relative;
+	left:30px;
+	background:none;
+	padding:5px;
+}
 .container-fluid{
-  background-color: grey;
   /* width:30px; */
   height: 60px;
   position: relative;
@@ -24,6 +39,7 @@
   position: relative;
   float: right;
   font-size: 20px;
+  margin-right:30px;
 } 
 
 
@@ -44,7 +60,7 @@
 </head>
 <body>
   <nav class="navbar navbar-expand-lg bg-dark">
-    <div class="container-fluid bg-dark">
+    <div class="container-fluid">
       <a class="navbar-brand" href="index.jsp" style="color: white;">Travel Tales</a>
       <button
         class="navbar-toggler"
@@ -78,33 +94,31 @@
           <li class="items nav-item">
             <a class="nav-link active" aria-current="page" href="#" style="color: white;">Status</a>
           </li>
-          <li class="items nav-item dropdown">
+          
+          <li class="items nav-item dropdown bg-transparent">
             <a
-              class="items nav-link dropdown-toggle"
+              class="nav-link dropdown-toggle"
               href="#"
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
               style="color: white;"
             >
-              UserName
+             <i class="fa-solid fa-user"></i> <%= session.getAttribute("uname") %>
             </a>
+            
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">View User</a></li>
-              <li><a class="dropdown-item" href="#">Reset Pin</a></li>
+              <li><a class="dropdown-item mb-2 bg-transparent" href="viewprofile.jsp">View User</a></li>
+              <li><a class="dropdown-item mb-2 bg-transparent" href="#">Reset Pin</a></li>
               <li><hr class="dropdown-divider"></li>
               <li>
-                <a class="dropdown-item" href="#">
-                  <input
-                    type="submit"
-                    value="Logout"
-                    name="logout"
-                    class="btn1"
-                  />
-                </a>
+                <form action="signup" method="post">
+                  <input type="submit" value="Logout" name="logout" class="btn1 btn btn-danger ms-3" />
+                  </form>
               </li>
             </ul>
           </li>
+          
           <%} else { %>
           <li class="items nav-item">
             <a class="nav-link active" aria-current="page" href="register.jsp" style="color: white;">Signup</a>
@@ -118,6 +132,19 @@
       </div>
     </div>
   </nav>
+  
+  <script>
+     <% if (request.getAttribute("logout") != null) { 
+    	    String message = (String) request.getAttribute("logout");
+    	    request.removeAttribute("logout");
+    	%>
+    	Swal.fire({
+    	    icon: "error",
+    	    title: "Oops...",
+    	    text: "<%= message %>"
+    	});
+    	<% } %>
+     </script>
   
 </body>
 </html>

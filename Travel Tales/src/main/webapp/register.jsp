@@ -1,28 +1,100 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
+>>>>>>> branch 'branch2' of https://github.com/Siddu5590/Travel-Tales.git
+=======
 >>>>>>> branch 'branch2' of https://github.com/Siddu5590/Travel-Tales.git
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Signup Page</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 
 </head>
 <body>
 <script>
+<% if (request.getAttribute("status") != null) { 
+    String message = (String) request.getAttribute("status");
+    request.removeAttribute("status");
+%>
+Swal.fire({
+    icon:"info",
+    title: 'Information',
+    text: "<%= message %>"
+});
+<% } %>
 
+// Custom method for email validation remains unchanged
+jQuery.validator.addMethod("checkemail", function (value, element) {
+    return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value) || /^[0-9]{10}$/.test(value);
+});
 
+// Custom method for password validation
+jQuery.validator.addMethod("strongPassword", function (value, element) {
+    return this.optional(element) || 
+           /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value);
+}, "Password must have at least 8 characters, including one uppercase, one lowercase, one number, and one special character.");
 
-            //            jQuery.validator.addMethod( name, method [, message ] )
-//            
-// value---> "current value of the validated element".
-//elememt---> " element to be validated ".
+jQuery(document).ready(function ($) {
+    $("#signup").validate({
+        rules: {
+            name: {
+                required: true
+            },
+            email: {
+                required: true,
+                checkemail: true
+            },
+            phone: {
+                required: true,
+                minlength: 10,
+                maxlength: 10
+            },
+            pw: {
+                required: true,
+                strongPassword: true // Use the custom password validation rule
+            },
+            cp: {
+                required: true,
+                equalTo: "#pw" // Ensure it matches the password field
+            }
+        },
+        messages: {
+            name: {
+                required: "Please enter the name."
+            },
+            email: {
+                required: "Please enter the email.",
+                email: "Please enter a valid email ID."
+            },
+            phone: {
+                required: "Please enter the number.",
+                minlength: "Please enter a 10-digit number.",
+                maxlength: "Number cannot exceed 10 digits."
+            },
+            pw: {
+                required: "Please enter the password.",
+                strongPassword: "Password must meet the complexity requirements."
+            },
+            cp: {
+                required: "Please re-enter the password.",
+                equalTo: "Passwords do not match."
+            }
+        }
+    });
+});
 
+<<<<<<< HEAD
              jQuery.validator.addMethod("checkemail", function(value, element) {
                 return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value) || /^[0-9]{10}$/.test(value);
             }"Please enter a valid email or phone number");
@@ -93,6 +165,8 @@
                     }
                 });
             });
+=======
+>>>>>>> branch 'branch2' of https://github.com/Siddu5590/Travel-Tales.git
 </script>
 <style>
   body{
@@ -106,13 +180,13 @@
       border-style: initial;
       border-radius: 20px;
       display: inline-block;
-      margin: 50px auto;
+      margin: 20px 0px;
       padding-left: 50px;
       padding-right: 50px;
       padding-top: 10px;
       padding-bottom: 10px;
       position: relative;
-      margin-left: 450px;
+      margin-left: 150px;
       font-size: medium;
       backdrop-filter: blur(10px);
   }
@@ -121,18 +195,18 @@
       color: rgb(192, 249, 254);
   }
   .btn{
-      margin-left: 80px;
       font-size:x-large;
       border-radius: 5px;
       font-family: 'Times New Roman', Times, serif;
       background-color: rgb(45, 45, 195);
       color: aliceblue;
       font-weight: bolder;
+      width:100px;
   }
   ::placeholder{
       font-size: medium;
       font-weight: lighter;
-      opacity: 0.3;
+      opacity: 0.5;
       color: rgb(252, 252, 252);
       
       
@@ -154,15 +228,48 @@
       color: rgb(142, 249, 189);
       text-decoration: none;   
   }
- 
+  .login{
+  	color:white;
+  	margin-top:10px;
+  }
   p{
     color: aliceblue;
   }
-  input:hover{
+  input{
+  width:300px;
   color:white;
+  font-weight: 500;
   }
+  .require{
+  	margin-top:130px;
+  	margin-left:30px;
+  	float:left;
+  	width:auto;
+  	color:black;
+  	padding:20px;
+  	background-color:white;
+  	border-top-left-radius:30px;
+  	border-bottom-right-radius:30px;
+  }
+  .require .pass{
+  	font-size:20px;	
+  	color:black;
+  }
+  
 </style>
 <body>
+<%@include file="header.jsp" %>
+<div class="require">
+<h3>Password Requirements:</h3>
+<p class="pass">	
+Minimum 8 characters.<br>
+At least one uppercase letter.<br>
+At least one lowercase letter.<br>
+At least one number.<br>
+At least one special character.
+	
+</p>
+</div>
   <form action="signup" method="post" id="signup">
   <h1>SIGNUP</h1>
   <br>
@@ -186,8 +293,8 @@
   <br>
   <input type="password" name="cp" class="ip" id="cp" placeholder="Confirm password" required>
   <br><br>
-  <input type="submit" value="SignUp" name="signup" class="btn">
-  <p>Already Have an Account? <a href="login.jsp">Login Here</a></p>
+  <center><input type="submit" value="SignUp" name="signup" class="btn btn-primary"></center>
+  <p>Already Have an Account? <a href="login.jsp" class="login">Login Here</a></p>
 
 </form>
 </body>

@@ -1,9 +1,12 @@
 package com.travel.Controller;
 
+import java.io.IOException;
+
 import com.travel.Entity.Customer;
 import com.travel.Model.Register;
 
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,18 +20,18 @@ public class Signup extends HttpServlet {
 
 		res.setContentType("text/html;charset=ISO-8859-1");
 		
-		HttpSession sesssion=req.getSession();
-		Register reg=new Register(sesssion);
+		HttpSession session=req.getSession();
+		Register reg=new Register(session);
 		Customer c=new Customer();
 		
 		try {
 //			Customer Register
 			if(req.getParameter("signup")!=null) {
-				String name=req.getParameter("Fname");
-				String phone=req.getParameter("phno");
-				String mail=req.getParameter("mail");
-				String password=req.getParameter("password");
-				String confirm=req.getParameter("confirm");
+				String name=req.getParameter("name");
+				String phone=req.getParameter("phone");
+				String mail=req.getParameter("email");
+				String password=req.getParameter("pw");
+				String confirm=req.getParameter("cp");
 				
 				if(password.equals(confirm)) {
 					String status=reg.signup(name,phone,mail,password);
@@ -36,20 +39,25 @@ public class Signup extends HttpServlet {
 					if(status.equals("existed"))
 					{
 						req.setAttribute("status", "User Already Existed.!!");
-						RequestDispatcher rd=req.getRequestDispatcher("signup.jsp");
+						RequestDispatcher rd=req.getRequestDispatcher("register.jsp");
 						rd.forward(req, res);
 					}
 					else if(status.equals("success")) {
 						req.setAttribute("status", "Account Created Successfully...");
-						RequestDispatcher rd=req.getRequestDispatcher("signup.jsp");
+						RequestDispatcher rd=req.getRequestDispatcher("register.jsp");
 						rd.forward(req, res);
 					}
 					else if(status.equals("failure")) {
 						req.setAttribute("status", "Failed to Signup.!!");
-						RequestDispatcher rd=req.getRequestDispatcher("signup.jsp");
+						RequestDispatcher rd=req.getRequestDispatcher("register.jsp");
 						rd.forward(req, res);
 					}
 					
+				}
+				else {
+					req.setAttribute("status", "Password Mismatch.!!");
+					RequestDispatcher rd=req.getRequestDispatcher("register.jsp");
+					rd.forward(req, res);
 				}
 				
 			}
@@ -61,23 +69,32 @@ public class Signup extends HttpServlet {
 				String status=reg.login(mail, password);
 				
 				if(status.equals("success")) {
-					if(c.getCustomer_id()==1) {
-						RequestDispatcher rd=req.getRequestDispatcher("adminDash.jsp");
+					req.setAttribute("status", "Login Successfull");
+					if(session.getAttribute("uname")!=null && session.getAttribute("id").equals("1")) {
+					RequestDispatcher rd =req.getRequestDispatcher("adminDash.jsp");
+					rd.forward(req, res);
+					}else {
+						RequestDispatcher rd =req.getRequestDispatcher("index.jsp");
 						rd.forward(req, res);
 					}
-					else {
-					RequestDispatcher rd=req.getRequestDispatcher("index.jsp");
-					rd.forward(req, res);
-				}
+					
 				}
 				else if(status.equals("failure")) {
-					req.setAttribute("status", "Invalid Credentials.!!");
-					RequestDispatcher rd=req.getRequestDispatcher("login.jsp");
+					req.setAttribute("status", "Login failed");
+					RequestDispatcher rd = req.getRequestDispatcher("login.jsp");
 					rd.forward(req, res);
 				}
 				
+		
 			}
-			
+			//logout
+			else if(req.getParameter("logout")!=null) {
+				session.invalidate();
+				req.setAttribute("logout", "Logged Out Successful now login here...");
+				RequestDispatcher rd=req.getRequestDispatcher("login.jsp");
+				rd.forward(req, res);
+			}
+
 			//Forgot password
 			else if(req.getParameter("forgot")!=null) {
 				String email=req.getParameter("email");
@@ -89,19 +106,34 @@ public class Signup extends HttpServlet {
 					
 				 if(status.equals("success")) {
 					 	req.setAttribute("status", "Password Updated Successfully...");
-						RequestDispatcher rd=req.getRequestDispatcher("fotgotPassword.jsp");
+						RequestDispatcher rd=req.getRequestDispatcher("forgotPassword.jsp");
 						rd.forward(req, res);
 					}
 					else if(status.equals("failure")) {
-						req.setAttribute("status", "Failed to update password.!!");
-						RequestDispatcher rd=req.getRequestDispatcher("fotgotPassword.jsp");
+						req.setAttribute("failure", "Failed to update password.!!");
+						RequestDispatcher rd=req.getRequestDispatcher("forgotPassword.jsp");
 						rd.forward(req, res);
 					}
+				}
+				else {
+					req.setAttribute("failure", "Password Mismatch.!!");
+					RequestDispatcher rd=req.getRequestDispatcher("forgotPassword.jsp");
+					rd.forward(req, res);
 				}
 			}
 			
 		}
 		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		try {
+			processRequest(req, resp);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

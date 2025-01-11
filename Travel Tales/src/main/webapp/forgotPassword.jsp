@@ -6,7 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password</title>
-    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -79,6 +82,7 @@
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+    
         const newPassword = document.getElementById('newPassword');
         const confirmPassword = document.getElementById('confirmPassword');
 
@@ -117,19 +121,29 @@
             }
         }
 
-        document.getElementById('resetPasswordForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            if (confirmPassword.value !== newPassword.value) {
-                confirmPassword.classList.add('is-invalid');
-                alert('Passwords do not match.');
-                return;
-            } else {
-                confirmPassword.classList.remove('is-invalid');
-                alert('Password reset successfully!');
-             
-            }
+        
+        
+        <% if (request.getAttribute("status") != null) { 
+            String message = (String) request.getAttribute("status");
+            request.removeAttribute("status");
+        %>
+        Swal.fire({
+            icon:"success",
+            title: 'success...',
+            text: "<%= message %>"
         });
+        <% } %>
+        
+        <% if (request.getAttribute("failure") != null) { 
+            String message = (String) request.getAttribute("failure");
+            request.removeAttribute("failure");
+        %>
+        Swal.fire({
+            icon:"error",
+            title: 'Oops...',
+            text: "<%= message %>"
+        });
+        <% } %>
     </script>
 </body>
 </html>
