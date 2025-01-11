@@ -139,8 +139,8 @@
     	    request.removeAttribute("logout");
     	%>
     	Swal.fire({
-    	    icon: "error",
-    	    title: "Oops...",
+    	    icon: "success",
+    	    title: "Success...",
     	    text: "<%= message %>"
     	});
     	<% } %>
