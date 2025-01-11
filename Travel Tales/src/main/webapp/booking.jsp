@@ -8,6 +8,8 @@
   <title>Booking Form</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
   <style>
     body {
@@ -22,6 +24,11 @@
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
+    }
+    .form-label::after{
+      content: "*";
+      color:red;
+      font-size: 20px;
     }
   </style>
 </head>
@@ -62,7 +69,7 @@
   </form>
 </div>
 
-<!-- <script>
+<script>
   $(document).ready(function () {
     $('#submitButton').on('click', function () {
       const name = $('#name').val();
@@ -74,13 +81,13 @@
       const description = $('#description').val();
 
       if (name && phone && numPeople && travelDate && cost && discount) {
-        alert(Form Submitted Successfully!\nName: ${name}\nPhone: ${phone}\nNumber of People: ${numPeople}\nTravel Date: ${travelDate}\nCost: ${cost}\nDiscount: ${discount}\nDescription: ${description});
+        // alert(Form Submitted Successfully!\nName: ${name}\nPhone: ${phone}\nNumber of People: ${numPeople}\nTravel Date: ${travelDate}\nCost: ${cost}\nDiscount: ${discount}\nDescription: ${description});
       } else {
         alert('Please fill in all the required fields.');
       }
     });
   });
-</script> -->
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
