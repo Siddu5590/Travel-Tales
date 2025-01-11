@@ -105,7 +105,7 @@
         <%if(session.getAttribute("uname")!=null){ %>
         <center><div class="form-group">
             <button type="submit" class="update-btn w-75" name="update">Update Profile</button>
-            <button type="button" class="back-btn w-75"><a href="index.jsp">Back</a></button>
+            <a href="index.jsp"><button type="button" class="back-btn w-75">Back</button></a>
         </div></center>
         <%} %>
     </form>
@@ -114,7 +114,7 @@
 
 <%@include file="footer.jsp" %>
 <%} else {%>
-<h3>Please Login to update Profile</h3>
+<h3>Please Login to access your profile...</h3>
 <%} %>
 
 <script>

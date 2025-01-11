@@ -134,11 +134,11 @@
 
 
     <form class="d-flex search-bar" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search city name..." aria-label="Search">
+        <input class="form-control" id="search" type="text" placeholder="Search..">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
 
-    <div class="category">
+    <div class="category" id="city">
         <h3>Top Rated Places...</h3>
         <article class="category-items">
         
@@ -152,7 +152,34 @@
 				</a>
 			</article>
     </div>
+    <h2 id="no-results" style="display: none;" class="text-center mb-3 text-danger">Data not found...!!</h2>
     
     <%@include file="footer.jsp" %>
+    
+    <script>
+    $(document).ready(function () {
+    	  $("#search").on("keyup", function () {
+    	    var value = $(this).val().toLowerCase();
+    	    var hasVisible = false;
+
+    	    $("#city article").filter(function () {
+    	      var isVisible = $(this).text().toLowerCase().indexOf(value) > -1;
+    	      $(this).toggle(isVisible);
+    	      if (isVisible) {
+    	        hasVisible = true;
+    	      }
+    	    });
+
+    	    // Check if any articles are visible
+    	    if (!hasVisible) {
+    	      $("#no-results").show(); // Show "Data not found" message
+    	    } else {
+    	      $("#no-results").hide(); // Hide message if results are found
+    	    }
+    	  });
+    	});
+
+
+</script>
 </body>
 </html>

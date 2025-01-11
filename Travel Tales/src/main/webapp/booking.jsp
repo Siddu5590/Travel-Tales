@@ -16,9 +16,9 @@
       background-color: #f8f9fa;
     }
     .form-container {
-      max-width: 400px;
+      max-width: 550px;
       max-height: 850px;
-      margin: 50px auto;
+      margin: 30px auto;
       padding: 30px;
       background:white;
       border-radius: 8px;
@@ -30,29 +30,63 @@
       color:red;
       font-size: 20px;
     }
+    .form-group button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-group .update-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+    .form-group .back-btn {
+            background-color: #f44336;
+            color: white;
+            
+        }
+        .back-btn a{
+        	text-decoration:none;
+        	color:white;
+        	font-size:20px;
+        }
   </style>
 </head>
 <body class="body" style="background:url('assets/booking.jpg') no-repeat center center fixed;background-size: cover; color: rgb(12, 2, 2);">
 <%@include file="header.jsp" %>
 <div class="form-container">
-  <h3 class="text-center mb-4">Booking Form</h3>
-  <form id="travelForm">
-    <div class="mb-3">
-      <label for="name" class="form-label"><strong>Name</strong></label>
-      <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
-    </div>
-    <div class="mb-3">
-      <label for="phone" class="form-label"><strong>Phobe Number</strong></label>
-      <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
-    </div>
-    <div class="mb-3">
-      <label for="numPeople" class="form-label"><strong>Number of People</strong></label>
-      <input type="number" class="form-control" id="numPeople" placeholder="Enter number of people" required>
-    </div>
-    <div class="mb-3">
-      <label for="travelDate" class="form-label"><strong>Date</strong> </label>
+<%if(session.getAttribute("uname")!=null){ %>
+  <h3 class="text-center mb-4">Booking Form</h3><hr>
+  
+  <form id="travelForm" action="booking" method="post">
+  
+  <div class="row mb-3">
+  <div class="col">
+    <label for="numPeople" class="form-label"><strong>Name</strong></label>
+   <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" value="<%=session.getAttribute("uname") %>" required>
+  </div>
+  
+  <div class="col">
+    <label for="numPeople" class="form-label"><strong>Phone Number</strong></label>
+   <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your Phone Number" value="<%=session.getAttribute("phone") %>" required>
+  </div>
+</div>
+
+<div class="row mb-3">
+  <div class="col">
+  <label for="numPeople" class="form-label"><strong>Number of People</strong></label>
+   <input type="number" class="form-control" id="numPeople" placeholder="Enter number of people" required>
+  </div>
+  
+  <div class="col">
+    <label for="travelDate" class="form-label"><strong>Date</strong> </label>
       <input type="date" class="form-control" id="travelDate" required>
-    </div>
+  </div>
+</div>
+
     <div class="mb-3">
       <label for="cost" class="form-label"><strong>Cost</strong></label>
       <input type="number" class="form-control" id="cost" placeholder="Enter the cost" required>
@@ -65,31 +99,24 @@
       <label for="description" class="form-label"><strong>Description</strong></label>
       <textarea class="form-control" id="description" rows="3" placeholder="Enter additional details"></textarea>
     </div>
-    <button type="button" class="btn btn-primary w-100" id="submitButton">Submit</button>
+    <center><div class="form-group">
+            <button type="submit" class="update-btn w-75" name="book">Book Travel</button>
+            <a href="index.jsp"><button type="button" class="back-btn w-75">Back</button></a>
+        </div></center>
   </form>
 </div>
 
 <%@include file="footer.jsp" %>
+<%} else { %>
+<h3>Please Login to access your profile...</h3>
+<%} %>
 
 <script>
-  $(document).ready(function () {
-    $('#submitButton').on('click', function () {
-      const name = $('#name').val();
-      const phone = $('#phone').val();
-      const numPeople = $('#numPeople').val();
-      const travelDate = $('#travelDate').val();
-      const cost = $('#cost').val();
-      const discount = $('#discount').val();
-      const description = $('#description').val();
-
-      if (name && phone && numPeople && travelDate && cost && discount) {
-        // alert(Form Submitted Successfully!\nName: ${name}\nPhone: ${phone}\nNumber of People: ${numPeople}\nTravel Date: ${travelDate}\nCost: ${cost}\nDiscount: ${discount}\nDescription: ${description});
-      } else {
-        alert('Please fill in all the required fields.');
-      }
-    });
-  });
+  
+  const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+  document.getElementById('travelDate').setAttribute('min', today); // Set min attribute to today's date
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
