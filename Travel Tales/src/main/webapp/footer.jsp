@@ -65,10 +65,10 @@
             <!-- Footer Bottom Section -->
             <div class="d-sm-flex justify-content-between py-1">
                 <p class="p">2023 © Tour & Travel. All Rights Reserved.</p>
-                <p>
+                
                     <!-- <a href="#" class="text-light text-decoration-none pe-4">Terms of Use</a>
                     <a href="#" class="text-light text-decoration-none">Privacy Policy</a> -->
-                </p>
+               
             </div>
         </div>
     </footer>
