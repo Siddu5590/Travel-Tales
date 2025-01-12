@@ -33,7 +33,7 @@ public class city extends HttpServlet
 					
 					if(status.equals("existed"))
 					{
-						req.setAttribute("status", "City Already Existed.!!");
+						req.setAttribute("failure", "City Already Existed.!!");
 						RequestDispatcher rd=req.getRequestDispatcher("addCity.jsp");
 						rd.forward(req, res);
 					}
@@ -43,7 +43,7 @@ public class city extends HttpServlet
 						rd.forward(req, res);
 					}
 					else if(status.equals("failure")) {
-						req.setAttribute("status", "Failed to add City.!!");
+						req.setAttribute("failure", "Failed to add City.!!");
 						RequestDispatcher rd=req.getRequestDispatcher("addCity.jsp");
 						rd.forward(req, res);
 					}

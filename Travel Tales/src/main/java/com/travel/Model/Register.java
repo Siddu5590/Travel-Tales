@@ -75,9 +75,8 @@ public class Register {
 	}
 
 	public String login(String mail, String password) {
-		String status1="" ,id="";
-		String uname="" ,emails="";
-		String phones="";
+		String status1="";
+		
 		String query="SELECT * FROM CUSTOMER WHERE EMAIL='"+mail +"'and Password='"+password+"';";
 
 		try {
@@ -87,15 +86,14 @@ public class Register {
 		rs=st.executeQuery(query);
 		boolean b=rs.next();
 		if(b==true) {
-			id=rs.getString("id");
-			uname=rs.getString("name");
-			emails=rs.getString("email");
-			phones=rs.getString("phone");
-			
-			se.setAttribute("uname", uname);
-			se.setAttribute("email", emails);
-			se.setAttribute("phone", phones);
-			se.setAttribute("id", id);
+			c.setCustomer_id(rs.getInt("id"));
+			c.setC_name(rs.getString("name"));
+			c.setC_mail(rs.getString("email"));
+			c.setC_phone(rs.getString("phone"));
+			se.setAttribute("uname", c.getC_name());
+			se.setAttribute("email", c.getC_mail());
+			se.setAttribute("phone", c.getC_phone());
+			se.setAttribute("id", c.getCustomer_id());
 			
 			status1="success";
 			

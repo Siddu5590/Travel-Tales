@@ -95,7 +95,7 @@
           <li class="items nav-item">
             <a class="nav-link active" aria-current="page" href="#" style="color: white;">Status</a>
           </li>
-          <%if(!session.getAttribute("id").equals(1)) { %>
+          
           
           <li class="items nav-item dropdown bg-transparent">
             <a
@@ -121,7 +121,7 @@
             </ul>
           </li>
           
-          <% }} else { %>
+          <% } else { %>
           <li class="items nav-item">
             <a class="nav-link active" aria-current="page" href="register.jsp" style="color: white;">Signup</a>
           </li>

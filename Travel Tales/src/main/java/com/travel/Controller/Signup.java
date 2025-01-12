@@ -71,7 +71,7 @@ public class Signup extends HttpServlet {
 				
 				if(status.equals("success")) {
 					req.setAttribute("status", "Login Successfull");
-					if(session.getAttribute("uname")!=null && session.getAttribute("id").equals("1")) {
+					if(session.getAttribute("uname")!=null && session.getAttribute("id").equals(1)) {
 					RequestDispatcher rd =req.getRequestDispatcher("adminDash.jsp");
 					rd.forward(req, res);
 					}else {

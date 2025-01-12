@@ -16,11 +16,11 @@
         .navbar {
             background-color: black;
         }
-        .navbar-brand{
+        .logo{
         	color:white;
         }
-        .navbar-brand:hover{
-        	color:blue;
+        .logo:hover{
+        	color:white;
         	transform:scale(1.05);
         }
         .nav-item{
@@ -36,12 +36,12 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <!-- Logo -->
-            <a class="navbar-brand" href="adminDash.jsp">
-                <!--  <img src="https://via.placeholder.com/50" alt="Logo" width="40" height="40">-->
-                MyWebsite
+            <a class="logo navbar-brand" href="adminDash.jsp">
+                <img src="assets/image1.jpg" alt="Logo" width="40" height="40" class="rounded">
+                Travel Tales
             </a>
 
             <!-- Username Dropdown -->

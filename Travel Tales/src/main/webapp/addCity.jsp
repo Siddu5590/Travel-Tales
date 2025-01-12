@@ -5,8 +5,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Add City</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -89,15 +89,6 @@
         background-color: #ffb700;
         transform: scale(1.05);
     }
-    #msg {
-	background: green;
-	color: black;
-	border: 1px solid green;
-	width: 24%;
-	font-weight: bold;
-	font-size: 25px;
-	padding: 5px;
-	}
 	
         .back-btn:hover{
         	color:white;
@@ -108,15 +99,7 @@
 <body>
 <%@include file="adminHeader.jsp" %>
 
-		<center>
-		<%
-		if (request.getAttribute("status") != null) {
-		%>
-		<div id="msg"><%=request.getAttribute("status")%></div>
-		<%
-		}
-		%>
-		</center>
+		
 <form method="POST" action="city" >
     <h1>Add New City</h1>
     <label>City Name:</label>
@@ -126,10 +109,35 @@
     <input type="text" name="image" placeholder="Enter City image" required><br>    
     
     <center><div class="form-group">
-            <button type="submit" class="update-btn w-50 mb-3" name="addCity">Add City</button><br>
+            <button type="submit" class="update-btn w-50 mb-3" name="addCity">Add City</button>
+            <a href="viewCity.jsp" class="back-btn btn btn-success ms-2">Back</a>
+            <br>
             <a href="adminDash.jsp" class="back-btn btn btn-success">Back to Dashboard</a>
         </div></center>
 </form>
 
+<script>
+<% if (request.getAttribute("status") != null) { 
+    String message = (String) request.getAttribute("status");
+    request.removeAttribute("status");
+%>
+Swal.fire({
+    icon:"success",
+    title: 'Success...',
+    text: "<%= message %>"
+});
+<% } %>
+
+<% if (request.getAttribute("failure") != null) { 
+    String message = (String) request.getAttribute("failure");
+    request.removeAttribute("failure");
+%>
+Swal.fire({
+    icon:"error",
+    title: 'Oooops..',
+    text: "<%= message %>"
+});
+<% } %>
+</script>
 </body>
 </html>

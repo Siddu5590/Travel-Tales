@@ -1,3 +1,7 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="com.travel.Entity.City"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.travel.Model.cityDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,76 +21,64 @@
             height: 500px;
            
         }
-        .category{
-        	margin:20px;
+.view-product{
+        margin-top:50px;
+        margin-left:30px;
+        margin-bottom:50px;
+    }
+    
+    .product-container {
+            display: inline-block;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 10px;
+            cursor:pointer;
         }
-        .category-wrapper {
-	width: 100%;
-	margin: 10px auto;
-	padding: 20px;
-}
 
-.category-wrapper h2 {
-	margin-bottom: 10px;
-	font-weight: 400;
-	font-size: 1.5rem;
-}
+        .product-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            padding: 20px;
+            width: 280px;
+            height:auto;
+            box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 12px 25px 0 rgba(0, 0, 0, 0.19);
+        }
+        .product-card:hover{
+        	box-shadow: 0 -8px 4px 0 rgba(10, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 10, 0, 0.19);
+        }
 
-.category-items {
-	display: flex;
-	justify-content: flex-start;
-	align-items: flex-start;
-	flex-wrap: wrap;
-	margin-bottom:30px;
-}
+        .product-card h2 {
+            font-size: 1.5em;
+            margin: 10px 0;
+            color: #8692FC;
+        }
 
-.category-card {
-	width: 180px;
-	height: 180px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-decoration:none;
-	flex-direction: column;
-	margin: 10px;
-	flex-shrink: 0;
-	flex-grow: 0;
-	padding: 5px;
-	color:black;
-	border-radius: 5px;
-	box-shadow: 0px 1px 5px #efefef !important;
-	transition: 0.75s all;
-}
+        .product-card p {
+            font-size: 1em;
+            color: #555;
+        }
+        .card-text{
+        	color:black;
+        	font-weight:bold;
+        	margin-top:10px;
+        	
+        }
+        .card-text strong{
+        	font-size:20px;
+        }
+		.search-bar{
+			margin-top:30px;
+			width:300px;
+			margin-left:450px;
+			box-shadow: 0px 1px 5px gray !important;
+		}
+		.view-more{
+		position: relative;
+		top: -80px;
+		}
 
-.category-card:hover {
-	box-shadow: 0px 1px 5px gray !important;
-	cursor: pointer;
-	text-decoration:none;
-	color:black;
-	transform: scale(1.1);
-}
-
-.category-card img {
-	width: 100%;
-	height: 100px;
-	border-radius: 10px;
-}
-
-.category-card .category-title {
-	font-size: 1.2rem;
-	font-weight: bold;
-	margin-bottom: 0;
-    background-color: black;
-    color: white;
-    padding: 3px;
-	
-}
-.search-bar{
-	margin-top:30px;
-	width:300px;
-	margin-left:450px;
-	box-shadow: 0px 1px 5px gray !important;
-}
     </style>
 </head>
 <body>
@@ -143,19 +135,29 @@
 </form>
 
 
-    <div class="category" id="city">
-        <h3>Top Rated Places...</h3>
-        <article class="category-items">
+    <div class="view-product" id="city">
+    <h2>Top Rated City...</h2>
+    
+    
         
-				<a class="category-card" href="#">
-
-					<img
-					src="assets/image3.jpg"
-					alt="">
-					<h2 class="category-title mt-1 rounded">Mysore</h2>
-
-				</a>
-			</article>
+     <%cityDAO city=new cityDAO(session);
+     ArrayList<City> al=city.viewCity();
+     Iterator<City> it=al.iterator();
+     int count=0;
+     while(it.hasNext()&& count<=4) {
+    	 City c=it.next();%>
+        
+        <div class="product-container">
+       
+    	   <div class="product-card" id="city-name">
+                <div class="profile-pic"><image src="<%=c.getImage() %>" width="220px" height="140px" style="border-radius:5px;" ></div>
+                <p class="card-text" ><strong> <%= c.getCity_name() %></strong></p>
+            </div>
+    	
+    	</div>
+    	<%} count++; %>
+    
+    <a href="#" class="view-more btn btn-primary fs-5"> <i class="fa-solid fa-chevron-right"></i> View More</a>
     </div>
     <h2 id="no-results" style="display: none;" class="text-center mb-3 text-danger">Data not found...!!</h2>
     
@@ -167,7 +169,7 @@
     	    var value = $(this).val().toLowerCase();
     	    var hasVisible = false;
 
-    	    $("#city article").filter(function () {
+    	    $("#city #city-name").filter(function () {
     	      var isVisible = $(this).text().toLowerCase().indexOf(value) > -1;
     	      $(this).toggle(isVisible);
     	      if (isVisible) {

@@ -80,9 +80,9 @@
     </style>
 </head>
 <body>
-<% if(!session.getAttribute("id").equals("1")){%>
+<% if(!session.getAttribute("id").equals(1)){%>
 <%@include file="header.jsp" %>
-<%} else {%>
+<%} else if(session.getAttribute("id").equals(1)){%>
 <%@include file="adminHeader.jsp" %>
 <%} %>
 
@@ -110,7 +110,7 @@
         <%if(session.getAttribute("uname")!=null){ %>
         <center><div class="form-group">
             <button type="submit" class="update-btn w-75" name="update">Update Profile</button>
-            <% if(session.getAttribute("id").equals("1")){%>
+            <% if(session.getAttribute("id").equals(1)){%>
             <a href="adminDash.jsp"><button type="button" class="back-btn w-75">Back</button></a>
             <%}else { %>
              <a href="index.jsp"><button type="button" class="back-btn w-75">Back</button></a>

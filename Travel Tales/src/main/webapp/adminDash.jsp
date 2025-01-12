@@ -53,7 +53,7 @@
                 <h5 class="mb-3">DashBoard</h5>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2">
-                        <a href="addCity.jsp" class="nav-link">Cities</a>
+                        <a href="viewCity.jsp" class="nav-link">Cities</a>
                     </li>
                     <li class="nav-item mb-2">
                         <a href="viewPlace.jsp" class="nav-link">Places</a>
