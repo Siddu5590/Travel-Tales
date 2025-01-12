@@ -25,7 +25,13 @@
         margin-top:50px;
         margin-left:30px;
         margin-bottom:50px;
+        
     }
+    .view{
+    	display: flex;
+    	justify-content: space-between;
+    }
+    
     
     .product-container {
             display: inline-block;
@@ -75,8 +81,7 @@
 			box-shadow: 0px 1px 5px gray !important;
 		}
 		.view-more{
-		position: relative;
-		top: -80px;
+		
 		}
 
     </style>
@@ -91,14 +96,13 @@
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 5"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 5"></button>
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active" data-bs-interval="2000">
-            <img src="assets/image1.jpg" class="d-block w-100" alt="Slide 1">
+            <img src="assets/image8.jpg" class="d-block w-100" alt="Slide 1">
           </div>
           <div class="carousel-item" data-bs-interval="2000">
-            <img src="assets/image2.jpg" class="d-block w-100" alt="Slide 2">
+            <img src="assets/image1.jpg" class="d-block w-100" alt="Slide 2">
           </div>
           <div class="carousel-item" data-bs-interval="2000">
             <img src="assets/image3.jpg" class="d-block w-100" alt="Slide 3">
@@ -112,9 +116,7 @@
           <div class="carousel-item" data-bs-interval="2000">
             <img src="assets/image6.jpg" class="d-block w-100" alt="Slide 5">
           </div>
-          <div class="carousel-item" data-bs-interval="2000">
-            <img src="assets/image7.jpg" class="d-block w-100" alt="Slide 5">
-          </div>
+          
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -136,8 +138,11 @@
 
 
     <div class="view-product" id="city">
-    <h2>Top Rated City...</h2>
     
+    <div class="view">
+    <h2>Top Rated City...</h2>
+     <a href="#" class="view-more btn btn-primary fs-5 me-5"> <i class="fa-solid fa-chevron-right"></i> View More</a>
+    </div>
     
         
      <%cityDAO city=new cityDAO(session);
@@ -146,6 +151,7 @@
      int count=0;
      while(it.hasNext()&& count<=4) {
     	 City c=it.next();%>
+    	 
         
         <div class="product-container">
        
@@ -157,7 +163,6 @@
     	</div>
     	<%} count++; %>
     
-    <a href="#" class="view-more btn btn-primary fs-5"> <i class="fa-solid fa-chevron-right"></i> View More</a>
     </div>
     <h2 id="no-results" style="display: none;" class="text-center mb-3 text-danger">Data not found...!!</h2>
     

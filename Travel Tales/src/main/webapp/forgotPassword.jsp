@@ -6,6 +6,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Password</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+<script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -43,29 +49,31 @@
     </style>
 </head>
 <body>
+<%@include file="header.jsp" %>
     <div class="reset-password-container">
         <h3 class="text-center">Reset Password</h3>
-        <form id="resetPasswordForm">
+        <form id="resetPasswordForm" action="signup" method="post">
             <div class="mb-3">
                 <label for="email" class="form-label"><strong>Email ID</strong></label>
-                <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                <input type="email" id="email" class="form-control" name="email" placeholder="Enter your email" required>
             </div>
             <div class="mb-3">
                 <label for="newPassword" class="form-label"><strong>New Password</strong></label>
-                <input type="text" id="newPassword" class="form-control" placeholder="Enter new password" required>
+                <input type="password" id="newPassword" name="newpassword" class="form-control" placeholder="Enter new password" required>
                 <p>Password instructions:</p>
                 <ul class="validation-list">
                     <li id="length" class="invalid">At least 8 characters <span>&#10060;</span></li>
                     <li id="uppercase" class="invalid">At least 1 uppercase letter <span>&#10060;</span></li>
                     <li id="lowercase" class="invalid">At least 1 lowercase letter <span>&#10060;</span></li>
+                    <li id="number" class="invalid">At least 1 number <span>&#10060;</span></li>
                     <li id="special" class="invalid">At least 1 special character <span>&#10060;</span></li>
                 </ul>
             </div>
             <div class="mb-3">
                 <label for="confirmPassword" class="form-label"><strong>Confirm Password</strong></label>
-                <input type="text" id="confirmPassword" class="form-control" placeholder="Confirm your password" required>
+                <input type="password" id="confirmPassword" name="confirmpassword" class="form-control" placeholder="Confirm your password" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Reset Password</button>
+            <button type="submit" class="btn btn-primary w-100" name="forgot">Reset Password</button>
         </form>
     </div>
 
@@ -75,6 +83,7 @@
             length: /.{8,}/,
             uppercase: /[A-Z]/,
             lowercase: /[a-z]/,
+            number: /[0-9]/,
             special: /[^a-zA-Z0-9]/
         };
 
@@ -84,22 +93,11 @@
                 validateCriterion(passwordRegex.length, password, '#length');
                 validateCriterion(passwordRegex.uppercase, password, '#uppercase');
                 validateCriterion(passwordRegex.lowercase, password, '#lowercase');
+                validateCriterion(passwordRegex.number, password, '#number');
                 validateCriterion(passwordRegex.special, password, '#special');
             });
 
-            $('#resetPasswordForm').on('submit', function (e) {
-                e.preventDefault();
-                const newPassword = $('#newPassword').val();
-                const confirmPassword = $('#confirmPassword').val();
-
-                if (newPassword !== confirmPassword) {
-                    alert('Passwords do not match.');
-                } else if ($('.invalid').length > 0) {
-                    alert('Please meet all password criteria.');
-                } else {
-                    alert('Password reset successfully!');
-                }
-            });
+            
 
             function validateCriterion(regex, value, elementId) {
                 if (regex.test(value)) {
@@ -111,7 +109,27 @@
                 }
             }
         });
+        <% if (request.getAttribute("status") != null) { 
+            String message = (String) request.getAttribute("status");
+            request.removeAttribute("status");
+        %>
+        Swal.fire({
+            icon:"success",
+            title: 'Success...',
+            text: "<%= message %>"
+        });
+        <% } %>
+
+        <% if (request.getAttribute("failure") != null) { 
+            String message = (String) request.getAttribute("failure");
+            request.removeAttribute("failure");
+        %>
+        Swal.fire({
+            icon:"error",
+            title: 'Oooops..',
+            text: "<%= message %>"
+        });
+        <% } %>
     </script>
 </body>
 </html>
-    
