@@ -86,7 +86,7 @@
             <a class="nav-link active" aria-current="page" href="#" style="color: white;">Places</a>
           </li>
           <li class="items nav-item">
-            <a class="nav-link active" aria-current="page" href="#" style="color: white;">Gallery</a>
+            <a class="nav-link active" aria-current="page" href="gallery.jsp" style="color: white;">Gallery</a>
           </li>
           <%if(session.getAttribute("uname")!=null) { %>
           <li class="items nav-item">
