@@ -125,11 +125,15 @@
             bottom: -80px;
             color: aqua;
         }
+        .review{
+        top: 20px;
+        }
         
         
 </style>
 </head>
 <body>
+<%@include file="header.jsp" %>
     <div class="background"></div>
     <h2 class="head">GET IN TOUCH WITH US!</h2><br>
     <marquee direction="right" class="marq">"Your Next Adventure Starts Here – Book, Explore, Discover!"</marquee>
@@ -160,7 +164,7 @@
             <input type="email" name="mail" class="ip" placeholder="Email ID" required><br>
             <label>Enter Your Phone Number:</label><br>
             <input type="tel" name="phone" class="ip" placeholder="Phone Number" required><br><br>
-            <label>Review:</label>
+            <label class="review">Review:</label>
             <textarea id="text" rows="2" cols="25"></textarea><br>
             <center><p class="rate">Rate Your Experience:</p></center>
             <center>
@@ -199,6 +203,6 @@
            <center> <input type="submit" class="btn btn-success" value="Submit"></center>
         </div>
     </form>
-    
+    <%@include file="footer.jsp" %>
 </body>
 </html>
