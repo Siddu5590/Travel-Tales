@@ -46,13 +46,16 @@
   .navbar-brand {
     color: white;
   }
-
-  .nav-link {
-    color: lightgray;
+  
+  .nav-link i{
+  	font-size: 25px;
+  }
+  .items i:hover{
+  	color:yellow;
   }
 
   .nav-link:hover {
-    color: blue; /* Changes color on hover */
+    color: blue; 
   }
 
 
@@ -77,18 +80,23 @@
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         
           <li class="items nav-item">
-            <a class="nav-link active" aria-current="page" href="index.jsp" style="color: white;">Home</a>
+            <a class="nav-link active" aria-current="page" href="index.jsp" title="Home" style="color: white;"><i class="fas fa-home"></i></a>
           </li>
           <li class="items nav-item">
-            <a class="nav-link active" aria-current="page" href="#" style="color: white;">About us</a>
+            <a class="nav-link active" aria-current="page" href="#" title="About US" style="color: white;"><i class="fas fa-info-circle"></i></a>
           </li>
+          <li class="items nav-item">
+            <a class="nav-link active" aria-current="page" href="contactUs.jsp" title="Contact US" style="color: white;"><i class="fas fa-envelope"></i></a>
+          </li>
+          
+          <li class="items nav-item">
+            <a class="nav-link active" aria-current="page" href="gallery.jsp" title="Gallery" style="color: white;"><i class="fas fa-images"></i></a>
+          </li>
+          
+          <%if(session.getAttribute("uname")!=null) { %>
           <li class="items nav-item">
             <a class="nav-link active" aria-current="page" href="#" style="color: white;">Places</a>
           </li>
-          <li class="items nav-item">
-            <a class="nav-link active" aria-current="page" href="gallery.jsp" style="color: white;">Gallery</a>
-          </li>
-          <%if(session.getAttribute("uname")!=null) { %>
           <li class="items nav-item">
             <a class="nav-link active" aria-current="page" href="booking.jsp" style="color: white;">Booking</a>
           </li>
@@ -110,8 +118,8 @@
             </a>
             
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item mb-2 bg-transparent" href="viewprofile.jsp">View User</a></li>
-              <li><a class="dropdown-item mb-2 bg-transparent" href="#">Reset Pin</a></li>
+              <li><a class="dropdown-item mb-2 bg-transparent" href="viewprofile.jsp"><i class="fas fa-user-circle"></i> View User</a></li>
+              <li><a class="dropdown-item mb-2 bg-transparent" href="#"><i class="fas fa-key"></i> Reset Pin</a></li>
               <li><hr class="dropdown-divider"></li>
               <li>
                 <form action="signup" method="post">
