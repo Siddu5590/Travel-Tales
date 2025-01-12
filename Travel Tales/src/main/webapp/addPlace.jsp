@@ -85,7 +85,7 @@
 </style>
 </head>
 <body>
-<%@include file="header.jsp" %>
+<%@include file="adminHeader.jsp" %>
 <form action="product" method="post">
     <h1>Add New Place</h1>
     <label>Place Name:</label>

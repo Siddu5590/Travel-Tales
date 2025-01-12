@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+    <%Customer c=new Customer(); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,7 +80,11 @@
     </style>
 </head>
 <body>
+<% if(!session.getAttribute("id").equals("1")){%>
 <%@include file="header.jsp" %>
+<%} else {%>
+<%@include file="adminHeader.jsp" %>
+<%} %>
 
 <div class="form-container shadow-lg p-3 mb-5 rounded">
 <%if(session.getAttribute("uname")!=null){ %>
@@ -105,7 +110,11 @@
         <%if(session.getAttribute("uname")!=null){ %>
         <center><div class="form-group">
             <button type="submit" class="update-btn w-75" name="update">Update Profile</button>
-            <a href="index.jsp"><button type="button" class="back-btn w-75">Back</button></a>
+            <% if(session.getAttribute("id").equals("1")){%>
+            <a href="adminDash.jsp"><button type="button" class="back-btn w-75">Back</button></a>
+            <%}else { %>
+             <a href="index.jsp"><button type="button" class="back-btn w-75">Back</button></a>
+            <%} %>
         </div></center>
         <%} %>
     </form>

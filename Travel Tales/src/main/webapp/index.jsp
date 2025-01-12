@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Tales</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
@@ -84,6 +85,7 @@
 	margin-top:30px;
 	width:300px;
 	margin-left:450px;
+	box-shadow: 0px 1px 5px gray !important;
 }
     </style>
 </head>
@@ -134,9 +136,12 @@
 
 
     <form class="d-flex search-bar" role="search">
-        <input class="form-control" id="search" type="text" placeholder="Search..">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+  <div style="position: relative; width: 100%;">
+    <input class="form-control" id="search" type="text" placeholder="Search city here.." style="padding-right: 35px;">
+    <i class="fa fa-search" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer; color: gray;"></i>
+  </div>
+</form>
+
 
     <div class="category" id="city">
         <h3>Top Rated Places...</h3>

@@ -5,6 +5,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Add City</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <style>
     
     * {
@@ -29,6 +35,7 @@
         max-width: 400px;
         margin-left:500px;
         margin-bottom:20px;
+        margin-top:50px;
         text-align: center;
         border: 2px solid #ffcc33;
     }
@@ -91,10 +98,16 @@
 	font-size: 25px;
 	padding: 5px;
 	}
+	
+        .back-btn:hover{
+        	color:white;
+        	transform:scale(1.05);
+        }
 </style>
 </head>
 <body>
-<%@include file="header.jsp" %>
+<%@include file="adminHeader.jsp" %>
+
 		<center>
 		<%
 		if (request.getAttribute("status") != null) {
@@ -112,8 +125,11 @@
     <label>City Image:</label>
     <input type="text" name="image" placeholder="Enter City image" required><br>    
     
-    <input type="submit" name="addCity" value="submit">
+    <center><div class="form-group">
+            <button type="submit" class="update-btn w-50 mb-3" name="addCity">Add City</button><br>
+            <a href="adminDash.jsp" class="back-btn btn btn-success">Back to Dashboard</a>
+        </div></center>
 </form>
-<%@include file="footer.jsp" %>
+
 </body>
 </html>
