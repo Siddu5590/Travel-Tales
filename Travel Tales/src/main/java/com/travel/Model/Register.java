@@ -91,6 +91,7 @@ public class Register {
 			uname=rs.getString("name");
 			emails=rs.getString("email");
 			phones=rs.getString("phone");
+			
 			se.setAttribute("uname", uname);
 			se.setAttribute("email", emails);
 			se.setAttribute("phone", phones);
@@ -137,4 +138,42 @@ public class Register {
 			
 		}
 	
-}
+
+	public String updatedata(String name, String mail, String phone) {
+		String status="";
+		PreparedStatement ps=null;
+		
+		try {
+		Statement st=null;
+		ResultSet rs=null;
+		
+		st=con.createStatement();
+		
+			ps=con.prepareStatement("update customer set name='" + name + "',phone='" + phone+ "',email='" + mail + "' where id= '" + se.getAttribute("id") + "' ");
+			c.setC_name(name);
+			c.setC_phone(phone);
+			c.setC_mail(mail);
+			
+			se.setAttribute("uname", c.getC_name());
+			se.setAttribute("email", c.getC_mail());
+			se.setAttribute("phone", c.getC_phone());
+			int a=ps.executeUpdate();
+			if(a>0) {
+				status="success";
+			}
+			else {
+				status="failure";
+			}
+		
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					return status;
+				}
+		
+	
+	}
+	

@@ -19,6 +19,7 @@
         .sidebar a {
             text-decoration: none;
             color: #000;
+            font-size:20px;
         }
         .sidebar a:hover {
             color: #007bff;
@@ -44,9 +45,7 @@
     </style>
 </head>
 <body>
-    <div class="container-fluid ">
-
-
+<%@include file="adminHeader.jsp" %>
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
@@ -54,10 +53,10 @@
                 <h5 class="mb-3">DashBoard</h5>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2">
-                        <a href="page1.html" class="nav-link">Categories</a>
+                        <a href="addCity.jsp" class="nav-link">Cities</a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a href="page2.html" class="nav-link">Places</a>
+                        <a href="viewPlace.jsp" class="nav-link">Places</a>
                     </li>
                     <li class="nav-item mb-2">
                         <a href="page3.html" class="nav-link">View Users</a>
@@ -71,8 +70,10 @@
                     <li class="nav-item mb-2">
                         <a href="page4.html" class="nav-link">Guides</a>
                     </li>
+                    
                 </ul>
             </nav>
+            <%if(session.getAttribute("uname")!=null){ %>
             <!-- Main Content -->
             <main class="col-md-9 col-lg-10">
             
@@ -141,8 +142,13 @@
                 </div>
             </div>
             </main>
+            
         </div>
+        
     </div>
+    <%} else { %>
+            <h3 class="text-center position-absolute top-25 end-0 mt-5">Please Login now to access your profile...</h3>
+            <%} %>
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>

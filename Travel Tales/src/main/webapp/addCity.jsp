@@ -4,7 +4,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Add Place</title>
+<title>Add City</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <style>
     
     * {
@@ -29,6 +35,7 @@
         max-width: 400px;
         margin-left:500px;
         margin-bottom:20px;
+        margin-top:50px;
         text-align: center;
         border: 2px solid #ffcc33;
     }
@@ -82,27 +89,47 @@
         background-color: #ffb700;
         transform: scale(1.05);
     }
+    #msg {
+	background: green;
+	color: black;
+	border: 1px solid green;
+	width: 24%;
+	font-weight: bold;
+	font-size: 25px;
+	padding: 5px;
+	}
+	
+        .back-btn:hover{
+        	color:white;
+        	transform:scale(1.05);
+        }
 </style>
 </head>
 <body>
 <%@include file="adminHeader.jsp" %>
-<form action="product" method="post">
-    <h1>Add New Place</h1>
-    <label>Place Name:</label>
-    <input type="text" name="name" placeholder="Enter Place name"><br>
+
+		<center>
+		<%
+		if (request.getAttribute("status") != null) {
+		%>
+		<div id="msg"><%=request.getAttribute("status")%></div>
+		<%
+		}
+		%>
+		</center>
+<form method="POST" action="city" >
+    <h1>Add New City</h1>
+    <label>City Name:</label>
+    <input type="text" name="name" placeholder="Enter City name" required><br>
     
-    <label>Place Image:</label>
-    <input type="text" name="image" placeholder="Enter Place image"><br>
+    <label>City Image:</label>
+    <input type="text" name="image" placeholder="Enter City image" required><br>    
     
-    <label>Location:</label>
-    <input type="text" name="loc" placeholder="Enter Location"><br>
-    
-    <label>Place Description:</label>
-    <input type="text" name="description" placeholder="Enter Place Description"><br>
-    
-    
-    <button type="submit" name="addPlace">Add Product</button>
+    <center><div class="form-group">
+            <button type="submit" class="update-btn w-50 mb-3" name="addCity">Add City</button><br>
+            <a href="adminDash.jsp" class="back-btn btn btn-success">Back to Dashboard</a>
+        </div></center>
 </form>
-<%@include file="footer.jsp" %>
+
 </body>
 </html>

@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>All Places</title>
+<title>Insert title here</title>
 </head>
 <body>
-
+<%@include file="adminHeader.jsp" %>
+<h1>Hii</h1>
 </body>
 </html>

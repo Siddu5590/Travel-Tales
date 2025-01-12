@@ -1,14 +1,20 @@
+<%@page import="com.travel.Entity.Customer"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%Customer c=new Customer(); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Profile</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.3/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -59,6 +65,12 @@
         .form-group .back-btn {
             background-color: #f44336;
             color: white;
+            
+        }
+        .back-btn a{
+        	text-decoration:none;
+        	color:white;
+        	font-size:20px;
         }
         .error {
             color: red;
@@ -68,10 +80,17 @@
     </style>
 </head>
 <body>
+<% if(!session.getAttribute("id").equals("1")){%>
 <%@include file="header.jsp" %>
+<%} else {%>
+<%@include file="adminHeader.jsp" %>
+<%} %>
+
 <div class="form-container shadow-lg p-3 mb-5 rounded">
+<%if(session.getAttribute("uname")!=null){ %>
     <h2>View Profile</h2>
-    <form id="profileForm">
+    
+    <form id="profileForm" action="signup" method="post">
         <div class="form-group">
             <label for="customerId">Customer ID</label>
             <input type="text" id="customerId" name="customerId" class="form-control w-100" value="<%=session.getAttribute("id")%>" disabled="disabled">
@@ -90,21 +109,46 @@
         </div>
         <%if(session.getAttribute("uname")!=null){ %>
         <center><div class="form-group">
-            <button type="submit" class="update-btn w-75">Update Profile</button>
-            <button type="button" class="back-btn w-75" onclick="window.history.back();">Back</button>
+            <button type="submit" class="update-btn w-75" name="update">Update Profile</button>
+            <% if(session.getAttribute("id").equals("1")){%>
+            <a href="adminDash.jsp"><button type="button" class="back-btn w-75">Back</button></a>
+            <%}else { %>
+             <a href="index.jsp"><button type="button" class="back-btn w-75">Back</button></a>
+            <%} %>
         </div></center>
         <%} %>
     </form>
+    
 </div>
 
+<%@include file="footer.jsp" %>
+<%} else {%>
+<h3>Please Login to access your profile...</h3>
+<%} %>
+
 <script>
-    
-            submitHandler: function (form) {
-                alert("Profile updated successfully!");
-                form.submit();
-            }
-        });
-    });
+<% if (request.getAttribute("status") != null) { 
+    String message = (String) request.getAttribute("status");
+    request.removeAttribute("status");
+%>
+Swal.fire({
+    icon:"success",
+    title: 'Success...',
+    text: "<%= message %>"
+});
+<% } %>
+
+<% if (request.getAttribute("failure") != null) { 
+    String message = (String) request.getAttribute("failure");
+    request.removeAttribute("failure");
+%>
+Swal.fire({
+    icon:"error",
+    title: 'Oooops..',
+    text: "<%= message %>"
+});
+<% } %>
+          
 </script>
 
 </body>
