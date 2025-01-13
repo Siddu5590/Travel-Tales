@@ -17,7 +17,7 @@ public class Register {
 	
 	private Connection con;
 	HttpSession se;
-	
+    
 	public Register(HttpSession session) {
 		String url="jdbc:mysql://localhost:3306/travel_tales";
 		String user="root";
@@ -91,6 +91,7 @@ public class Register {
 			c.setC_name(rs.getString("name"));
 			c.setC_mail(rs.getString("email"));
 			c.setC_phone(rs.getString("phone"));
+			
 			se.setAttribute("uname", c.getC_name());
 			se.setAttribute("email", c.getC_mail());
 			se.setAttribute("phone", c.getC_phone());
@@ -173,6 +174,5 @@ public class Register {
 					
 					return status;
 				}
-		
 	}
 	

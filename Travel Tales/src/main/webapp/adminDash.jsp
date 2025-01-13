@@ -73,7 +73,7 @@
                         <a href="page4.html" class="nav-link">Feedback</a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a href="page4.html" class="nav-link">Guides</a>
+                        <a href="guide.jsp" class="nav-link">Guides</a>
                     </li>
                     
                 </ul>
@@ -87,7 +87,7 @@
                     <!-- Card 1 -->
                     <a href="viewCity.jsp" class="card shadow" style="width: auto;">
                         <div class="card-body">
-                            <h5 class="card-title">Total Categories</h5>
+                            <h5 class="card-title">Total Cities</h5>
                         </div>
                         <hr class="m-0">
                         <div class="card-body">
