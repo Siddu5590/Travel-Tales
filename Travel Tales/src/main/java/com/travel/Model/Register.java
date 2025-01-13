@@ -90,6 +90,7 @@ public class Register {
 			c.setC_name(rs.getString("name"));
 			c.setC_mail(rs.getString("email"));
 			c.setC_phone(rs.getString("phone"));
+			
 			se.setAttribute("uname", c.getC_name());
 			se.setAttribute("email", c.getC_mail());
 			se.setAttribute("phone", c.getC_phone());
