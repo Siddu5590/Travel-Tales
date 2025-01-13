@@ -20,6 +20,7 @@
             background-color: #f8f9fa;
             min-height: 100vh;
             padding: 15px;
+            margin-top:50px;
         }
         .sidebar a {
             text-decoration: none;

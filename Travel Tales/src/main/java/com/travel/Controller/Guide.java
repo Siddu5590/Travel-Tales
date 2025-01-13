@@ -27,7 +27,6 @@ public class Guide extends HttpServlet {
 			try {
 //				Customer Register
 				if(req.getParameter("guide")!=null) {
-					String id=req.getParameter("id");
 					String name=req.getParameter("name");
 					String phone=req.getParameter("phone");
 					String email=req.getParameter("email");
@@ -35,7 +34,7 @@ public class Guide extends HttpServlet {
 					
 					
 					
-						String status=g.addguide(id,name,phone,email,age);
+						String status=g.addguide(name,phone,email,age);
 						if(status.equals("existed"))
 						{
 							req.setAttribute("failure", "User Already Existed.!!");

@@ -31,7 +31,7 @@ public class Guide1 {
 	}
 	
 
-	public String addguide(String id,String name,String phone,String mail,String age) {
+	public String addguide(String name,String phone,String mail,String age) {
 		String status="";
 		PreparedStatement ps=null;
 		

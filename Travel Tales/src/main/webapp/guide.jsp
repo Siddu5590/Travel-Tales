@@ -1,16 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guide Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            /* background-color: #c3eaf4; */
-            background-color: rgb(233, 240, 244);
+    	
+        .body {
+            
             display: flex;
             justify-content: center;
             align-items: center;
@@ -18,11 +21,10 @@
             margin: 0;
         }
         .form-container {
-            border: 3px dashed #aefab0; /* Unique border style */
+            border: 3px dashed #aefab0;
             border-radius: 10px;
             padding: 20px;
-            /* background-color: #ffffff; */
-            background-color:  rgb(253, 218, 158);
+            background-color: rgb(253, 218, 158);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             width: 400px;
         }
@@ -62,32 +64,38 @@
         .form-container button:hover {
             opacity: 0.9;
         }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
     </style>
 </head>
-<body>
+<body style="background-color: rgb(233, 240, 244);">
+<%@include file="adminHeader.jsp" %>
+<a href="adminDash.jsp" class="btn btn-secondary btnn ms-3 mt-3">Back to Dashboard</a>
+	<div class="body">
+	
     <div class="form-container">
         <h2>Guide Form</h2>
-        <form action="guide" method="post" >
-            <!-- <label for="guide-id">Guide ID:</label>
-            <input type="text" id="guide-id" name="guide-id" required> -->
-
+        <form id="guide-form" action="guide" method="post">
             <label for="guide-name">Guide Name:</label>
-            <input type="text" id="guide-name" name="guide-name" required>
+            <input type="text" id="guide-name" name="name">
 
             <label for="phone">Phone:</label>
-            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}">
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email">
 
             <label for="age">Age:</label>
-            <input type="number" id="age" name="age" min="18" max="100" required>
+            <input type="number" id="age" name="age" min="18" max="100">
 
             <div style="display: flex; justify-content: space-between;">
                 <button type="submit" name="guide" class="submit-btn">Submit</button>
                 <button type="button" class="back-btn" onclick="window.history.back();">Back</button>
             </div>
         </form>
+    </div>
     </div>
     <script type="text/javascript">
     <% if (request.getAttribute("status") != null) { 
@@ -111,6 +119,59 @@
         text: "<%= message %>"
     });
     <% } %>
+    
+    
+        $(document).ready(function () {
+            $("#guide-form").validate({
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 3
+                    },
+                    phone: {
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    age: {
+                        required: true,
+                        number: true,
+                        min: 18,
+                        max: 100
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Please enter your name.",
+                        minlength: "Name must be at least 3 characters long."
+                    },
+                    phone: {
+                        required: "Please enter your phone number.",
+                        digits: "Please enter only digits.",
+                        minlength: "Phone number must be exactly 10 digits.",
+                        maxlength: "Phone number must be exactly 10 digits."
+                    },
+                    email: {
+                        required: "Please enter your email.",
+                        email: "Please enter a valid email address."
+                    },
+                    age: {
+                        required: "Please enter your age.",
+                        number: "Please enter a valid number.",
+                        min: "Age must be at least 18.",
+                        max: "Age cannot exceed 100."
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    error.insertAfter(element);
+                }
+            });
+        });
     </script>
 </body>
 </html>

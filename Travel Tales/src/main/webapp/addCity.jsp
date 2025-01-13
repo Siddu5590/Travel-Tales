@@ -26,7 +26,7 @@
     }
 
   
-    form {
+    .addcity {
         background-color: #ffffff;
         padding: 30px;
         border-radius: 10px;
@@ -57,7 +57,7 @@
     }
 
    
-    input[type="text"] {
+    .update {
         width: 100%;
         padding: 10px;
         margin-bottom: 15px;
@@ -67,14 +67,14 @@
         background-color: #fffde7;
     }
 
-    input[type="text"]:focus {
+    .update:focus {
         border-color: #ffcc33;
         outline: none;
         box-shadow: 0px 0px 8px rgba(255, 204, 51, 0.3);
     }
 
     
-    button[type="submit"] {
+    .update-btn {
         background-color: #ffcc33;
         color: #333333;
         font-size: 16px;
@@ -85,7 +85,7 @@
         transition: background-color 0.3s, transform 0.2s;
     }
 
-    button[type="submit"]:hover {
+    .update-btn:hover {
         background-color: #ffb700;
         transform: scale(1.05);
     }
@@ -100,13 +100,13 @@
 <%@include file="adminHeader.jsp" %>
 
 		
-<form method="POST" action="city" >
+<form method="POST" action="city" class="addcity">
     <h1>Add New City</h1>
     <label>City Name:</label>
-    <input type="text" name="name" placeholder="Enter City name" required><br>
+    <input type="text" class="update" name="name" placeholder="Enter City name" required><br>
     
     <label>City Image:</label>
-    <input type="text" name="image" placeholder="Enter City image" required><br>    
+    <input type="text" class="update" name="image" placeholder="Enter City image" required><br>    
     
     <center><div class="form-group">
             <button type="submit" class="update-btn w-50 mb-3" name="addCity">Add City</button>
