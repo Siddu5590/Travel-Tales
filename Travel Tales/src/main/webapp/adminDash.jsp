@@ -1,5 +1,10 @@
+<%@page import="com.travel.Entity.City"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.travel.Model.cityDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%cityDAO c=new cityDAO(session);
+    ArrayList<City> city =c.viewCity();%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,13 +85,13 @@
             <div class="container mt-5">
                 <div class="d-flex justify-content-center gap-3">
                     <!-- Card 1 -->
-                    <a href="page.jsp" class="card shadow" style="width: auto;">
+                    <a href="viewCity.jsp" class="card shadow" style="width: auto;">
                         <div class="card-body">
                             <h5 class="card-title">Total Categories</h5>
                         </div>
                         <hr class="m-0">
                         <div class="card-body">
-                            <h5 class="card-title">0</h5>
+                            <h5 class="card-title"><%=city.size() %></h5>
                         </div>
                     </a>
                     <a href="page.jsp" class="card shadow" style="width: auto;">

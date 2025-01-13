@@ -85,4 +85,29 @@ public class cityDAO {
 	    	
 	    	return city;
 	    }
+
+		public String deleteCity(int id) {
+			Statement st=null;
+			String status="";
+			int count=0;
+			
+			
+			try {
+				st=con.createStatement();
+				count=st.executeUpdate("delete from city where city_id='"+id+"';");
+				
+				if(count>0) {
+					status="success";
+				}
+				else {
+					status="failure";
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return status;
+		}
 }

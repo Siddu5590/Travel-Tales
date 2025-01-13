@@ -130,6 +130,7 @@
 
             <p>We're here to help you plan your perfect getaway! Whether you have questions about our destinations, need assistance with bookings, or simply want to know more about the services we offer, our team is ready to assist you.</p>
             <div class="contact-details">
+            
                 <p><b>Email:</b> support@yourtourismwebsite.com</p>
                 <p><b>Phone:</b> +123 456 7890</p>
                 <p><b>Operating Hours:</b> Monday - Friday, 9:00 AM - 6:00 PM (GMT)</p>
@@ -141,13 +142,13 @@
         <form action="contactus" method="post">
             <h2>Opinion Poll</h2>
             <label for="name">Enter Your Name:</label>
-            <input type="text" id="name" name="name" placeholder="Username" required>
+            <input type="text" id="name" name="name" placeholder="Username" required value="<%= session.getAttribute("uname")%>">
 
             <label for="email">Enter Your Email:</label>
-            <input type="email" id="email" name="mail" placeholder="Email ID" required>
+            <input type="email" id="email" name="mail" placeholder="Email ID" required value="<%= session.getAttribute("email")%>">
 
             <label for="phone">Enter Your Phone Number:</label>
-            <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+            <input type="tel" id="phone" name="phone" placeholder="Phone Number" required value="<%= session.getAttribute("phone")%>">
 
             <label for="review">Review:</label>
             <textarea id="review" rows="3" name="review" placeholder="Write your review..."></textarea>

@@ -80,14 +80,13 @@
 			margin-left:450px;
 			box-shadow: 0px 1px 5px gray !important;
 		}
-		.view-more{
 		
-		}
 
     </style>
 </head>
 <body>
 <%@include file="header.jsp" %>
+
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -95,7 +94,6 @@
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
-           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 5"></button>
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active" data-bs-interval="2000">
@@ -113,9 +111,7 @@
           <div class="carousel-item" data-bs-interval="2000">
             <img src="assets/image5.jpg" class="d-block w-100" alt="Slide 5">
           </div>
-          <div class="carousel-item" data-bs-interval="2000">
-            <img src="assets/image6.jpg" class="d-block w-100" alt="Slide 5">
-          </div>
+          
           
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -143,7 +139,6 @@
     <h2>Top Rated City...</h2>
      <a href="#" class="view-more btn btn-primary fs-5 me-5"> <i class="fa-solid fa-chevron-right"></i> View More</a>
     </div>
-    
         
      <%cityDAO city=new cityDAO(session);
      ArrayList<City> al=city.viewCity();

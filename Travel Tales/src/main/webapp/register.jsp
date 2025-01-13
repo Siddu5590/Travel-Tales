@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'branch2' of https://github.com/Siddu5590/Travel-Tales.git
-=======
->>>>>>> branch 'branch2' of https://github.com/Siddu5590/Travel-Tales.git
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,79 +99,6 @@ jQuery(document).ready(function ($) {
     });
 });
 
-<<<<<<< HEAD
-             jQuery.validator.addMethod("checkemail", function(value, element) {
-                return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value) || /^[0-9]{10}$/.test(value);
-            }"Please enter a valid email or phone number");
-            jQuery(document).ready(function($) {
-                $("#signup").validate({
-                    //ignore: [],
-                    rules: {
-                        name: {
-                            required: true
-                        },
-                        email: {
-                            required: true,
-                            checkemail: true
-                        },
-                        phone: {
-                            required: true,
-                            minlength: 10,
-                            maxlength: 10,
-                            digits: true
-                        },
-                        pw: {
-                            required: true,
-                            minlength: 6
-                        },
-                        cp: {
-                            required: true,
-                            minlength: 6,
-                            equalTo: "#pw"
-                        }
-                    },
-                    messages: {
-                        name: {
-                            required: "Please enter the name."
-                        },
-                        email: {
-                            required: "Please enter the email.",
-<<<<<<< HEAD
-                            checkmail: "Please enter valid email id"
-=======
-                            email: "Please enter valid email id"
->>>>>>> branch 'branch2' of https://github.com/Siddu5590/Travel-Tales.git
-                        },
-                        phone: {
-<<<<<<< HEAD
-                            required: "Please enter your phone number.",
-                            minlength: "Phone number must be exactly 10 digits.",
-                            maxlength: "Phone number must be exactly 10 digits.",
-                            digits: "Please enter a valid phone number (only digits are allowed)"
-=======
-                            required: "Please enter the number.",
-                            minlength: "Please enter the  10 digit number .",
-                            maxlength: "more than 10 digits."
->>>>>>> branch 'branch2' of https://github.com/Siddu5590/Travel-Tales.git
-                        },
-                        pw: {
-                            required: "Please enter the password.",
-                            minlength: "Please enter the password greater than or equal to  6.",
-                        },
-                        cp: {
-<<<<<<< HEAD
-                            required: "Please confirm your password.",
-=======
-                            required: "Please reenter the password.",
->>>>>>> branch 'branch2' of https://github.com/Siddu5590/Travel-Tales.git
-                            minlength: "Please enter the password greater than or equal to 6.",
-                            equalTo: "Password confirmation does not match"
-                        }
-                    }
-                });
-            });
-=======
->>>>>>> branch 'branch2' of https://github.com/Siddu5590/Travel-Tales.git
 </script>
 <style>
   body{

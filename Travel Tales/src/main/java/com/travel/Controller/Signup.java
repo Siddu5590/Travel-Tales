@@ -131,19 +131,14 @@ public class Signup extends HttpServlet {
 				
 				String status=reg.updatedata(name,mail,phone);
 					
-					if(status.equals("existed"))
-					{
-						req.setAttribute("failure", "User Already Existed.!!");
-						RequestDispatcher rd=req.getRequestDispatcher("viewprofile.jsp");
-						rd.forward(req, res);
-					}
-					else if(status.equals("success")) {
-						req.setAttribute("status", "Account Created Successfully...");
+					
+					if(status.equals("success")) {
+						req.setAttribute("status", "Account Updated Successfully...");
 						RequestDispatcher rd=req.getRequestDispatcher("viewprofile.jsp");
 						rd.forward(req, res);
 					}
 					else if(status.equals("failure")) {
-						req.setAttribute("failure", "Failed to Signup.!!");
+						req.setAttribute("failure", "Failed to Update.!!");
 						RequestDispatcher rd=req.getRequestDispatcher("viewprofile.jsp");
 						rd.forward(req, res);
 					}

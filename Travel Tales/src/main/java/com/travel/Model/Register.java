@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpSession;
 public class Register {
 	
 
-	Customer c=new Customer();
+	
 	private Connection con;
 	HttpSession se;
 	
@@ -86,6 +86,7 @@ public class Register {
 		rs=st.executeQuery(query);
 		boolean b=rs.next();
 		if(b==true) {
+			Customer c=new Customer();
 			c.setCustomer_id(rs.getInt("id"));
 			c.setC_name(rs.getString("name"));
 			c.setC_mail(rs.getString("email"));
@@ -140,6 +141,7 @@ public class Register {
 	public String updatedata(String name, String mail, String phone) {
 		String status="";
 		PreparedStatement ps=null;
+		Customer c=new Customer();
 		
 		try {
 		Statement st=null;
@@ -172,6 +174,5 @@ public class Register {
 					return status;
 				}
 		
-	
 	}
 	

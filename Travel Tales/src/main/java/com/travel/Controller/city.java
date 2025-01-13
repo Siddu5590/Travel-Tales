@@ -49,6 +49,24 @@ public class city extends HttpServlet
 					}
 					
 				}
+			else if(req.getParameter("delete")!=null) {
+				int id=Integer.parseInt(req.getParameter("cid"));
+				
+				String status=c.deleteCity(id);
+				if(status.equals("success")) {
+					req.setAttribute("status", "City Deleted Successfully...");
+					RequestDispatcher rd=req.getRequestDispatcher("viewCity.jsp");
+					rd.forward(req, res);
+					
+				}
+				else if(status.equals("failure"))
+				{
+					req.setAttribute("failure", "Failed to Delete the City...");
+					RequestDispatcher rd=req.getRequestDispatcher("viewCity.jsp");
+					rd.forward(req, res);
+				}
+				
+			}
 				
 			
 			
