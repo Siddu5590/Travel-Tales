@@ -1,10 +1,18 @@
+<%@page import="com.travel.Entity.Guide"%>
+<%@page import="com.travel.Model.Guide1"%>
+<%@page import="com.travel.Entity.Customer"%>
+<%@page import="com.travel.Model.Register"%>
 <%@page import="com.travel.Entity.City"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.travel.Model.cityDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%cityDAO c=new cityDAO(session);
-    ArrayList<City> city =c.viewCity();%>
+    ArrayList<City> city =c.viewCity();
+    Register reg=new Register(session);
+	ArrayList<Customer> customer=reg.viewUsers();
+	Guide1 g=new Guide1(session);;
+	ArrayList<Guide> guide = g.viewGuide();%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,7 +73,7 @@
                         <a href="viewPlace.jsp" class="nav-link">Places</a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a href="page3.html" class="nav-link">View Users</a>
+                        <a href="viewUsers.jsp" class="nav-link">View Users</a>
                     </li>
                     <li class="nav-item mb-2">
                         <a href="page4.html" class="nav-link">Booking Status</a>
@@ -74,7 +82,7 @@
                         <a href="page4.html" class="nav-link">Feedback</a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a href="guide.jsp" class="nav-link">Guides</a>
+                        <a href="viewGuide.jsp" class="nav-link">Guides</a>
                     </li>
                     
                 </ul>
@@ -110,7 +118,7 @@
                         </div>
                         <hr class="m-0">
                         <div class="card-body">
-                            <h5 class="card-title">0</h5>
+                            <h5 class="card-title"><%=guide.size() %></h5>
                         </div>
                     </a>
                     <!-- Card 2 -->
@@ -120,7 +128,7 @@
                         </div>
                         <hr class="m-0">
                         <div class="card-body">
-                            <h5 class="card-title">0</h5>
+                            <h5 class="card-title"><%=customer.size() %></h5>
                             
                         </div>
                     </a>

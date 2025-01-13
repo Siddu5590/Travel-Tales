@@ -144,6 +144,36 @@ public class Signup extends HttpServlet {
 					}
 					
 				}
+			else if(req.getParameter("deleteUser")!=null)
+			{
+				int id=Integer.parseInt(req.getParameter("id"));
+				
+				if(id!=1)
+				{
+					String status=reg.deleteUser(id);
+					
+					if(status.equals("success"))
+					{
+						req.setAttribute("status", "User Deleted Successfully...");
+						RequestDispatcher rd=req.getRequestDispatcher("viewUsers.jsp");
+						rd.forward(req, res);
+					}
+					else if(status.equals("failure"))
+					{
+						req.setAttribute("failure", "Failed to Delete...");
+						RequestDispatcher rd=req.getRequestDispatcher("viewUsers.jsp");
+						rd.forward(req, res);
+					}
+					
+				}
+				else {
+					req.setAttribute("failure", "Admin Account cannot be Deleted...");
+					RequestDispatcher rd=req.getRequestDispatcher("viewUsers.jsp");
+					rd.forward(req, res);
+				}
+			}
+			
+		
 			
 			
 		}

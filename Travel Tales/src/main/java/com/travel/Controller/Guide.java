@@ -32,8 +32,6 @@ public class Guide extends HttpServlet {
 					String email=req.getParameter("email");
 					String age=req.getParameter("age");
 					
-					
-					
 						String status=g.addguide(name,phone,email,age);
 						if(status.equals("existed"))
 						{
@@ -42,22 +40,21 @@ public class Guide extends HttpServlet {
 							rd.forward(req, res);
 						}
 						else if(status.equals("success")) {
-							req.setAttribute("status", "Account Created Successfully...");
+							req.setAttribute("status", "Guide Added Successfully...");
 							RequestDispatcher rd=req.getRequestDispatcher("guide.jsp");
 							rd.forward(req, res);
 						}
 						else if(status.equals("failure")) {
-							req.setAttribute("failure", "Failed to Signup.!!");
+							req.setAttribute("failure", "Failed to add Guide.!!");
 							RequestDispatcher rd=req.getRequestDispatcher("guide.jsp");
 							rd.forward(req, res);
 						}
 						
 					}
-					else {
-						req.setAttribute("failure", "Password Mismatch.!!");
-						RequestDispatcher rd=req.getRequestDispatcher("guide.jsp");
-						rd.forward(req, res);
-					}
+				else if(req.getParameter("deleteGuide")!=null) {
+					
+				}
+					
 					
 			}
 			catch (Exception e) {
