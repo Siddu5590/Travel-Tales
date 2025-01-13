@@ -17,7 +17,7 @@ public class Register {
 	Customer c=new Customer();
 	private Connection con;
 	HttpSession se;
-	
+    
 	public Register(HttpSession session) {
 		String url="jdbc:mysql://localhost:3306/travel_tales";
 		String user="root";

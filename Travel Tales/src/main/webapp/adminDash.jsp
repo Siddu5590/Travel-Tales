@@ -74,7 +74,7 @@
                         <a href="page4.html" class="nav-link">Feedback</a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a href="page4.html" class="nav-link">Guides</a>
+                        <a href="guide.jsp" class="nav-link">Guides</a>
                     </li>
                     
                 </ul>
