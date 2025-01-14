@@ -77,10 +77,18 @@
 		.search-bar{
 			margin-top:30px;
 			width:300px;
-			margin-left:450px;
 			box-shadow: 0px 1px 5px gray !important;
 		}
 		
+		@media (max-width: 576px) {
+            .carousel-inner img {
+                height: 300px;
+            }
+            .product-card {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
 
     </style>
 </head>
@@ -125,12 +133,12 @@
     </div>
 
 
-    <form class="d-flex search-bar" role="search">
+  <center><form class="search-bar" role="search">
   <div style="position: relative; width: 100%;">
     <input class="form-control" id="search" type="text" placeholder="Search city here.." style="padding-right: 35px;">
     <i class="fa fa-search" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer; color: gray;"></i>
   </div>
-</form>
+</form></center>
 
 
     <div class="view-product" id="city">
