@@ -1,3 +1,7 @@
+<%@page import="com.travel.Model.cityDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Iterator" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -41,7 +45,7 @@
     }
 
    
-    label {
+   label {
         display: block;
         font-size: 14px;
         color: #333333;
@@ -50,7 +54,7 @@
     }
 
    
-    input[type="text"] {
+   select, input[type="text"] {
         width: 100%;
         padding: 10px;
         margin-bottom: 15px;
@@ -60,7 +64,7 @@
         background-color: #fffde7;
     }
 
-    input[type="text"]:focus {
+    select, input[type="text"]:focus {
         border-color: #ffcc33;
         outline: none;
         box-shadow: 0px 0px 8px rgba(255, 204, 51, 0.3);
@@ -86,13 +90,27 @@
 </head>
 <body>
 <%@include file="adminHeader.jsp" %>
-<form action="product" method="post">
+<a href="adminDash.jsp" class="btn btn-secondary btnn ms-3 mt-3">Back to Dashboard</a>
+
+<form action="Place" method="post">
     <h1>Add New Place</h1>
     <label>Place Name:</label>
     <input type="text" name="name" placeholder="Enter Place name"><br>
     
     <label>Place Image:</label>
     <input type="text" name="image" placeholder="Enter Place image"><br>
+    
+     <label for="city">Choose a City:</label><br>
+        <select id="city" name="city">
+        <% cityDAO c=new cityDAO(session);
+           ArrayList<String> al=c.getCities();
+           Iterator<String> itr=al.iterator();
+           while(itr.hasNext())
+           {  String city=itr.next();%>
+        	   <option value="<%= city%>"><%= city%></option>
+          <%} %> 
+            
+        </select>
     
     <label>Location:</label>
     <input type="text" name="loc" placeholder="Enter Location"><br>
@@ -101,7 +119,7 @@
     <input type="text" name="description" placeholder="Enter Place Description"><br>
     
     
-    <button type="submit" name="addPlace">Add Product</button>
+    <button type="submit" name="addPlace">Add Place</button>
 </form>
 <%@include file="footer.jsp" %>
 </body>

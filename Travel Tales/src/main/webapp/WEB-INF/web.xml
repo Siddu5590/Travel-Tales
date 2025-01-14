@@ -3,6 +3,15 @@
   <display-name>Travel Tales</display-name>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
-    
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>Place</display-name>
+    <servlet-name>Place</servlet-name>
+    <servlet-class>com.travel.Controller.Place</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Place</servlet-name>
+    <url-pattern>/Place</url-pattern>
+  </servlet-mapping>
 </web-app>

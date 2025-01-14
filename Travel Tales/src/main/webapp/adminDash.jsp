@@ -70,7 +70,7 @@
                         <a href="viewCity.jsp" class="nav-link">Cities</a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a href="viewPlace.jsp" class="nav-link">Places</a>
+                        <a href="addPlace.jsp" class="nav-link">Places</a>
                     </li>
                     <li class="nav-item mb-2">
                         <a href="viewUsers.jsp" class="nav-link">View Users</a>
@@ -122,7 +122,7 @@
                         </div>
                     </a>
                     <!-- Card 2 -->
-                    <a href="page.jsp" class="card shadow" style="width: auto;">
+                    <a href="viewUsers.jsp" class="card shadow" style="width: auto;">
                         <div class="card-body">
                             <h5 class="card-title">Total users</h5>
                         </div>
