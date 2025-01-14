@@ -3,6 +3,8 @@
 <%@page import="com.travel.Entity.Customer"%>
 <%@page import="com.travel.Model.Register"%>
 <%@page import="com.travel.Entity.City"%>
+<%@page import="com.travel.Model.placeDAO" %>
+<%@page import="com.travel.Entity.Place" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.travel.Model.cityDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -12,7 +14,10 @@
     Register reg=new Register(session);
 	ArrayList<Customer> customer=reg.viewUsers();
 	Guide1 g=new Guide1(session);;
-	ArrayList<Guide> guide = g.viewGuide();%>
+	ArrayList<Guide> guide = g.viewGuide();
+	placeDAO p=new placeDAO(session);
+	ArrayList<Place> place=p.viewPlace();
+	%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,7 +75,7 @@
                         <a href="viewCity.jsp" class="nav-link">Cities</a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a href="addPlace.jsp" class="nav-link">Places</a>
+                        <a href="viewPlace.jsp" class="nav-link">Places</a>
                     </li>
                     <li class="nav-item mb-2">
                         <a href="viewUsers.jsp" class="nav-link">View Users</a>
@@ -139,7 +144,7 @@
                         </div>
                         <hr class="m-0">
                         <div class="card-body">
-                            <h5 class="card-title">0</h5>
+                            <h5 class="card-title"><%= place.size()%></h5>
                         </div>
                     </a>
                      <!-- Card 3 -->

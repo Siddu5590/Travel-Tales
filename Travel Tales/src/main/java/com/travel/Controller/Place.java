@@ -22,7 +22,7 @@ public class Place extends HttpServlet
 		res.setContentType("text/html;charset=UTF-8");
 		 PrintWriter out = res.getWriter();
 		HttpSession session=req.getSession();
-		placeDAO c=new placeDAO(session);
+		placeDAO p=new placeDAO(session);
 		//Customer c=new Customer();
 		
 		try {
@@ -33,7 +33,7 @@ public class Place extends HttpServlet
 				String desc=req.getParameter("description");
 				String city=req.getParameter("city");
 				
-					String status=c.addPlace(name,img,loc,desc,city);
+					String status=p.addPlace(name,img,loc,desc,city);
 					
 					if(status.equals("existed"))
 					{
@@ -54,9 +54,9 @@ public class Place extends HttpServlet
 					
 				}
 			else if(req.getParameter("delete")!=null) {
-				int id=Integer.parseInt(req.getParameter("cid"));
+				int id=Integer.parseInt(req.getParameter("pid"));
 				
-				String status=c.deletePlace(id);
+				String status=p.deletePlace(id);
 				if(status.equals("success")) {
 					req.setAttribute("status", "Place Deleted Successfully...");
 					RequestDispatcher rd=req.getRequestDispatcher("viewPlace.jsp");
