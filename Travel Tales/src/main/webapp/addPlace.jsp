@@ -93,6 +93,7 @@
 <a href="adminDash.jsp" class="btn btn-secondary btnn ms-3 mt-3">Back to Dashboard</a>
 
 <form action="Place" method="post">
+	
     <h1>Add New Place</h1>
     <label>Place Name:</label>
     <input type="text" name="name" placeholder="Enter Place name"><br>
@@ -106,9 +107,9 @@
            ArrayList<String> al=c.getCities();
            Iterator<String> itr=al.iterator();
            while(itr.hasNext())
-           {  String city=itr.next();%>
+           {  String city=itr.next(); %>
         	   <option value="<%= city%>"><%= city%></option>
-          <%} %> 
+         <%  } %> 
             
         </select>
     
@@ -119,7 +120,7 @@
     <input type="text" name="description" placeholder="Enter Place Description"><br>
     
     
-    <button type="submit" name="addPlace">Add Place</button>
+    <button type="submit" name="addPlace" value="add place">Add Place</button>
 </form>
 <%@include file="footer.jsp" %>
 </body>

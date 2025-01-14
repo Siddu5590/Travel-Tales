@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-
+@WebServlet("/Place")
 public class Place extends HttpServlet
 {
 
@@ -43,7 +43,7 @@ public class Place extends HttpServlet
 					}
 					else if(status.equals("success")) {
 						req.setAttribute("status", "Place Added Successfully...");
-						RequestDispatcher rd=req.getRequestDispatcher("viewPlace.jsp");
+						RequestDispatcher rd=req.getRequestDispatcher("addPlace.jsp");
 						rd.forward(req, res);
 					}
 					else if(status.equals("failure")) {
@@ -56,7 +56,7 @@ public class Place extends HttpServlet
 			else if(req.getParameter("delete")!=null) {
 				int id=Integer.parseInt(req.getParameter("cid"));
 				
-				String status=c.deleteCity(id);
+				String status=c.deletePlace(id);
 				if(status.equals("success")) {
 					req.setAttribute("status", "Place Deleted Successfully...");
 					RequestDispatcher rd=req.getRequestDispatcher("viewPlace.jsp");
