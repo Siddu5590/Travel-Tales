@@ -113,7 +113,7 @@ jQuery(document).ready(function ($) {
       border-radius: 20px;
       display: inline-block;
       margin: 20px 0px;
-      padding-left: 50px;
+      padding-left: 40px;
       padding-right: 50px;
       padding-top: 10px;
       padding-bottom: 10px;
@@ -122,17 +122,17 @@ jQuery(document).ready(function ($) {
       font-size: medium;
       backdrop-filter: blur(10px);
   }
-  h1{
+  .head{
       text-align: center;
-      color: rgb(192, 249, 254);
+      color: rgb(229, 254, 245);
+      font-family:times new roman;
+      font-weight:bold;
   }
   .btn{
-      font-size:x-large;
+      font-size:large;
       border-radius: 5px;
-      font-family: 'Times New Roman', Times, serif;
-      background-color: rgb(45, 45, 195);
-      color: aliceblue;
-      font-weight: bolder;
+      font-family: times new roman;
+      font-weight:bolder;
       width:100px;
   }
   ::placeholder{
@@ -161,7 +161,7 @@ jQuery(document).ready(function ($) {
       text-decoration: none;   
   }
   .login{
-  	color:white;
+  	color:red;
   	margin-top:10px;
   }
   p{
@@ -203,7 +203,7 @@ At least one special character.
 </p>
 </div>
   <form action="signup" method="post" id="signup">
-  <h1>SIGNUP</h1>
+  <h1 class="head">SIGNUP</h1>
   <br>
   <label>Enter Your Full Name:</label>
   <br>

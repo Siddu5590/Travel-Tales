@@ -131,11 +131,11 @@
             <p>We're here to help you plan your perfect getaway! Whether you have questions about our destinations, need assistance with bookings, or simply want to know more about the services we offer, our team is ready to assist you.</p>
             <div class="contact-details">
             
-                <p><b>Email:</b> support@yourtourismwebsite.com</p>
+                <p><b>Email:</b> support@traveltaleswebsite.com</p>
                 <p><b>Phone:</b> +123 456 7890</p>
                 <p><b>Operating Hours:</b> Monday - Friday, 9:00 AM - 6:00 PM (GMT)</p>
-                <p><b>General Inquiries:</b> info@yourtourismwebsite.com</p>
-                <p><b>Sales & Partnerships:</b> partnerships@yourtourismwebsite.com</p>
+                <p><b>General Inquiries:</b> info@traveltaleswebsite.com</p>
+                <p><b>Sales & Partnerships:</b> partnerships@traveltaleswebsite.com</p>
             </div>
         </div>
 
