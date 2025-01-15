@@ -166,8 +166,11 @@
                     <span class="star" data-value="5">&#9733;</span>
                 </div>
                 <p class="text-center"><span id="rating-value"></span></p>
-
+				<%if(session.getAttribute("uname")!=null){ %>
                 <input type="submit" class="btn btn-success" value="Submit">
+                <%} else {%>
+                <h5 class="text-center text-danger">please login to submit the feedback</h5>
+                <%} %>
             </form>
         </div>
     </div>
