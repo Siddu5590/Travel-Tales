@@ -63,6 +63,9 @@
             height:auto;
             box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 12px 25px 0 rgba(0, 0, 0, 0.19);
         }
+        .product-card a{
+        	text-decoration: none;
+        }
         .product-card:hover{
         	box-shadow: 0 -8px 4px 0 rgba(10, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 10, 0, 0.19);
         }
@@ -98,8 +101,9 @@
         <div class="product-container">
        
     	   <div class="product-card">
+                <a href="<%=request.getContextPath() + "/place.jsp?city=" + c.getCity_id()%>">
                 <div class="profile-pic"><image src="<%=c.getImage() %>" width="220px" height="140px" style="border-radius:5px;" ></div>
-                <p class="card-text"><strong>City Name:</strong> <%= c.getCity_name() %></p>
+                <p class="card-text" ><strong> <%= c.getCity_name() %></strong></p></a>
             </div>
     	</div>
     	<%} %>
