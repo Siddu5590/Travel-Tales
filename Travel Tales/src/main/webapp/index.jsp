@@ -123,8 +123,8 @@
           <span class="visually-hidden">Next</span>
         </button>
     </div>
-
-
+    
+<!-- search bar -->
     <form class="d-flex search-bar" role="search">
   <div style="position: relative; width: 100%;">
     <input class="form-control" id="search" type="text" placeholder="Search city here.." style="padding-right: 35px;">
