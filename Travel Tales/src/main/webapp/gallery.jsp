@@ -352,7 +352,7 @@
         <!-- Card 1 -->
         <div class="col-6 col-sm-4 col-md-2">
             <div class="fade-box">
-                <img src="assets1/pics4.jpeg" alt="Image 1" class="img-fluid">
+                <img src="assets1/spic.jpeg" alt="Image 1" class="img-fluid">
                 <div class="caption">Sonashree</div>
             </div>
         </div>
