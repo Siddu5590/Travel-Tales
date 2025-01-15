@@ -131,4 +131,31 @@ public class cityDAO {
 				}
 			 return al;
 		}
+		
+		public ArrayList<City> viewCity(int id)
+	    {
+	    	Statement st=null;
+	    	PreparedStatement ps=null;
+	    	ResultSet rs=null;
+	    	
+	    	ArrayList<City> city=new ArrayList<City>();
+	    	
+	    	try {
+				st=con.createStatement();
+				rs=st.executeQuery("select * from city where city_id='"+id+"';");
+				while(rs.next())
+				{
+					City c=new City();
+					c.setCity_id(rs.getInt("city_id"));
+					c.setCity_name(rs.getString("city_name"));
+					c.setImage(rs.getString("image"));
+					city.add(c);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	
+	    	return city;
+	    }
 }

@@ -36,7 +36,7 @@
     .product-container {
             display: inline-block;
             flex-wrap: wrap;
-            gap: 30px;
+            gap: 20px;
             padding: 10px;
             cursor:pointer;
         }
@@ -47,7 +47,7 @@
             border-radius: 8px;
             text-align: center;
             padding: 20px;
-            width: 280px;
+            width: 250px;
             height:auto;
             box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 12px 25px 0 rgba(0, 0, 0, 0.19);
         }
@@ -59,6 +59,9 @@
             font-size: 1.5em;
             margin: 10px 0;
             color: #8692FC;
+        }
+        .product-card a{
+        	text-decoration:none;
         }
 
         .product-card p {
@@ -145,7 +148,7 @@
     
     <div class="view">
     <h2>Top Rated City...</h2>
-     <a href="#" class="view-more btn btn-primary fs-5 me-5"> <i class="fa-solid fa-chevron-right"></i> View More</a>
+     <a href="allCities.jsp" class="view-more btn btn-primary fs-5 me-5"> <i class="fa-solid fa-chevron-right"></i> View More</a>
     </div>
         
      <%cityDAO city=new cityDAO(session);
@@ -159,8 +162,9 @@
         <div class="product-container">
        
     	   <div class="product-card" id="city-name">
+    	   <a href="<%=request.getContextPath() + "/place.jsp?city=" + c.getCity_id()%>">
                 <div class="profile-pic"><image src="<%=c.getImage() %>" width="220px" height="140px" style="border-radius:5px;" ></div>
-                <p class="card-text" ><strong> <%= c.getCity_name() %></strong></p>
+                <p class="card-text" ><strong> <%= c.getCity_name() %></strong></p></a>
             </div>
     	
     	</div>

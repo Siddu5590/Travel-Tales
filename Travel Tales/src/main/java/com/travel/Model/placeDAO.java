@@ -124,6 +124,37 @@ public class placeDAO {
 			
 			return status;
 		}
+		
+		public ArrayList<Place> viewPlace(int id)
+	    {
+	    	Statement st=null;
+	    	PreparedStatement ps=null;
+	    	ResultSet rs=null;
+	    	
+	    	ArrayList<Place> place=new ArrayList<>();
+	    	
+	    	try {
+				st=con.createStatement();
+				rs=st.executeQuery("select * from place where place_id='"+id+"';");
+				while(rs.next())
+				{
+					Place p=new Place();
+					p.setPlace_id(rs.getInt("PLACE_ID"));
+					p.setPlace_name(rs.getString("NAME"));
+					p.setLocation(rs.getString("LOCATION"));
+					p.setImage(rs.getString("IMAGE"));
+					p.setCity_id(rs.getInt("CITY_ID"));
+					p.setDescription(rs.getString("DESCRIPTION"));
+					place.add(p);
+					
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	
+	    	return place;
+	    }
 
 
 }
