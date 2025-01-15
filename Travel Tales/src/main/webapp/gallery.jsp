@@ -100,12 +100,16 @@
             transform: scale(1.05);
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
         }
+        #img1{
+        width:350px;
+        height:350px;}
+        
     </style>
 </head>
 <body>
 
 <%@include file="header.jsp" %>
-    <h3>Tours & Travel Gallery</h3>
+    <h3>Travel Tales Gallery</h3>
 
     <!-- Fullscreen Background Image -->
     <div class="parent">
@@ -113,7 +117,7 @@
     
     </div>
     <div class="desc">
-            <h5>The gallery page of our Tours and Travels website is a visual showcase of stunning destinations, iconic landmarks, and memorable experiences. 
+            <h5>The gallery page of our Travel Tales website is a visual showcase of stunning destinations, iconic landmarks, and memorable experiences. 
             <hr>It allows visitors to explore captivating images of various travel spots, inspiring them to plan their next adventure.</h5>
         </div>
 	</div>
@@ -163,7 +167,7 @@
 	<div class="subdiv"> 
 	<h5 class="h51">Embark on domestic tours with us. <br>
 		Whether you're planning a romantic gateway or a group adventure, we've got you covered. Customize your itinerary, join group tours for added fun, and relay on our 24x7 customer support.
-		<br>With our professional media services, your memories will be captured beautifully, choose Tours and Travels for your unforgettable journeys.
+		<br>With our professional media services, your memories will be captured beautifully, choose Travel Tales for your unforgettable journeys.
 	</h5>
 	</div>
 	
@@ -192,17 +196,67 @@
         <img src="assets/img14.jpg" alt="Dharmasthala" class="img-fluid">
         <img src="assets/img15.jpg" alt="Kukke " class="img-fluid">
         <img src="assets/img10.webp" alt="Souda" class="img-fluid">
-        
-    </div>
-    <div class="scrolling-gallery1">
-        <img src="assets/img12.jpg" alt="Mattu Beach" class="img-fluid">
-        <img src="assets/img13.jpg" alt="Udupi Temple" class="img-fluid">
-        <img src="assets/img14.jpg" alt="Dharmasthala" class="img-fluid">
-        <img src="assets/img15.jpg" alt="Kukke " class="img-fluid">
-        <img src="assets/img10.webp" alt="Souda" class="img-fluid">
     </div>
     <br>
+    <h4><center>Trips of our beloved Clients :</center></h4>
+    <div class="gallery-container container">
+        <div class="row g-4">
+            <div class="col-md-4 col-sm-6 gallery-item">
+                <img src="assets1/s1.jpg" alt="Udupi Krishna" id="img1" class="img-fluid">
+                
+            </div>
+            <div class="col-md-4 col-sm-6 gallery-item">
+                <img src="assets1/g8.jpeg" alt="Shivanasamudra" id="img1" class="img-fluid">
+               
+            </div>
+            <div class="col-md-4 col-sm-6 gallery-item">
+                <img src="assets1/g2(1).jpeg" alt="Gol Gumbaz" id="img1" class="img-fluid">
+                
+            </div>
+            <div class="col-md-4 col-sm-6 gallery-item">
+                <img src="assets1/g101.jpeg" alt="Shivanasamudra" id="img1" class="img-fluid">
+               
+            </div>
+            <div class="col-md-4 col-sm-6 gallery-item">
+                <img src="assets1/g102.jpeg" alt="Shivanasamudra" id="img1" class="img-fluid">
+                
+            </div>
+            <div class="col-md-4 col-sm-6 gallery-item">
+                <img src="assets1/s2.jpeg" alt="Shivanasamudra" id="img1" class="img-fluid">
+               
+            </div><div class="col-md-4 col-sm-6 gallery-item">
+                <img src="assets1/g1(1).jpeg" alt="Shivanasamudra" id="img1" class="img-fluid">
+                
+            </div>
+            <div class="col-md-4 col-sm-6 gallery-item">
+                <img src="assets1/g15.jpeg" alt="Shivanasamudra" id="img1" class="img-fluid">
+                
+            </div>
+            <div class="col-md-4 col-sm-6 gallery-item">
+                <img src="assets1/s4.jpeg" alt="Shivanasamudra" id="img1" class="img-fluid">
+               
+            </div>
+            <div class="col-md-4 col-sm-6 gallery-item">
+                <img src="assets1/g1.jpeg" alt="Shivanasamudra" id="img1" class="img-fluid">
+                
+            </div>
+            <div class="col-md-4 col-sm-6 gallery-item">
+                <img src="assets1/g103.jpeg" alt="Shivanasamudra" id="img1" class="img-fluid">
+                
+            </div>
+            <div class="col-md-4 col-sm-6 gallery-item">
+                <img src="assets1/s5.jpeg" alt="Shivanasamudra" id="img1" class="img-fluid">
+               
+            </div>
+            
+            
+        </div>
+    </div>
+    
+     
+    <br>
     <br><br>
+    
 	<%@include file="footer.jsp" %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
