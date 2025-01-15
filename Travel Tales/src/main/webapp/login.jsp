@@ -10,10 +10,13 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- jQuery -->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+	<script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
     <style>
         .card{
 
@@ -42,7 +45,7 @@
                         <h4>Login</h4>
                     </div>
                     <div class="card-body">
-                        <form id="loginForm" action="signup" method="post">
+                        <form id="login" action="signup" method="post">
                             <div class="mb-3">
                                 <label for="email" class="form-label"><strong>Email</strong></label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
@@ -75,6 +78,37 @@
     	});
     	<% } %>
     	
+    	jQuery.validator.addMethod("checkemail", function (value, element) {
+    	    return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value) || /^[0-9]{10}$/.test(value);
+    	});
+    	
+    	jQuery(document).ready(function ($) {
+    	    $("#login").validate({
+    	        rules: {
+    	            
+    	            email: {
+    	                required: true,
+    	                checkemail: true
+    	            },
+    	            password: {
+    	                required: true,
+    	            }
+    	            
+    	        },
+    	        messages: {
+    	            
+    	            email: {
+    	                required: "Please enter the email.",
+    	                email: "Please enter a valid email ID."
+    	            },
+    	            
+    	            password: {
+    	                required: "Please enter the password.",
+    	            }
+    	            
+    	        }
+    	    });
+    	});
     	
      </script>
 

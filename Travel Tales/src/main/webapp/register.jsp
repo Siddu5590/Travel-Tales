@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'branch2' of https://github.com/Siddu5590/Travel-Tales.git
-=======
->>>>>>> branch 'branch2' of https://github.com/Siddu5590/Travel-Tales.git
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 
@@ -105,79 +99,6 @@ jQuery(document).ready(function ($) {
     });
 });
 
-<<<<<<< HEAD
-             jQuery.validator.addMethod("checkemail", function(value, element) {
-                return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value) || /^[0-9]{10}$/.test(value);
-            }"Please enter a valid email or phone number");
-            jQuery(document).ready(function($) {
-                $("#signup").validate({
-                    //ignore: [],
-                    rules: {
-                        name: {
-                            required: true
-                        },
-                        email: {
-                            required: true,
-                            checkemail: true
-                        },
-                        phone: {
-                            required: true,
-                            minlength: 10,
-                            maxlength: 10,
-                            digits: true
-                        },
-                        pw: {
-                            required: true,
-                            minlength: 6
-                        },
-                        cp: {
-                            required: true,
-                            minlength: 6,
-                            equalTo: "#pw"
-                        }
-                    },
-                    messages: {
-                        name: {
-                            required: "Please enter the name."
-                        },
-                        email: {
-                            required: "Please enter the email.",
-<<<<<<< HEAD
-                            checkmail: "Please enter valid email id"
-=======
-                            email: "Please enter valid email id"
->>>>>>> branch 'branch2' of https://github.com/Siddu5590/Travel-Tales.git
-                        },
-                        phone: {
-<<<<<<< HEAD
-                            required: "Please enter your phone number.",
-                            minlength: "Phone number must be exactly 10 digits.",
-                            maxlength: "Phone number must be exactly 10 digits.",
-                            digits: "Please enter a valid phone number (only digits are allowed)"
-=======
-                            required: "Please enter the number.",
-                            minlength: "Please enter the  10 digit number .",
-                            maxlength: "more than 10 digits."
->>>>>>> branch 'branch2' of https://github.com/Siddu5590/Travel-Tales.git
-                        },
-                        pw: {
-                            required: "Please enter the password.",
-                            minlength: "Please enter the password greater than or equal to  6.",
-                        },
-                        cp: {
-<<<<<<< HEAD
-                            required: "Please confirm your password.",
-=======
-                            required: "Please reenter the password.",
->>>>>>> branch 'branch2' of https://github.com/Siddu5590/Travel-Tales.git
-                            minlength: "Please enter the password greater than or equal to 6.",
-                            equalTo: "Password confirmation does not match"
-                        }
-                    }
-                });
-            });
-=======
->>>>>>> branch 'branch2' of https://github.com/Siddu5590/Travel-Tales.git
 </script>
 <style>
   body{
@@ -192,7 +113,7 @@ jQuery(document).ready(function ($) {
       border-radius: 20px;
       display: inline-block;
       margin: 20px 0px;
-      padding-left: 50px;
+      padding-left: 40px;
       padding-right: 50px;
       padding-top: 10px;
       padding-bottom: 10px;
@@ -201,17 +122,17 @@ jQuery(document).ready(function ($) {
       font-size: medium;
       backdrop-filter: blur(10px);
   }
-  h1{
+  .head{
       text-align: center;
-      color: rgb(192, 249, 254);
+      color: rgb(229, 254, 245);
+      font-family:times new roman;
+      font-weight:bold;
   }
   .btn{
-      font-size:x-large;
+      font-size:large;
       border-radius: 5px;
-      font-family: 'Times New Roman', Times, serif;
-      background-color: rgb(45, 45, 195);
-      color: aliceblue;
-      font-weight: bolder;
+      font-family: times new roman;
+      font-weight:bolder;
       width:100px;
   }
   ::placeholder{
@@ -240,7 +161,7 @@ jQuery(document).ready(function ($) {
       text-decoration: none;   
   }
   .login{
-  	color:white;
+  	color:red;
   	margin-top:10px;
   }
   p{
@@ -282,7 +203,7 @@ At least one special character.
 </p>
 </div>
   <form action="signup" method="post" id="signup">
-  <h1>SIGNUP</h1>
+  <h1 class="head">SIGNUP</h1>
   <br>
   <label>Enter Your Full Name:</label>
   <br>

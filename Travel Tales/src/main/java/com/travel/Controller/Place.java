@@ -3,7 +3,7 @@ package com.travel.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import com.travel.Model.cityDAO;
+import com.travel.Model.placeDAO;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -13,56 +13,60 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/city")
-public class city extends HttpServlet
+@WebServlet("/Place")
+public class Place extends HttpServlet
 {
+
 	protected void processRequest(HttpServletRequest req, HttpServletResponse res) throws Exception 
 	{
 		res.setContentType("text/html;charset=UTF-8");
 		 PrintWriter out = res.getWriter();
 		HttpSession session=req.getSession();
-		cityDAO c=new cityDAO(session);
+		placeDAO p=new placeDAO(session);
 		//Customer c=new Customer();
 		
 		try {
-			if(req.getParameter("addCity")!=null) {
+			if(req.getParameter("addPlace")!=null) {
 				String name=req.getParameter("name");
 				String img=req.getParameter("image");
+				String loc=req.getParameter("loc");
+				String desc=req.getParameter("description");
+				String city=req.getParameter("city");
 				
-					String status=c.addCity(name,img);
+					String status=p.addPlace(name,img,loc,desc,city);
 					
 					if(status.equals("existed"))
 					{
-						req.setAttribute("failure", "City Already Existed.!!");
-						RequestDispatcher rd=req.getRequestDispatcher("addCity.jsp");
+						req.setAttribute("failure", "Place Already Existed.!!");
+						RequestDispatcher rd=req.getRequestDispatcher("addPlace.jsp");
 						rd.forward(req, res);
 					}
 					else if(status.equals("success")) {
-						req.setAttribute("status", "City Added Successfully...");
-						RequestDispatcher rd=req.getRequestDispatcher("addCity.jsp");
+						req.setAttribute("status", "Place Added Successfully...");
+						RequestDispatcher rd=req.getRequestDispatcher("addPlace.jsp");
 						rd.forward(req, res);
 					}
 					else if(status.equals("failure")) {
-						req.setAttribute("failure", "Failed to add City.!!");
-						RequestDispatcher rd=req.getRequestDispatcher("addCity.jsp");
+						req.setAttribute("failure", "Failed to add Place.!!");
+						RequestDispatcher rd=req.getRequestDispatcher("addPlace.jsp");
 						rd.forward(req, res);
 					}
 					
 				}
 			else if(req.getParameter("delete")!=null) {
-				int id=Integer.parseInt(req.getParameter("cid"));
+				int id=Integer.parseInt(req.getParameter("pid"));
 				
-				String status=c.deleteCity(id);
+				String status=p.deletePlace(id);
 				if(status.equals("success")) {
-					req.setAttribute("status", "City Deleted Successfully...");
-					RequestDispatcher rd=req.getRequestDispatcher("viewCity.jsp");
+					req.setAttribute("status", "Place Deleted Successfully...");
+					RequestDispatcher rd=req.getRequestDispatcher("viewPlace.jsp");
 					rd.forward(req, res);
 					
 				}
 				else if(status.equals("failure"))
 				{
-					req.setAttribute("failure", "Failed to Delete the City...");
-					RequestDispatcher rd=req.getRequestDispatcher("viewCity.jsp");
+					req.setAttribute("failure", "Failed to Delete the Place...");
+					RequestDispatcher rd=req.getRequestDispatcher("viewPlace.jsp");
 					rd.forward(req, res);
 				}
 				
@@ -87,6 +91,4 @@ public class city extends HttpServlet
 		}
 	}
 }
-
-
 

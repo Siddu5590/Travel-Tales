@@ -1,6 +1,5 @@
 package com.travel.Model;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,15 +8,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.travel.Entity.City;
+import com.travel.Entity.Place;
 
 import jakarta.servlet.http.HttpSession;
 
-public class cityDAO {
+public class placeDAO {
 	 private Connection con;
 	    HttpSession se;
 
-	    public cityDAO(HttpSession session) {
+	    public placeDAO(HttpSession session) {
 	        try {
 
 	            Class.forName("com.mysql.cj.jdbc.Driver"); // load the drivers
@@ -29,21 +28,33 @@ public class cityDAO {
 	        }
 	    }
 
-	    public String addCity(String name,String img) {
-	        PreparedStatement ps;
+	    public String addPlace(String name,String img, String loc,String desc,String city) {
+	        PreparedStatement ps=null;
 	        String status = "";
+	        
 	        try {
-	            Statement st = null;
+	        	Statement st = null;
 	            ResultSet rs = null;
 	            st = con.createStatement();
-	            rs = st.executeQuery("select * from city where CITY_NAME='" + name +  "';");
+	            rs = st.executeQuery("select * from place where NAME='" + name +  "';");
 	            boolean b = rs.next();
 	            if (b) {
 	                status = "existed";
 	            } else {
-	                ps = (PreparedStatement) con.prepareStatement("insert into city values(0,?,?)");
+	            	
+	            	st=con.createStatement();
+	            	rs=null;
+	            	PreparedStatement psCity = con.prepareStatement("select CITY_ID from city where CITY_NAME = ?");
+	            	psCity.setString(1, city);
+	            	 rs = psCity.executeQuery();
+                 if(rs.next())
+                 { int cityID=rs.getInt("CITY_ID");
+	                ps =  con.prepareStatement("insert into place values(0,?,?,?,?,?)");
 	                ps.setString(1, name);
-	                ps.setString(2, img);
+	                ps.setString(2, loc);
+	                ps.setString(3, img);
+	                ps.setInt(4, cityID);
+	                ps.setString(5, desc);
 	              
 	                int a = ps.executeUpdate();
 	                if (a > 0) {
@@ -51,6 +62,7 @@ public class cityDAO {
 	                } else {
 	                    status = "failure";
 	                }
+                 }
 	            }
 
 	        } catch (Exception e) {
@@ -59,42 +71,44 @@ public class cityDAO {
 	        return status;
 	    }
 	    
-	    public ArrayList<City> viewCity()
+	    public ArrayList<Place> viewPlace()
 	    {
 	    	Statement st=null;
 	    	PreparedStatement ps=null;
 	    	ResultSet rs=null;
 	    	
-	    	ArrayList<City> city=new ArrayList<City>();
+	    	ArrayList<Place> place=new ArrayList<>();
 	    	
 	    	try {
 				st=con.createStatement();
-				rs=st.executeQuery("select * from city");
+				rs=st.executeQuery("select * from place");
 				while(rs.next())
 				{
-					City c=new City();
-					c.setCity_id(rs.getInt("city_id"));
-					c.setCity_name(rs.getString("city_name"));
-					c.setImage(rs.getString("image"));
-					city.add(c);
+					Place p=new Place();
+					p.setPlace_id(rs.getInt("PLACE_ID"));
+					p.setPlace_name(rs.getString("NAME"));
+					p.setLocation(rs.getString("LOCATION"));
+					p.setImage(rs.getString("IMAGE"));
+					p.setCity_id(rs.getInt("CITY_ID"));
+					p.setDescription(rs.getString("DESCRIPTION"));
+					place.add(p);
+					
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	    	
-	    	return city;
+	    	return place;
 	    }
 
-		public String deleteCity(int id) {
+		public String deletePlace(int id) {
 			Statement st=null;
 			String status="";
 			int count=0;
-			
-			
 			try {
 				st=con.createStatement();
-				count=st.executeUpdate("delete from city where city_id='"+id+"';");
+				count=st.executeUpdate("delete from place where place_id='"+id+"';");
 				
 				if(count>0) {
 					status="success";
@@ -110,25 +124,6 @@ public class cityDAO {
 			
 			return status;
 		}
-		
-		public ArrayList<String> getCities()
-		{
-			ArrayList<String> al=new ArrayList<>();
-			 try {
-				 	Statement st = null;
-				 	ResultSet rs = null;
-				 	st = con.createStatement();
-					rs = st.executeQuery("select CITY_NAME from city ;");
-					while(rs.next())
-					{
-						String city;
-						city=rs.getString("city_name");
-						al.add(city);
-					}
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			 return al;
-		}
+
+
 }

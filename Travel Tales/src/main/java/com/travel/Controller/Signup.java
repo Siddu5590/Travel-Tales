@@ -131,24 +131,49 @@ public class Signup extends HttpServlet {
 				
 				String status=reg.updatedata(name,mail,phone);
 					
-					if(status.equals("existed"))
-					{
-						req.setAttribute("failure", "User Already Existed.!!");
-						RequestDispatcher rd=req.getRequestDispatcher("viewprofile.jsp");
-						rd.forward(req, res);
-					}
-					else if(status.equals("success")) {
-						req.setAttribute("status", "Account Created Successfully...");
+					
+					if(status.equals("success")) {
+						req.setAttribute("status", "Account Updated Successfully...");
 						RequestDispatcher rd=req.getRequestDispatcher("viewprofile.jsp");
 						rd.forward(req, res);
 					}
 					else if(status.equals("failure")) {
-						req.setAttribute("failure", "Failed to Signup.!!");
+						req.setAttribute("failure", "Failed to Update.!!");
 						RequestDispatcher rd=req.getRequestDispatcher("viewprofile.jsp");
 						rd.forward(req, res);
 					}
 					
 				}
+			else if(req.getParameter("deleteUser")!=null)
+			{
+				int id=Integer.parseInt(req.getParameter("id"));
+				
+				if(id!=1)
+				{
+					String status=reg.deleteUser(id);
+					
+					if(status.equals("success"))
+					{
+						req.setAttribute("status", "User Deleted Successfully...");
+						RequestDispatcher rd=req.getRequestDispatcher("viewUsers.jsp");
+						rd.forward(req, res);
+					}
+					else if(status.equals("failure"))
+					{
+						req.setAttribute("failure", "Failed to Delete...");
+						RequestDispatcher rd=req.getRequestDispatcher("viewUsers.jsp");
+						rd.forward(req, res);
+					}
+					
+				}
+				else {
+					req.setAttribute("failure", "Admin Account cannot be Deleted...");
+					RequestDispatcher rd=req.getRequestDispatcher("viewUsers.jsp");
+					rd.forward(req, res);
+				}
+			}
+			
+		
 			
 			
 		}
