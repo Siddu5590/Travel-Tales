@@ -107,9 +107,9 @@
                 <p class="card-text"><strong>City Name:</strong> <%= p.getPlace_name() %></p>
          
                 <div class="table-actions">
-                        <form action="city" method="post" style="display:inline;">
+                        <form action="Place" method="post" style="display:inline;">
                             <input type="hidden" name="pid" value="<%= p.getPlace_id()%>">
-                            <button type="submit" class="btn btn-danger" name="delete">Delete</button>
+                            <button type="submit" class="btn btn-danger" name="delete" value="delete">Delete</button>
                         </form>
                     </div>    
             </div>

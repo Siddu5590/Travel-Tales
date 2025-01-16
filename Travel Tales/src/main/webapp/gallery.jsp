@@ -30,7 +30,7 @@
             background-position: center;
             background-repeat: no-repeat;
             margin-top: 50px;
-            width:100%;
+            width:350%;
             margin-left:120px;
             border-radius: 15px;
         }
@@ -54,8 +54,8 @@
         text-decoration: underline;
         }
         .desc{
-        margin-left:10px;
-        margin-top:240px;
+        margin-left:20px;
+        margin-top:120px;
         text-align:justify;
         margin-right:100px;
         }
@@ -165,8 +165,14 @@
     
     </div>
     <div class="desc">
+    		
             <h5>The gallery page of our Travel Tales website is a visual showcase of stunning destinations, iconic landmarks, and memorable experiences. 
             <hr>It allows visitors to explore captivating images of various travel spots, inspiring them to plan their next adventure.</h5>
+            <h5>Our Travel Tales gallery web page serves as a vibrant showcase of breathtaking destinations and unforgettable experiences. 
+            It features stunning visuals of popular and offbeat locations, enticing visitors to explore new horizons. 
+            With highlights of exclusive packages and customizable tours, the page offers options to suit every traveler's preferences. 
+            Testimonials and travel stories add a personal touch, inspiring confidence and excitement.
+            Clear call-to-action buttons guide users effortlessly toward booking their next adventure, making the dream of travel just a click away.</h5>
         </div>
 	</div>
     <!-- Gallery Section -->
@@ -353,7 +359,7 @@
         <!-- Card 1 -->
         <div class="col-6 col-sm-4 col-md-2">
             <div class="fade-box">
-                <img src="assets1/pics4.jpeg" alt="Image 1" class="img-fluid">
+                <img src="assets1/spic.jpeg" alt="Image 1" class="img-fluid">
                 <div class="caption">Sonashree</div>
             </div>
         </div>
