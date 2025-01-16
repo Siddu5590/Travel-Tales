@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Gallery</title>
+     <link rel="icon" href='assets/logo.jpg'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .gallery-container {
@@ -102,8 +103,55 @@
         }
         #img1{
         width:350px;
-        height:350px;}
-        
+        height:350px;
+        }
+    
+    
+/*last container-  Fade Box Container */
+.fade-box {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.fade-box img {
+    width: 100%;
+    height: 200px; /* Fixed height for uniformity */
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.fade-box .caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Hover Effects */
+.fade-box:hover img {
+    opacity: 0.7;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+}
+
+.fade-box:hover .caption {
+    opacity: 1;
+}
+
+      .mb-4{
+      margin-top:-50px;
+      width:100%;
+      }
     </style>
 </head>
 <body>
@@ -202,7 +250,7 @@
     <div class="gallery-container container">
         <div class="row g-4">
             <div class="col-md-4 col-sm-6 gallery-item">
-                <img src="assets1/s1.jpg" alt="Udupi Krishna" id="img1" class="img-fluid">
+                <img src="assets1/gpic1.jpeg" alt="Udupi Krishna" id="img1" class="img-fluid">
                 
             </div>
             <div class="col-md-4 col-sm-6 gallery-item">
@@ -245,19 +293,87 @@
                 
             </div>
             <div class="col-md-4 col-sm-6 gallery-item">
-                <img src="assets1/s5.jpeg" alt="Shivanasamudra" id="img1" class="img-fluid">
-               
+                <img src="assets1/gpic2.jpeg" alt="Shivanasamudra" id="img1" class="img-fluid"> 
             </div>
             
             
         </div>
     </div>
     
-     
-    <br>
-    <br><br>
+    <div class="container my-5">
+    <h4 class="text-center mb-4">Our Team of Travel Tales</h4>
+    <div class="row g-3">
+        <!-- Card 1 -->
+        <div class="col-6 col-sm-4 col-md-2">
+            <div class="fade-box">
+                <img src="assets1/grp22.jpeg" alt="Image 1" class="img-fluid">
+                <div class="caption">Our Team</div>
+            </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-6 col-sm-4 col-md-2">
+            <div class="fade-box">
+                <img src="assets1/grp1.jpeg" alt="Image 2" class="img-fluid">
+                <div class="caption">Team pic</div>
+            </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-6 col-sm-4 col-md-2">
+            <div class="fade-box">
+                <img src="assets1/grp44.jpeg" alt="Image 3" class="img-fluid">
+                <div class="caption">Team in Cultural Event</div>
+            </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-6 col-sm-4 col-md-2">
+            <div class="fade-box">
+                <img src="assets1/pics11.jpeg" alt="Image 4" class="img-fluid">
+                <div class="caption">Siddaveer</div>
+            </div>
+        </div>
+        <!-- Card 5 -->
+        <div class="col-6 col-sm-4 col-md-2">
+            <div class="fade-box">
+                <img src="assets1/pics2.jpeg" alt="Image 5" class="img-fluid">
+                <div class="caption">Shraddha</div>
+            </div>
+        </div>
+        <!-- Card 6 -->
+        <div class="col-6 col-sm-4 col-md-2">
+            <div class="fade-box">
+                <img src="assets1/pics6.jpeg" alt="Image 6" class="img-fluid">
+                <div class="caption">Shreya</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container my-5">
     
-	<%@include file="footer.jsp" %>
+    <div class="row g-3">
+        <!-- Card 1 -->
+        <div class="col-6 col-sm-4 col-md-2">
+            <div class="fade-box">
+                <img src="assets1/pics4.jpeg" alt="Image 1" class="img-fluid">
+                <div class="caption">Sonashree</div>
+            </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-6 col-sm-4 col-md-2">
+            <div class="fade-box">
+                <img src="assets1/pics5.jpeg" alt="Image 2" class="img-fluid">
+                <div class="caption">Varsha</div>
+            </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-2">
+            <div class="fade-box">
+                <img src="assets1/pics3.jpeg" alt="Image 2" class="img-fluid">
+                <div class="caption">Adi Reddy</div>
+            </div>
+        </div>
+        </div>
+        </div>
+         
+ <%@include file="footer.jsp" %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

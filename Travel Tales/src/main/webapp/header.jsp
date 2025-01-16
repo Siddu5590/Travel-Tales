@@ -16,7 +16,9 @@
             background-color: none;
             margin-top: 37px;
         }
-
+        .navbar-brand img:hover{
+        	transform: scale(1.05);
+        }
         .dropdown-menu {
             position: relative;
             right: 0;
@@ -80,77 +82,79 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#" style="color: white;">Travel Tales</a>
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+    <div class="container-fluid">
+        <!-- Updated navbar-brand to include a logo -->
+        <a class="navbar-brand d-flex align-items-center" href="index.jsp" style="color: white;">
+            <img src="assets/logo.jpg" alt="Logo" style="height: 50px; margin-right: 10px; border-radius: 50%"> 
+            Travel Tales
+        </a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="items nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.jsp" title="Home" style="color: white;"><i class="fas fa-home"></i></a>
+                </li>
+                <li class="items nav-item">
+                    <a class="nav-link active" aria-current="page" href="#" title="About US" style="color: white;"><i class="fas fa-info-circle"></i></a>
+                </li>
+                <li class="items nav-item">
+                    <a class="nav-link active" aria-current="page" href="contactUs.jsp" title="Contact US" style="color: white;"><i class="fas fa-envelope"></i></a>
+                </li>
+                <li class="items nav-item">
+                    <a class="nav-link active" aria-current="page" href="gallery.jsp" title="Gallery" style="color: white;"><i class="fas fa-images"></i></a>
+                </li>
+                <% if (session.getAttribute("uname") != null) { %>
                     <li class="items nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.jsp" title="Home" style="color: white;"><i class="fas fa-home"></i></a>
+                        <a class="nav-link active" aria-current="page" href="place.jsp" style="color: white;">Places</a>
                     </li>
                     <li class="items nav-item">
-                        <a class="nav-link active" aria-current="page" href="#" title="About US" style="color: white;"><i class="fas fa-info-circle"></i></a>
+                        <a class="nav-link active" aria-current="page" href="#" style="color: white;">Booking Status</a>
+                    </li>
+                    <li class="items nav-item dropdown bg-transparent">
+                        <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            style="color: white;"
+                        >
+                            <i class="fa-solid fa-user"></i> <%= session.getAttribute("uname") %>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item mb-2 bg-transparent" href="viewprofile.jsp"><i class="fas fa-user-circle"></i> View User</a></li>
+                            <li><a class="dropdown-item mb-2 bg-transparent" href="#"><i class="fas fa-key"></i> Reset Pin</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form action="signup" method="post">
+                                    <input type="submit" value="Logout" name="logout" class="submit btn btn-danger ms-3" />
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                <% } else { %>
+                    <li class="items nav-item">
+                        <a class="nav-link active" aria-current="page" href="register.jsp" style="color: white;">Signup</a>
                     </li>
                     <li class="items nav-item">
-                        <a class="nav-link active" aria-current="page" href="contactUs.jsp" title="Contact US" style="color: white;"><i class="fas fa-envelope"></i></a>
+                        <a class="nav-link active" aria-current="page" href="login.jsp" style="color: white;">Login</a>
                     </li>
-                    <li class="items nav-item">
-                        <a class="nav-link active" aria-current="page" href="gallery.jsp" title="Gallery" style="color: white;"><i class="fas fa-images"></i></a>
-                    </li>
-                    <% if (session.getAttribute("uname") != null) { %>
-                        <li class="items nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" style="color: white;">Places</a>
-                        </li>
-                        <li class="items nav-item">
-                            <a class="nav-link active" aria-current="page" href="booking.jsp" style="color: white;">Booking</a>
-                        </li>
-                        <li class="items nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" style="color: white;">Status</a>
-                        </li>
-                        <li class="items nav-item dropdown bg-transparent">
-                            <a
-                                class="nav-link dropdown-toggle"
-                                href="#"
-                                role="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                                style="color: white;"
-                            >
-                                <i class="fa-solid fa-user"></i> <%= session.getAttribute("uname") %>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item mb-2 bg-transparent" href="viewprofile.jsp"><i class="fas fa-user-circle"></i> View User</a></li>
-                                <li><a class="dropdown-item mb-2 bg-transparent" href="#"><i class="fas fa-key"></i> Reset Pin</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li>
-                                    <form action="signup" method="post">
-                                        <input type="submit" value="Logout" name="logout" class="submit btn btn-danger ms-3" />
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    <% } else { %>
-                        <li class="items nav-item">
-                            <a class="nav-link active" aria-current="page" href="register.jsp" style="color: white;">Signup</a>
-                        </li>
-                        <li class="items nav-item">
-                            <a class="nav-link active" aria-current="page" href="login.jsp" style="color: white;">Login</a>
-                        </li>
-                    <% } %>
-                </ul>
-            </div>
+                <% } %>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
+
 
     <script>
         <% if (request.getAttribute("logout") != null) { 
