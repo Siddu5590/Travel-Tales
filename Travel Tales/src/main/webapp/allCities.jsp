@@ -43,7 +43,7 @@
     
     .view-product{
         margin-top:50px;
-        margin-left:30px;
+        margin-left:10px;
     }
     
     .product-container {
@@ -60,7 +60,7 @@
             border-radius: 8px;
             text-align: center;
             padding: 20px;
-            width: 280px;
+            width: 250px;
             height:auto;
             box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 12px 25px 0 rgba(0, 0, 0, 0.19);
         }
