@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navbar with Hover Dropdown</title>
+    <link rel="icon" href='assets/logo.jpg'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -91,7 +92,7 @@
         <div class="container-fluid">
             <!-- Logo -->
             <a class="logo navbar-brand" href="adminDash.jsp">
-                <img src="assets/image1.jpg" alt="Logo" width="40" height="40" class="rounded">
+                <img src="assets/logo.jpg" alt="Logo" width="40" height="40" class="rounded">
                 Travel Tales
             </a>
 
