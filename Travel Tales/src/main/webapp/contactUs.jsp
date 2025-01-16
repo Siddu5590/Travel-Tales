@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
+     <link rel="icon" href='assets/logo.jpg'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         body {
@@ -166,8 +167,11 @@
                     <span class="star" data-value="5">&#9733;</span>
                 </div>
                 <p class="text-center"><span id="rating-value"></span></p>
-
+				<%if(session.getAttribute("uname")!=null){ %>
                 <input type="submit" class="btn btn-success" value="Submit">
+                <%} else {%>
+                <h5 class="text-center text-danger">please login to submit the feedback</h5>
+                <%} %>
             </form>
         </div>
     </div>

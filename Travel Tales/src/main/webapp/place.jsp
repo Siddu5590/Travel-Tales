@@ -10,12 +10,15 @@
     ArrayList<City> al=city.viewCity();
     int selectedCategory = request.getParameter("city")!=null ? Integer.parseInt(request.getParameter("city"))  : -1;
     placeDAO pl= new placeDAO(session);
-    ArrayList<Place> place=pl.viewPlace();%>
+    ArrayList<Place> place=pl.viewPlace();
+    %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+ <link rel="icon" href='assets/logo.jpg'>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <style>
 .city-section
  {
@@ -88,7 +91,7 @@
   <%if(place.size() ==0){%>
         <div class="not-found">
            <img alt="not-found" src="https://thumbs.dreamstime.com/b/oops-emoticon-vector-illustration-over-white-56744303.jpg">
-          <p>No Place Found...!!!</p>
+          <p class="text-center">No Place Found...!!!</p>
         </div>
      <%}%>
     

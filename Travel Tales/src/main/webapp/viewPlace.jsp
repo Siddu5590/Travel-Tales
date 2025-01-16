@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View All Places</title>
+     <link rel="icon" href='assets/logo.jpg'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -106,9 +107,9 @@
                 <p class="card-text"><strong>City Name:</strong> <%= p.getPlace_name() %></p>
          
                 <div class="table-actions">
-                        <form action="city" method="post" style="display:inline;">
+                        <form action="Place" method="post" style="display:inline;">
                             <input type="hidden" name="pid" value="<%= p.getPlace_id()%>">
-                            <button type="submit" class="btn btn-danger" name="delete">Delete</button>
+                            <button type="submit" class="btn btn-danger" name="delete" value="delete">Delete</button>
                         </form>
                     </div>    
             </div>

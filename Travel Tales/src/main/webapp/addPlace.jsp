@@ -9,6 +9,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Add Place</title>
+ <link rel="icon" href='assets/logo.jpg'>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+<script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 <style>
     
     * {
@@ -24,7 +31,7 @@
     }
 
   
-    form {
+    .form {
         background-color: #ffffff;
         padding: 30px;
         border-radius: 10px;
@@ -45,7 +52,7 @@
     }
 
    
-   label {
+   .label {
         display: block;
         font-size: 14px;
         color: #333333;
@@ -71,7 +78,7 @@
     }
 
     
-    button[type="submit"] {
+    .addplace {
         background-color: #ffcc33;
         color: #333333;
         font-size: 16px;
@@ -82,7 +89,7 @@
         transition: background-color 0.3s, transform 0.2s;
     }
 
-    button[type="submit"]:hover {
+    .addplace:hover {
         background-color: #ffb700;
         transform: scale(1.05);
     }
@@ -92,36 +99,63 @@
 <%@include file="adminHeader.jsp" %>
 <a href="adminDash.jsp" class="btn btn-secondary btnn ms-3 mt-3">Back to Dashboard</a>
 
-<form action="Place" method="post">
+<form action="Place" method="post" class="form">
 	
     <h1>Add New Place</h1>
     <label>Place Name:</label>
-    <input type="text" name="name" placeholder="Enter Place name"><br>
+    <input type="text" name="name" placeholder="Enter Place name" required="required"><br>
     
-    <label>Place Image:</label>
-    <input type="text" name="image" placeholder="Enter Place image"><br>
+    <label class="label">Place Image:</label>
+    <input type="text" name="image" placeholder="Enter Place image" required="required"><br>
     
      <label for="city">Choose a City:</label><br>
+    
         <select id="city" name="city">
+        <option selected="selected">Select City</option>
         <% cityDAO c=new cityDAO(session);
            ArrayList<String> al=c.getCities();
            Iterator<String> itr=al.iterator();
            while(itr.hasNext())
            {  String city=itr.next(); %>
+           		
         	   <option value="<%= city%>"><%= city%></option>
          <%  } %> 
             
         </select>
     
     <label>Location:</label>
-    <input type="text" name="loc" placeholder="Enter Location"><br>
+    <input type="text" name="loc" placeholder="Enter Location" required="required"><br>
     
     <label>Place Description:</label>
-    <input type="text" name="description" placeholder="Enter Place Description"><br>
+    <input type="text" name="description" placeholder="Enter Place Description" required="required"><br>
     
     
-    <button type="submit" name="addPlace" value="add place">Add Place</button>
+    <button type="submit" name="addPlace" value="add place" class="addplace">Add Place</button>
 </form>
 <%@include file="footer.jsp" %>
+
+<script type="text/javascript">
+<% if (request.getAttribute("status") != null) { 
+    String message = (String) request.getAttribute("status");
+    request.removeAttribute("status");
+%>
+Swal.fire({
+    icon:"success",
+    title: 'Success...',
+    text: "<%= message %>"
+});
+<% } %>
+
+<% if (request.getAttribute("failure") != null) { 
+    String message = (String) request.getAttribute("failure");
+    request.removeAttribute("failure");
+%>
+Swal.fire({
+    icon:"error",
+    title: 'Oooops..',
+    text: "<%= message %>"
+});
+<% } %>
+</script>
 </body>
 </html>
