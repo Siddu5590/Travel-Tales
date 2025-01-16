@@ -36,7 +36,7 @@
     .product-container {
             display: inline-block;
             flex-wrap: wrap;
-            gap: 30px;
+            gap: 20px;
             padding: 10px;
             cursor:pointer;
         }
@@ -47,7 +47,7 @@
             border-radius: 8px;
             text-align: center;
             padding: 20px;
-            width: 280px;
+            width: 250px;
             height:auto;
             box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 12px 25px 0 rgba(0, 0, 0, 0.19);
         }
@@ -59,6 +59,9 @@
             font-size: 1.5em;
             margin: 10px 0;
             color: #8692FC;
+        }
+        .product-card a{
+        	text-decoration:none;
         }
 
         .product-card p {
@@ -77,10 +80,18 @@
 		.search-bar{
 			margin-top:30px;
 			width:300px;
-			margin-left:450px;
 			box-shadow: 0px 1px 5px gray !important;
 		}
 		
+		@media (max-width: 576px) {
+            .carousel-inner img {
+                height: 300px;
+            }
+            .product-card {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
 
     </style>
 </head>
@@ -123,21 +134,27 @@
           <span class="visually-hidden">Next</span>
         </button>
     </div>
+<<<<<<< HEAD
     
 <!-- search bar -->
     <form class="d-flex search-bar" role="search">
+=======
+
+
+  <center><form class="search-bar" role="search">
+>>>>>>> branch 'branch1' of https://github.com/Siddu5590/Travel-Tales.git
   <div style="position: relative; width: 100%;">
     <input class="form-control" id="search" type="text" placeholder="Search city here.." style="padding-right: 35px;">
     <i class="fa fa-search" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer; color: gray;"></i>
   </div>
-</form>
+</form></center>
 
 
     <div class="view-product" id="city">
     
     <div class="view">
     <h2>Top Rated City...</h2>
-     <a href="#" class="view-more btn btn-primary fs-5 me-5"> <i class="fa-solid fa-chevron-right"></i> View More</a>
+     <a href="allCities.jsp" class="view-more btn btn-primary fs-5 me-5"> <i class="fa-solid fa-chevron-right"></i> View More</a>
     </div>
         
      <%cityDAO city=new cityDAO(session);
@@ -151,8 +168,9 @@
         <div class="product-container">
        
     	   <div class="product-card" id="city-name">
+    	   <a href="<%=request.getContextPath() + "/place.jsp?city=" + c.getCity_id()%>">
                 <div class="profile-pic"><image src="<%=c.getImage() %>" width="220px" height="140px" style="border-radius:5px;" ></div>
-                <p class="card-text" ><strong> <%= c.getCity_name() %></strong></p>
+                <p class="card-text" ><strong> <%= c.getCity_name() %></strong></p></a>
             </div>
     	
     	</div>

@@ -1,7 +1,7 @@
 <%@page import="java.util.Iterator"%>
-<%@page import="com.travel.Entity.Place"%>
+<%@page import="com.travel.Entity.City"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.travel.Model.placeDAO"%>
+<%@page import="com.travel.Model.cityDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View All Places</title>
+    <title>View All City</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -81,64 +81,30 @@
     </style>
 </head>
 <body>
+<%@include file="header.jsp" %>
 <header class="product">
-	<h3>All Places Details</h3>
+	<h3>All Cities</h3>
 </header>
-	<div class="add-city">
-	<a href="addPlace.jsp" class="btn btn-primary mt-3 ms-4"><i class="fa-solid fa-plus"></i>Add City</a>
-	<a href="adminDash.jsp" class="btn btn-secondary btnn ms-3 mt-3">Back to Dashboard</a>
-	</div>
 	
 
     <div class="view-product">
         
-     <%placeDAO place=new placeDAO(session);
-     ArrayList<Place> al=place.viewPlace();
-     Iterator<Place> it=al.iterator();
+     <%cityDAO city=new cityDAO(session);
+     ArrayList<City> al=city.viewCity();
+     Iterator<City> it=al.iterator();
      while(it.hasNext()) {
-    	 Place p=it.next();%>
+    	 City c=it.next();%>
         
         <div class="product-container">
        
     	   <div class="product-card">
-                <div class="profile-pic"><image src="<%=p.getImage() %>" width="220px" height="140px" style="border-radius:5px;" ></div>
-                <h2><%= p.getPlace_id() %></h2>
-                <p class="card-text"><strong>City Name:</strong> <%= p.getPlace_name() %></p>
-         
-                <div class="table-actions">
-                        <form action="city" method="post" style="display:inline;">
-                            <input type="hidden" name="pid" value="<%= p.getPlace_id()%>">
-                            <button type="submit" class="btn btn-danger" name="delete">Delete</button>
-                        </form>
-                    </div>    
+                <div class="profile-pic"><image src="<%=c.getImage() %>" width="220px" height="140px" style="border-radius:5px;" ></div>
+                <p class="card-text"><strong>City Name:</strong> <%= c.getCity_name() %></p>
             </div>
-    	
     	</div>
     	<%} %>
     
     </div>
-    <script>
-    <% if (request.getAttribute("status") != null) { 
-        String message = (String) request.getAttribute("status");
-        request.removeAttribute("status");
-    %>
-    Swal.fire({
-        icon:"success",
-        title: 'Success...',
-        text: "<%= message %>"
-    });
-    <% } %>
-
-    <% if (request.getAttribute("failure") != null) { 
-        String message = (String) request.getAttribute("failure");
-        request.removeAttribute("failure");
-    %>
-    Swal.fire({
-        icon:"error",
-        title: 'Oooops..',
-        text: "<%= message %>"
-    });
-    <% } %>
-    </script>
+   
 </body>
 </html>
