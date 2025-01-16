@@ -134,15 +134,15 @@
           <span class="visually-hidden">Next</span>
         </button>
     </div>
-<<<<<<< HEAD
+
     
 <!-- search bar -->
     <form class="d-flex search-bar" role="search">
-=======
+
 
 
   <center><form class="search-bar" role="search">
->>>>>>> branch 'branch1' of https://github.com/Siddu5590/Travel-Tales.git
+
   <div style="position: relative; width: 100%;">
     <input class="form-control" id="search" type="text" placeholder="Search city here.." style="padding-right: 35px;">
     <i class="fa fa-search" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer; color: gray;"></i>
