@@ -48,7 +48,8 @@ public class placeDAO {
 	            	psCity.setString(1, city);
 	            	 rs = psCity.executeQuery();
                  if(rs.next())
-                 { int cityID=rs.getInt("CITY_ID");
+                 { 
+                	int cityID=rs.getInt("CITY_ID");
 	                ps =  con.prepareStatement("insert into place values(0,?,?,?,?,?)");
 	                ps.setString(1, name);
 	                ps.setString(2, loc);

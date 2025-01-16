@@ -131,7 +131,7 @@
         <!-- Info Section -->
         <div class="col-lg-6 col-md-6 col-12 info-section">
             <h2>GET IN TOUCH WITH US!</h2>
-            <marquee behavior="" direction="right" class="marq">"Your Next Adventure Starts Here – Book, Explore, Discover!"</marquee>
+            <marquee behavior="" direction="left" class="marq">"Your Next Adventure Starts Here – Book, Explore, Discover!"</marquee>
             <p>We're here to help you plan your perfect getaway! Whether you have questions about our destinations, need assistance with bookings, or simply want to know more about the services we offer, our team is ready to assist you.</p>
             <div class="contact-details">
                 <p><b>Email:</b> support@traveltaleswebsite.com</p>

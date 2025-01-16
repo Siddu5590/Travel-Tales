@@ -86,7 +86,7 @@
 	<h3>All Places Details</h3>
 </header>
 	<div class="add-city">
-	<a href="addPlace.jsp" class="btn btn-primary mt-3 ms-4"><i class="fa-solid fa-plus"></i>Add City</a>
+	<a href="addPlace.jsp" class="btn btn-primary mt-3 ms-4"><i class="fa-solid fa-plus"></i>Add Place</a>
 	<a href="adminDash.jsp" class="btn btn-secondary btnn ms-3 mt-3">Back to Dashboard</a>
 	</div>
 	

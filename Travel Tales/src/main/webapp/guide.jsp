@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.travel.Model.cityDAO"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -40,6 +43,13 @@
             font-weight: bold;
         }
         .form-container input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container select {
             width: 100%;
             padding: 8px;
             margin-bottom: 15px;
@@ -90,6 +100,21 @@
 
             <label for="age">Age:</label>
             <input type="number" id="age" name="age" min="18" max="100">
+            
+        <label for="city">Choose a City:</label>
+        <select id="city" name="city">
+        <option selected="selected">select city
+        </option>
+        <% cityDAO c=new cityDAO(session);
+           ArrayList<String> al=c.getCities();
+           Iterator<String> itr=al.iterator();
+           while(itr.hasNext())
+           {  String city=itr.next(); %>
+           		
+        	   <option value="<%= city%>"><%= city%></option>
+         <%  } %> 
+            
+        </select>
 
             <div style="display: flex; justify-content: space-between;">
                 <button type="submit" name="guide" class="submit-btn">Submit</button>
