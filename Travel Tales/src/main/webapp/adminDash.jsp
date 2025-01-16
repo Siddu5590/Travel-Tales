@@ -23,6 +23,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin</title>
+     <link rel="icon" href='assets/logo.jpg'>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
