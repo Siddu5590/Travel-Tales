@@ -14,10 +14,8 @@
      <link rel="icon" href='assets/logo.jpg'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 	<script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -87,6 +85,11 @@
             font-size: 1em;
             color: #555;
         }
+        .search-bar{
+			margin-top:30px;
+			width:300px;
+			box-shadow: 0px 1px 5px gray !important;
+		}
         
     </style>
 </head>
@@ -96,8 +99,14 @@
 	<h3>All Cities</h3>
 </header>
 	
+	<center><form class="search-bar" role="search">
+  <div style="position: relative; width: 100%;">
+    <input class="form-control" id="search" type="text" placeholder="Search city here.." style="padding-right: 35px;">
+    <i class="fa fa-search" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer; color: gray;"></i>
+  </div>
+</form></center>
 
-    <div class="view-product">
+    <div class="view-product" id="place">
         
      <%cityDAO city=new cityDAO(session);
      ArrayList<City> al=city.viewCity();
@@ -105,7 +114,7 @@
      while(it.hasNext()) {
     	 City c=it.next();%>
         
-        <div class="product-container">
+        <div class="product-container" id="place-details">
        
     	   <div class="product-card">
                 <a href="<%=request.getContextPath() + "/place.jsp?city=" + c.getCity_id()%>">
@@ -114,8 +123,34 @@
             </div>
     	</div>
     	<%} %>
-    
+    <h2 id="no-results" style="display: none;" class="text-center mb-3 text-danger">Data not found...!!</h2>
     </div>
+    
+    <script>
+    $(document).ready(function () {
+    	  $("#search").on("keyup", function () {
+    	    var value = $(this).val().toLowerCase();
+    	    var hasVisible = false;
+
+    	    $("#place #place-details").filter(function () {
+    	      var isVisible = $(this).text().toLowerCase().indexOf(value) > -1;
+    	      $(this).toggle(isVisible);
+    	      if (isVisible) {
+    	        hasVisible = true;
+    	      }
+    	    });
+
+    	    // Check if any articles are visible
+    	    if (!hasVisible) {
+    	      $("#no-results").show(); // Show "Data not found" message
+    	    } else {
+    	      $("#no-results").hide(); // Hide message if results are found
+    	    }
+    	  });
+    	});
+
+
+</script>
    
 </body>
 </html>

@@ -81,11 +81,6 @@
         .card-text strong{
         	font-size:20px;
         }
-		.search-bar{
-			margin-top:30px;
-			width:300px;
-			box-shadow: 0px 1px 5px gray !important;
-		}
 		
 		@media (max-width: 576px) {
             .carousel-inner img {
@@ -139,15 +134,6 @@
         </button>
     </div>
 
-
-  <center><form class="search-bar" role="search">
-  <div style="position: relative; width: 100%;">
-    <input class="form-control" id="search" type="text" placeholder="Search city here.." style="padding-right: 35px;">
-    <i class="fa fa-search" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer; color: gray;"></i>
-  </div>
-</form></center>
-
-
     <div class="view-product" id="city">
     
     <div class="view">
@@ -175,34 +161,8 @@
     	<% count++; } %>
     
     </div>
-    <h2 id="no-results" style="display: none;" class="text-center mb-3 text-danger">Data not found...!!</h2>
     
     <%@include file="footer.jsp" %>
     
-    <script>
-    $(document).ready(function () {
-    	  $("#search").on("keyup", function () {
-    	    var value = $(this).val().toLowerCase();
-    	    var hasVisible = false;
-
-    	    $("#city #city-name").filter(function () {
-    	      var isVisible = $(this).text().toLowerCase().indexOf(value) > -1;
-    	      $(this).toggle(isVisible);
-    	      if (isVisible) {
-    	        hasVisible = true;
-    	      }
-    	    });
-
-    	    // Check if any articles are visible
-    	    if (!hasVisible) {
-    	      $("#no-results").show(); // Show "Data not found" message
-    	    } else {
-    	      $("#no-results").hide(); // Hide message if results are found
-    	    }
-    	  });
-    	});
-
-
-</script>
 </body>
 </html>
