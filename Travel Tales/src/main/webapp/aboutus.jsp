@@ -1,0 +1,138 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding:0;
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif;
+
+        }
+        .mvv-container{
+            max-width:90%;
+            margin: 50px auto 0;
+        }
+
+        .mvv-container .mvv-block{
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .mvv-container .mvv-block .image{
+            flex:0 0 auto;
+            width:400px;
+          
+          
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 0 10px 5px rgba(0,0,0,.3);
+            line-height: 0;
+           
+        }
+        .mvv-container .mvv-block .image img{
+            width: 100%;
+            
+            transition: .3s;
+            transform: scale(1);
+        }
+        .mvv-container .mvv-block .image:hover img{
+            transform: scale(1.05);
+        }
+        .mvv-container .mvv-block .content{
+            flex: 0 0 auto;
+            width: calc(100% - 400px);
+            box-sizing: border-box;
+            align-self: center;
+        }
+        .mvv-container .mvv-block .content h5{
+            font-weight: 700;
+            font-size: 22px;
+            color: blue;
+            margin: 10px;
+        }
+        @media screen  and (min-width:1024px){
+            .mvv-container .mvv-block:nth-child(add) .image
+            {
+                order: 1;
+            }
+            .mvv-container .mvv-block:nth-child(even) .image
+            {
+                order: 2;
+            }
+            .mvv-container .mvv-block:nth-child(odd) .content
+            {
+                order: 2;
+                padding-left: 30px;
+            }
+            .mvv-container .mvv-block:nth-child(even) .content
+            {
+                order: 1;
+                padding-right: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mvv-container">
+        <div  class="mvv-block">
+            <div class="image">
+            <img src="https://www.svmsholidays.com/wp-content/uploads/2020/05/Bali-1-scaled-680x500.jpg" alt="">
+        </div>
+        
+        <div class="content">
+            <h5>About us</h5>
+            <p>At  Travel Tales Adventures, we believe that travel is more than just visiting new places; it’s about creating memories, connecting with diverse cultures, and discovering the beauty of the world. With a passion for exploration, we specialize in curating unforgettable journeys that combine adventure, relaxation, and cultural enrichment.
+
+                Our team of travel experts works tirelessly to provide personalized itineraries, ensuring each trip is tailored to your unique preferences and desires. Whether you're seeking the thrill of adventure, a serene escape, or an immersive cultural experience, Wanderlust Adventures is your trusted partner in turning travel dreams into reality.</p>
+        </div>
+    </div>
+
+    <div  class="mvv-block">
+        <div class="image">
+        <img src="https://thetelityellowpages.com/wp-content/uploads/2015/09/tours-travel.jpg" alt="">
+    </div>
+    
+    <div class="content">
+        <h5>Who we are</h5>
+        <p>At Travel Tales, we are a passionate and dedicated team of travel experts, committed to providing unforgettable experiences for travelers. With a focus on personalized service, we curate custom tours and travel packages that cater to every type of traveler—from adventurous explorers to those seeking relaxation in exotic locations.
+    
+            We believe that travel should be more than just a getaway; it’s an opportunity to explore new cultures, forge lasting memories, and connect with people and places in meaningful ways. Our services range from group tours to private trips, offering tailor-made itineraries, transportation, accommodation, and local experiences.
+            
+            What sets us apart is our deep knowledge of the destinations we serve, our unwavering commitment to quality, and our passion for creating seamless and enjoyable journeys. We work closely with our clients to understand their preferences, ensuring that every trip is crafted to perfection.
+            
+            Whether you are planning a weekend escape or the adventure of a lifetime, Travel Tales is here to make your travel dreams come true.</p>
+    </div>
+    </div>
+    <div  class="mvv-block">
+        <div class="image">
+        <img src="https://thetravelshots.com/wp-content/uploads/2021/11/solo-travel.jpg" alt="">
+    </div>
+    
+    <div class="content">
+        <h5>Our Mission</h5>
+        <p>At Travel Tales, our mission is to inspire a lifelong love for exploration by creating exceptional travel experiences that bring the world closer to our customers. We are dedicated to offering meticulously planned journeys that cater to the unique dreams and desires of every traveler, ensuring a perfect balance of adventure, relaxation, and cultural immersion.
+
+            Through our personalized itineraries and comprehensive travel solutions, we aim to simplify the travel process while delivering unmatched quality and value. Our commitment lies in fostering meaningful connections between travelers and the places they visit, promoting sustainable and responsible tourism practices that preserve the beauty and heritage of destinations for generations to come. With a passion for excellence, we strive to transform every journey into a memorable story of discovery, joy, and inspiration</p>
+    </div>
+</div>
+
+
+<div  class="mvv-block">
+    <div class="image">
+    <img src="https://www.thestatesman.com/wp-content/uploads/2018/01/Karnataka.jpg" alt="">
+</div>
+
+<div class="content">
+    <h5>Our Vision</h5>
+    <p>Our vision is to become a globally recognized leader in the travel and tourism industry, setting new standards for excellence, innovation, and sustainability. We aim to inspire individuals and communities to explore the world with an open heart and mind, fostering a deep appreciation for diverse cultures, landscapes, and traditions. By offering personalized and transformative travel experiences, we seek to create lasting memories that enrich the lives of our customers while promoting responsible tourism practices that protect and preserve the beauty of our planet for future generations. Through a commitment to exceptional service, technological innovation, and community engagement, we envision a world where travel serves as a bridge to understanding, connection, and harmony among people from all walks of life.</p>
+</div>
+</div>
+    </div>
+</body>
+</html>
