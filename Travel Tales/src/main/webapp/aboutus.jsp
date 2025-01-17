@@ -37,7 +37,6 @@
         }
         .mvv-container .mvv-block .image img{
             width: 100%;
-            
             transition: .3s;
             transform: scale(1);
         }
@@ -76,9 +75,27 @@
                 padding-right: 30px;
             }
         }
+        .blink{
+            animation: blink 1.5s  linear infinite;
+            color: blue;
+            font-size: larger;
+            font-weight: bolder;
+           text-transform: uppercase;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+         
+
+        }
+        @keyframes blinker {
+            50%{
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
+    <marquee class="blink">
+        Welcome to Travel Tales!!!
+    </marquee>
     <div class="mvv-container">
         <div  class="mvv-block">
             <div class="image">
