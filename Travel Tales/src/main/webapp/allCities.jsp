@@ -43,14 +43,14 @@
     
     .view-product{
         margin-top:50px;
-        margin-left:10px;
+        margin-left:50px;
     }
     
     .product-container {
             display: inline-block;
             flex-wrap: wrap;
             gap: 30px;
-            padding: 10px;
+            padding: 20px;
             cursor:pointer;
         }
 
@@ -59,16 +59,22 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             text-align: center;
-            padding: 20px;
-            width: 250px;
+            padding: 30px;
+            width: 280px;
+            transition: .3s;
+            transform: scale(1);
             height:auto;
             box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 12px 25px 0 rgba(0, 0, 0, 0.19);
         }
+        
         .product-card a{
         	text-decoration: none;
         }
+        
         .product-card:hover{
+        	transform: scale(1.2);
         	box-shadow: 0 -8px 4px 0 rgba(10, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 10, 0, 0.19);
+        	
         }
 
         .product-card h2 {

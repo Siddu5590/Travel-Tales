@@ -48,7 +48,7 @@
             object-fit: cover;
             border-bottom: 5px solid black;
         }
-        h3{
+        .h3{
         text-align: center;
         font-weight: bold;
         text-decoration: underline;
@@ -69,13 +69,13 @@
     	padding-right:100px;
     	font-style: italic;
     	}
-    	h4{
+    	.h4{
     	text-decoration:underline;
     	padding-left:10px;
     	margin-right:1100px;
     	margin-left:30px;
     	}
-    	h4:hover{
+    	.h4:hover{
     	text-decoration:underline;
     	padding-left:10px;
     	margin-right:1100px;
@@ -157,7 +157,7 @@
 <body>
 
 <%@include file="header.jsp" %>
-    <h3>Travel Tales Gallery</h3>
+    <h3 class="h3">Travel Tales Gallery</h3>
 
     <!-- Fullscreen Background Image -->
     <div class="parent">
@@ -242,7 +242,7 @@
 
     <!-- Horizontal Scrolling Images -->
     <div class="desc3">
-    <h4>Destinations and Candid's : </h4>
+    <h4 class="h4">Destinations and Candid's : </h4>
     </div>
     <div class="scrolling-gallery1">
         <img src="assets/img12.jpg" alt="Mattu Beach" class="img-fluid">
@@ -252,7 +252,7 @@
         <img src="assets/img10.webp" alt="Souda" class="img-fluid">
     </div>
     <br>
-    <h4><center>Trips of our beloved Clients :</center></h4>
+    <h4 class="h4"><center>Trips of our beloved Clients :</center></h4>
     <div class="gallery-container container">
         <div class="row g-4">
             <div class="col-md-4 col-sm-6 gallery-item">
@@ -307,7 +307,7 @@
     </div>
     
     <div class="container my-5">
-    <h4 class="text-center mb-4">Our Team of Travel Tales</h4>
+    <h4 class="text-center mb-4 h4">Our Team of Travel Tales</h4>
     <div class="row g-3">
         <!-- Card 1 -->
         <div class="col-6 col-sm-4 col-md-2">
