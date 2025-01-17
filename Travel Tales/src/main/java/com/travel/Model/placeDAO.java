@@ -136,7 +136,7 @@ public class placeDAO {
 	    	
 	    	try {
 				st=con.createStatement();
-				rs=st.executeQuery("select * from place where place_id='"+id+"';");
+				rs=st.executeQuery("select * from place where CITY_id='"+id+"';");
 				while(rs.next())
 				{
 					Place p=new Place();
@@ -156,6 +156,25 @@ public class placeDAO {
 	    	
 	    	return place;
 	    }
+		public int getPlacesCount(int id)
+		{
+			int count=0;
+			Statement st=null;
+			PreparedStatement ps=null;
+			ResultSet rs=null;
+			try {
+				st=con.createStatement();
+				rs=st.executeQuery("SELECT COUNT(*) AS CON FROM place WHERE CITY_ID='"+id+"';");
+				if(rs.next())
+				{
+					count=rs.getInt("CON");
+				}
+				
+			}catch(SQLException e)
+			{
+				e.printStackTrace();			}
+			return count;
+		}
 
 
 }
