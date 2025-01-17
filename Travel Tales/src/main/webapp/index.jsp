@@ -160,7 +160,7 @@
         
      <%cityDAO city=new cityDAO(session);
      ArrayList<City> al=city.viewCity();
-     Iterator<City> it=al.iterator();
+     Iterator<City> it=al.iterator();   //to create iterator reference--by using any of the collection object reference
      int count=1;
      while(it.hasNext()&& count<=4) {
     	 City c=it.next();%>
@@ -190,7 +190,7 @@
 
     	    $("#city #city-name").filter(function () {
     	      var isVisible = $(this).text().toLowerCase().indexOf(value) > -1;
-    	      $(this).toggle(isVisible);
+    	      $(this).toggle(isVisible);//hide  unwanted data
     	      if (isVisible) {
     	        hasVisible = true;
     	      }
