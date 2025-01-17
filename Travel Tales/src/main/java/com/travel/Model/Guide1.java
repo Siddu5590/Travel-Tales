@@ -34,7 +34,7 @@ public class Guide1 {
 	}
 	
 
-	public String addguide(String name,String phone,String mail,String age) {
+	public String addguide(String name,String phone,String mail,String age, String city) {
 		String status="";
 		PreparedStatement ps=null;
 		
@@ -50,11 +50,12 @@ public class Guide1 {
 			status="existed";
 		}
 		else {
-			ps=con.prepareStatement("insert into guide values(0,?,?,?,?)");
+			ps=con.prepareStatement("insert into guide values(0,?,?,?,?,?)");
 			ps.setString(1, name);
 			ps.setString(2, phone);
 			ps.setString(3, mail);
 			ps.setString(4, age);
+			ps.setString(5, city);
 		
 			
 			int a=ps.executeUpdate();
@@ -91,6 +92,7 @@ public class Guide1 {
 				g.setGuide_email(rs.getString("email"));
 				g.setGuide_phone(rs.getString("phone"));
 				g.setGuide_age(rs.getString("age"));
+				g.setLocation(rs.getString("location"));
 				guide.add(g);
 			}
 		} catch (SQLException e) {

@@ -31,8 +31,9 @@ public class Guide extends HttpServlet {
 					String phone=req.getParameter("phone");
 					String email=req.getParameter("email");
 					String age=req.getParameter("age");
+					String city=req.getParameter("city");
 					
-						String status=g.addguide(name,phone,email,age);
+						String status=g.addguide(name,phone,email,age,city);
 						if(status.equals("existed"))
 						{
 							req.setAttribute("failure", "User Already Existed.!!");
@@ -51,7 +52,7 @@ public class Guide extends HttpServlet {
 						}
 						
 					}
-				else if(req.getParameter("deleteGuide")!=null) {
+					else if(req.getParameter("deleteGuide")!=null) {
 					
 				}
 					

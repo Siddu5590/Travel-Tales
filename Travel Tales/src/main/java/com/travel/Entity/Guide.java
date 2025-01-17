@@ -7,8 +7,15 @@ public class Guide {
 	private String guide_phone;
 	private String guide_email;
 	private String guide_age;
+	private String location;
 	
 	
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
 	public int getGuide_id() {
 		return guide_id;
 	}

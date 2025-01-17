@@ -86,7 +86,7 @@
 	<h3>All Places Details</h3>
 </header>
 	<div class="add-city">
-	<a href="addPlace.jsp" class="btn btn-primary mt-3 ms-4"><i class="fa-solid fa-plus"></i>Add City</a>
+	<a href="addPlace.jsp" class="btn btn-primary mt-3 ms-4"><i class="fa-solid fa-plus"></i>Add Place</a>
 	<a href="adminDash.jsp" class="btn btn-secondary btnn ms-3 mt-3">Back to Dashboard</a>
 	</div>
 	
@@ -107,9 +107,9 @@
                 <p class="card-text"><strong>City Name:</strong> <%= p.getPlace_name() %></p>
          
                 <div class="table-actions">
-                        <form action="city" method="post" style="display:inline;">
+                        <form action="Place" method="post" style="display:inline;">
                             <input type="hidden" name="pid" value="<%= p.getPlace_id()%>">
-                            <button type="submit" class="btn btn-danger" name="delete">Delete</button>
+                            <button type="submit" class="btn btn-danger" name="delete" value="delete">Delete</button>
                         </form>
                     </div>    
             </div>

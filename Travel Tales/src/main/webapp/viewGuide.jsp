@@ -53,7 +53,7 @@
 
 
 <div class="add-guide">
-	<a href="guide.jsp" class="btn btn-primary m-4"><i class="fa-solid fa-plus"></i>Add City</a>
+	<a href="guide.jsp" class="btn btn-primary m-4"><i class="fa-solid fa-plus"></i>Add Guide</a>
 	<a href="adminDash.jsp" class="btn btn-secondary btnn m-4">Back to Dashboard</a>
 	</div>
 
@@ -75,6 +75,7 @@
 				<th>Guide Phone</th>
 				<th>Guide Email</th>
 				<th>Guide Age</th>
+				<th>Guide Location</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -91,6 +92,7 @@
 				<td><%=c.getGuide_phone() %></td>
 				<td><%=c.getGuide_email() %></td>
 				<td><%=c.getGuide_age() %></td>
+				<td><%=c.getLocation() %></td>
 				<td>
 				<form action="guide" method="post">
 				<input type="hidden" name="id" value="<%=c.getGuide_id() %>">
