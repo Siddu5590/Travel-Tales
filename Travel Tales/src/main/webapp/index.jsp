@@ -24,7 +24,7 @@
         }
 .view-product{
         margin-top:50px;
-        margin-left:30px;
+        margin-left:50px;
         margin-bottom:50px;
         
     }
@@ -37,7 +37,7 @@
     .product-container {
             display: inline-block;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 30px;
             padding: 10px;
             cursor:pointer;
         }
@@ -50,9 +50,12 @@
             padding: 20px;
             width: 280px;
             height:auto;
+            transition: .3s;
+            transform: scale(1);
             box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 12px 25px 0 rgba(0, 0, 0, 0.19);
         }
         .product-card:hover{
+        	transform: scale(1.1);
         	box-shadow: 0 -8px 4px 0 rgba(10, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 10, 0, 0.19);
         }
 

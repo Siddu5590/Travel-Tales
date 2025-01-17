@@ -5,97 +5,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Footer</title>
-     <link rel="icon" href='assets/logo.jpg'>
+    <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
-        footer {
-            background-color: #343a40;
-            color: white;
-        }
+   <style>
+     footer {
+        background-color: #343a40;
+        color: #fff;
+     }
+     .social-media a i {
+        transition: color 0.3s ease;
+    }
 
-        footer h3, footer h4 {
-            font-weight: bold;
-        }
+    .social-media a[href*="facebook"] i {
+        color: #3b5998; 
+    }
 
-        footer a {
-            text-decoration: none;
-            color: white;
-        }
+    .social-media a[href*="instagram"] i {
+        color: #E4405F;
+    }
 
-        footer a:hover {
-            text-decoration: underline;
-        }
+    .social-media a[href*="whatsapp"] i {
+        color: #25D366;
+    }
 
-        .social-media a {
-            display: inline-block;
-            margin-right: 15px;
-            transition: color 0.3s ease-in-out;
-        }
-  
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            footer .row {
-                text-align: center;
-            }
+    .social-media a[href*="twitter"] i {
+        color: #1DA1F2;
+    }
 
-            footer .social-media {
-                justify-content: center;
-                margin-top: 10px;
-            }
-
-            footer .social-media a {
-                margin-right: 10px;
-            }
-
-            footer .p {
-                text-align: center;
-                margin-top: 15px;
-            }
-        }
-    </style>
+    footer hr {
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+   </style>
 </head>
 <body>
     <footer class="bg-dark text-light pt-5">
-        <div class="container px-5">
+        <div class="container">
             <div class="row">
                 <!-- Tour & Travel Section -->
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <h3>Tour & Travel</h3>
-                    <p class="pt-2">321, Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p class="mb-2">0987654321</p>
-                    <p>1234567890</p>
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <h3 class="fw-bold">Tour & Travel</h3>
+                    <p class="pt-2">321, Travel Tales Bangalore.</p>
+                    <p class="mb-2">Tel no: <a href="tel:8896744451" class="text-decoration-none text-white">8896744451</a></p>
+                    <p>Tel no: <a href="tel:8896744452" class="text-decoration-none text-white">8896744452</a></p>
+                    <p><b>Email:</b><a href="mailto:support@traveltaleswebsite.com" class="text-decoration-none text-white"> support@traveltaleswebsite.com</a></p>
                 </div>
-
+    
                 <!-- Terms & Setting Section -->
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <h3>Terms & Setting</h3>
-                    <p class="pt-2"><a href="#">Terms & Policies</a></p>
-                    <p><a href="#">Privacy & Cookies</a></p>
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <h3 class="fw-bold">Terms & Setting</h3>
+                    <p><a href="#" class="text-light">Terms & Policies</a></p>
+                    <p><a href="#" class="text-light">Privacy & Cookies</a></p>
                 </div>
 
+                <!-- Support & Help Section -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <h3 class="fw-bold">Support & Help</h3>
+                    <p><a href="aboutus.jsp" class="text-light ms-5">About Us</a></p>
+                    <p><a href="contactUs.jsp" class="text-light ms-5">Contact Us</a></p>
+                </div>
+    
                 <!-- Social Media Links Section -->
-                <div class="col-lg-4 text-lg-end text-center">
-                    <h4>Social Media Links</h4>
+                <div class="col-lg-3 col-md-6 col-sm-12 text-lg-end">
+                    <h4 class="h44">Social Media Links</h4>
                     <div class="social-media pt-2">
-                        <a href="#" class="text-light fs-2"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#" class="text-light fs-2"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="text-light fs-2"><i class="fa-brands fa-whatsapp"></i></a>
-                        <a href="#" class="text-light fs-2"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.facebook.com" target="_blank" title="facebook" class="text-light fs-2 me-3"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com" target="_blank" title="Instagram" class="text-light fs-2 me-3"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.whatsapp.com" target="_blank" title="Whatsapp" class="text-light fs-2 me-3"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://www.twitter.com" target="_blank" title="Twitter" class="text-light fs-2"><i class="fa-brands fa-twitter"></i></a>
                     </div>
                 </div>
             </div>
-
+    
             <!-- Divider -->
             <hr>
-
+    
             <!-- Footer Bottom Section -->
-            <div class="d-sm-flex justify-content-center py-1">
-                <p class="p mb-0">2025 © Tour & Travel. All Rights Reserved.</p>
+            <div class=" py-2">
+                <center><p class="mb-0">2025 &copy; Tour & Travel. All Rights Reserved.</p></center>
             </div>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

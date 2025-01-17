@@ -105,7 +105,7 @@
                     <a class="nav-link active" aria-current="page" href="index.jsp" title="Home" style="color: white;"><i class="fas fa-home"></i></a>
                 </li>
                 <li class="items nav-item">
-                    <a class="nav-link active" aria-current="page" href="#" title="About US" style="color: white;"><i class="fas fa-info-circle"></i></a>
+                    <a class="nav-link active" aria-current="page" href="aboutus.jsp" title="About US" style="color: white;"><i class="fas fa-info-circle"></i></a>
                 </li>
                 <li class="items nav-item">
                     <a class="nav-link active" aria-current="page" href="contactUs.jsp" title="Contact US" style="color: white;"><i class="fas fa-envelope"></i></a>
