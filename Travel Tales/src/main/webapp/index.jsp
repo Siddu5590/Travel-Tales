@@ -88,10 +88,47 @@
         	padding:5px;
         	text-align:center;
         }
-        .video video{
-        	width:100%;
-        	height: 50%;
+        .mvv-container{
+            max-width: 100%;
+            margin-top: 50px;
+            background-color: #FFF6B3;
         }
+
+        .mvv-container .mvv-block{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .mvv-container .mvv-block .image{
+            flex: 0 0 auto;
+            width: 600px;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 0 10px 5px rgba(0,0,0,.3);
+            line-height: 0;
+        }
+        .mvv-container .mvv-block .image img{
+            width: 100%;
+            height: 100%;
+        }
+        
+        .mvv-container .mvv-block .content{
+            flex: 0 0 auto;
+            width: calc(100% - 600px);
+            box-sizing: border-box;
+            align-self: center;
+            text-align: justify;
+            font-size: 20px;
+        }
+        .mvv-container .mvv-block .content h5{
+            font-weight: bold;
+            font-size: 40px;
+            color: blue;
+        }
+        .mvv-container .mvv-block .content p{
+            margin-left: 20px;
+        } 
+        
 		
 		@media (max-width: 576px) {
             .carousel-inner img {
@@ -100,6 +137,67 @@
             .product-card {
                 width: 100%;
                 max-width: 100%;
+            }
+        }
+        @media screen and (min-width: 1024px) {
+            .mvv-container .mvv-block:nth-child(odd) .image {
+                order: 1;
+            }
+            .mvv-container .mvv-block:nth-child(even) .image {
+                order: 2;
+            }
+            .mvv-container .mvv-block:nth-child(odd) .content {
+                order: 2;
+                padding-left: 30px;
+            }
+            .mvv-container .mvv-block:nth-child(even) .content {
+                order: 1;
+                padding-right: 30px;
+            }
+        }
+
+        @media screen and (max-width: 1023px) {
+            .mvv-container .mvv-block {
+                flex-direction: column;
+            }
+            .mvv-container .mvv-block .image,
+            .mvv-container .mvv-block .content {
+                width: 100%;
+                text-align: center;
+            }
+            .mvv-container .mvv-block .content h5 {
+                font-size: 35px;
+                margin-top:10px;
+            }
+            .mvv-container .mvv-block .content p {
+                font-size: 18px;
+                padding: 0 10px;
+                text-align: justify;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .mvv-container .mvv-block .content h5 {
+                font-size: 35px;
+                margin-top:10px;
+            }
+            .mvv-container .mvv-block .content p {
+                font-size: 20px;
+                text-align: justify;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .mvv-container .mvv-block .image img {
+                height: auto;
+            }
+            .mvv-container .mvv-block .content h5 {
+                font-size: 35px;
+                margin-top:10px;
+            }
+            .mvv-container .mvv-block .content p {
+                font-size: 20px;
+                text-align: justify;
             }
         }
 
@@ -166,6 +264,7 @@
     	   <a href="<%=request.getContextPath() + "/place.jsp?city=" + c.getCity_id()%>">
                 <div class="profile-pic"><image src="<%=c.getImage() %>" width="220px" height="140px" style="border-radius:5px;" ></div>
                 <p class="card-text" ><strong> <%= c.getCity_name() %></strong></p></a>
+                <a href="booking.jsp" class="btn btn-success mt-3">Book Now</a>
             </div>
     	
     	</div>
@@ -176,19 +275,28 @@
     <div class="video-container m-3 rounded">
     <h1>Happy Moments...</h1>
     <div class="video m-4">
-    <iframe
-        class="video-stream"
-        width="100%"
-        height="525"
-        src="https://www.youtube.com/embed/TUzYlhcdJOI?autoplay=1&mute=1"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-    </iframe>
+    <iframe class="video-stream" width="100%" height="525" src="https://www.youtube.com/embed/TUzYlhcdJOI?autoplay=1&mute=1"
+        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
 </div>
-
     </div>
+    
+    <div class="mvv-container ms-3 mt-5 me-3 rounded">
+    
+    <div  class="mvv-block p-2">
+            <div class="image">
+                <img src="https://media.assettype.com/startupcityindia%2F2024-04%2F2ddeff0f-0e37-4936-a12b-0e2cde3422eb%2FKarnataka_sc.jpg" alt="">
+            </div>
+            <div class="content">
+                <h5>We are Travel Tales</h5>
+                <p>At  Travel Tales Adventures, we believe that travel is more than just visiting new places; it’s about creating memories, connecting with diverse cultures, and discovering the beauty of the world. With a passion for exploration, we specialize in curating unforgettable journeys that combine adventure, relaxation, and cultural enrichment.
+
+                Our team of travel experts works tirelessly to provide personalized itineraries, ensuring each trip is tailored to your unique preferences and desires. Whether you're seeking the thrill of adventure, a serene escape, or an immersive cultural experience, Wanderlust Adventures is your trusted partner in turning travel dreams into reality.</p>
+            </div>
+        </div>
+       
+    </div>
+     <center><a href="aboutus.jsp" class="btn btn-primary mb-3 p-2">View More</a></center>
     
     <%@include file="footer.jsp" %>
     

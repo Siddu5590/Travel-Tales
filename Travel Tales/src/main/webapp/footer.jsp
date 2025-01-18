@@ -59,7 +59,7 @@
                 </div>
 
                 <!-- Support & Help Section -->
-                <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+                <div class="col-lg-3 col-md-4 col-sm-10 mb-2">
                     <h3 class="fw-bold">Support & Help</h3>
                     <p><a href="aboutus.jsp" class="text-light ms-5">About Us</a></p>
                     <p><a href="contactUs.jsp" class="text-light ms-5">Contact Us</a></p>

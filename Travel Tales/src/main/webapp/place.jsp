@@ -145,10 +145,10 @@
 	    for (Place p : placeList) {
 	        %>
 	        <div class="product-container">
-	            <div class="product-card">
+	            <a href="placeDetails.jsp?place=<%=p.getPlace_id() %>" class="text-decoration-none text-black"><div class="product-card">
 	                <img src="<%=p.getImage() %>" width="220px" height="140px" style="border-radius:5px;" alt="Place Image">
 	                <p><strong>Place Name:</strong> <%= p.getPlace_name() %></p>
-	            </div>
+	            </div></a>
 	        </div>
 	        <%
 	    }
