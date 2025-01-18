@@ -39,11 +39,11 @@
    </style>
 </head>
 <body>
-    <footer class="bg-dark text-light pt-5">
+    <footer class="bg-dark text-light pt-3">
         <div class="container">
             <div class="row">
                 <!-- Tour & Travel Section -->
-                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
                     <h3 class="fw-bold">Tour & Travel</h3>
                     <p class="pt-2">321, Travel Tales Bangalore.</p>
                     <p class="mb-2">Tel no: <a href="tel:8896744451" class="text-decoration-none text-white">8896744451</a></p>
@@ -52,14 +52,14 @@
                 </div>
     
                 <!-- Terms & Setting Section -->
-                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
                     <h3 class="fw-bold">Terms & Setting</h3>
                     <p><a href="#" class="text-light">Terms & Policies</a></p>
                     <p><a href="#" class="text-light">Privacy & Cookies</a></p>
                 </div>
 
                 <!-- Support & Help Section -->
-                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
                     <h3 class="fw-bold">Support & Help</h3>
                     <p><a href="aboutus.jsp" class="text-light ms-5">About Us</a></p>
                     <p><a href="contactUs.jsp" class="text-light ms-5">Contact Us</a></p>

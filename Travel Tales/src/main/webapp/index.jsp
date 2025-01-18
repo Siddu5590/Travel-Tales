@@ -81,6 +81,17 @@
         .card-text strong{
         	font-size:20px;
         }
+        .video-container{
+        	background-color: #FFFBCA;
+        }
+        .video-container h1{
+        	padding:5px;
+        	text-align:center;
+        }
+        .video video{
+        	width:100%;
+        	height: 50%;
+        }
 		
 		@media (max-width: 576px) {
             .carousel-inner img {
@@ -160,6 +171,23 @@
     	</div>
     	<% count++; } %>
     
+    </div>
+    
+    <div class="video-container m-3 rounded">
+    <h1>Happy Moments...</h1>
+    <div class="video m-4">
+    <iframe
+        class="video-stream"
+        width="100%"
+        height="525"
+        src="https://www.youtube.com/embed/TUzYlhcdJOI?autoplay=1&mute=1"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+</div>
+
     </div>
     
     <%@include file="footer.jsp" %>
