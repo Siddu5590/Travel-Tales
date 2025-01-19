@@ -6,13 +6,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<<<<<<< HEAD
-    
-=======
-   		<%placeDAO p=new placeDAO(session);
-    	ArrayList<Place> al=p.viewPlace(Integer.parseInt(request.getParameter("place")));
+    <%placeDAO p=new placeDAO(session);
+    	ArrayList<Place> al=p.getPlace(Integer.parseInt(request.getParameter("place")));
     	cityDAO city=new cityDAO(session);%>
->>>>>>> branch 'subbranch' of https://github.com/Siddu5590/Travel-Tales.git
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,13 +53,13 @@
 </head>
 <body>
 <%@include file="header.jsp" %>
-<div class="container m-5 bg-">
+<div class="container mt-4 ms-5 bg-">
+<%if(session.getAttribute("uname")!=null){ %>
+    	<a href="booking.jsp" class="btn btn-success me-5 mb-5">Book Your Trip here</a>
+    	<%} else { %>
+    	<a href="login.jsp" class="btn btn-success me-5 mb-5">Book Your Trip here</a>
+    	<%} %>
 
-<%String pid=request.getParameter("place");
- int placeId=Integer.parseInt(pid);
- placeDAO pdao=new placeDAO(session);
- ArrayList<Place> al= pdao.viewPlace(placeId);
- cityDAO city=new cityDAO(session);%>
 <%for(Place place:al){%>
 <div class="product-card p-4">
                 <div class="row">

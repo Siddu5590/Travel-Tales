@@ -104,7 +104,7 @@
     	   <div class="product-card">
                 <div class="profile-pic"><image src="<%=p.getImage() %>" width="220px" height="140px" style="border-radius:5px;" ></div>
                 <h2><%= p.getPlace_id() %></h2>
-                <p class="card-text"><strong>City Name:</strong> <%= p.getPlace_name() %></p>
+                <p class="card-text"><strong>Place Name:</strong> <%= p.getPlace_name() %></p>
          
                 <div class="table-actions">
                         <form action="Place" method="post" style="display:inline;">

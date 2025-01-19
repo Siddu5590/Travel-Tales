@@ -60,7 +60,10 @@
 	  max-width: 1800px;
 	  margin: 5px auto;
  }
- 
+ #city-list{
+ 	height:auto;
+ 	padding:10px;
+ }
  .city-section::placeholder
  {
     width: 2px;
@@ -108,30 +111,29 @@
             border-radius: 8px;
             text-align: center;
             padding: 20px;
-            width: 280px;
-            height:auto;
+            margin-top:20px;
+            width: 300px;
+            height:300px;
             box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 12px 25px 0 rgba(0, 0, 0, 0.19);
         }
         .product-card p{
         	text-align: justify;
-        	margin-top:5px;
+        	te
         }
         .product-card:hover{
         	box-shadow: 0 -8px 4px 0 rgba(10, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 10, 0, 0.19);
         }
          .search-bar{
-			width:50px;
-			padding: 4px 8px;
- 			 border-radius: 30px;
-  border:1px solid #efefef !important;
-  background: white;
-  font-size: 1.0rem;
-  cursor: pointer;
-  color: black !important;
-  text-decoration:none;
- 
-  box-shadow: 0px 1px 4px gray !important;
+ 			border-radius: 30px;
+ 			border:1px solid #efefef !important;
+  			background: white;
+  			font-size: 1.0rem;
+  			cursor: pointer;
+  			color: black !important;
+  			text-decoration:none;
+  			box-shadow: 0px 1px 4px gray !important;
 		}
+		
  
 </style>
 </head>
@@ -140,27 +142,35 @@
 <nav class="city-section">
     
     <!-- City tags -->
-    <div id="city-list" style="display: flex; flex-wrap: wrap; gap: 10px; overflow: hidden; max-height: 100px;">
+    <div id="city-list" style="display: flex; flex-wrap: wrap; gap: 10px; overflow: hidden; max-height: 120px;">
         <a class="city-tag <%=selectedCategory == -1 ? "city-tag-acive" : "" %>" href="place.jsp">All</a>
         <% 
         int cityCount = 0;
         for (City c : al) { 
-            String additionalClass = cityCount < 12 ? "" : "d-none"; // Hide cities beyond 8
+            String additionalClass = cityCount < 8 ? "" : "d-none"; // Hide cities beyond 8
         %>
             <a class="city-tag <%=selectedCategory == c.getCity_id() ? "city-tag-acive" : "" %> <%=additionalClass%>" 
                href="place.jsp?city=<%=c.getCity_id()%>">
                 <%= c.getCity_name() %>
             </a>
+            <h2 id="no-results" style="display: none;" class="mb-3 text-danger">No such place found...!!</h2>
         <% 
             cityCount++;
         } 
         %>
         <!-- Search bar for cities -->
         </div>
-         <div style="width:150px; display: flex; align-items: center; gap: 15px;">
-        <input id="city-search" class="search-bar" type="text" placeholder="Search cities..." style="flex: 1; padding: 10px; border-radius: 5px;">
-    </div>
+        
      </nav>
+      <div style=" display: flex; justify-content:space-between; gap: 15px;" class="search ms-5 mt-4">
+        <input id="city-search" class="search-bar w-25" type="text" placeholder="Search cities..." style="padding: 8px; border-radius: 5px;">
+    	<%if(session.getAttribute("uname")!=null){ %>
+    	<a href="booking.jsp" class="btn btn-success me-5">Book Your Trip here</a>
+    	<%} else { %>
+    	<a href="login.jsp" class="btn btn-success me-5">Book Your Trip here</a>
+    	<%} %>
+    </div>
+    
   
   <%ArrayList<Place> placeList = val == 0 ? pl.viewPlace() : pl.viewPlace(val);
   if (placeList.isEmpty()) {
@@ -175,8 +185,8 @@
 	        %>
 	        <div class="product-container">
 	            <a href="placeDetails.jsp?place=<%=p.getPlace_id() %>" class="text-decoration-none text-black"><div class="product-card">
-	                <img src="<%=p.getImage() %>" width="220px" height="140px" style="border-radius:5px;" alt="Place Image">
-	                <p><strong>Place Name:</strong> <%= p.getPlace_name() %></p>
+	                <img src="<%=p.getImage() %>" width="250px" height="160px" style="border-radius:5px;" alt="Place Image">
+	                <p class="mt-5"><strong>Place Name:</strong> <%= p.getPlace_name() %></p>
 	            </div></a>
 	        </div>
 	        <%
@@ -205,6 +215,13 @@
             if (searchValue === "") {
                 $("#city-list .city-tag").slice(8).addClass("d-none"); // Reset to show only the first 8 cities
             }
+            
+            if (!found) {
+      	      $("#no-results").show(); // Show "Data not found" message
+      	    } else {
+      	      $("#no-results").hide(); // Hide message if results are found
+      	    }
+            
         });
     });
 </script>
