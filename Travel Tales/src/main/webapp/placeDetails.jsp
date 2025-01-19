@@ -6,7 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <%placeDAO p=new placeDAO(session);
+   		<%placeDAO p=new placeDAO(session);
     	ArrayList<Place> al=p.viewPlace(Integer.parseInt(request.getParameter("place")));
     	cityDAO city=new cityDAO(session);%>
 <!DOCTYPE html>
