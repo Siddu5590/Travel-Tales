@@ -6,9 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <%placeDAO p=new placeDAO(session);
-    	ArrayList<Place> al=p.viewPlace(Integer.parseInt(request.getParameter("place")));
-    	cityDAO city=new cityDAO(session);%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,6 +52,12 @@
 <body>
 <%@include file="header.jsp" %>
 <div class="container m-5 bg-">
+
+<%String pid=request.getParameter("place");
+ int placeId=Integer.parseInt(pid);
+ placeDAO pdao=new placeDAO(session);
+ ArrayList<Place> al= pdao.viewPlace(placeId);
+ cityDAO city=new cityDAO(session);%>
 <%for(Place place:al){%>
 <div class="product-card p-4">
                 <div class="row">
