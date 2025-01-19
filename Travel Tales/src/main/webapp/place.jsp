@@ -113,7 +113,7 @@
             padding: 20px;
             margin-top:20px;
             width: 300px;
-            height:300px;
+            height:auto;
             box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 12px 25px 0 rgba(0, 0, 0, 0.19);
         }
         .product-card p{
@@ -186,7 +186,7 @@
 	        <div class="product-container">
 	            <a href="placeDetails.jsp?place=<%=p.getPlace_id() %>" class="text-decoration-none text-black"><div class="product-card">
 	                <img src="<%=p.getImage() %>" width="250px" height="160px" style="border-radius:5px;" alt="Place Image">
-	                <p class="mt-5"><strong>Place Name:</strong> <%= p.getPlace_name() %></p>
+	                <p class="mt-3"><strong>Place Name:</strong> <%= p.getPlace_name() %></p>
 	            </div></a>
 	        </div>
 	        <%
@@ -213,7 +213,7 @@
 
             // Show or hide cities based on results
             if (searchValue === "") {
-                $("#city-list .city-tag").slice(8).addClass("d-none"); // Reset to show only the first 8 cities
+                $("#city-list .city-tag").slice(9).addClass("d-none"); // Reset to show only the first 8 cities
             }
             
             if (!found) {
