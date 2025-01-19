@@ -6,7 +6,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<<<<<<< HEAD
     
+=======
+   		<%placeDAO p=new placeDAO(session);
+    	ArrayList<Place> al=p.viewPlace(Integer.parseInt(request.getParameter("place")));
+    	cityDAO city=new cityDAO(session);%>
+>>>>>>> branch 'subbranch' of https://github.com/Siddu5590/Travel-Tales.git
 <!DOCTYPE html>
 <html>
 <head>

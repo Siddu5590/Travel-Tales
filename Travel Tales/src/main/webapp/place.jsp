@@ -6,8 +6,10 @@
 <%@page import="com.travel.Entity.City"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%cityDAO city=new cityDAO(session);
+    <%
+    cityDAO city=new cityDAO(session);
     ArrayList<City> al=city.viewCity();
+     
     
     int selectedCategory = request.getParameter("city")!=null ? Integer.parseInt(request.getParameter("city"))  : -1;
     placeDAO pl= new placeDAO(session);
@@ -27,9 +29,9 @@
 
 
     int count=pl.getPlacesCount(val);
-   
+   %>
     
-    %>
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,21 +119,48 @@
         .product-card:hover{
         	box-shadow: 0 -8px 4px 0 rgba(10, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 10, 0, 0.19);
         }
+         .search-bar{
+			width:50px;
+			padding: 4px 8px;
+ 			 border-radius: 30px;
+  border:1px solid #efefef !important;
+  background: white;
+  font-size: 1.0rem;
+  cursor: pointer;
+  color: black !important;
+  text-decoration:none;
+ 
+  box-shadow: 0px 1px 4px gray !important;
+		}
  
 </style>
 </head>
 <body>
 <%@include file="header.jsp" %>
 <nav class="city-section">
-    <a class="city-tag <%=selectedCategory == -1 ? "city-tag-acive" :"" %>" 
-       href="place.jsp">All</a>
-    <% for (City c : al) { %>
-        <a class="city-tag <%=selectedCategory == c.getCity_id() ? "city-tag-acive" :"" %>" 
-           href="place.jsp?city=<%=c.getCity_id()%>">
-           <%= c.getCity_name() %>
-        </a>
-    <% } %>
-</nav>
+    
+    <!-- City tags -->
+    <div id="city-list" style="display: flex; flex-wrap: wrap; gap: 10px; overflow: hidden; max-height: 100px;">
+        <a class="city-tag <%=selectedCategory == -1 ? "city-tag-acive" : "" %>" href="place.jsp">All</a>
+        <% 
+        int cityCount = 0;
+        for (City c : al) { 
+            String additionalClass = cityCount < 12 ? "" : "d-none"; // Hide cities beyond 8
+        %>
+            <a class="city-tag <%=selectedCategory == c.getCity_id() ? "city-tag-acive" : "" %> <%=additionalClass%>" 
+               href="place.jsp?city=<%=c.getCity_id()%>">
+                <%= c.getCity_name() %>
+            </a>
+        <% 
+            cityCount++;
+        } 
+        %>
+        <!-- Search bar for cities -->
+        </div>
+         <div style="width:150px; display: flex; align-items: center; gap: 15px;">
+        <input id="city-search" class="search-bar" type="text" placeholder="Search cities..." style="flex: 1; padding: 10px; border-radius: 5px;">
+    </div>
+     </nav>
   
   <%ArrayList<Place> placeList = val == 0 ? pl.viewPlace() : pl.viewPlace(val);
   if (placeList.isEmpty()) {
@@ -154,5 +183,30 @@
 	    }
 	}%>
 
+
+<script>
+    $(document).ready(function () {
+        // Add search functionality to filter cities
+        $("#city-search").on("keyup", function () {
+            var searchValue = $(this).val().toLowerCase();
+            var found = false;
+
+            // Filter cities based on search
+            $("#city-list .city-tag").each(function () {
+                if ($(this).text().toLowerCase().includes(searchValue)) {
+                    $(this).removeClass("d-none");
+                    found = true;
+                } else {
+                    $(this).addClass("d-none");
+                }
+            });
+
+            // Show or hide cities based on results
+            if (searchValue === "") {
+                $("#city-list .city-tag").slice(8).addClass("d-none"); // Reset to show only the first 8 cities
+            }
+        });
+    });
+</script>
 </body>
 </html>
