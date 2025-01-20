@@ -1,7 +1,7 @@
+<%@page import="com.travel.Model.cityDAO"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="com.travel.Entity.City"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.travel.Model.cityDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

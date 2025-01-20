@@ -126,7 +126,7 @@
                         <a href="page4.html" class="nav-link">Booking Status</a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a href="page4.html" class="nav-link">Feedback</a>
+                        <a href="viewReviews.jsp" class="nav-link">Feedback</a>
                     </li>
                     <li class="nav-item mb-2">
                         <a href="viewGuide.jsp" class="nav-link">Guides</a>

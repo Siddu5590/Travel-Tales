@@ -7,7 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
      <link rel="icon" href='assets/logo.jpg'>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    
     <style>
         body {
             background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("assets/contact.jpg");
@@ -145,34 +150,42 @@
         <!-- Form Section -->
         <div class="col-lg-6 col-md-6 col-12">
             <form action="contactus" method="post" class="contact">
-                <h2>Opinion Poll</h2>
-                <label for="name">Enter Your Name:</label>
-                <input type="text" id="name" name="name" placeholder="Username" required value="<%= session.getAttribute("uname") %>">
+    <h2>Opinion Poll</h2>
+    <label for="name">Enter Your Name:</label>
+    <input type="text" id="name" name="name" placeholder="Username" required 
+           value="<%= session.getAttribute("uname") != null ? session.getAttribute("uname") : "" %>">
 
-                <label for="email">Enter Your Email:</label>
-                <input type="email" id="email" name="mail" placeholder="Email ID" required value="<%= session.getAttribute("email") %>">
+    <label for="email">Enter Your Email:</label>
+    <input type="email" id="email" name="email" placeholder="Email ID" required 
+           value="<%= session.getAttribute("email") != null ? session.getAttribute("email") : "" %>">
 
-                <label for="phone">Enter Your Phone Number:</label>
-                <input type="tel" id="phone" name="phone" placeholder="Phone Number" required value="<%= session.getAttribute("phone") %>">
+    <label for="phone">Enter Your Phone Number:</label>
+    <input type="tel" id="phone" name="phone" placeholder="Phone Number" required 
+           value="<%= session.getAttribute("phone") != null ? session.getAttribute("phone") : "" %>">
 
-                <label for="review">Review:</label>
-                <textarea id="review" rows="3" name="review" placeholder="Write your review..."></textarea>
+    <label for="review">Review:</label>
+    <textarea id="review" rows="3" name="review" placeholder="Write your review..." required="required"></textarea>
 
-                <p class="text-center rate">Rate Your Experience:</p>
-                <div class="star-rating">
-                    <span class="star" data-value="1">&#9733;</span>
-                    <span class="star" data-value="2">&#9733;</span>
-                    <span class="star" data-value="3">&#9733;</span>
-                    <span class="star" data-value="4">&#9733;</span>
-                    <span class="star" data-value="5">&#9733;</span>
-                </div>
-                <p class="text-center"><span id="rating-value"></span></p>
-				<%if(session.getAttribute("uname")!=null){ %>
-                <input type="submit" class="btn btn-success" value="Submit">
-                <%} else {%>
-                <h5 class="text-center text-danger">please login to submit the feedback</h5>
-                <%} %>
-            </form>
+    <p class="text-center rate">Rate Your Experience:</p>
+    <div class="star-rating">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+    </div>
+    <p class="text-center"><span id="rating-value"></span></p>
+
+    <!-- Hidden field to send star rating to the servlet -->
+    <input type="hidden" id="rating" name="rating" value="">
+
+    <% if (session.getAttribute("uname") != null) { %>
+        <input type="submit" class="btn btn-success" value="Submit" name="feedback">
+    <% } else { %>
+        <h5 class="text-center text-danger">Please login to submit the feedback</h5>
+    <% } %>
+</form>
+
         </div>
     </div>
 </div>
@@ -181,21 +194,47 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    const stars = document.querySelectorAll('.star');
-    const ratingValue = document.getElementById('rating-value');
 
-    stars.forEach(star => {
-        star.addEventListener('click', () => {
-            const rating = parseInt(star.getAttribute('data-value'));
+<% if (request.getAttribute("status") != null) { 
+    String message = (String) request.getAttribute("status");
+    request.removeAttribute("status");
+%>
+Swal.fire({
+    icon:"success",
+    title: 'Success...',
+    text: "<%= message %>"
+});
+<% } %>
 
-            stars.forEach(star => star.classList.remove('selected'));
-            for (let i = 0; i < rating; i++) {
-                stars[i].classList.add('selected');
-            }
+<% if (request.getAttribute("failure") != null) { 
+    String message = (String) request.getAttribute("failure");
+    request.removeAttribute("failure");
+%>
+Swal.fire({
+    icon:"error",
+    title: 'Oooops..',
+    text: "<%= message %>"
+});
+<% } %>
 
-            ratingValue.textContent = `You rated: ${rating} star(s)`;
-        });
+const stars = document.querySelectorAll('.star');
+const ratingValue = document.getElementById('rating-value');
+const ratingInput = document.getElementById('rating'); // Hidden input field
+
+stars.forEach(star => {
+    star.addEventListener('click', () => {
+        const rating = parseInt(star.getAttribute('data-value'));
+
+        stars.forEach(star => star.classList.remove('selected'));
+        for (let i = 0; i < rating; i++) {
+            stars[i].classList.add('selected');
+        }
+
+        ratingValue.textContent = `You rated: ${rating} star(s)`;
+        ratingInput.value = rating; // Update the hidden field
     });
+});
+
 </script>
 </body>
 </html>
