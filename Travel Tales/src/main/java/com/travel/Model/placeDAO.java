@@ -72,7 +72,31 @@ public class placeDAO {
 	        return status;
 	    }
 	    
-	    public ArrayList<Place> viewPlace()
+	    
+		public String deletePlace(int id) {
+			Statement st=null;
+			String status="";
+			int count=0;
+			try {
+				st=con.createStatement();
+				count=st.executeUpdate("delete from place where place_id='"+id+"';");
+				
+				if(count>0) {
+					status="success";
+				}
+				else {
+					status="failure";
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return status;
+		}
+		
+		public ArrayList<Place> viewPlace()
 	    {
 	    	Statement st=null;
 	    	PreparedStatement ps=null;
@@ -103,30 +127,8 @@ public class placeDAO {
 	    	return place;
 	    }
 
-		public String deletePlace(int id) {
-			Statement st=null;
-			String status="";
-			int count=0;
-			try {
-				st=con.createStatement();
-				count=st.executeUpdate("delete from place where place_id='"+id+"';");
-				
-				if(count>0) {
-					status="success";
-				}
-				else {
-					status="failure";
-				}
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			return status;
-		}
 		
-		public ArrayList<Place> viewPlace(int id)
+		public ArrayList<Place> viewPlace(int city_id)
 	    {
 	    	Statement st=null;
 	    	PreparedStatement ps=null;
@@ -136,7 +138,7 @@ public class placeDAO {
 	    	
 	    	try {
 				st=con.createStatement();
-				rs=st.executeQuery("select * from place where CITY_id='"+id+"';");
+				rs=st.executeQuery("select * from place where CITY_id='"+city_id+"';");
 				while(rs.next())
 				{
 					Place p=new Place();
@@ -172,7 +174,8 @@ public class placeDAO {
 				
 			}catch(SQLException e)
 			{
-				e.printStackTrace();			}
+				e.printStackTrace();			
+			}
 			return count;
 		}
 

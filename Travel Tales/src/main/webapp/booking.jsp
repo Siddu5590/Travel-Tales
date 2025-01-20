@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <!DOCTYPE html>
+<%@page import="com.travel.Model.placeDAO" %>
+<%@page import="com.travel.Entity.Place" %>
+<%@page import="java.util.*" %>
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -76,15 +82,32 @@
   </div>
 </div>
 
+<% 
+	placeDAO p=new placeDAO(session);
+   	int cityId=request.getParameter("city_id")!=null ? Integer.parseInt(request.getParameter("city_id"))  : -1;
+   	ArrayList<Place> places=p.viewPlace(cityId);
+%>
+
+<div class="col">
+		<%
+			for(Place pl:places)
+			{
+		%>
+	    <label>
+            <input type="checkbox" name="places" value="<%= pl.getPlace_id()%>">  <%=pl.getPlace_name() %> 
+        </label><br>
+        <%} %>
+</div>
+
 <div class="row mb-3">
   <div class="col">
   <label for="numPeople" class="form-label"><strong>Number of People</strong></label>
-   <input type="number" class="form-control" id="numPeople" placeholder="Enter number of people" required>
+   <input type="number" class="form-control" id="numPeople" name="numpeople" placeholder="Enter number of people" required>
   </div>
   
   <div class="col">
     <label for="travelDate" class="form-label"><strong>Date</strong> </label>
-      <input type="date" class="form-control" id="travelDate" required>
+      <input type="date" class="form-control" name="date" id="travelDate" required>
   </div>
 </div>
 
@@ -98,10 +121,10 @@
     </div>
     <div class="mb-3">
       <label for="description" class="form-label"><strong>Description</strong></label>
-      <textarea class="form-control" id="description" rows="3" placeholder="Enter additional details"></textarea>
+      <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter additional details"></textarea>
     </div>
     <center><div class="form-group">
-            <button type="submit" class="update-btn w-75" name="book">Book Travel</button>
+            <button type="submit" class="update-btn w-75" name="book" value="book now">Book Travel</button>
             <a href="index.jsp"><button type="button" class="back-btn w-75">Back</button></a>
         </div></center>
   </form>
