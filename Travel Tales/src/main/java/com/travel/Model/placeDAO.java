@@ -136,6 +136,57 @@ public class placeDAO {
 	    	
 	    	try {
 				st=con.createStatement();
+				rs=st.executeQuery("select * from place where CITY_id='"+id+"';");
+				while(rs.next())
+				{
+					Place p=new Place();
+					p.setPlace_id(rs.getInt("PLACE_ID"));
+					p.setPlace_name(rs.getString("NAME"));
+					p.setLocation(rs.getString("LOCATION"));
+					p.setImage(rs.getString("IMAGE"));
+					p.setCity_id(rs.getInt("CITY_ID"));
+					p.setDescription(rs.getString("DESCRIPTION"));
+					place.add(p);
+					
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	
+	    	return place;
+	    }
+		public int getPlacesCount(int id)
+		{
+			int count=0;
+			Statement st=null;
+			PreparedStatement ps=null;
+			ResultSet rs=null;
+			try {
+				st=con.createStatement();
+				rs=st.executeQuery("SELECT COUNT(*) AS CON FROM place WHERE CITY_ID='"+id+"';");
+				if(rs.next())
+				{
+					count=rs.getInt("CON");
+				}
+				
+			}catch(SQLException e)
+			{
+				e.printStackTrace();			}
+			return count;
+		}
+
+		
+		public ArrayList<Place> getPlace(int id)
+	    {
+	    	Statement st=null;
+	    	PreparedStatement ps=null;
+	    	ResultSet rs=null;
+	    	
+	    	ArrayList<Place> place=new ArrayList<>();
+	    	
+	    	try {
+				st=con.createStatement();
 				rs=st.executeQuery("select * from place where place_id='"+id+"';");
 				while(rs.next())
 				{
@@ -156,6 +207,5 @@ public class placeDAO {
 	    	
 	    	return place;
 	    }
-
 
 }

@@ -100,28 +100,34 @@
 <a href="adminDash.jsp" class="btn btn-secondary btnn ms-3 mt-3">Back to Dashboard</a>
 
 <form action="Place" method="post" class="form">
-	
     <h1>Add New Place</h1>
+    
     <label>Place Name:</label>
     <input type="text" name="name" placeholder="Enter Place name" required="required"><br>
     
     <label class="label">Place Image:</label>
     <input type="text" name="image" placeholder="Enter Place image" required="required"><br>
     
-     <label for="city">Choose a City:</label><br>
-    
-        <select id="city" name="city">
-        <option selected="selected">Select City</option>
-        <% cityDAO c=new cityDAO(session);
-           ArrayList<String> al=c.getCities();
-           Iterator<String> itr=al.iterator();
-           while(itr.hasNext())
-           {  String city=itr.next(); %>
-           		
-        	   <option value="<%= city%>"><%= city%></option>
-         <%  } %> 
-            
+    <label for="city">Choose a City:</label><br>
+
+    <!-- Searchable dropdown -->
+    <div class="dropdown-container">
+       
+        <select id="city"  name="city">
+         <option type="text"  placeholder="Search for a city..." class="search-input"
+            onkeyup="filterCities()" >search</option>
+            <option value="" selected="selected">Select City</option>
+            <% 
+            cityDAO c = new cityDAO(session);
+            ArrayList<String> al = c.getCities();
+            for (String city : al) {
+            %>
+                <option value="<%= city %>" data-city-name="<%= city.toLowerCase() %>">
+                    <%= city %>
+                </option>
+            <% } %>
         </select>
+    </div>
     
     <label>Location:</label>
     <input type="text" name="loc" placeholder="Enter Location" required="required"><br>
@@ -129,9 +135,9 @@
     <label>Place Description:</label>
     <input type="text" name="description" placeholder="Enter Place Description" required="required"><br>
     
-    
     <button type="submit" name="addPlace" value="add place" class="addplace">Add Place</button>
 </form>
+
 <%@include file="footer.jsp" %>
 
 <script type="text/javascript">
@@ -156,6 +162,25 @@ Swal.fire({
     text: "<%= message %>"
 });
 <% } %>
+
+
+// JavaScript function to filter cities in the dropdown
+function filterCities() {
+    const searchInput = document.getElementById('citySearch').value.toLowerCase();
+    const select = document.getElementById('city');
+    const options = select.options;
+
+    for (let i = 1; i < options.length; i++) {
+        const cityName = options[i].getAttribute('data-city-name');
+        if (cityName.includes(searchInput)) {
+            options[i].style.display = cityName; // Show matching option
+        } else {
+            options[i].style.display = "none"; // Hide non-matching option
+        }
+    }
+}
 </script>
+
+
 </body>
 </html>

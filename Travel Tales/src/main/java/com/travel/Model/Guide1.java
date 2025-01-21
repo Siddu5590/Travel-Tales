@@ -103,4 +103,32 @@ public class Guide1 {
 		return guide;
 	}
 
+
+	public String deleteguide(int id) {
+		Statement st=null;
+		String status="";
+		int count=0;
+		
+		
+		try {
+			st=con.createStatement();
+			count=st.executeUpdate("delete from guide where guide_id='"+id+"';");
+			
+			if(count>0)
+			{
+				status="success";
+				
+			}
+			else {
+				status="failure";
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return status;
+	}
+
 }

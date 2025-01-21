@@ -53,7 +53,19 @@ public class Guide extends HttpServlet {
 						
 					}
 					else if(req.getParameter("deleteGuide")!=null) {
+					int id=Integer.parseInt(req.getParameter("id"));
 					
+					String status=g.deleteguide(id);
+					if(status.equals("success")) {
+						req.setAttribute("status", "Guide Deleted Successfully...");
+						RequestDispatcher rd=req.getRequestDispatcher("viewGuide.jsp");
+						rd.forward(req, res);
+					}
+					else if(status.equals("failure")) {
+						req.setAttribute("failure", "Failed to delete Guide information.!!");
+						RequestDispatcher rd=req.getRequestDispatcher("viewGuidex.jsp");
+						rd.forward(req, res);
+					}
 				}
 					
 					
