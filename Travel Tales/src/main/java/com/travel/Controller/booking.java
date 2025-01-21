@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import com.travel.Model.bookingDAO;
+
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -26,13 +29,31 @@ public class booking extends HttpServlet{
 				String ph=req.getParameter("phone");
 				String email=req.getParameter("email");
 				String city=req.getParameter("city");
-				String noPl=req.getParameter("numpeople");
+				System.out.println(req.getParameter("city"));
+				int noPl=Integer.parseInt(req.getParameter("numpeople"));
 				String date=req.getParameter("date");
 				Double cost=Double.parseDouble(req.getParameter("cost"));
-				Double discount=Double.parseDouble(req.getParameter("discount"));
 				String desc=req.getParameter("description");
 				
+				bookingDAO b=new bookingDAO(session);
+				String status=b.addBooking(name, ph, email, city, noPl, date, cost, desc);
+				
+				if(status.equals("success"))
+				{
+					session.setAttribute("status", "Booking Done");
+					RequestDispatcher rd=req.getRequestDispatcher("booking.jsp");
+					rd.forward(req, res);
+				}
+				else if(status.equals("failure"))
+				{
+					session.setAttribute("failure", "Booking Unsuccessfull due to some error");
+					RequestDispatcher rd=req.getRequestDispatcher("booking.jsp");
+					rd.forward(req, res);
+				}
+				
 			}
+			
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
