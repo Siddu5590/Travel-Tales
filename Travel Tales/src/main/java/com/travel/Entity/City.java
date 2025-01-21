@@ -5,7 +5,14 @@ public class City {
 	private int city_id;
 	private String city_name;
 	private String image;
+	private double cost;
 	
+	public double getCost() {
+		return cost;
+	}
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
 	public int getCity_id() {
 		return city_id;
 	}

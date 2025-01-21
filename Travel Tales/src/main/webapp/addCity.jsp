@@ -109,6 +109,9 @@
     <label>City Image:</label>
     <input type="text" class="update" name="image" placeholder="Enter City image" required><br>    
     
+    <label>Cost for City:</label>
+    <input type="text" class="update" name="cost" placeholder="Enter total cost" required><br>
+    
     <center><div class="form-group">
             <button type="submit" class="update-btn w-50 mb-3" name="addCity">Add City</button>
             <a href="viewCity.jsp" class="back-btn btn btn-success ms-2">Back</a>

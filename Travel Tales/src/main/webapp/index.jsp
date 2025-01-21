@@ -1,7 +1,7 @@
+<%@page import="com.travel.Model.cityDAO"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="com.travel.Entity.City"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.travel.Model.cityDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -75,7 +75,6 @@
         .card-text{
         	color:black;
         	font-weight:bold;
-        	margin-top:10px;
         	
         }
         .card-text strong{
@@ -282,8 +281,11 @@
     	   <a href="<%=request.getContextPath() + "/place.jsp?city=" + c.getCity_id()%>">
                 <div class="profile-pic"><image src="<%=c.getImage() %>" width="220px" height="140px" style="border-radius:5px;" ></div>
                 <p class="card-text" ><strong> <%= c.getCity_name() %></strong></p></a>
+                <p class="card-text mt-3" >Cost: <%= c.getCost() %>/person</p>
+                <p class="card-text" >Including All Expenses</p>
+                
                 <%if(session.getAttribute("uname")!=null){ %>
-    	<a href="booking.jsp" class="btn btn-success mt-3">Book Now</a>
+    	<a href="booking.jsp?city_id=<%=c.getCity_id()  %>" class="btn btn-success mt-3">Book Now</a>
     	<%} else { %>
     	<a href="login.jsp" class="btn btn-success mt-3">Book Now</a>
     	<%} %>

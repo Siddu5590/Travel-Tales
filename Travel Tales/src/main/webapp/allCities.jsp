@@ -47,7 +47,6 @@
     .product-container {
             display: inline-block;
             flex-wrap: wrap;
-            gap: 30px;
             padding: 20px;
             cursor:pointer;
         }
@@ -85,6 +84,9 @@
             font-size: 1em;
             color: #555;
         }
+        .card-text{
+        	font-weight:bold;
+        }
         .search-bar{
 			margin-top:30px;
 			width:300px;
@@ -119,8 +121,11 @@
     	   <div class="product-card">
                 <a href="<%=request.getContextPath() + "/place.jsp?city=" + c.getCity_id()%>">
                 <div class="profile-pic"><image src="<%=c.getImage() %>" width="220px" height="140px" style="border-radius:5px;" ></div>
-                <p class="card-text" ><strong> <%= c.getCity_name() %></strong></p></a>
-                <a href="booking.jsp" class="btn btn-success mt-3">Book Now</a>
+                <p class="card-text mt-2" ><strong>City Name: <%= c.getCity_name() %></strong></p></a>
+                <p class="card-text mt-3" >Cost: <%= c.getCost() %>/person
+                Including All Expenses</p>
+                
+                <a href="booking.jsp?city_id=<%=c.getCity_id() %>" class="btn btn-success mt-2">Book Now</a>
             </div>
     	</div>
     	<%} %>

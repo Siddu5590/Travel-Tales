@@ -54,13 +54,16 @@
 <body>
 <%@include file="header.jsp" %>
 <div class="container mt-4 ms-5 bg-">
+<%for(Place place:al){%>
 <%if(session.getAttribute("uname")!=null){ %>
-    	<a href="booking.jsp" class="btn btn-success me-5 mb-5">Book Your Trip here</a>
-    	<%} else { %>
+<%ArrayList<City> c=city.viewCity(place.getCity_id()); 
+       for(City ci:c){%>
+    	<a href="booking.jsp?city_id=<%=ci.getCity_id()  %>" class="btn btn-success me-5 mb-5">Book Your Trip here</a>
+    	<%} } else { %>
     	<a href="login.jsp" class="btn btn-success me-5 mb-5">Book Your Trip here</a>
     	<%} %>
 
-<%for(Place place:al){%>
+
 <div class="product-card p-4">
                 <div class="row">
                 
@@ -73,14 +76,15 @@
                 <div class="description">
                         
                         <%ArrayList<City> c=city.viewCity(place.getCity_id()); 
-                        for(City ci:c){%>
-                    	<h4><strong>City Name: <%=ci.getCity_name() %></strong></h4><br><hr>
+                        for(City cii:c){%>
+                    	<h4><strong>City Name: <%=cii.getCity_name() %></strong></h4><br><hr>
+                    	<%} %>
                     	<h4><strong>Location: </strong><a href="<%=place.getLocation() %>" target="_blank"><%=place.getLocation()%></a></h4>
                        	<br><hr>
                        	<h4><strong>Description About the Place: <br><br></strong><%=place.getDescription() %></h4>
                     </div>
             </div>
-<% } } %>
+<% } %>
 </div>
 <%@include file="footer.jsp" %>
 </body>

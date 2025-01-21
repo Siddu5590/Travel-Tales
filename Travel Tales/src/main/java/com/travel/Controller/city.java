@@ -28,8 +28,10 @@ public class city extends HttpServlet
 			if(req.getParameter("addCity")!=null) {
 				String name=req.getParameter("name");
 				String img=req.getParameter("image");
+				String costt=req.getParameter("cost");
+				double cost=Double.parseDouble(costt);
 				
-					String status=c.addCity(name,img);
+					String status=c.addCity(name,img,cost);
 					
 					if(status.equals("existed"))
 					{

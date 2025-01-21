@@ -165,8 +165,10 @@
       <div style=" display: flex; justify-content:space-between; gap: 15px;" class="search ms-5 mt-4">
         <input id="city-search" class="search-bar w-25" type="text" placeholder="Search cities..." style="padding: 8px; border-radius: 5px;">
     	<%if(session.getAttribute("uname")!=null){ %>
-    	<a href="booking.jsp" class="btn btn-success me-5">Book Your Trip here</a>
-    	<%} else { %>
+    	<%ArrayList<City> ci=city.viewCity(Integer.parseInt(request.getParameter("city"))); 
+    	for(City cityy:ci){%>
+    	<a href="booking.jsp?city_id=<%= cityy.getCity_id() %>" class="btn btn-success me-5">Book Your Trip here</a>
+    	<% } } else { %>
     	<a href="login.jsp" class="btn btn-success me-5">Book Your Trip here</a>
     	<%} %>
     </div>

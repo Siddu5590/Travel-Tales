@@ -1,3 +1,5 @@
+<%@page import="com.travel.Entity.Reviews"%>
+<%@page import="com.travel.Model.Feedback"%>
 <%@page import="com.travel.Entity.Guide"%>
 <%@page import="com.travel.Model.Guide1"%>
 <%@page import="com.travel.Entity.Customer"%>
@@ -17,6 +19,9 @@
 	ArrayList<Guide> guide = g.viewGuide();
 	placeDAO p=new placeDAO(session);
 	ArrayList<Place> place=p.viewPlace();
+	Feedback fe=new Feedback(session);
+	ArrayList<Reviews> re=fe.viewReview();
+	
 	%>
 <!DOCTYPE html>
 <html lang="en">
@@ -126,7 +131,7 @@
                         <a href="page4.html" class="nav-link">Booking Status</a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a href="page4.html" class="nav-link">Feedback</a>
+                        <a href="viewReviews.jsp" class="nav-link">Feedback</a>
                     </li>
                     <li class="nav-item mb-2">
                         <a href="viewGuide.jsp" class="nav-link">Guides</a>
@@ -202,7 +207,7 @@
                         </div>
                         <hr class="m-0">
                         <div class="card-body">
-                            <h5 class="card-title">0</h5>
+                            <h5 class="card-title"><%=re.size() %></h5>
                         </div>
                     </a>
                 </div>
