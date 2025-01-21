@@ -29,7 +29,7 @@ public class cityDAO {
 	        }
 	    }
 
-	    public String addCity(String name,String img) {
+	    public String addCity(String name,String img, double cost) {
 	        PreparedStatement ps;
 	        String status = "";
 	        try {
@@ -41,9 +41,10 @@ public class cityDAO {
 	            if (b) {
 	                status = "existed";
 	            } else {
-	                ps = (PreparedStatement) con.prepareStatement("insert into city values(0,?,?)");
+	                ps = (PreparedStatement) con.prepareStatement("insert into city values(0,?,?,?)");
 	                ps.setString(1, name);
 	                ps.setString(2, img);
+	                ps.setDouble(3, cost);
 	              
 	                int a = ps.executeUpdate();
 	                if (a > 0) {
@@ -76,6 +77,7 @@ public class cityDAO {
 					c.setCity_id(rs.getInt("city_id"));
 					c.setCity_name(rs.getString("city_name"));
 					c.setImage(rs.getString("image"));
+					c.setCost(rs.getDouble("cost"));
 					city.add(c);
 				}
 			} catch (SQLException e) {
@@ -149,6 +151,7 @@ public class cityDAO {
 					c.setCity_id(rs.getInt("city_id"));
 					c.setCity_name(rs.getString("city_name"));
 					c.setImage(rs.getString("image"));
+					c.setCost(rs.getDouble("cost"));
 					city.add(c);
 				}
 			} catch (SQLException e) {

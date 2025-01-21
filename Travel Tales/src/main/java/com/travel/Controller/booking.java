@@ -19,15 +19,17 @@ public class booking extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		try {
 			res.setContentType("text/html;charset=UTF-8");
-			 PrintWriter out = res.getWriter();
 			HttpSession session=req.getSession();
 			if(req.getParameter("book")!=null)
 			{
 				String name=req.getParameter("name");
 				String ph=req.getParameter("phone");
-				String placeIds=req.getParameter("places");
+				String email=req.getParameter("email");
+				String city=req.getParameter("city");
 				String noPl=req.getParameter("numpeople");
 				String date=req.getParameter("date");
+				Double cost=Double.parseDouble(req.getParameter("cost"));
+				Double discount=Double.parseDouble(req.getParameter("discount"));
 				String desc=req.getParameter("description");
 				
 			}

@@ -1,3 +1,5 @@
+<%@page import="com.travel.Entity.City"%>
+<%@page import="com.travel.Model.cityDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.travel.Model.placeDAO" %>
@@ -32,7 +34,7 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
     }
-    .form-label::after{
+    .label::after{
       content: "*";
       color:red;
       font-size: 20px;
@@ -72,17 +74,36 @@
   
   <div class="row mb-3">
   <div class="col">
-    <label for="numPeople" class="form-label"><strong>Name</strong></label>
+    <label for="numPeople" class="label form-label"><strong>Name</strong></label>
    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" value="<%=session.getAttribute("uname") %>" required>
   </div>
   
   <div class="col">
-    <label for="numPeople" class="form-label"><strong>Phone Number</strong></label>
+    <label for="numPeople" class="label form-label"><strong>Phone Number</strong></label>
    <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your Phone Number" value="<%=session.getAttribute("phone") %>" required>
   </div>
 </div>
 
-<% 
+<div class="row mb-3">
+  <div class="col">
+    <label for="numPeople" class="label form-label"><strong>Email</strong></label>
+   <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email Id" value="<%=session.getAttribute("email") %>" required>
+  </div>
+  <%cityDAO c=new cityDAO(session);
+   int city_id=Integer.parseInt(request.getParameter("city_id"));
+    ArrayList<City> al=c.viewCity(city_id);
+    for(City ci:al){
+     %>
+  <div class="col">
+    <label for="numPeople" class="label form-label"><strong>City</strong></label>
+   <input type="text" class="form-control" id="city" name="city" value="<%=ci.getCity_name() %>" required disabled="disabled">
+  </div>
+  
+</div>
+
+
+
+<!--  <% 
 	placeDAO p=new placeDAO(session);
    	int cityId=request.getParameter("city_id")!=null ? Integer.parseInt(request.getParameter("city_id"))  : -1;
    	ArrayList<Place> places=p.viewPlace(cityId);
@@ -98,31 +119,41 @@
         </label><br>
         <%} %>
 </div>
+-->
+
 
 <div class="row mb-3">
   <div class="col">
-  <label for="numPeople" class="form-label"><strong>Number of People</strong></label>
-   <input type="number" class="form-control" id="numPeople" name="numpeople" placeholder="Enter number of people" required>
+  <label for="numPeople" class="label form-label"><strong>Number of People</strong></label>
+   <input type="number" class="form-control" id="numPeople" name="numpeople" placeholder="Enter number of people" value="1" required>
   </div>
   
   <div class="col">
-    <label for="travelDate" class="form-label"><strong>Date</strong> </label>
+    <label for="travelDate" class="label form-label"><strong>Date</strong> </label>
       <input type="date" class="form-control" name="date" id="travelDate" required>
   </div>
 </div>
 
+<div class="row mb-3">
+  <div class="col">
+  <label for="cost" class="label form-label"><strong>Cost</strong></label>
+  <input type="number" class="form-control" id="cost" name="cost" placeholder="Enter the cost" value="<%=ci.getCost() %>" required>
+  </div>
+  <% } %>
+  
+  <div class="col">
+    <label for="discount" class="label form-label"><strong>Discount</strong></label>
+      <input type="number" class="form-control" id="discount" name="discount" placeholder="Enter discount amount" required>
+  </div>
+</div>
+
+      
     <div class="mb-3">
-      <label for="cost" class="form-label"><strong>Cost</strong></label>
-      <input type="number" class="form-control" id="cost" placeholder="Enter the cost" required>
-    </div>
-    <div class="mb-3">
-      <label for="discount" class="form-label"><strong>Discount</strong></label>
-      <input type="number" class="form-control" id="discount" placeholder="Enter discount amount" required>
-    </div>
-    <div class="mb-3">
-      <label for="description" class="form-label"><strong>Description</strong></label>
+      <label for="description" class="form-label" ><strong>Description</strong> <span style="color: green;">(optional)</span></label>
       <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter additional details"></textarea>
     </div>
+    <p class="text-center" style="font-size: 20px;">Including Food, Stay and Travelling cost</p>
+    
     <center><div class="form-group">
             <button type="submit" class="update-btn w-75" name="book" value="book now">Book Travel</button>
             <a href="index.jsp"><button type="button" class="back-btn w-75">Back</button></a>
