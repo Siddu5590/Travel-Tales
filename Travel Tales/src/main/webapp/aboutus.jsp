@@ -133,6 +133,30 @@
                 opacity: 0;
             }
         }
+        .image-container img {
+            border-radius: 50%;
+            width: 200px; /* Large size */
+            height: 200px;
+            object-fit: cover;
+            border: 3px solid #ccc;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+            
+        }
+        .image-container p {
+            margin-top: 5px; 
+            font-size: 1.2rem; 
+            font-weight: bold;
+        }
+        
+        .founder{
+        margin-left: 75px;
+        text-decoration: underline;
+        color: navy;
+        font-weight: bold;
+        }
     </style>
 </head>
 <body style="background-color:#FFFDEC;">
@@ -193,6 +217,43 @@
             </div>
         </div>
     </div>
+    <h2 class="founder">Founder's Of Travel Tales </h2>
+    <br>
+    <div class="container">
+        <!-- Row 1 -->
+        <div class="row justify-content-center">
+            <div class="col-4 image-container">
+                <img src="assets2/Siddu.jpeg" alt="Siddu">
+                <p>Siddaveer Swamy</p>
+            </div>
+            <div class="col-4 image-container">
+                <img src="assets2/Varsha.jpeg" alt="Varsha">
+                <p>Varsha</p>
+            </div>
+            <div class="col-4 image-container">
+                <img src="assets2/Shraddha.jpeg" alt="Shraddha">
+                <p>Shraddha</p>
+            </div>
+        </div>
+        <!-- Row 2 -->
+        <div class="row justify-content-center">
+            <div class="col-4 image-container">
+                <img src="assets2/Sonashree.jpeg" alt="Sonashree">
+                <p>Sonashree</p>
+            </div>
+            <div class="col-4 image-container">
+                <img src="assets2/Shreya.jpeg" alt="Shreya">
+                <p>Shreya</p>
+            </div>
+            <div class="col-4 image-container">
+                <img src="assets2/Adi.jpeg" alt="Adi">
+                <p>Adi</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <%@include file="footer.jsp" %>
 </body>
 </html>
