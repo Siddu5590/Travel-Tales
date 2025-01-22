@@ -23,19 +23,20 @@ public class booking extends HttpServlet{
 		try {
 			res.setContentType("text/html;charset=UTF-8");
 			HttpSession session=req.getSession();
+			bookingDAO b=new bookingDAO(session);
+			
 			if(req.getParameter("book")!=null)
 			{
 				String name=req.getParameter("name");
 				String ph=req.getParameter("phone");
 				String email=req.getParameter("email");
 				String city=req.getParameter("city");
-				System.out.println(req.getParameter("city"));
 				int noPl=Integer.parseInt(req.getParameter("numpeople"));
 				String date=req.getParameter("date");
 				Double cost=Double.parseDouble(req.getParameter("cost"));
 				String desc=req.getParameter("description");
 				
-				bookingDAO b=new bookingDAO(session);
+				
 				String status=b.addBooking(name, ph, email, city, noPl, date, cost, desc);
 				
 				if(status.equals("success"))

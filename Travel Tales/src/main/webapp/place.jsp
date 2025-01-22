@@ -11,13 +11,13 @@
     ArrayList<City> al=city.viewCity();
      
     
-    int selectedCategory = request.getParameter("city")!=null ? Integer.parseInt(request.getParameter("city"))  : -1;
+    int selectedCategory = request.getParameter("city_id")!=null ? Integer.parseInt(request.getParameter("city_id"))  : -1;
     placeDAO pl= new placeDAO(session);
     ArrayList<Place> al1=pl.viewPlace();
     
     
     int val = 0;
-    String cityAttr = request.getParameter("city");
+    String cityAttr = request.getParameter("city_id");
     if (cityAttr != null) {
         try {
             val = Integer.parseInt(cityAttr);
@@ -150,7 +150,7 @@
             String additionalClass = cityCount < 8 ? "" : "d-none"; // Hide cities beyond 8
         %>
             <a class="city-tag <%=selectedCategory == c.getCity_id() ? "city-tag-acive" : "" %> <%=additionalClass%>" 
-               href="place.jsp?city=<%=c.getCity_id()%>">
+               href="place.jsp?city_id=<%=c.getCity_id()%>">
                 <%= c.getCity_name() %>
             </a>
             <h2 id="no-results" style="display: none;" class="mb-3 text-danger">No such place found...!!</h2>
@@ -165,7 +165,7 @@
       <div style=" display: flex; justify-content:space-between; gap: 15px;" class="search ms-5 mt-4">
         <input id="city-search" class="search-bar w-25" type="text" placeholder="Search cities..." style="padding: 8px; border-radius: 5px;">
     	<%if(session.getAttribute("uname")!=null){ %>
-    	<%ArrayList<City> ci=city.viewCity(Integer.parseInt(request.getParameter("city"))); 
+    	<%ArrayList<City> ci=city.viewCity(Integer.parseInt(request.getParameter("city_id"))); 
     	for(City cityy:ci){%>
     	<a href="booking.jsp?city_id=<%= cityy.getCity_id() %>" class="btn btn-success me-5">Book Your Trip here</a>
     	<% } } else { %>

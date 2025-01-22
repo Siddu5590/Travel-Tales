@@ -97,7 +97,7 @@
      %>
   <div class="col">
     <label for="numPeople" class="label form-label"><strong>City</strong></label>
-   <input type="text" class="form-control" id="city" name="city" value="<%=ci.getCity_name() %>" required disabled="disabled">
+   <input type="text" class="form-control" id="city" name="city" value="<%=ci.getCity_name() %>" required>
   </div>
   
 </div>
@@ -124,7 +124,7 @@
   
   <div class="col">
     <label for="discount" class="label form-label"><strong>Discount</strong></label>
-      <input type="number" class="form-control" id="discount" name="discount" placeholder="Enter discount amount" value="5"required disabled="disabled">
+      <input type="number" class="form-control" id="discount" name="discount" placeholder="Enter discount amount" value="5"required>
   </div>
 </div>
 
