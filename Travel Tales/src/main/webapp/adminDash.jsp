@@ -22,6 +22,7 @@
 	Feedback fe=new Feedback(session);
 	ArrayList<Reviews> re=fe.viewReview();
 	
+	
 	%>
 <!DOCTYPE html>
 <html lang="en">
@@ -136,6 +137,9 @@
                     <li class="nav-item mb-2">
                         <a href="viewGuide.jsp" class="nav-link">Guides</a>
                     </li>
+                    <li class="nav-item mb-2">
+                        <a href="viewPackage.jsp" class="nav-link">View Packages</a>
+                    </li>
                 </ul>
             </nav>
 
@@ -208,6 +212,16 @@
                         <hr class="m-0">
                         <div class="card-body">
                             <h5 class="card-title"><%=re.size() %></h5>
+                        </div>
+                    </a>
+                    
+                    <a href="addPackages.jsp" class="card shadow" style="width: auto;">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Packages</h5>
+                        </div>
+                        <hr class="m-0">
+                        <div class="card-body">
+                            <h5 class="card-title"><%=guide.size() %></h5>
                         </div>
                     </a>
                 </div>
