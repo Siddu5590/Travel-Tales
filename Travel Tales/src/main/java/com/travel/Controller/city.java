@@ -69,6 +69,25 @@ public class city extends HttpServlet
 				}
 				
 			}
+			else if(req.getParameter("updateCity")!=null) {
+				int id=Integer.parseInt(req.getParameter("id"));
+				double cost=Double.parseDouble(req.getParameter("cost"));
+				String City_name=req.getParameter("name");
+				String image=req.getParameter("image");
+				String status=c.editCity(id, City_name, cost, image);
+				if(status.equals("success")) {
+					req.setAttribute("status", "City Updated Successfully!!");
+					RequestDispatcher rd=req.getRequestDispatcher("viewCity.jsp");
+					rd.forward(req, res);
+				}
+				else if(status.equals("failure"))
+				{
+					req.setAttribute("failure", "Failed to Update the City...");
+					RequestDispatcher rd=req.getRequestDispatcher("viewCity.jsp");
+					rd.forward(req, res);
+					
+				}
+			}
 				
 			
 			

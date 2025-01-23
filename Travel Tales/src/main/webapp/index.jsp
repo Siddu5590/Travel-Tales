@@ -260,7 +260,7 @@
         <div class="product-container">
        
     	   <div class="product-card" id="city-name">
-    	   <a href="<%=request.getContextPath() + "/place.jsp?city=" + c.getCity_id()%>">
+    	   <a href="<%=request.getContextPath() + "/place.jsp?city_id=" + c.getCity_id()%>">
                 <div class="profile-pic"><image src="<%=c.getImage() %>" width="220px" height="140px" style="border-radius:5px;" ></div>
                 <p class="card-text" ><strong> <%= c.getCity_name() %></strong></p></a>
                 <p class="card-text mt-3" >Cost: <%= c.getCost() %>/person</p>
