@@ -138,7 +138,7 @@
                         <a href="viewGuide.jsp" class="nav-link">Guides</a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a href="addPackages.jsp" class="nav-link">View Packages</a>
+                        <a href="viewPackage.jsp" class="nav-link">View Packages</a>
                     </li>
                 </ul>
             </nav>
