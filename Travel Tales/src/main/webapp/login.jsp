@@ -37,7 +37,7 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card w-75 shadow-lg p-3 mb-5 rounded" style="background-color: transparent;">
+                <div class="card shadow-lg p-3 mb-5 rounded" style="background-color: transparent;">
                     <div class="card-header text-center">
                         <h4>Login</h4>
                     </div>
@@ -55,7 +55,7 @@
                                 </span>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
                             </div>
-                            <a id="a1" href="forgotPassword.jsp" class="forgot">Forget password?</a>
+                            <a id="a1" href="forgotPassword.jsp" class="forgot text-end">Forget password?</a>
                             <center>
                                 <button type="submit" class="btn btn-primary w-25 mb-3 mt-3" name="login">Login</button>
                             </center>
