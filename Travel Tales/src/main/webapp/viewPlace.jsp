@@ -110,6 +110,8 @@
                         <form action="Place" method="post" style="display:inline;">
                             <input type="hidden" name="pid" value="<%= p.getPlace_id()%>">
                             <button type="submit" class="btn btn-danger" name="delete" value="delete">Delete</button>
+                                <a href="updateplace.jsp?place_id=<%= p.getPlace_id() %>" class="btn btn-primary">Edit</a>
+                            
                         </form>
                     </div>    
             </div>

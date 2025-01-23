@@ -211,4 +211,32 @@ public class placeDAO {
 	    	return place;
 	    }
 
+		public String editPlace(int id ) {
+			Statement st=null;
+			String status="";
+			int count=0;
+			try {
+				st=con.createStatement();
+				count=st.executeUpdate("update place set p_name='"+"p_image='"+"p_city='"+"p_location='"+"p_description='"+";");
+				
+				if(count>0) {
+					status="success";
+				}
+				else {
+					status="failure";
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return status;
+		
+		 
+		}
+		
+		
+		
+		
 }

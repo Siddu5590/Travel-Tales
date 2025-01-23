@@ -242,7 +242,7 @@
         </button>
     </div>
 
-<<<<<<< HEAD
+
     
 <!-- search bar -->
     <form class="d-flex search-bar" role="search">
@@ -257,9 +257,6 @@
   </div>
 </form></center>
 
-
-=======
->>>>>>> branch 'branch1' of https://github.com/Siddu5590/Travel-Tales.git
     <div class="view-product" id="city">
     
     <div class="view">
