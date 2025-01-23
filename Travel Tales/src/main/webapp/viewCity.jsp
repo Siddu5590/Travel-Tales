@@ -112,7 +112,8 @@
                 <div class="table-actions">
                         <form action="city" method="post" style="display:inline;">
                             <input type="hidden" name="cid" value="<%= c.getCity_id()%>">
-                            <button type="submit" class="btn btn-danger" name="delete">Delete</button>
+                            <button type="submit" class="btn btn-danger" name="delete"><i class="fa-solid fa-trash"></i> Delete</button>
+                            <a href="EditCity.jsp?city_id=<%= c.getCity_id() %>" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
                         </form>
                     </div>    
             </div>
