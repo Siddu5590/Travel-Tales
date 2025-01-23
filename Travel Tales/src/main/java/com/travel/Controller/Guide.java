@@ -67,15 +67,72 @@ public class Guide extends HttpServlet {
 						rd.forward(req, res);
 					}
 				}
+				
+					else if(req.getParameter("viewGuide")!=null) {
+						String name=req.getParameter("name");
+						String phone=req.getParameter("phone");
+						String email=req.getParameter("email");
+						String age=req.getParameter("age");
+						String city=req.getParameter("city");
+						
+							String status=g.addguide(name,phone,email,age,city);
+							if(status.equals("existed"))
+							{
+								req.setAttribute("failure", "Unable to update ");
+								RequestDispatcher rd=req.getRequestDispatcher("updateGuide.jsp");
+								rd.forward(req, res);
+							}
+							else if(status.equals("success")) {
+								req.setAttribute("status", "updated guide Data Successfully...");
+								RequestDispatcher rd=req.getRequestDispatcher("updateGuide.jsp");
+								rd.forward(req, res);
+							}
+							else if(status.equals("failure")) {
+								req.setAttribute("failure", "unable  to update Guide details.!!");
+								RequestDispatcher rd=req.getRequestDispatcher("updateGuide.jsp");
+								rd.forward(req, res);
+							}
+							
+						}
 					
+					else if(req.getParameter("viewguide")!=null) {
+						String name=req.getParameter("name");
+						String phone=req.getParameter("phone");
+						String email=req.getParameter("email");
+						String age=req.getParameter("age");
+						String city=req.getParameter("city");
+						
+							String status=g.addguide(name,phone,email,age,city);
+							if(status.equals("existed"))
+							{
+								req.setAttribute("failure", "Unable to update ");
+								RequestDispatcher rd=req.getRequestDispatcher("updateGuide.jsp");
+								rd.forward(req, res);
+							}
+							else if(status.equals("success")) {
+								req.setAttribute("status", "updated guide Data Successfully...");
+								RequestDispatcher rd=req.getRequestDispatcher("updateGuide.jsp");
+								rd.forward(req, res);
+							}
+							else if(status.equals("failure")) {
+								req.setAttribute("failure", "unable  to update Guide details.!!");
+								RequestDispatcher rd=req.getRequestDispatcher("updateGuide.jsp");
+								rd.forward(req, res);
+							}
+							
+						}
 					
 			}
 			catch (Exception e) {
 				e.printStackTrace();
 				
 			}
-		
+			
+			
 		}
+	
+
+		
 		@Override
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			try {

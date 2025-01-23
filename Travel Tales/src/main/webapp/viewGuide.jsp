@@ -111,6 +111,9 @@
                     <form action="guide" method="post">
                       <input type="hidden" name="id" value="<%= c.getGuide_id() %>">
                       <button class="btn btn-danger btn-sm" name="deleteGuide">Delete</button>
+                      <a href="updateguide.jsp?guide_id= <%= c.getGuide_id() %>" class="btn btn-primary btn-sm" name="edit" value="edit">Edit</a>
+                      
+                      
                     </form>
                   </td>
                 </tr>

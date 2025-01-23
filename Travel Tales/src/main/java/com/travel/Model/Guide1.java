@@ -130,5 +130,59 @@ public class Guide1 {
 		
 		return status;
 	}
+	public ArrayList<Guide> viewGuide(int id){
+		Statement st=null;
+		ResultSet rs=null;
+		ArrayList<Guide> guide = new ArrayList<>();
+		
+		try {
+			st=con.createStatement();
+			
+			rs=st.executeQuery("select * from guide where guide_id='"+id+"'");
+			while(rs.next())
+			{
+				Guide g=new Guide();
+				g.setGuide_id(rs.getInt("guide_id"));
+				g.setGuide_name(rs.getString("name"));
+				g.setGuide_email(rs.getString("email"));
+				g.setGuide_phone(rs.getString("phone"));
+				g.setGuide_age(rs.getString("age"));
+				g.setLocation(rs.getString("location"));
+				guide.add(g);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return guide;
+	}
+	
+	public String editguide(int id) {
+		Statement st=null;
+		String status="";
+		int count=0;
+		
+		
+		try {
+			st=con.createStatement();
+			count=st.executeUpdate("update table guide set name= where guide_id='"+id+"';");
+			
+			if(count>0)
+			{
+				status="success";
+				
+			}
+			else {
+				status="failure";
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return status;
+	}
 
 }
