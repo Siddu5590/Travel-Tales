@@ -85,21 +85,22 @@
 </head>
 <body>
 <header class="product">
-	<h3>All City Details</h3>
+	<h3>All Package Details</h3>
 </header>
 	<div class="add-city">
-	<a href="addCity.jsp" class="btn btn-primary mt-3 ms-4"><i class="fa-solid fa-plus"></i>Add City</a>
+	<a href="addPackages.jsp" class="btn btn-primary mt-3 ms-4"><i class="fa-solid fa-plus"></i>Add Package</a>
 	<a href="adminDash.jsp" class="btn btn-secondary btnn ms-3 mt-3">Back to Dashboard</a>
 	</div>
 	
 
     <div class="view-product">
-        
+     <!-- change here -->
      <%cityDAO city=new cityDAO(session);
      ArrayList<City> al=city.viewCity();
      Iterator<City> it=al.iterator();
      while(it.hasNext()) {
     	 City c=it.next();%>
+    	 <!-- till here  along with c. -->
         
         <div class="product-container">
        
@@ -112,8 +113,7 @@
                 <div class="table-actions">
                         <form action="city" method="post" style="display:inline;">
                             <input type="hidden" name="cid" value="<%= c.getCity_id()%>">
-                            <button type="submit" class="btn btn-danger" name="delete"><i class="fa-solid fa-trash"></i> Delete</button>
-                            <a href="EditCity.jsp?city_id=<%= c.getCity_id() %>" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                            <button type="submit" class="btn btn-danger" name="delete">Delete</button>
                         </form>
                     </div>    
             </div>

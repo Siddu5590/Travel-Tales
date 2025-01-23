@@ -112,6 +112,31 @@ public class cityDAO {
 			
 			return status;
 		}
+		public String editCity(int id, String City_name, double cost, String image) {
+			// TODO Auto-generated method stub
+			Statement st=null;
+			String status="";
+			int count=0;
+			
+			try {
+				st=con.createStatement();
+				count=st.executeUpdate("update city set city_name='" + City_name+"',cost='" + cost+"',image='"+image+"' where city_id='"+id+"';");
+				if(count>0) {
+					status="success";
+				}
+				else {
+					status="failure";
+				}
+			}
+			catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return status;
+		}
+		
+		
+	
 		
 		public ArrayList<String> getCities()
 		{
@@ -161,4 +186,8 @@ public class cityDAO {
 	    	
 	    	return city;
 	    }
+
+		
+
+		
 }
