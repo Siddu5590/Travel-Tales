@@ -93,33 +93,14 @@
    int city_id=Integer.parseInt(request.getParameter("city_id"));
     ArrayList<City> al=c.viewCity(city_id);
     for(City ci:al){
+    	//System.out.println(ci.getCity_name());
      %>
   <div class="col">
     <label for="numPeople" class="label form-label"><strong>City</strong></label>
-   <input type="text" class="form-control" id="city" name="city" value="<%=ci.getCity_name() %>" required disabled="disabled">
+   <input type="text" class="form-control" id="city" name="city" value="<%=ci.getCity_name() %>" required>
   </div>
   
 </div>
-
-
-
-<!--  <% 
-	placeDAO p=new placeDAO(session);
-   	int cityId=request.getParameter("city_id")!=null ? Integer.parseInt(request.getParameter("city_id"))  : -1;
-   	ArrayList<Place> places=p.viewPlace(cityId);
-%>
-
-<div class="col">
-		<%
-			for(Place pl:places)
-			{
-		%>
-	    <label>
-            <input type="checkbox" name="places" value="<%= pl.getPlace_id()%>">  <%=pl.getPlace_name() %> 
-        </label><br>
-        <%} %>
-</div>
--->
 
 
 <div class="row mb-3">
@@ -143,14 +124,14 @@
   
   <div class="col">
     <label for="discount" class="label form-label"><strong>Discount</strong></label>
-      <input type="number" class="form-control" id="discount" name="discount" placeholder="Enter discount amount" required>
+      <input type="number" class="form-control" id="discount" name="discount" placeholder="Enter discount amount" value="5"required>
   </div>
 </div>
 
       
     <div class="mb-3">
       <label for="description" class="form-label" ><strong>Description</strong> <span style="color: green;">(optional)</span></label>
-      <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter additional details"></textarea>
+      <textarea class="form-control" id="description" name="description" value=" " rows="3" placeholder="Enter additional details"></textarea>
     </div>
     <p class="text-center" style="font-size: 20px;">Including Food, Stay and Travelling cost</p>
     
@@ -166,7 +147,30 @@
 <h3>Please Login to access your profile...</h3>
 <%} %>
 
-<script>
+
+<script type="text/javascript">
+<% if (request.getAttribute("status") != null) { 
+    String message = (String) request.getAttribute("status");
+    request.removeAttribute("status");
+%>
+Swal.fire({
+    icon:"success",
+    title: 'Success...',
+    text: "<%= message %>"
+});
+<% } %>
+
+<% if (request.getAttribute("failure") != null) { 
+    String message = (String) request.getAttribute("failure");
+    request.removeAttribute("failure");
+%>
+Swal.fire({
+    icon:"error",
+    title: 'Oooops..',
+    text: "<%= message %>"
+});
+<% } %>
+
   
   const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
   document.getElementById('travelDate').setAttribute('min', today); // Set min attribute to today's date
