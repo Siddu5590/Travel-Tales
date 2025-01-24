@@ -219,6 +219,7 @@ public class placeDAO {
 				st=con.createStatement();
 				count=st.executeUpdate("update place set p_name='"+"p_image='"+"p_city='"+"p_location='"+"p_description='"+";");
 				
+				
 				if(count>0) {
 					status="success";
 				}
