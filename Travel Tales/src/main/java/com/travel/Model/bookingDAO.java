@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.travel.Entity.Booking;
@@ -93,4 +94,28 @@ public class bookingDAO {
 		return book;
 		
 	}
+	public String cancelBooking(int book_id)
+	{
+		Statement st=null;
+		String status="";
+		int count=0;
+		try {
+			st=con.createStatement();
+			count=st.executeUpdate("update booking set status='Cancelled';");
+			
+			if(count>0) {
+				status="success";
+			}
+			else {
+				status="failure";
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return status;
+	}
 }
+

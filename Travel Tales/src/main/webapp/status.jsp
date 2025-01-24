@@ -57,17 +57,17 @@
 	<table class="table table-bordered table-primary">
 		<thead>
 			<tr>
-				<th>Id</th>
+				
 				<th>Name</th>
 				<th>Number</th>
 				<th>Email</th>
 				<th>Peoples</th>
 				<th>Totoal Cost</th>
 				<th>City Name</th>
-				<th>Booking date</th>
 				<th>Pickup Point</th>
 				<th>Travel Date</th>
 				<th>Status</th>
+				<th>Remark</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -77,22 +77,24 @@
 		
 		for(Booking b: arr) {%>
 			<tr>
-				<td><%=b.getBooking_id() %></td>
+				
 				<td><%=b.getName() %></td>
 				<td><%=b.getPhone() %></td>
 				<td><%=b.getEmail() %></td>
 				<td><%=b.getPeoples() %></td>
 				<td><%=b.getCost() %></td>
 				<td><%=b.getCity() %></td>
-				<td><%=b.getBookk_date() %></td>
 				<td><%=b.getLocation() %></td>
 				<td><%=b.getTravel_date() %></td>
 				<td><%=b.getStatus() %></td>
+				<td> Hi How are you hsh jhagbsj jhgsvbnj jahgvsbnj</td>
 				<td>
+				<%if(b.getStatus().equals("pending")){ %>
 				<form action="booking" method="post">
 				<input type="hidden" name="id" value="<%=b.getBooking_id() %>">
-				<button class="btn btn-danger btn-sm text-center" name="cancel">Cancel</button>
+				<button class="btn btn-danger btn-sm text-center" name="cancel" id="cancel">Cancel</button>
 				</form>
+				<%} %>
 				</td>
 				
 			</tr>

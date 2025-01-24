@@ -303,7 +303,35 @@
      <%PackagesDAO pa=new PackagesDAO(session);
      ArrayList<Packages> all=pa.viewPackage();
      Iterator<Packages> itr=all.iterator();
-     while(itr.hasNext()) {
+     //nothe package
+     itr.hasNext(); {
+    	 Packages p=itr.next();%>
+    	 <!-- till here  along with c. -->
+        
+        <div class="product-container">
+       
+    	   <div class="product-card ">
+    	   		<a href="NorthPackage.jsp">
+                <div class="profile-pic">
+                <image src="<%=p.getImage() %>" width="220px" height="140px" style="border-radius:5px;" >
+                </div></a>
+                <p class="card-text"><strong>Package Name:</strong> <%= p.getPackage_name() %></p>
+                <p class="card-text"><strong>Cost:</strong> <%= p.getCost() %></p>
+                <p class="card-text"><strong>Number of peoples:</strong> <%= p.getNo_of_people() %></p>
+                <p class="card-text"><strong>No_of_Days:</strong> <%= p.getNo_days() %></p>
+         
+                <%if(session.getAttribute("uname")!=null){ %>
+    	<a href="#" class="btn btn-success mt-3">Book Now</a>
+    	<%} else { %>
+    	<a href="login.jsp" class="btn btn-success mt-3">Book Now</a>
+    	<%} %>  
+            </div>
+    	
+    	</div>
+    	<%} %>
+    	
+    	
+    	<%itr.hasNext(); {
     	 Packages p=itr.next();%>
     	 <!-- till here  along with c. -->
         
@@ -328,6 +356,35 @@
     	
     	</div>
     	<%} %>
+    	
+    	
+    	<% itr.hasNext(); {
+    	 Packages p=itr.next();%>
+    	 <!-- till here  along with c. -->
+        
+        <div class="product-container">
+       
+    	   <div class="product-card ">
+    	   		<a href="#">
+                <div class="profile-pic">
+                <image src="<%=p.getImage() %>" width="220px" height="140px" style="border-radius:5px;" >
+                </div></a>
+                <p class="card-text"><strong>Package Name:</strong> <%= p.getPackage_name() %></p>
+                <p class="card-text"><strong>Cost:</strong> <%= p.getCost() %></p>
+                <p class="card-text"><strong>Number of peoples:</strong> <%= p.getNo_of_people() %></p>
+                <p class="card-text"><strong>No_of_Days:</strong> <%= p.getNo_days() %></p>
+         
+                <%if(session.getAttribute("uname")!=null){ %>
+    	<a href="#" class="btn btn-success mt-3">Book Now</a>
+    	<%} else { %>
+    	<a href="login.jsp" class="btn btn-success mt-3">Book Now</a>
+    	<%} %>  
+            </div>
+    	
+    	</div>
+    	<%} %>
+ 
+ 
     
     </div>
     
