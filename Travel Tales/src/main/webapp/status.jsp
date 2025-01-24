@@ -87,7 +87,7 @@
 				<td><%=b.getLocation() %></td>
 				<td><%=b.getTravel_date() %></td>
 				<td><%=b.getStatus() %></td>
-				<td> Hi How are you hsh jhagbsj jhgsvbnj jahgvsbnj</td>
+				<td><%=b.getRemarks() %></td>
 				<td>
 				<%if(b.getStatus().equals("pending")){ %>
 				<form action="booking" method="post">

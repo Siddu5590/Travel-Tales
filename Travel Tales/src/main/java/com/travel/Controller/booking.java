@@ -25,6 +25,7 @@ public class booking extends HttpServlet{
 			res.setContentType("text/html;charset=UTF-8");
 			HttpSession session=req.getSession();
 			bookingDAO b=new bookingDAO(session);
+			
 		     // add booking
 			if(req.getParameter("book")!=null)
 			{
@@ -58,6 +59,7 @@ public class booking extends HttpServlet{
 					rd.forward(req, res);
 				}
 				
+				//booking cancel by user
 			}else if(req.getParameter("cancel")!=null)
 			{
 				int id=Integer.parseInt(req.getParameter("id"));
@@ -72,6 +74,43 @@ public class booking extends HttpServlet{
 				{
 					req.setAttribute("failure", "Canceling Unsuccessfull due to some error");
 					RequestDispatcher rd=req.getRequestDispatcher("booking.jsp?city_id="+id);
+					rd.forward(req, res);
+				}
+			}
+			//booking confirmed by admin
+			else if(req.getParameter("confirm")!=null)
+			{
+				int id=Integer.parseInt(req.getParameter("id"));
+				
+				String status=b.confirmBooking(id);
+				if(status.equals("success"))
+				{
+					req.setAttribute("status", "Booking Confirmed");
+					RequestDispatcher rd=req.getRequestDispatcher("viewBooking.jsp?city_id="+id);
+					rd.forward(req, res);
+				}
+				else if(status.equals("failure"))
+				{
+					req.setAttribute("failure", "Confirmation Unsuccessfull due to some error");
+					RequestDispatcher rd=req.getRequestDispatcher("viewBooking.jsp?city_id="+id);
+					rd.forward(req, res);
+				}
+			}
+			//booking cancel by admin
+			else if(req.getParameter("admincancel")!=null)
+			{
+				int id=Integer.parseInt(req.getParameter("id"));
+				String status=b.admincancelBooking(id);
+				if(status.equals("success"))
+				{
+					req.setAttribute("status", "Cancelled Successfully");
+					RequestDispatcher rd=req.getRequestDispatcher("viewBooking.jsp?city_id="+id);
+					rd.forward(req, res);
+				}
+				else if(status.equals("failure"))
+				{
+					req.setAttribute("failure", "Canceling Unsuccessfull due to some error");
+					RequestDispatcher rd=req.getRequestDispatcher("viewBooking.jsp?city_id="+id);
 					rd.forward(req, res);
 				}
 			}

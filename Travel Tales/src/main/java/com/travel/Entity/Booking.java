@@ -14,7 +14,14 @@ public class Booking {
 	private String location;
 	private String desc;
 	private String status;
+	private String remarks;
 	
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	public int getBooking_id() {
 		return booking_id;
 	}
