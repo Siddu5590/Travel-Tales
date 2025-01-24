@@ -11,253 +11,145 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Booking Form</title>
-   <link rel="icon" href='assets/logo.jpg'>
+  <link rel="icon" href='assets/logo.jpg'>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  
 
 <style>
-    
-body{
-     
-     background-color:grey;
+  body {
+    font-family: Arial, sans-serif;
   }
-  .addbooking{
-      border: 5px solid rgb(3, 3, 3);
-      box-shadow: 5px 3px 5px 3px;
-      border-style: initial;
-      border-radius: 20px;
-      display: inline-block;
-      margin: 20px 0px;
-      padding-left: 40px;
-      padding-right: 50px;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      position: relative;
-      margin-left: 150px;
-      font-size: medium;
-      
+
+  .container {
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
-  h1{
-      text-align: center;
-      color: black;
-      font-family:times new roman;
-      font-weight:bold;
+
+  .form-title {
+    text-align: center;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    margin-bottom: 20px;
   }
-  .btn{
-      font-size:large;
-      border-radius: 5px;
-      font-family: times new roman;
-      font-weight:bolder;
-      width:100px;
+
+  label {
+    font-size: 1rem;
+    color: black;
+    margin-top: 10px;
   }
-  ::placeholder{
-      font-size: medium;
-      font-weight: lighter;
-      opacity: 0.5;
-      color: rgb(252, 252, 252);
-      
-      
-      
+
+  .form-control {
+    margin-bottom: 15px;
+    border-radius: 5px;
   }
-  .ip{
-      margin-left: 20px;
-      font-size: medium;
-      background-color: transparent;
-      border-radius: 5px;
+
+  .form-textarea {
+    resize: none;
+    border-radius: 5px;
   }
-  label{
-      margin-left: 20px;
-      color: black;
-      font-size: large;
+
+  .btn {
+    font-size: 1rem;
+    font-weight: bold;
+    width: 40%;
+    margin-left: 180px;
+   
   }
- 
-  .login{
-  	color:red;
-  	margin-top:10px;
+
+  .info-box {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
   }
-  p{
-    color: aliceblue;
-  }
-  input{
-  width:300px;
-  color:black;
-  font-weight: 500;
-  }
-  .require{
-  	margin-top:130px;
-  	margin-left:30px;
-  	float:left;
-  	width:auto;
-  	color:black;
-  	padding:20px;
-  	background-color:white;
-  	border-top-left-radius:30px;
-  	border-bottom-right-radius:30px;
-  }
-  .require .pass{
-  	font-size:20px;	
-  	color:black;
-  }
-  .ip1{
-  	 margin-left: 5px;
-      font-size: medium;
-      background-color: transparent;
-      border-radius: 5px;
-      
+
+  .info-box h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #333;
   }
 </style>
 </head>
 <body>
 <%@include file="header.jsp" %>
 
-<%if(session.getAttribute("uname")!=null){ %>
-<div class="require">
-<h3>Password Requirements:</h3>
-<p class="pass">	
-<%
-  int id=Integer.parseInt(request.getParameter("city_id"));
-  cityDAO c=new cityDAO(session);
-  ArrayList<City> al=c.viewCity(id);
-  Iterator itr=al.iterator();
-  for(City ci:al){
-  %>
-  <label>City:<%=ci.getCity_name() %></label>
-  <label>Cost:<%=ci.getCost() %></label>
-<%} %>
-	
-</p>
-</div>
-<form method="POST" action="booking" class="addbooking" id="book">
-  <h1 class="head">Book Trip Now</h1>
-  <br>
-  
-  <label>Name:</label>
-  <br>
-  <input type="text" name="name" class="ip" id="name" placeholder="Enter Your Name" required>
-  <br><br>
-  <label>Phone Number:</label>
-  <br>
-  <input type="tel" name="phone" class="ip" id="phone" placeholder="Enter Phone Number" required>
-  <br><br>
-  <label>Email ID:</label>
-  <br>
-  <input type="email" name="email" class="ip" id="email" placeholder="Enter email ID" required>
-  <br><br>
-  <label>Number of People:</label>
-  <br>
-  <input type="text" name="people" class="ip" id="pl" placeholder="Enter number of people" required>
-  <br><br>
-  <label>Travel Date:</label>
-  <br>
-  <input type="date" name="date" class="ip" id="travelDate"  required>
-  <br><br>
-  <label>Pickup Location:</label>
-  <br>
-  <input type="text" name="loc" class="ip"  id="pick" placeholder="Enter pickup location" required>
-  <br><br>
-  <label>Description:(Optional)</label>
-  <br>
-  <textarea class="ip" id="description" name="description" value=" " rows="2" placeholder="Enter additional details"></textarea>
-  <br><br>
-  <center>
-  <%
-  Iterator itr1=al.iterator();
-  for(City ci:al){ %>
-  <input type="hidden" name="city" value="<%=ci.getCity_name()%>" />
-  <input type="hidden" name="cost" value="<%=ci.getCost()%>" />
-  <input type="hidden" name="book_date" id="book_date" value=""/>
-  <%} %><button type="submit" value="book" name="book" class="btn btn-primary">Book Now</center>
-  
+<% if (session.getAttribute("uname") != null) { %>
+<div class="container w-50">
+  <div class="info-box">
+    <h3>City Information:</h3>
+    <% 
+      cityDAO c = new cityDAO(session);
+      ArrayList<City> al = c.viewCity(Integer.parseInt(request.getParameter("city_id")));
+      for (City ci : al) { %>
+      <p><strong>City:</strong> <%= ci.getCity_name() %></p>
+      <p><strong>Cost:</strong> <%= ci.getCost() %></p>
+    <% } %>
+  </div>
 
-</form>
-<%@include file="footer.jsp" %>
-<%} else { %>
-<h3>Please Login to access your profile...</h3>
-<%} %>
+  <form method="POST" action="booking" id="book">
+    <h2 class="form-title">Book Your Trip</h2>
+
+    <label for="name">Name:</label>
+    <input type="text" name="name" class="form-control" id="name" placeholder="Enter Your Name" required>
+
+    <label for="phone">Phone Number:</label>
+    <input type="tel" name="phone" class="form-control" id="phone" placeholder="Enter Phone Number" required>
+
+    <label for="email">Email ID:</label>
+    <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email ID" required>
+
+    <label for="people">Number of People:</label>
+    <input type="text" name="people" class="form-control" id="pl" placeholder="Enter Number of People" required>
+
+    <label for="travelDate">Travel Date:</label>
+    <input type="date" name="date" class="form-control" id="travelDate" required>
+
+    <label for="pick">Pickup Location:</label>
+    <input type="text" name="loc" class="form-control" id="pick" placeholder="Enter Pickup Location" required>
+
+    <label for="description">Description (Optional):</label>
+    <textarea class="form-control form-textarea" id="description" name="description" rows="3" placeholder="Enter Additional Details"></textarea>
+
+    <% for (City ci : al) { %>
+    <input type="hidden" name="city" value="<%= ci.getCity_name() %>" />
+    <input type="hidden" name="cost" value="<%= ci.getCost() %>" />
+    <input type="hidden" name="book_date" id="book_date" value="" />
+    <% } %>
+
+    <button type="submit" value="book" name="book" class="btn btn-primary text-center">Book Now</button>
+  </form>
+</div>
+
+<% } else { %>
+<div class="container text-center">
+  <h3>Please Login to access your profile...</h3>
+</div>
+<% } %>
 
 
 <script type="text/javascript">
-<% if (request.getAttribute("status") != null) { 
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('travelDate').setAttribute('min', today);
+  document.getElementById("book_date").value = today;
+
+  <% if (request.getAttribute("status") != null) { 
     String message = (String) request.getAttribute("status");
     request.removeAttribute("status");
-%>
-Swal.fire({
-    icon:"success",
-    title: 'Success...',
-    text: "<%= message %>"
-});
-<% } %>
+  %>
+  alert("<%= message %>");
+  <% } %>
 
-<% if (request.getAttribute("failure") != null) { 
+  <% if (request.getAttribute("failure") != null) { 
     String message = (String) request.getAttribute("failure");
     request.removeAttribute("failure");
-%>
-Swal.fire({
-    icon:"error",
-    title: 'Oooops..',
-    text: "<%= message %>"
-});
-<% } %>
-
-jQuery.validator.addMethod("checkemail", function (value, element) {
-    return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value) || /^[0-9]{10}$/.test(value);
-});
-
-    jQuery(document).ready(function ($) {
-        $("#book").validate({
-            rules: {
-                name: {
-                    required: true
-                },
-                email: {
-                    required: true,
-                    checkemail: true
-                },
-                phone: {
-                    required: true,
-                    minlength: 10,
-                    maxlength: 10
-                },
-                pl: {
-                    required: true,
-                   },
-                pick:{
-                	required:true,
-                
-                }
-               
-            },
-            messages: {
-                name: {
-                    required: "Please enter the name."
-                },
-                email: {
-                    required: "Please enter the email.",
-                    email: "Please enter a valid email ID."
-                },
-                phone: {
-                    required: "Please enter the number.",
-                    minlength: "Please enter a 10-digit number.",
-                    maxlength: "Number cannot exceed 10 digits."
-                },
-                pl: {
-                    required: "Please enter number of people.",
-                    
-            },
-               pick:{
-            	    required:" Enter pickup location"   
-               }
-               }
-            	 
-        });
-    });
-
-
-  
-  const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
-  document.getElementById('travelDate').setAttribute('min', today); // Set min attribute to today's date
-  document.getElementById("book_date").value = today;
+  %>
+  alert("<%= message %>");
+  <% } %>
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

@@ -269,7 +269,7 @@
                 <p class="card-text" >Including All Expenses</p>
                 
                 <%if(session.getAttribute("uname")!=null){ %>
-    	<a href="booking.jsp?city_id=<%=c.getCity_id()  %>" class="btn btn-success mt-3">Book Now</a>
+    	<a href="booking.jsp?city_id=<%=c.getCity_id()%>" class="btn btn-success mt-3">Book Now</a>
     	<%} else { %>
     	<a href="login.jsp" class="btn btn-success mt-3">Book Now</a>
     	<%} %>
