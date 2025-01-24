@@ -69,11 +69,11 @@
        }
       /* sidebar +main content */
       .sidebar {
-            height: 150vh;
+            height: 47vh;
             position: sticky;
             top: 0;
             border: 2px solid black ;
-            background-color: #FBF5E5;
+            background-color:#FCC6FF;
             color: black;
             padding-top: 20px;
         }
