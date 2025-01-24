@@ -80,13 +80,11 @@
         }
     </style>
 </head>
-
 <body>
-
     <nav class="navbar navbar-expand-lg bg-dark">
     <div class="container-fluid">
         <!-- Updated navbar-brand to include a logo -->
-        <a class="navbar-brand d-flex align-items-center" href="index.jsp" style="color: white;">
+        <a class="navbar-brand d-flex align-items-center" href="guideDash.jsp" style="color: white;">
             <img src="assets/logo.jpg" alt="Logo" style="height: 50px; margin-right: 10px; border-radius: 50%"> 
             Travel Tales
         </a>
@@ -103,22 +101,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="items nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.jsp" title="Home" style="color: white;"><i class="fas fa-home"></i></a>
-                </li>
-                <li class="items nav-item">
-                    <a class="nav-link active" aria-current="page" href="aboutus.jsp" title="About US" style="color: white;"><i class="fas fa-info-circle"></i></a>
-                </li>
-                <li class="items nav-item">
-                    <a class="nav-link active" aria-current="page" href="contactUs.jsp" title="Contact US" style="color: white;"><i class="fas fa-envelope"></i></a>
-                </li>
-                <li class="items nav-item">
-                    <a class="nav-link active" aria-current="page" href="gallery.jsp" title="Gallery" style="color: white;"><i class="fas fa-images"></i></a>
-                </li>
+                
                 <% if (session.getAttribute("uname") != null) { %>
                    
                     <li class="items nav-item">
-                        <a class="nav-link active" aria-current="page" href="status.jsp" style="color: white;">Booking Status</a>
+                        <a class="nav-link active" aria-current="page" href="guideAvail.jsp" style="color: white;">Guide Availability</a>
                     </li>
                     <li class="items nav-item dropdown bg-transparent">
                         <a
@@ -132,7 +119,6 @@
                             <i class="fa-solid fa-user"></i> <%= session.getAttribute("uname") %>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item mb-2 bg-transparent" href="viewprofile.jsp"><i class="fas fa-user-circle"></i> View User</a></li>
                             <li><a class="dropdown-item mb-2 bg-transparent" href="resetPassword.jsp"><i class="fas fa-key"></i> Reset Pin</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>

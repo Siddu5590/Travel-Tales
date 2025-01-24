@@ -58,17 +58,17 @@
 		<thead>
 			<tr>
 				
-				<th>Name</th>
-				<th>Number</th>
-				<th>Email</th>
-				<th>Peoples</th>
-				<th>Total Cost</th>
+				<th>Sl. No.</th>
+				<th>Booking Id</th>
+				<th>Guide Id</th>
+				<th>Guide Name</th>
 				<th>City Name</th>
-				<th>Pickup Point</th>
+				<th>Availability</th>
+				<!-- <th>Pickup Point</th>
 				<th>Travel Date</th>
 				<th>Status</th>
 				<th>Remark</th>
-				<th>Action</th>
+				<th>Action</th> -->
 			</tr>
 		</thead>
 		<tbody id="table">
@@ -84,7 +84,7 @@
 				<td><%=b.getPeoples() %></td>
 				<td>&#8377; <%=b.getCost() %></td>
 				<td><%=b.getCity() %></td>
-				<td><%=b.getLocation() %></td>
+				<%-- <td><%=b.getLocation() %></td>
 				<td><%=b.getTravel_date() %></td>
 				<td><%=b.getStatus() %></td>
 				<td><%=b.getRemarks() %></td>
@@ -95,7 +95,7 @@
 				<button class="btn btn-danger btn-sm text-center" name="acceptBook" id="cancel">Accept</button>
 				</form>
 				<%} %>
-				</td>
+				</td> --%>
 				
 			</tr>
 			<%} %>

@@ -50,8 +50,11 @@ public class guideDAO {
 			
 			if (b == true) {
 				Guide g=new Guide();
+				g.setGuide_id(rs.getInt("guide_id"));
 				g.setGuide_name(rs.getString("name"));
 				g.setLocation(rs.getString("location"));
+				
+				se.setAttribute("id",g.getGuide_id());
 				se.setAttribute("uname",g.getGuide_name());
 				se.setAttribute("loc", g.getLocation());
 				status1 = "success";
@@ -75,6 +78,7 @@ public class guideDAO {
 		ArrayList<Booking> book=new ArrayList<>();
 		
 		try {
+			
 			ps=(PreparedStatement) con.prepareStatement("select * from booking where city='"+se.getAttribute("loc")+"'");
 			rs=ps.executeQuery();
 			while(rs.next())
@@ -196,6 +200,31 @@ public class guideDAO {
 	           e.printStackTrace();
 	       }
 	       return status;
+	}
+	
+	public String acceptBooking(int id)
+	{
+		Statement st=null;
+		String status="";
+		int count=0;
+		try {
+			st=con.createStatement();
+			count=st.executeUpdate("update booking set status='Confirmed',remarks='Guide Accepted the Booking' where booking_id='"+id+"';");
+			
+			if(count>0) {
+				status="success";
+			}
+			else {
+				status="failure";
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return status;
+		
 	}
 }
 	

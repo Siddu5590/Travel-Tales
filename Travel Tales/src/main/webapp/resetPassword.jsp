@@ -22,7 +22,7 @@
         }
         .reset-password-container {
             max-width: 400px;
-            margin: 50px auto;
+            margin: 150px auto;
             padding: 20px;
             background: #ffffff;
             border: 1px solid #dee2e6;
@@ -50,7 +50,6 @@
     </style>
 </head>
 <body>
-<%@include file="header.jsp" %>
     <div class="reset-password-container">
         <h3 class="text-center">Reset Password</h3>
         <form id="resetPasswordForm" action="signup" method="post">

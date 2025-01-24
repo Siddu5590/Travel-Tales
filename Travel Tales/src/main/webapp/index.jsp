@@ -245,6 +245,7 @@
     </div>
 
 
+	<!-- City Card -->
     <div class="view-product" id="city">
     
     <div class="view">
@@ -281,19 +282,22 @@
     
     </div>
     
+    
+    <!-- Special Packages -->
      <div class="view-product">
      <div class="view">
     <h2>Special Packages...</h2>
     </div>
-     <!-- change here -->
+     
      <%PackagesDAO pa=new PackagesDAO(session);
      ArrayList<Packages> all=pa.viewPackage();
      Iterator<Packages> itr=all.iterator();
      //nothe package
      itr.hasNext(); {
     	 Packages p=itr.next();%>
-    	 <!-- till here  along with c. -->
-        
+    	 
+    	 
+    	 <!-- North Karnataka -->
         <div class="product-container">
        
     	   <div class="product-card ">
@@ -316,11 +320,9 @@
     	</div>
     	<%} %>
     	
-    	
+    	 <!-- South Karnataka -->
     	<%itr.hasNext(); {
     	 Packages p=itr.next();%>
-    	 <!-- till here  along with c. -->
-        
         <div class="product-container">
        
     	   <div class="product-card ">
@@ -344,14 +346,12 @@
     	<%} %>
     	
     	
+    	 <!-- Overall Karnataka -->
     	<% itr.hasNext(); {
     	 Packages p=itr.next();%>
-    	 <!-- till here  along with c. -->
-        
         <div class="product-container">
-       
     	   <div class="product-card ">
-    	   		<a href="#">
+    	   		<a href="KarnatakaPackage.jsp">
                 <div class="profile-pic">
                 <image src="<%=p.getImage() %>" width="220px" height="140px" style="border-radius:5px;" >
                 </div></a>
