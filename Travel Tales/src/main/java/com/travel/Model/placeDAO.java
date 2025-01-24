@@ -110,12 +110,12 @@ public class placeDAO {
 				while(rs.next())
 				{
 					Place p=new Place();
-					p.getPlace_id();
-					p.getPlace_name();
-					p.getLocation();
-					p.getImage();
-					p.getCity_id();
-					p.getDescription();
+					p.setPlace_id(rs.getInt("place_id"));
+					p.setPlace_name(rs.getString("name"));
+					p.setImage(rs.getString("image"));
+					p.setLocation(rs.getString("location"));
+					p.setCity_id(rs.getInt("city_id"));
+					p.setDescription(rs.getString("description"));
 					place.add(p);
 					
 				}
@@ -211,14 +211,22 @@ public class placeDAO {
 	    	return place;
 	    }
 
-		public String editPlace(int id ) {
+		public String editPlace(int id, String name, String image, String city, String location, String desc ) {
 			Statement st=null;
 			String status="";
+			ResultSet rs=null;
 			int count=0;
 			try {
 				st=con.createStatement();
-				count=st.executeUpdate("update place set p_name='"+"p_image='"+"p_city='"+"p_location='"+"p_description='"+";");
+            	rs=null;
+            	PreparedStatement psCity = con.prepareStatement("select CITY_ID from city where CITY_NAME = ?");
+            	psCity.setString(1, city);
+            	rs = psCity.executeQuery();
+				st=con.createStatement();
 				
+				if(rs.next()) {
+				
+				count=st.executeUpdate("update place set name='"+name+"',image='"+image+"',city_id='"+rs.getInt("city_id")+"',location='"+location+"',description='"+desc+"' where place_id='"+id+"'");
 				
 				if(count>0) {
 					status="success";
@@ -226,7 +234,7 @@ public class placeDAO {
 				else {
 					status="failure";
 				}
-				
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

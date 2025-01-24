@@ -1,3 +1,4 @@
+<%@page import="com.travel.Entity.City"%>
 <%@page import="com.travel.Entity.Place"%>
 <%@page import="com.travel.Model.placeDAO"%>
 <%@page import="com.travel.Model.cityDAO"%>
@@ -10,7 +11,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Add Place</title>
+<title>Update Place</title>
  <link rel="icon" href='assets/logo.jpg'>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -103,10 +104,13 @@
 
 <form action="Place" method="post" class="form">
 <%placeDAO p=new placeDAO(session);
-ArrayList<Place>a=p.getPlace(Integer.parseInt(request.getParameter("place_id")));
+ArrayList<Place> a=p.getPlace(Integer.parseInt(request.getParameter("place_id")));
 for(Place pl:a){
 %>
-    <h1>Add New Place</h1>
+    <h1>Update Place</h1>
+    
+    <label>Place Id:</label>
+    <input type="text" name="id" placeholder="Enter Place id" required="required" value="<%=pl.getPlace_id()%>"><br>
     
     <label>Place Name:</label>
     <input type="text" name="name" placeholder="Enter Place name" required="required" value="<%=pl.getPlace_name()%>"><br>
@@ -117,24 +121,16 @@ for(Place pl:a){
     <label for="city">Choose a City:</label><br>
 
     <!-- Searchable dropdown -->
-    <div class="dropdown-container">
+    
        
-        <select id="city"  name="city">
-         <option type="text"  placeholder="Search for a city..." class="search-input"
-            onkeyup="filterCities()" >search</option>
-            <option value="" selected="selected">Select City</option>
-            
-            <% 
-            cityDAO c = new cityDAO(session);
-            ArrayList<String> al = c.getCities();
-            for (String city : al) {
-            %>
-                <option value="<%= city %>" data-city-name="<%= city.toLowerCase() %>">
-                    <%= city %>
-                </option>
-            <%} %>
-        </select>
-    </div>
+        
+     <%cityDAO c=new cityDAO(session);
+     	ArrayList<City> al=c.viewCity(pl.getCity_id());
+     	for(City c1:al){
+     	%>
+     
+    <input type="text" name="city"  required="required" value="<%=c1.getCity_name()%>"><br>
+   <%} %>
     
     <label>Location:</label>
     <input type="text" name="loc" placeholder="Enter Location" required="required" value="<%=pl.getLocation()%>"><br>
@@ -142,10 +138,14 @@ for(Place pl:a){
     <label>Place Description:</label>
     <input type="text" name="description" placeholder="Enter Place Description" required="required" value="<%=pl.getDescription()%>"><br>
     <%} %>
+    
+    <%if(session.getAttribute("uname")!=null){ %>
     <button type="submit" name="updatePlace" value="add place" class="addplace">Update Place</button>
+    <%} else  {%>
+    <a href="login.jsp" class="addplace text-decoration-none">Update Place</a>
+    <%} %>
 </form>
 
-<%@include file="footer.jsp" %>
 
 <script type="text/javascript">
 <% if (request.getAttribute("status") != null) { 

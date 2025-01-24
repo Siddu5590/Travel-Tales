@@ -2,7 +2,6 @@
 <%@page import="com.travel.Model.cityDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="java.util.Iterator" %>
 <%@page import="java.util.ArrayList" %>
 
 <!DOCTYPE html>
@@ -15,65 +14,56 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<style>
-  body {
-    font-family: Arial, sans-serif;
-  }
-
-  .container {
-    margin: 30px auto;
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  .form-title {
-    text-align: center;
-    color: black;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-
-  label {
-    font-size: 1rem;
-    color: black;
-    margin-top: 10px;
-  }
-
-  .form-control {
-    margin-bottom: 15px;
-    border-radius: 5px;
-  }
-
-  .form-textarea {
-    resize: none;
-    border-radius: 5px;
-  }
-
-  .btn {
-    font-size: 1rem;
-    font-weight: bold;
-    width: 40%;
-    margin-left: 180px;
-   
-  }
-
-  .info-box {
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 20px;
-  }
-
-  .info-box h3 {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-    color: #333;
-  }
-</style>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .form-title {
+      text-align: center;
+      color: black;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    label {
+      font-size: 1rem;
+      color: black;
+      margin-top: 10px;
+    }
+    .form-control {
+      margin-bottom: 15px;
+      border-radius: 5px;
+    }
+    .form-textarea {
+      resize: none;
+      border-radius: 5px;
+    }
+    .btn {
+      font-size: 1rem;
+      font-weight: bold;
+      width: 40%;
+      margin-left: 180px;
+    }
+    .info-box {
+      background-color: #f8f9fa;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    .info-box h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
 <%@include file="header.jsp" %>
@@ -82,13 +72,38 @@
 <div class="container w-50">
   <div class="info-box">
     <h3>City Information:</h3>
-    <% 
-      cityDAO c = new cityDAO(session);
-      ArrayList<City> al = c.viewCity(Integer.parseInt(request.getParameter("city_id")));
-      for (City ci : al) { %>
-      <p><strong>City:</strong> <%= ci.getCity_name() %></p>
-      <p><strong>Cost:</strong> <%= ci.getCost() %></p>
-    <% } %>
+    <%
+      // Fetch the city_id parameter and validate it
+      String cityIdParam = request.getParameter("city_id");
+      if (cityIdParam != null && !cityIdParam.isEmpty()) {
+        try {
+          int cityId = Integer.parseInt(cityIdParam);
+          cityDAO c = new cityDAO(session);
+          ArrayList<City> al = c.viewCity(cityId);
+
+          if (al.isEmpty()) {
+    %>
+            <p>No information found for the selected city.</p>
+    <%
+          } else {
+            for (City ci : al) {
+    %>
+            <p><strong>City:</strong> <%= ci.getCity_name() %></p>
+            <p><strong>Cost:</strong> <%= ci.getCost() %></p>
+    <%
+            }
+          }
+        } catch (NumberFormatException e) {
+    %>
+          <p>Error: Invalid city ID format.</p>
+    <%
+        }
+      } else {
+    %>
+        <p>Error: City ID is missing or invalid.</p>
+    <%
+      }
+    %>
   </div>
 
   <form method="POST" action="booking" id="book">
@@ -115,11 +130,20 @@
     <label for="description">Description (Optional):</label>
     <textarea class="form-control form-textarea" id="description" name="description" rows="3" placeholder="Enter Additional Details"></textarea>
 
-    <% for (City ci : al) { %>
-    <input type="hidden" name="city" value="<%= ci.getCity_name() %>" />
-    <input type="hidden" name="cost" value="<%= ci.getCost() %>" />
+    <% if (cityIdParam != null && !cityIdParam.isEmpty()) {
+        try {
+          int cityId = Integer.parseInt(cityIdParam);
+          cityDAO c = new cityDAO(session);
+          ArrayList<City> al = c.viewCity(cityId);
+          for (City ci : al) {
+    %>
+        <input type="hidden" name="city" value="<%= ci.getCity_name() %>" />
+        <input type="hidden" name="cost" value="<%= ci.getCost() %>" />
+        <input type="hidden" name="id" value="<%=ci.getCity_id() %>"/>
+        <input type="hidden" name="uid" value="<%=session.getAttribute("id") %>"/>
+    <% } } catch (NumberFormatException e) { } } %>
+
     <input type="hidden" name="book_date" id="book_date" value="" />
-    <% } %>
 
     <button type="submit" value="book" name="book" class="btn btn-primary text-center">Book Now</button>
   </form>
@@ -130,7 +154,6 @@
   <h3>Please Login to access your profile...</h3>
 </div>
 <% } %>
-
 
 <script type="text/javascript">
   const today = new Date().toISOString().split('T')[0];

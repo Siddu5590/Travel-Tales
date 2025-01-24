@@ -26,6 +26,7 @@ public class Guide extends HttpServlet {
 			
 			try {
 //				Customer Register
+				//add guide
 				if(req.getParameter("guide")!=null) {
 					String name=req.getParameter("name");
 					String phone=req.getParameter("phone");
@@ -52,6 +53,7 @@ public class Guide extends HttpServlet {
 						}
 						
 					}
+				//delete guide
 					else if(req.getParameter("deleteGuide")!=null) {
 					int id=Integer.parseInt(req.getParameter("id"));
 					
@@ -67,15 +69,40 @@ public class Guide extends HttpServlet {
 						rd.forward(req, res);
 					}
 				}
-					
+					//update guide
+					else if(req.getParameter("updateguide")!=null) {
+						int id=Integer.parseInt(req.getParameter("id"));
+						String name=req.getParameter("name");
+						String phone=req.getParameter("phone");
+						String email=req.getParameter("email");
+						int age=Integer.parseInt(req.getParameter("age"));
+						String city=req.getParameter("city");
+						
+						String status=g.updateGuide(id,name,phone,email,age,city);
+						if(status.equals("success")) {
+							req.setAttribute("status", "guide Data updated Successfully...");
+							RequestDispatcher rd=req.getRequestDispatcher("updateguide.jsp?guide_id="+id);
+							rd.forward(req, res);
+						}
+						else if(status.equals("failure")) {
+							req.setAttribute("failure", "unable  to update Guide details.!!");
+							RequestDispatcher rd=req.getRequestDispatcher("updateguide.jsp?guide_id="+id);
+							rd.forward(req, res);
+						}
+							
+						}
 					
 			}
 			catch (Exception e) {
 				e.printStackTrace();
 				
 			}
-		
+			
+			
 		}
+	
+
+		
 		@Override
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			try {

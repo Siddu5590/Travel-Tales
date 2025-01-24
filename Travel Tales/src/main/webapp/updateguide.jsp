@@ -1,8 +1,11 @@
+<%@page import="com.travel.Entity.City"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="com.travel.Model.cityDAO"%>
+<%@page import="com.travel.Entity.Guide"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.travel.Model.Guide1"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="java.util.Iterator"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="com.travel.Model.cityDAO"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,40 +92,44 @@
 	<div class="body">
 	
     <div class="form-container">
+    <%Guide1 gu=new Guide1(session);
+        ArrayList<Guide> guide=gu.viewGuide(Integer.parseInt(request.getParameter("guide_id")));
+        for(Guide g:guide){%>
         <h2>Guide Form</h2>
+        
         <form id="guide-form" action="guide" method="post">
+        	
+        	<label for="guide-name">Guide id:</label>
+            <input type="text" id="guide-id" name="id" value="<%=g.getGuide_id()%>">
+            
             <label for="guide-name">Guide Name:</label>
-            <input type="text" id="guide-name" name="name">
+            <input type="text" id="guide-name" name="name" value="<%=g.getGuide_name()%>">
 
             <label for="phone">Phone:</label>
-            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}">
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" value="<%=g.getGuide_phone()%>">
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email">
+            <input type="email" id="email" name="email" value="<%=g.getGuide_email()%>">
 
             <label for="age">Age:</label>
-            <input type="number" id="age" name="age" min="18" max="100">
+            <input type="number" id="age" name="age" min="18" max="100" value="<%=g.getGuide_age()%>">
             
-        <label for="city">Choose a City:</label>
-        <select id="city" name="city">
-        <option selected="selected">select city
-        </option>
-        <% cityDAO c=new cityDAO(session);
-           ArrayList<String> al=c.getCities();
-           Iterator<String> itr=al.iterator();
+           <% cityDAO c=new cityDAO(session);
+           ArrayList<City> al=c.viewCity(g.getGuide_id());
+           Iterator<City> itr=al.iterator();
            while(itr.hasNext())
-           {  String city=itr.next(); %>
-           		
-        	   <option value="<%= city%>"><%= city%></option>
-         <%  } %> 
-            
-        </select>
+           {  City city=itr.next(); %>
+        <label for="city">Guide Location:</label>
+        <input type="text" name="city" value="<%=city.getCity_name()%>">
+        <%} %>
 
             <div style="display: flex; justify-content: space-between;">
-                <button type="submit" name="guide" class="submit-btn">Submit</button>
+                <button type="submit" name="updateguide" class="submit-btn">Submit</button>
                 <button type="button" class="back-btn" onclick="window.history.back();">Back</button>
             </div>
+            
         </form>
+        <%} %>
     </div>
     </div>
     <script type="text/javascript">
@@ -200,6 +207,10 @@
                 }
             });
         });
+    </script>
+</body>
+</html>
+
     </script>
 </body>
 </html>
