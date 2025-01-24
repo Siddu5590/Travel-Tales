@@ -67,7 +67,6 @@
 				<th>Pickup Point</th>
 				<th>Travel Date</th>
 				<th>Status</th>
-				<th>Remark</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -87,7 +86,6 @@
 				<td><%=b.getLocation() %></td>
 				<td><%=b.getTravel_date() %></td>
 				<td><%=b.getStatus() %></td>
-				<td><%=b.getRemarks() %></td>
 				<td>
 				<%if(b.getStatus().equals("pending")){ %>
 				<form action="guide" method="post">
