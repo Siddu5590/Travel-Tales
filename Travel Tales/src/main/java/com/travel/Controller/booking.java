@@ -27,31 +27,33 @@ public class booking extends HttpServlet{
 			
 			if(req.getParameter("book")!=null)
 			{
+				int user_id=Integer.parseInt(req.getParameter("uid"));
 				String name=req.getParameter("name");
 				String ph=req.getParameter("phone");
 				String email=req.getParameter("email");
 			    String city=req.getParameter("city");
-			    System.out.println(city);
+			   // System.out.println(city);
 				int noPl=Integer.parseInt(req.getParameter("people"));
 				String date=req.getParameter("date");
 				Double cost=Double.parseDouble(req.getParameter("cost"));
 				String desc=req.getParameter("description");
 				String loc=req.getParameter("loc");
 				String bookDate=req.getParameter("book_date");
+				String id=req.getParameter("id");
 				
 				
-				String status=b.addBooking(name, ph, email, city, noPl, date, cost, desc, loc,bookDate);
+				String status=b.addBooking(user_id,name, ph, email, city, noPl, date, cost, desc, loc,bookDate);
 				
 				if(status.equals("success"))
 				{
 					session.setAttribute("status", "Booking Done");
-					RequestDispatcher rd=req.getRequestDispatcher("booking.jsp");
+					RequestDispatcher rd=req.getRequestDispatcher("booking.jsp?city_id="+id);
 					rd.forward(req, res);
 				}
 				else if(status.equals("failure"))
 				{
 					session.setAttribute("failure", "Booking Unsuccessfull due to some error");
-					RequestDispatcher rd=req.getRequestDispatcher("booking.jsp");
+					RequestDispatcher rd=req.getRequestDispatcher("booking.jsp?city_id="+id);
 					rd.forward(req, res);
 				}
 				
