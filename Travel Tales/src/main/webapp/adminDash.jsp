@@ -1,3 +1,5 @@
+<%@page import="com.travel.Entity.Packages"%>
+<%@page import="com.travel.Model.PackagesDAO"%>
 <%@page import="com.travel.Entity.Reviews"%>
 <%@page import="com.travel.Model.Feedback"%>
 <%@page import="com.travel.Entity.Guide"%>
@@ -21,7 +23,8 @@
 	ArrayList<Place> place=p.viewPlace();
 	Feedback fe=new Feedback(session);
 	ArrayList<Reviews> re=fe.viewReview();
-	
+	PackagesDAO pa=new PackagesDAO(session);
+	ArrayList<Packages> pac=pa.viewPackage();
 	
 	%>
 <!DOCTYPE html>
@@ -221,7 +224,7 @@
                         </div>
                         <hr class="m-0">
                         <div class="card-body">
-                            <h5 class="card-title"><%=guide.size() %></h5>
+                            <h5 class="card-title"><%=pac.size() %></h5>
                         </div>
                     </a>
                 </div>

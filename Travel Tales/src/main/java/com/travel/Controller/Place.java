@@ -67,10 +67,30 @@ public class Place extends HttpServlet
 					rd.forward(req, res);
 					
 				}
+				
 				else if(status.equals("failure"))
 				{
 					req.setAttribute("failure", "Failed to Delete the Place...");
 					RequestDispatcher rd=req.getRequestDispatcher("viewPlace.jsp");
+					rd.forward(req, res);
+				}
+				
+			}
+			else if(req.getParameter("updatePlace")!=null) {
+				int id=Integer.parseInt(req.getParameter("pid"));
+				
+				String status=p.editPlace(id);
+				if(status.equals("success")) {
+					req.setAttribute("status", "Place edited Successfully...");
+					RequestDispatcher rd=req.getRequestDispatcher("updateplace.jsp");
+					rd.forward(req, res);
+					
+				}
+				
+				else if(status.equals("failure"))
+				{
+					req.setAttribute("failure", "Failed to edit the Place...");
+					RequestDispatcher rd=req.getRequestDispatcher("updateplace.jsp");
 					rd.forward(req, res);
 				}
 				

@@ -57,6 +57,52 @@ public class Packages extends HttpServlet {
 				rd.forward(req, res);
 			}
 		}
+		else if(req.getParameter("updatepackage")!=null)
+		{
+			int id=Integer.parseInt(req.getParameter("id"));
+			String name=req.getParameter("name");
+			String image=req.getParameter("image");
+			String price=req.getParameter("cost");
+			String numpeople=req.getParameter("no_people");
+			String numdays=req.getParameter("days");
+			
+			Double cost=Double.parseDouble(price);
+			int no_people=Integer.parseInt(numpeople);
+			int days=Integer.parseInt(numdays);
+			
+			String status=pack.updatePack(id,name,image,cost,no_people,days);
+			if(status.equals("success")) {
+				req.setAttribute("status", "Package Updated Successfully...");
+				RequestDispatcher rd=req.getRequestDispatcher("editpackage.jsp");
+				rd.forward(req, res);
+			}
+			else if(status.equals("failure")) {
+				req.setAttribute("failure", "Failed to update the  Details.!!");
+				RequestDispatcher rd=req.getRequestDispatcher("editpackage.jsp");
+				rd.forward(req, res);
+			}
+			
+		}
+		
+		else if(req.getParameter("delete")!=null)
+		{
+			int id=Integer.parseInt(req.getParameter("cid"));
+			
+			String status=pack.deletePack(id);
+			if(status.equals("success"))
+			{
+				req.setAttribute("status", "Package Successfully Deleted..");
+				RequestDispatcher rd=req.getRequestDispatcher("viewPackage.jsp");
+				rd.forward(req, res);
+			}
+			else if(status.equals("failure"))
+			{
+				req.setAttribute("failure", "Failed to Delete the Package..");
+				RequestDispatcher rd=req.getRequestDispatcher("viewPackage.jsp");
+				rd.forward(req, res);
+			}
+		}
+		
 		}
 		catch(Exception e) {
 			e.printStackTrace();

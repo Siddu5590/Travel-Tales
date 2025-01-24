@@ -110,12 +110,12 @@ public class placeDAO {
 				while(rs.next())
 				{
 					Place p=new Place();
-					p.setPlace_id(rs.getInt("PLACE_ID"));
-					p.setPlace_name(rs.getString("NAME"));
-					p.setLocation(rs.getString("LOCATION"));
-					p.setImage(rs.getString("IMAGE"));
-					p.setCity_id(rs.getInt("CITY_ID"));
-					p.setDescription(rs.getString("DESCRIPTION"));
+					p.getPlace_id();
+					p.getPlace_name();
+					p.getLocation();
+					p.getImage();
+					p.getCity_id();
+					p.getDescription();
 					place.add(p);
 					
 				}
@@ -211,4 +211,33 @@ public class placeDAO {
 	    	return place;
 	    }
 
+		public String editPlace(int id ) {
+			Statement st=null;
+			String status="";
+			int count=0;
+			try {
+				st=con.createStatement();
+				count=st.executeUpdate("update place set p_name='"+"p_image='"+"p_city='"+"p_location='"+"p_description='"+";");
+				
+				
+				if(count>0) {
+					status="success";
+				}
+				else {
+					status="failure";
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return status;
+		
+		 
+		}
+		
+		
+		
+		
 }

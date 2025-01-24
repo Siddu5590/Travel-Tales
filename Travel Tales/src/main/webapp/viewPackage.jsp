@@ -1,3 +1,5 @@
+<%@page import="com.travel.Entity.Packages"%>
+<%@page import="com.travel.Model.PackagesDAO"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="com.travel.Entity.City"%>
 <%@page import="java.util.ArrayList"%>
@@ -51,7 +53,7 @@
             display: inline-block;
             flex-wrap: wrap;
             gap: 30px;
-            padding: 10px;
+            padding: 20px;
             cursor:pointer;
             margin-bottom:10px;
         }
@@ -61,8 +63,8 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             text-align: center;
-            padding: 10px;
-            width: 250px;
+            padding: 20px;
+            width: 300px;
             height:auto;
             box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 12px 25px 0 rgba(0, 0, 0, 0.19);
         }
@@ -95,25 +97,28 @@
 
     <div class="view-product">
      <!-- change here -->
-     <%cityDAO city=new cityDAO(session);
-     ArrayList<City> al=city.viewCity();
-     Iterator<City> it=al.iterator();
+     <%PackagesDAO pa=new PackagesDAO(session);
+     ArrayList<Packages> al=pa.viewPackage();
+     Iterator<Packages> it=al.iterator();
      while(it.hasNext()) {
-    	 City c=it.next();%>
+    	 Packages p=it.next();%>
     	 <!-- till here  along with c. -->
         
         <div class="product-container">
        
     	   <div class="product-card">
-                <div class="profile-pic"><image src="<%=c.getImage() %>" width="220px" height="140px" style="border-radius:5px;" ></div>
-                <h2><%= c.getCity_id() %></h2>
-                <p class="card-text"><strong>City Name:</strong> <%= c.getCity_name() %></p>
-                <p class="card-text"><strong>Cost:</strong> <%= c.getCost() %></p>
+                <div class="profile-pic"><image src="<%=p.getImage() %>" width="220px" height="140px" style="border-radius:5px;" ></div>
+                <h2><%= p.getPackage_id() %></h2>
+                <p class="card-text"><strong>Package Name:</strong> <%= p.getPackage_name() %></p>
+                <p class="card-text"><strong>Cost:</strong> <%= p.getCost() %></p>
+                <p class="card-text"><strong>Number of peoples:</strong> <%= p.getNo_of_people() %></p>
+                <p class="card-text"><strong>Days:</strong> <%= p.getNo_days() %></p>
          
                 <div class="table-actions">
-                        <form action="city" method="post" style="display:inline;">
-                            <input type="hidden" name="cid" value="<%= c.getCity_id()%>">
-                            <button type="submit" class="btn btn-danger" name="delete">Delete</button>
+                        <form action="package" method="post" style="display:inline;">
+                            <input type="hidden" name="cid" value="<%= p.getPackage_id()%>">
+                            <button type="submit" class="btn btn-danger" name="delete"><i class="fa-solid fa-trash"></i> Delete</button>
+                            <a href="editpackage.jsp?p_id=<%=p.getPackage_id()%>" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
                         </form>
                     </div>    
             </div>

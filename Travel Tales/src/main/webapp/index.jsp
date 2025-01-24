@@ -1,3 +1,5 @@
+<%@page import="com.travel.Entity.Packages"%>
+<%@page import="com.travel.Model.PackagesDAO"%>
 <%@page import="com.travel.Model.cityDAO"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="com.travel.Entity.City"%>
@@ -48,7 +50,7 @@
             border-radius: 8px;
             text-align: center;
             padding: 20px;
-            width: 280px;
+            width: auto;
             height:auto;
             transition: .3s;
             transform: scale(1);
@@ -242,6 +244,21 @@
         </button>
     </div>
 
+
+    
+<!-- search bar -->
+    <form class="d-flex search-bar" role="search">
+
+
+
+  <center><form class="search-bar" role="search">
+
+  <div style="position: relative; width: 100%;">
+    <input class="form-control" id="search" type="text" placeholder="Search city here.." style="padding-right: 35px;">
+    <i class="fa fa-search" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer; color: gray;"></i>
+  </div>
+</form></center>
+
     <div class="view-product" id="city">
     
     <div class="view">
@@ -251,13 +268,13 @@
         
      <%cityDAO city=new cityDAO(session);
      ArrayList<City> al=city.viewCity();
-     Iterator<City> it=al.iterator();
+     Iterator<City> it=al.iterator();   //to create iterator reference--by using any of the collection object reference
      int count=1;
      while(it.hasNext()&& count<=4) {
     	 City c=it.next();%>
     	 
         
-        <div class="product-container">
+        <div class="product-container ms-3">
        
     	   <div class="product-card" id="city-name">
     	   <a href="<%=request.getContextPath() + "/place.jsp?city_id=" + c.getCity_id()%>">
@@ -267,7 +284,7 @@
                 <p class="card-text" >Including All Expenses</p>
                 
                 <%if(session.getAttribute("uname")!=null){ %>
-    	<a href="booking.jsp?city_id=<%=c.getCity_id()  %>" class="btn btn-success mt-3">Book Now</a>
+    	<a href="booking.jsp?city_id=<%=c.getCity_id()%>" class="btn btn-success mt-3">Book Now</a>
     	<%} else { %>
     	<a href="login.jsp" class="btn btn-success mt-3">Book Now</a>
     	<%} %>
@@ -275,6 +292,42 @@
     	
     	</div>
     	<% count++; } %>
+    
+    </div>
+    
+     <div class="view-product">
+     <div class="view">
+    <h2>Special Packages...</h2>
+    </div>
+     <!-- change here -->
+     <%PackagesDAO pa=new PackagesDAO(session);
+     ArrayList<Packages> all=pa.viewPackage();
+     Iterator<Packages> itr=all.iterator();
+     while(itr.hasNext()) {
+    	 Packages p=itr.next();%>
+    	 <!-- till here  along with c. -->
+        
+        <div class="product-container">
+       
+    	   <div class="product-card ">
+    	   		<a href="#">
+                <div class="profile-pic">
+                <image src="<%=p.getImage() %>" width="220px" height="140px" style="border-radius:5px;" >
+                </div></a>
+                <p class="card-text"><strong>Package Name:</strong> <%= p.getPackage_name() %></p>
+                <p class="card-text"><strong>Cost:</strong> <%= p.getCost() %></p>
+                <p class="card-text"><strong>Number of peoples:</strong> <%= p.getNo_of_people() %></p>
+                <p class="card-text"><strong>No_of_Days:</strong> <%= p.getNo_days() %></p>
+         
+                <%if(session.getAttribute("uname")!=null){ %>
+    	<a href="#" class="btn btn-success mt-3">Book Now</a>
+    	<%} else { %>
+    	<a href="login.jsp" class="btn btn-success mt-3">Book Now</a>
+    	<%} %>  
+            </div>
+    	
+    	</div>
+    	<%} %>
     
     </div>
     
@@ -306,5 +359,33 @@
     
     <%@include file="footer.jsp" %>
     
+<<<<<<< HEAD
+    <script>
+    $(document).ready(function () {
+    	  $("#search").on("keyup", function () {
+    	    var value = $(this).val().toLowerCase();
+    	    var hasVisible = false;
+
+    	    $("#city #city-name").filter(function () {
+    	      var isVisible = $(this).text().toLowerCase().indexOf(value) > -1;
+    	      $(this).toggle(isVisible);//hide  unwanted data
+    	      if (isVisible) {
+    	        hasVisible = true;
+    	      }
+    	    });
+
+    	    // Check if any articles are visible
+    	    if (!hasVisible) {
+    	      $("#no-results").show(); // Show "Data not found" message
+    	    } else {
+    	      $("#no-results").hide(); // Hide message if results are found
+    	    }
+    	  });
+    	});
+
+
+</script>
+=======
+>>>>>>> branch 'branch1' of https://github.com/Siddu5590/Travel-Tales.git
 </body>
 </html>

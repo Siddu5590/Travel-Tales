@@ -144,6 +144,7 @@ public class Signup extends HttpServlet {
 					}
 					
 				}
+			//delete User
 			else if(req.getParameter("deleteUser")!=null)
 			{
 				int id=Integer.parseInt(req.getParameter("id"));
@@ -171,6 +172,37 @@ public class Signup extends HttpServlet {
 					RequestDispatcher rd=req.getRequestDispatcher("viewUsers.jsp");
 					rd.forward(req, res);
 				}
+			}
+			
+			else if(req.getParameter("reset")!=null)
+			{
+				String eamil = req.getParameter("email");
+                String password = req.getParameter("password");
+                String newpassword = req.getParameter("newpassword");
+                if (password.equals(newpassword)) {
+
+                    String s = reg.getPassword(eamil, password);
+                    
+                    if (s.equals("success") && (password.equals(newpassword))) {
+                        req.setAttribute("failure", "New Password is same as old Password");
+                        RequestDispatcher rd = req.getRequestDispatcher("resetPassword.jsp");
+                        rd.forward(req, res);
+                         
+                    }
+                } else {
+                    String status = reg.resetPass(eamil, newpassword);
+                     if (status.equals("success")) {
+                        req.setAttribute("status", "Password changed successfully");
+                        RequestDispatcher rd = req.getRequestDispatcher("login.jsp");
+                        rd.forward(req, res);
+                     }
+                     else if(status.equals("failure"))
+                     {
+                    	 req.setAttribute("failure", "failed to change the Password ");
+                         RequestDispatcher rd = req.getRequestDispatcher("resetPassword.jsp");
+                         rd.forward(req, res); 
+                     }
+                }
 			}
 			
 		
