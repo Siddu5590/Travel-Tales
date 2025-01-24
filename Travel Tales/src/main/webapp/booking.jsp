@@ -23,7 +23,7 @@
       background: #fff;
       border-radius: 10px;
       padding: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
     }
     .form-title {
       text-align: center;
