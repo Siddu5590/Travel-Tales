@@ -20,6 +20,32 @@
     }
     .container {
       margin: 30px auto;
+      display: flex;
+      justify-content: space-between;
+    }
+    .info-box {
+      width: 45%;
+      background-color: #f8f9fa;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin-right: 20px;
+      height: 400px;
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+    }
+    .info-box h3 {
+      margin-bottom: 10px;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #333;
+      text-align: center;
+    }
+    .info-box p {
+      font-size: 1.3rem;
+      text-align: center;
+    }
+    .form-container {
+      width: 45%;
       background: #fff;
       border-radius: 10px;
       padding: 20px;
@@ -48,24 +74,8 @@
     .btn {
       font-size: 1rem;
       font-weight: bold;
-      width: 40%;
-      margin-left: 180px;
-    }
-    .info-box {
-      background-color: #f8f9fa;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 20px;
-    }
-    .info-box h3 {
-      margin-bottom: 10px;
-      font-size: 2rem;
-      font-weight:bold;
-      color: #333;
-    }
-    .info-box p{
-    	font-size:1.3rem;
+      width: 100%;
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -73,11 +83,10 @@
 <%@include file="header.jsp" %>
 
 <% if (session.getAttribute("uname") != null) { %>
-<div class="container w-50">
+<div class="container">
   <div class="info-box">
-    <h3 class="text-center">City Information:</h3>
+    <h3>City Information:</h3>
     <%
-      // Fetch the city_id parameter and validate it
       String cityIdParam = request.getParameter("city_id");
       if (cityIdParam != null && !cityIdParam.isEmpty()) {
         try {
@@ -87,14 +96,13 @@
 
           if (al.isEmpty()) {%>
             <p>No information found for the selected city.</p>
-    
           <%} else {
             for (City ci : al) {%>
-    		<center><img  src="<%=ci.getImage()%>" width="300px" height="200px" class="rounded">
+            <center><img src="<%=ci.getImage()%>" width="300px" height="200px" class="rounded">
             <p><strong>City:</strong> <%= ci.getCity_name() %></p>
-            <p><strong>Cost: &#8377; </strong> <%= ci.getCost() %></p></center>
-    
-            <%}
+            <p><strong>Cost: &#8377; </strong> <span id="cost"><%= ci.getCost() %></span></p>
+            <p><strong>Total People:</strong> <span id="totalPeople">1</span></p></center>
+          <%}
           }
         } catch (NumberFormatException e) {
     %>
@@ -109,47 +117,50 @@
     %>
   </div>
 
-  <form method="POST" action="booking" id="book">
-    <h2 class="form-title">Book Your Trip</h2>
+  <div class="form-container">
+    <form method="POST" action="booking" id="book">
+      <h2 class="form-title">Book Your Trip</h2>
 
-    <label for="name">Name:</label>
-    <input type="text" name="name" class="form-control" id="name" placeholder="Enter Your Name" required>
+      <label for="name">Name:</label>
+      <input type="text" name="name" class="form-control" id="name" placeholder="Enter Your Name" required>
 
-    <label for="phone">Phone Number:</label>
-    <input type="tel" name="phone" class="form-control" id="phone" placeholder="Enter Phone Number" required>
+      <label for="phone">Phone Number:</label>
+      <input type="tel" name="phone" class="form-control" id="phone" placeholder="Enter Phone Number" required>
 
-    <label for="email">Email ID:</label>
-    <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email ID" required>
+      <label for="email">Email ID:</label>
+      <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email ID" required>
 
-    <label for="people">Number of People:</label>
-    <input type="text" name="people" class="form-control" id="pl" placeholder="Enter Number of People" required>
+      <label for="people">Number of People:</label>
+      <input type="number" name="people" class="form-control" id="people" value="1" min="1" max="10" required>
 
-    <label for="travelDate">Travel Date:</label>
-    <input type="date" name="date" class="form-control" id="travelDate" required>
+      <label for="travelDate">Travel Date:</label>
+      <input type="date" name="date" class="form-control" id="travelDate" required>
 
-    <label for="pick">Pickup Location:</label>
-    <input type="text" name="loc" class="form-control" id="pick" placeholder="Enter Pickup Location" required>
+      <label for="pick">Pickup Location:</label>
+      <input type="text" name="loc" class="form-control" id="pick" placeholder="Enter Pickup Location" required>
 
-    <label for="description">Description (Optional):</label>
-    <textarea class="form-control form-textarea" id="description" name="description" rows="3" placeholder="Enter Additional Details"></textarea>
+      <label for="description">Description (Optional):</label>
+      <textarea class="form-control form-textarea" id="description" name="description" rows="3" placeholder="Enter Additional Details"></textarea>
 
-    <% if (cityIdParam != null && !cityIdParam.isEmpty()) {
-        try {
-          int cityId = Integer.parseInt(cityIdParam);
-          cityDAO c = new cityDAO(session);
-          ArrayList<City> al = c.viewCity(cityId);
-          for (City ci : al) {
-    %>
-        <input type="hidden" name="city" value="<%= ci.getCity_name() %>" />
-        <input type="hidden" name="cost" value="<%= ci.getCost() %>" />
-        <input type="hidden" name="id" value="<%=ci.getCity_id() %>"/>
-        <input type="hidden" name="uid" value="<%=session.getAttribute("id") %>"/>
-    <% } } catch (NumberFormatException e) { } } %>
+      <% if (cityIdParam != null && !cityIdParam.isEmpty()) {
+          try {
+            int cityId = Integer.parseInt(cityIdParam);
+            cityDAO c = new cityDAO(session);
+            ArrayList<City> al = c.viewCity(cityId);
+            for (City ci : al) {
+      %>
+          <input type="hidden" name="city" value="<%= ci.getCity_name() %>" />
+          <input type="hidden" name="cost" id="initialCost" value="<%= ci.getCost() %>" />
+          <input type="hidden" name="id" value="<%=ci.getCity_id() %>"/>
+          <input type="hidden" name="uid" value="<%=session.getAttribute("id") %>"/>
+          
+      <% } } catch (NumberFormatException e) { } } %>
 
-    <input type="hidden" name="book_date" id="book_date" value="" />
+      <input type="hidden" name="book_date" id="book_date" value="" />
 
-    <button type="submit" value="book" name="book" class="btn btn-primary text-center">Book Now</button>
-  </form>
+      <button type="submit" value="book" name="book" class="btn btn-primary">Book Now</button>
+    </form>
+  </div>
 </div>
 
 <% } else { %>
@@ -162,6 +173,30 @@
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('travelDate').setAttribute('min', today);
   document.getElementById("book_date").value = today;
+
+  document.addEventListener('DOMContentLoaded', () => {
+	  // Fetching initial elements
+	  const initialCost = document.getElementById('initialCost');
+	  const displayedCost = document.getElementById('cost');
+	  const costInput = document.querySelector("input[name='cost']"); // Input field for cost
+	  const peopleInput = document.getElementById('people');
+	  const totalPeopleDisplay = document.getElementById('totalPeople');
+
+	  // Getting the base cost from initial hidden field
+	  let baseCost = parseInt(initialCost.value, 10);
+
+	  // Event listener for the number of people input
+	  peopleInput.addEventListener('input', () => {
+	    const numPeople = parseInt(peopleInput.value, 10) || 1; // Default to 1 if invalid
+	    const totalCost = baseCost * numPeople;
+
+	    // Update displayed cost and hidden input cost
+	    displayedCost.textContent = totalCost;
+	    costInput.value = totalCost; // Updating the hidden input field with the new cost
+	    totalPeopleDisplay.textContent = numPeople;
+	  });
+	});
+
 
   <% if (request.getAttribute("status") != null) { 
     String message = (String) request.getAttribute("status");
