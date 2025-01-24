@@ -359,7 +359,6 @@
     
     <%@include file="footer.jsp" %>
     
-<<<<<<< HEAD
     <script>
     $(document).ready(function () {
     	  $("#search").on("keyup", function () {
@@ -385,7 +384,5 @@
 
 
 </script>
-=======
->>>>>>> branch 'branch1' of https://github.com/Siddu5590/Travel-Tales.git
 </body>
 </html>
