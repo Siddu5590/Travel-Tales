@@ -21,6 +21,7 @@
     max-width: 1200px;
     margin: auto;
     padding: 20px;
+    
 }
 .product-card {
     background-color: #fff;
@@ -51,7 +52,7 @@
 }
 </style>
 </head>
-<body>
+<body style="background-color: #FBF5DD">
 <%@include file="header.jsp" %>
 <div class="container mt-4 ms-5 bg-">
 <%for(Place place:al){%>
@@ -64,7 +65,7 @@
     	<%} %>
 
 
-<div class="product-card p-4">
+<div class="product-card p-4 m-5">
                 <div class="row">
                 
                    <center><div class="col-md-6 mb-2">

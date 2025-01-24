@@ -107,7 +107,7 @@
                 <div class="profile-pic"><image src="<%=c.getImage() %>" width="220px" height="140px" style="border-radius:5px;" ></div>
                 <h2><%= c.getCity_id() %></h2>
                 <p class="card-text"><strong>City Name:</strong> <%= c.getCity_name() %></p>
-                <p class="card-text"><strong>Cost:</strong> <%= c.getCost() %></p>
+                <p class="card-text"><strong>Cost: &#8377; </strong> <%= c.getCost() %></p>
          
                 <div class="table-actions">
                         <form action="city" method="post" style="display:inline;">

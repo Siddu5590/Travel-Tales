@@ -23,7 +23,7 @@
       background: #fff;
       border-radius: 10px;
       padding: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
     }
     .form-title {
       text-align: center;
@@ -60,8 +60,12 @@
     }
     .info-box h3 {
       margin-bottom: 10px;
-      font-size: 1.2rem;
+      font-size: 2rem;
+      font-weight:bold;
       color: #333;
+    }
+    .info-box p{
+    	font-size:1.3rem;
     }
   </style>
 </head>
@@ -71,7 +75,7 @@
 <% if (session.getAttribute("uname") != null) { %>
 <div class="container w-50">
   <div class="info-box">
-    <h3>City Information:</h3>
+    <h3 class="text-center">City Information:</h3>
     <%
       // Fetch the city_id parameter and validate it
       String cityIdParam = request.getParameter("city_id");
@@ -81,17 +85,16 @@
           cityDAO c = new cityDAO(session);
           ArrayList<City> al = c.viewCity(cityId);
 
-          if (al.isEmpty()) {
-    %>
+          if (al.isEmpty()) {%>
             <p>No information found for the selected city.</p>
-    <%
-          } else {
-            for (City ci : al) {
-    %>
+    
+          <%} else {
+            for (City ci : al) {%>
+    		<center><img  src="<%=ci.getImage()%>" width="300px" height="200px" class="rounded">
             <p><strong>City:</strong> <%= ci.getCity_name() %></p>
-            <p><strong>Cost:</strong> <%= ci.getCost() %></p>
-    <%
-            }
+            <p><strong>Cost: &#8377; </strong> <%= ci.getCost() %></p></center>
+    
+            <%}
           }
         } catch (NumberFormatException e) {
     %>

@@ -73,12 +73,12 @@ public class Packages extends HttpServlet {
 			String status=pack.updatePack(id,name,image,cost,no_people,days);
 			if(status.equals("success")) {
 				req.setAttribute("status", "Package Updated Successfully...");
-				RequestDispatcher rd=req.getRequestDispatcher("editpackage.jsp");
+				RequestDispatcher rd=req.getRequestDispatcher("editpackage.jsp?p_id="+id);
 				rd.forward(req, res);
 			}
 			else if(status.equals("failure")) {
 				req.setAttribute("failure", "Failed to update the  Details.!!");
-				RequestDispatcher rd=req.getRequestDispatcher("editpackage.jsp");
+				RequestDispatcher rd=req.getRequestDispatcher("editpackage.jspp_id="+id);
 				rd.forward(req, res);
 			}
 			
