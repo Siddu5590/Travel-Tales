@@ -326,7 +326,7 @@
         <div class="product-container">
        
     	   <div class="product-card ">
-    	   		<a href="#">
+    	   		<a href="SouthPackage.jsp">
                 <div class="profile-pic">
                 <image src="<%=p.getImage() %>" width="220px" height="140px" style="border-radius:5px;" >
                 </div></a>
