@@ -245,20 +245,6 @@
     </div>
 
 
-    
-<!-- search bar -->
-    <form class="d-flex search-bar" role="search">
-
-
-
-  <center><form class="search-bar" role="search">
-
-  <div style="position: relative; width: 100%;">
-    <input class="form-control" id="search" type="text" placeholder="Search city here.." style="padding-right: 35px;">
-    <i class="fa fa-search" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer; color: gray;"></i>
-  </div>
-</form></center>
-
     <div class="view-product" id="city">
     
     <div class="view">
@@ -280,7 +266,7 @@
     	   <a href="<%=request.getContextPath() + "/place.jsp?city_id=" + c.getCity_id()%>">
                 <div class="profile-pic"><image src="<%=c.getImage() %>" width="220px" height="140px" style="border-radius:5px;" ></div>
                 <p class="card-text" ><strong> <%= c.getCity_name() %></strong></p></a>
-                <p class="card-text mt-3" >Cost: <%= c.getCost() %>/person</p>
+                <p class="card-text mt-3" >Cost: &#8377; <%= c.getCost() %>/person</p>
                 <p class="card-text" >Including All Expenses</p>
                 
                 <%if(session.getAttribute("uname")!=null){ %>

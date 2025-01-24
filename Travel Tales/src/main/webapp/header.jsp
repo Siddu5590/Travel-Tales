@@ -147,6 +147,9 @@
                     <li class="items nav-item">
                         <a class="nav-link active" aria-current="page" href="login.jsp" style="color: white;">Login</a>
                     </li>
+                     <li class="items nav-item">
+                        <a class="nav-link active" aria-current="page" href="guide_login.jsp" style="color: white;">Guide Login</a>
+                    </li>
                 <% } %>
             </ul>
         </div>

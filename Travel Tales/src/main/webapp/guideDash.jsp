@@ -1,6 +1,6 @@
 <%@page import="com.travel.Entity.Booking"%>
-<%@page import="com.travel.Model.bookingDAO"%>
-<%@page import="com.travel.Entity.Customer"%>
+<%@page import="com.travel.Model.guideDAO"%>
+<%@page import="com.travel.Entity.Guide"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.travel.Model.Register"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Booking Status</title>
+<title>Booking Details</title>
  <link rel="icon" href='assets/logo.jpg'>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -62,7 +62,7 @@
 				<th>Number</th>
 				<th>Email</th>
 				<th>Peoples</th>
-				<th>Totoal Cost</th>
+				<th>Total Cost</th>
 				<th>City Name</th>
 				<th>Pickup Point</th>
 				<th>Travel Date</th>
@@ -72,7 +72,7 @@
 			</tr>
 		</thead>
 		<tbody id="table">
-		<%bookingDAO book=new bookingDAO(session);
+		<%guideDAO book=new guideDAO(session);
 		ArrayList<Booking> arr=book.viewBookings();
 		
 		for(Booking b: arr) {%>
@@ -87,7 +87,7 @@
 				<td><%=b.getLocation() %></td>
 				<td><%=b.getTravel_date() %></td>
 				<td><%=b.getStatus() %></td>
-				<td><%=b.getRemarks() %></td>
+				<td> Hi How are you hsh jhagbsj jhgsvbnj jahgvsbnj</td>
 				<td>
 				<%if(b.getStatus().equals("pending")){ %>
 				<form action="booking" method="post">

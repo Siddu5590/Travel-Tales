@@ -111,7 +111,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                             <li><a class="dropdown-item" href="viewprofile.jsp">View Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Reset PIN</a></li>
+                            <li><a class="dropdown-item" href="resetPassword.jsp">Reset PIN</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <form action="signup" method="post">

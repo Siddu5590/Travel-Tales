@@ -84,6 +84,7 @@ public class bookingDAO {
 				b.setLocation(rs.getString("pickup_location"));
 				b.setStatus(rs.getString("status"));
 				b.setDesc(rs.getString("description"));
+				b.setRemarks(rs.getString("remarks"));
 				book.add(b);
 			}
 			
@@ -94,6 +95,7 @@ public class bookingDAO {
 		return book;
 		
 	}
+	//booking cancel method for user
 	public String cancelBooking(int book_id)
 	{
 		Statement st=null;
@@ -101,7 +103,89 @@ public class bookingDAO {
 		int count=0;
 		try {
 			st=con.createStatement();
-			count=st.executeUpdate("update booking set status='Cancelled';");
+			count=st.executeUpdate("update booking set status='Cancelled',remarks='Booking Cancel' where booking_id='"+book_id+"';");
+			
+			if(count>0) {
+				status="success";
+			}
+			else {
+				status="failure";
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return status;
+	}
+	public ArrayList<Booking>  getBookings()
+	{
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		ArrayList<Booking> book=new ArrayList<>();
+		
+		try {
+			ps=(PreparedStatement) con.prepareStatement("select * from booking");
+			rs=ps.executeQuery();
+			while(rs.next())
+			{
+				Booking b=new Booking();
+				b.setBooking_id(rs.getInt("booking_id"));
+				b.setName(rs.getString("uname"));
+				b.setEmail(rs.getString("email"));
+				b.setPhone(rs.getString("phone"));
+				b.setPeoples(rs.getInt("no_of_people"));
+				b.setCost(rs.getDouble("cost"));
+				b.setCity(rs.getString("city"));
+				b.setBookk_date(rs.getString("book_date"));
+				b.setTravel_date(rs.getString("travel_date"));
+				b.setLocation(rs.getString("pickup_location"));
+				b.setStatus(rs.getString("status"));
+				b.setDesc(rs.getString("description"));
+				book.add(b);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return book;
+		
+	}
+	//booking confirmed admin
+	public String confirmBooking(int id) {
+		Statement st=null;
+		String status="";
+		int count=0;
+		try {
+			st=con.createStatement();
+			count=st.executeUpdate("update booking set status='Confirmed',remarks='Your Booking Confirmed' where booking_id='"+id+"';");
+			
+			if(count>0) {
+				status="success";
+			}
+			else {
+				status="failure";
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return status;
+	}
+	
+	//admin booking cancel
+	public String admincancelBooking(int book_id)
+	{
+		Statement st=null;
+		String status="";
+		int count=0;
+		try {
+			st=con.createStatement();
+			count=st.executeUpdate("update booking set status='Cancelled', remarks='Booking slot not available' where booking_id='"+book_id+"';");
 			
 			if(count>0) {
 				status="success";

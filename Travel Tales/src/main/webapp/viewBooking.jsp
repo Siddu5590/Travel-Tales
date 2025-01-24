@@ -43,7 +43,12 @@
 </style>
 </head>
 <body>
-<%@include file="header.jsp" %>
+<%@include file="adminHeader.jsp" %>
+
+<div class="container">
+  <div class="add-guide mt-4">
+    <a href="adminDash.jsp" class="btn btn-secondary">Back to Dashboard</a>
+  </div>
 <%if(session.getAttribute("uname")!=null) {%>
 <form class="search-bar" role="search">
   <div style="position: relative; width: 100%;">
@@ -54,10 +59,9 @@
 
 <div class="users">
 	<h3 class="bg-primary text-white">All Bookings</h3>
-	<table class="table table-bordered table-primary">
+	<table class="table p-2 table-bordered table-primary">
 		<thead>
 			<tr>
-				
 				<th>Name</th>
 				<th>Number</th>
 				<th>Email</th>
@@ -67,13 +71,12 @@
 				<th>Pickup Point</th>
 				<th>Travel Date</th>
 				<th>Status</th>
-				<th>Remark</th>
 				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody id="table">
 		<%bookingDAO book=new bookingDAO(session);
-		ArrayList<Booking> arr=book.viewBookings();
+		ArrayList<Booking> arr=book.getBookings();
 		
 		for(Booking b: arr) {%>
 			<tr>
@@ -87,12 +90,12 @@
 				<td><%=b.getLocation() %></td>
 				<td><%=b.getTravel_date() %></td>
 				<td><%=b.getStatus() %></td>
-				<td><%=b.getRemarks() %></td>
 				<td>
 				<%if(b.getStatus().equals("pending")){ %>
 				<form action="booking" method="post">
 				<input type="hidden" name="id" value="<%=b.getBooking_id() %>">
-				<button class="btn btn-danger btn-sm text-center" name="cancel" id="cancel">Cancel</button>
+				<button class="btn btn-danger btn-sm w-100 text-center" name="admincancel" id="cancel">Cancel</button>
+				<button class="btn btn-success btn-sm mt-1 w-100 text-center" name="confirm">Confirm</button>
 				</form>
 				<%} %>
 				</td>
