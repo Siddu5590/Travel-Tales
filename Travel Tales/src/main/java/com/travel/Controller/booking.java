@@ -1,6 +1,7 @@
 package com.travel.Controller;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -24,36 +25,55 @@ public class booking extends HttpServlet{
 			res.setContentType("text/html;charset=UTF-8");
 			HttpSession session=req.getSession();
 			bookingDAO b=new bookingDAO(session);
-			
+		     // add booking
 			if(req.getParameter("book")!=null)
 			{
+				int user_id=Integer.parseInt(req.getParameter("uid"));
 				String name=req.getParameter("name");
 				String ph=req.getParameter("phone");
 				String email=req.getParameter("email");
 			    String city=req.getParameter("city");
+			   // System.out.println(city);
 				int noPl=Integer.parseInt(req.getParameter("people"));
 				String date=req.getParameter("date");
 				Double cost=Double.parseDouble(req.getParameter("cost"));
 				String desc=req.getParameter("description");
 				String loc=req.getParameter("loc");
 				String bookDate=req.getParameter("book_date");
+				String id=req.getParameter("id");
 				
 				
-				String status=b.addBooking(name, ph, email, city, noPl, date, cost, desc, loc,bookDate);
+				String status=b.addBooking(user_id,name, ph, email, city, noPl, date, cost, desc, loc,bookDate);
 				
 				if(status.equals("success"))
 				{
-					session.setAttribute("status", "Booking Done");
-					RequestDispatcher rd=req.getRequestDispatcher("booking.jsp");
+					req.setAttribute("status", "Booking Done");
+					RequestDispatcher rd=req.getRequestDispatcher("booking.jsp?city_id="+id);
 					rd.forward(req, res);
 				}
 				else if(status.equals("failure"))
 				{
-					session.setAttribute("failure", "Booking Unsuccessfull due to some error");
-					RequestDispatcher rd=req.getRequestDispatcher("booking.jsp");
+					req.setAttribute("failure", "Booking Unsuccessfull due to some error");
+					RequestDispatcher rd=req.getRequestDispatcher("booking.jsp?city_id="+id);
 					rd.forward(req, res);
 				}
 				
+			}else if(req.getParameter("cancel")!=null)
+			{
+				int id=Integer.parseInt(req.getParameter("id"));
+				String status=b.cancelBooking(id);
+				if(status.equals("success"))
+				{
+					req.setAttribute("status", "Cancelled Successfully");
+					RequestDispatcher rd=req.getRequestDispatcher("status.jsp?city_id="+id);
+					rd.forward(req, res);
+				}
+				else if(status.equals("failure"))
+				{
+					req.setAttribute("failure", "Canceling Unsuccessfull due to some error");
+					RequestDispatcher rd=req.getRequestDispatcher("booking.jsp?city_id="+id);
+					rd.forward(req, res);
+				}
 			}
 			
 			

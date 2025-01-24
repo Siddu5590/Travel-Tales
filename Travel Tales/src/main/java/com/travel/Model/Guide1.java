@@ -157,26 +157,25 @@ public class Guide1 {
 		
 		return guide;
 	}
-	
-	public String editguide(int id) {
+
+
+	public String updateGuide(int id, String name, String phone, String email, int age, String city) {
 		Statement st=null;
 		String status="";
+		ResultSet rs=null;
 		int count=0;
-		
-		
 		try {
 			st=con.createStatement();
-			count=st.executeUpdate("update table guide set name= where guide_id='"+id+"';");
+      
 			
-			if(count>0)
-			{
+			count=st.executeUpdate("update guide set name='"+name+"',phone='"+phone+"',email='"+email+"',age='"+age+"',location='"+city+"' where guide_id='"+id+"'");
+			
+			if(count>0) {
 				status="success";
-				
 			}
 			else {
 				status="failure";
 			}
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -184,5 +183,6 @@ public class Guide1 {
 		
 		return status;
 	}
-
+	
+	
 }

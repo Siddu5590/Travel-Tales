@@ -116,7 +116,7 @@
                 <% if (session.getAttribute("uname") != null) { %>
                    
                     <li class="items nav-item">
-                        <a class="nav-link active" aria-current="page" href="#" style="color: white;">Booking Status</a>
+                        <a class="nav-link active" aria-current="page" href="status.jsp" style="color: white;">Booking Status</a>
                     </li>
                     <li class="items nav-item dropdown bg-transparent">
                         <a

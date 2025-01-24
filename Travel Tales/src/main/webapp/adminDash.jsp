@@ -132,7 +132,7 @@
                         <a href="viewUsers.jsp" class="nav-link">View Users</a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a href="page4.html" class="nav-link">Booking Status</a>
+                        <a href="viewBooking.jsp" class="nav-link">Booking Status</a>
                     </li>
                     <li class="nav-item mb-2">
                         <a href="viewReviews.jsp" class="nav-link">Feedback</a>
@@ -164,7 +164,7 @@
                     </a>
 
                     <!-- Card 2 -->
-                    <a href="page.jsp" class="card shadow" style="width: auto;">
+                    <a href="viewBooking.jsp" class="card shadow" style="width: auto;">
                         <div class="card-body">
                             <h5 class="card-title">Total Bookings</h5>
                         </div>
