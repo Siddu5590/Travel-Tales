@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import com.mysql.cj.protocol.Resultset;
+import com.travel.Entity.Packages;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -65,7 +69,109 @@ public class PackagesDAO {
     	
 		return status;
     	
+    }
+    public ArrayList<Packages> viewPackage()
+    {
+    	Statement st=null;
+    	ResultSet rs=null;
+    	ArrayList<Packages> pa=new ArrayList<>();
+    	try {
+			st=con.createStatement();
+			rs=st.executeQuery("select * from package");
+			while(rs.next())
+			{
+				Packages p=new Packages();
+				p.setPackage_id(rs.getInt("package_id"));
+				p.setPackage_name(rs.getString("package_name"));
+				p.setImage(rs.getString("image"));
+				p.setCost(rs.getDouble("cost"));
+				p.setNo_of_people(rs.getInt("no_people"));
+				p.setNo_days(rs.getInt("days"));
+				pa.add(p);
+				
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+		return pa;
+    	
+    }
+    public ArrayList<Packages> viewPackage(int id)
+    {
+    	Statement st=null;
+    	ResultSet rs=null;
+    	ArrayList<Packages> pa=new ArrayList<>();
+    	try {
+			st=con.createStatement();
+			rs=st.executeQuery("select * from package where package_id='"+id+"';");
+			while(rs.next())
+			{
+				Packages p=new Packages();
+				p.setPackage_id(rs.getInt("package_id"));
+				p.setPackage_name(rs.getString("package_name"));
+				p.setImage(rs.getString("image"));
+				p.setCost(rs.getDouble("cost"));
+				p.setNo_of_people(rs.getInt("no_people"));
+				p.setNo_days(rs.getInt("days"));
+				pa.add(p);
+				
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+		return pa;
     	
     }
 
+	public String updatePack(int id, String name, String image, Double cost, int no_people, int days) {
+		Statement st=null;
+		String status="";
+		try {
+			st=con.createStatement();
+			int a=st.executeUpdate("update package set package_name='"+name+"',image='"+image+"',cost='"+cost+"',no_people='"+no_people+"',days='"+days+"' where package_id='"+id+"';");
+			if(a>0)
+			{
+				status="success";
+				
+			}
+			else {
+				status="failure";
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return status;
+	}
+
+	public String deletePack(int id) {
+		Statement st=null;
+		int count=0;
+		String status="";
+		try {
+			st=con.createStatement();
+			count=st.executeUpdate("delete from package where package_id='"+id+"'");
+			if(count>0)
+			{
+				status="success";
+			}
+			else {
+				status="failure";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return status;
+	}
 }

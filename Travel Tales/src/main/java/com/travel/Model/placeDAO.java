@@ -110,12 +110,12 @@ public class placeDAO {
 				while(rs.next())
 				{
 					Place p=new Place();
-					p.setPlace_id(rs.getInt("PLACE_ID"));
-					p.setPlace_name(rs.getString("NAME"));
-					p.setLocation(rs.getString("LOCATION"));
-					p.setImage(rs.getString("IMAGE"));
-					p.setCity_id(rs.getInt("CITY_ID"));
-					p.setDescription(rs.getString("DESCRIPTION"));
+					p.getPlace_id();
+					p.getPlace_name();
+					p.getLocation();
+					p.getImage();
+					p.getCity_id();
+					p.getDescription();
 					place.add(p);
 					
 				}

@@ -114,9 +114,7 @@
                     <a class="nav-link active" aria-current="page" href="gallery.jsp" title="Gallery" style="color: white;"><i class="fas fa-images"></i></a>
                 </li>
                 <% if (session.getAttribute("uname") != null) { %>
-                    <li class="items nav-item">
-                        <a class="nav-link active" aria-current="page" href="place.jsp" style="color: white;">Places</a>
-                    </li>
+                   
                     <li class="items nav-item">
                         <a class="nav-link active" aria-current="page" href="#" style="color: white;">Booking Status</a>
                     </li>
@@ -133,7 +131,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item mb-2 bg-transparent" href="viewprofile.jsp"><i class="fas fa-user-circle"></i> View User</a></li>
-                            <li><a class="dropdown-item mb-2 bg-transparent" href="#"><i class="fas fa-key"></i> Reset Pin</a></li>
+                            <li><a class="dropdown-item mb-2 bg-transparent" href="resetPassword.jsp"><i class="fas fa-key"></i> Reset Pin</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <form action="signup" method="post">

@@ -22,13 +22,13 @@ public class bookingDAO {
 			e.printStackTrace();
 		}	
 	}
-	public String addBooking(String name,String ph,String email,String city,int noPl,String date,Double cost,String desc)
+	public String addBooking(String name,String ph,String email,String city,int noPl,String date,Double cost,String desc, String loc,String bookDate)
 	{
 		
 		PreparedStatement ps=null;
 		String status="";
 		try {
-			ps=(PreparedStatement) con.prepareStatement("insert into booking (booking_id,uname, phone, email,no_of_people, cost, city, book_date, status) values(0,?,?,?,?,?,?,?,?)");
+			ps=(PreparedStatement) con.prepareStatement("insert into booking (booking_id,uname, phone, email,no_of_people, cost, city, book_date,travel_date,pickup_location ,status,description) values(0,?,?,?,?,?,?,?,?,?,?,?)");
 			ps.setString(1,name);
 			ps.setString(2,ph);
 			ps.setString(3,email);
@@ -36,8 +36,11 @@ public class bookingDAO {
 			ps.setDouble(5,cost);
 			//System.out.println(city);
 			ps.setString(6,city);
-			ps.setString(7,date);
-			ps.setString(8,"pending");
+			ps.setString(7,bookDate);
+			ps.setString(8,date);
+			ps.setString(9,loc);
+			ps.setString(10,"pending");
+			ps.setString(11,desc);
 			int a=ps.executeUpdate();
 			if(a>0)
 				status="success";

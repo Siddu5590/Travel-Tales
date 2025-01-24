@@ -30,14 +30,16 @@ public class booking extends HttpServlet{
 				String name=req.getParameter("name");
 				String ph=req.getParameter("phone");
 				String email=req.getParameter("email");
-				String city=req.getParameter("city");
-				int noPl=Integer.parseInt(req.getParameter("numpeople"));
+			    String city=req.getParameter("city");
+				int noPl=Integer.parseInt(req.getParameter("people"));
 				String date=req.getParameter("date");
 				Double cost=Double.parseDouble(req.getParameter("cost"));
 				String desc=req.getParameter("description");
+				String loc=req.getParameter("loc");
+				String bookDate=req.getParameter("book_date");
 				
 				
-				String status=b.addBooking(name, ph, email, city, noPl, date, cost, desc);
+				String status=b.addBooking(name, ph, email, city, noPl, date, cost, desc, loc,bookDate);
 				
 				if(status.equals("success"))
 				{

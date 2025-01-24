@@ -88,11 +88,13 @@ public class Register {
 				c.setC_name(rs.getString("name"));
 				c.setC_mail(rs.getString("email"));
 				c.setC_phone(rs.getString("phone"));
+				c.setPassword(rs.getString("password"));
 
 				se.setAttribute("uname", c.getC_name());//key value jsp
 				se.setAttribute("email", c.getC_mail());
 				se.setAttribute("phone", c.getC_phone());
 				se.setAttribute("id", c.getCustomer_id());
+				
 
 				status1 = "success";
 
@@ -216,6 +218,51 @@ public class Register {
 		}
 		
 		return status;
+	}
+
+	
+
+	public String getPassword(String email, String oldpass) {
+		String status = "";
+	       PreparedStatement ps = null;
+	       ResultSet rs = null;
+	       String query = "select * from customer where email=? and password=?";
+	       try {
+	           ps = con.prepareStatement(query);
+	           ps.setString(1, email);
+	           ps.setString(2, oldpass);
+	           rs = ps.executeQuery();
+	           if (rs.next()) {
+	               status = "success";
+	           } else {
+	               status = "failed";
+	           }
+	       } catch (SQLException e) {
+	           e.printStackTrace();
+	       }
+	       //System.out.println(status);
+	       return status;
+	}
+
+	public String resetPass(String email, String newpass) {
+		String status = "";
+	       PreparedStatement ps = null;
+	       boolean res;
+	       try {
+	           ps = con.prepareStatement("update customer set password =  ? where  email =  ?");
+	           ps.setString(1, newpass);
+	           ps.setString(2, email);
+	           int rc = ps.executeUpdate();
+	           if (rc > 0) {
+	               status = "success";
+	           } else {
+	               status = "failed";
+	           }
+	       } catch (SQLException e) {
+	// TODO Auto-generated catch block
+	           e.printStackTrace();
+	       }
+	       return status;
 	}
 }
 	
