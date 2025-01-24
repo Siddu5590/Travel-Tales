@@ -83,9 +83,8 @@
   <div class="info-box">
     <h3>City Information:</h3>
     <% 
-      int id = Integer.parseInt(request.getParameter("city_id"));
       cityDAO c = new cityDAO(session);
-      ArrayList<City> al = c.viewCity(id);
+      ArrayList<City> al = c.viewCity(Integer.parseInt(request.getParameter("city_id")));
       for (City ci : al) { %>
       <p><strong>City:</strong> <%= ci.getCity_name() %></p>
       <p><strong>Cost:</strong> <%= ci.getCost() %></p>
