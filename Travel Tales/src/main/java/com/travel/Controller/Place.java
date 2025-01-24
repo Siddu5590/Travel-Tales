@@ -76,13 +76,19 @@ public class Place extends HttpServlet
 				}
 				
 			}
+			//update place
 			else if(req.getParameter("updatePlace")!=null) {
-				int id=Integer.parseInt(req.getParameter("pid"));
+				int id=Integer.parseInt(req.getParameter("id"));
+				String name=req.getParameter("name");
+				String image=req.getParameter("image");
+				String city=req.getParameter("city");
+				String location=req.getParameter("loc");
+				String desc=req.getParameter("description");
 				
-				String status=p.editPlace(id);
+				String status=p.editPlace(id,name,image,city,location,desc);
 				if(status.equals("success")) {
 					req.setAttribute("status", "Place edited Successfully...");
-					RequestDispatcher rd=req.getRequestDispatcher("updateplace.jsp");
+					RequestDispatcher rd=req.getRequestDispatcher("updateplace.jsp?place_id="+id);
 					rd.forward(req, res);
 					
 				}
@@ -90,13 +96,11 @@ public class Place extends HttpServlet
 				else if(status.equals("failure"))
 				{
 					req.setAttribute("failure", "Failed to edit the Place...");
-					RequestDispatcher rd=req.getRequestDispatcher("updateplace.jsp");
+					RequestDispatcher rd=req.getRequestDispatcher("updateplace.jsp?place_id="+id);
 					rd.forward(req, res);
 				}
 				
 			}
-				
-			
 			
 			
 		}
