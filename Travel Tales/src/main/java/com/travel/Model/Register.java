@@ -81,7 +81,7 @@ public class Register {
 			ResultSet rs = null;
 			st = con.createStatement();
 			rs = st.executeQuery(query);
-			boolean b = rs.next();
+			boolean b = rs.next();//print
 			if (b == true) {
 				Customer c = new Customer();
 				c.setCustomer_id(rs.getInt("id"));
@@ -90,7 +90,7 @@ public class Register {
 				c.setC_phone(rs.getString("phone"));
 				c.setPassword(rs.getString("password"));
 
-				se.setAttribute("uname", c.getC_name());
+				se.setAttribute("uname", c.getC_name());//key value jsp
 				se.setAttribute("email", c.getC_mail());
 				se.setAttribute("phone", c.getC_phone());
 				se.setAttribute("id", c.getCustomer_id());

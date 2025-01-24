@@ -244,6 +244,21 @@
         </button>
     </div>
 
+
+    
+<!-- search bar -->
+    <form class="d-flex search-bar" role="search">
+
+
+
+  <center><form class="search-bar" role="search">
+
+  <div style="position: relative; width: 100%;">
+    <input class="form-control" id="search" type="text" placeholder="Search city here.." style="padding-right: 35px;">
+    <i class="fa fa-search" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer; color: gray;"></i>
+  </div>
+</form></center>
+
     <div class="view-product" id="city">
     
     <div class="view">
@@ -253,7 +268,7 @@
         
      <%cityDAO city=new cityDAO(session);
      ArrayList<City> al=city.viewCity();
-     Iterator<City> it=al.iterator();
+     Iterator<City> it=al.iterator();   //to create iterator reference--by using any of the collection object reference
      int count=1;
      while(it.hasNext()&& count<=4) {
     	 City c=it.next();%>
@@ -344,5 +359,33 @@
     
     <%@include file="footer.jsp" %>
     
+<<<<<<< HEAD
+    <script>
+    $(document).ready(function () {
+    	  $("#search").on("keyup", function () {
+    	    var value = $(this).val().toLowerCase();
+    	    var hasVisible = false;
+
+    	    $("#city #city-name").filter(function () {
+    	      var isVisible = $(this).text().toLowerCase().indexOf(value) > -1;
+    	      $(this).toggle(isVisible);//hide  unwanted data
+    	      if (isVisible) {
+    	        hasVisible = true;
+    	      }
+    	    });
+
+    	    // Check if any articles are visible
+    	    if (!hasVisible) {
+    	      $("#no-results").show(); // Show "Data not found" message
+    	    } else {
+    	      $("#no-results").hide(); // Hide message if results are found
+    	    }
+    	  });
+    	});
+
+
+</script>
+=======
+>>>>>>> branch 'branch1' of https://github.com/Siddu5590/Travel-Tales.git
 </body>
 </html>

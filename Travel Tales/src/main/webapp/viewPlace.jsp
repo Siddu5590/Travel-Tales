@@ -93,11 +93,9 @@
 
     <div class="view-product">
         
-     <%placeDAO place=new placeDAO(session);
-     ArrayList<Place> al=place.viewPlace();
-     Iterator<Place> it=al.iterator();
-     while(it.hasNext()) {
-    	 Place p=it.next();%>
+     <%placeDAO pa=new placeDAO(session);
+     ArrayList<Place> al=pa.viewPlace();
+     for(Place p:al){%>
         
         <div class="product-container">
        
@@ -109,7 +107,9 @@
                 <div class="table-actions">
                         <form action="Place" method="post" style="display:inline;">
                             <input type="hidden" name="pid" value="<%= p.getPlace_id()%>">
-                            <button type="submit" class="btn btn-danger" name="delete" value="delete">Delete</button>
+                            <button type="submit" class="btn btn-danger" name="delete" value="delete"><i class="fa-solid fa-trash"></i> Delete</button>
+                                <a href="updateplace.jsp?place_id=<%=p.getPlace_id()%>" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                            
                         </form>
                     </div>    
             </div>

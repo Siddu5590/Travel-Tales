@@ -110,7 +110,10 @@
                   <td>
                     <form action="guide" method="post">
                       <input type="hidden" name="id" value="<%= c.getGuide_id() %>">
-                      <button class="btn btn-danger btn-sm" name="deleteGuide">Delete</button>
+                      <button class="btn btn-danger btn-sm" name="deleteGuide"><i class="fa-solid fa-trash"></i> Delete</button>
+                      <a href="updateguide.jsp?guide_id=<%=c.getGuide_id()%>" class="btn btn-primary btn-sm" name="edit" value="edit"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                      
+                      
                     </form>
                   </td>
                 </tr>
