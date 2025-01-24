@@ -31,6 +31,7 @@ public class booking extends HttpServlet{
 				String ph=req.getParameter("phone");
 				String email=req.getParameter("email");
 			    String city=req.getParameter("city");
+			    System.out.println(city);
 				int noPl=Integer.parseInt(req.getParameter("people"));
 				String date=req.getParameter("date");
 				Double cost=Double.parseDouble(req.getParameter("cost"));
