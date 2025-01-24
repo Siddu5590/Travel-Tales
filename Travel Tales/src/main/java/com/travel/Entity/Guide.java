@@ -8,6 +8,7 @@ public class Guide {
 	private String guide_email;
 	private String guide_age;
 	private String location;
+	private String pass;
 	
 	
 	public String getLocation() {
@@ -45,6 +46,12 @@ public class Guide {
 	}
 	public void setGuide_age(String guide_age) {
 		this.guide_age = guide_age;
+	}
+	public String getPass() {
+		return pass;
+	}
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 	
 	
