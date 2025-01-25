@@ -311,7 +311,7 @@
                 <p class="card-text"><strong>No_of_Days:</strong> <%= p.getNo_days() %></p>
          
                 <%if(session.getAttribute("uname")!=null){ %>
-    	<a href="#" class="btn btn-success mt-3">Book Now</a>
+    	<a href="packageBooking.jsp?pack_id=<%=p.getPackage_id() %>" class="btn btn-success mt-3">Book Now</a>
     	<%} else { %>
     	<a href="login.jsp" class="btn btn-success mt-3">Book Now</a>
     	<%} %>  
@@ -336,7 +336,7 @@
                 <p class="card-text"><strong>No_of_Days:</strong> <%= p.getNo_days() %></p>
          
                 <%if(session.getAttribute("uname")!=null){ %>
-    	<a href="#" class="btn btn-success mt-3">Book Now</a>
+    	<a href="packageBooking.jsp?pack_id=<%=p.getPackage_id() %>" class="btn btn-success mt-3">Book Now</a>
     	<%} else { %>
     	<a href="login.jsp" class="btn btn-success mt-3">Book Now</a>
     	<%} %>  
@@ -361,7 +361,7 @@
                 <p class="card-text"><strong>No_of_Days:</strong> <%= p.getNo_days() %></p>
          
                 <%if(session.getAttribute("uname")!=null){ %>
-    	<a href="#" class="btn btn-success mt-3">Book Now</a>
+    	<a href="packageBooking.jsp?pack_id=<%=p.getPackage_id() %>" class="btn btn-success mt-3">Book Now</a>
     	<%} else { %>
     	<a href="login.jsp" class="btn btn-success mt-3">Book Now</a>
     	<%} %>  

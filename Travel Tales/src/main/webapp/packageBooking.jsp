@@ -1,3 +1,5 @@
+<%@page import="com.travel.Entity.Packages"%>
+<%@page import="com.travel.Model.PackagesDAO"%>
 <%@page import="com.travel.Entity.City"%>
 <%@page import="com.travel.Model.cityDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -87,20 +89,20 @@
   <div class="info-box">
     <h3>City Information:</h3>
     <%
-      String cityIdParam = request.getParameter("city_id");
-      if (cityIdParam != null && !cityIdParam.isEmpty()) {
+      String packageID = request.getParameter("pack_id");
+      if (packageID != null && !packageID.isEmpty()) {
         try {
-          int cityId = Integer.parseInt(cityIdParam);
-          cityDAO c = new cityDAO(session);
-          ArrayList<City> al = c.viewCity(cityId);
+          int packId = Integer.parseInt(packageID);
+          PackagesDAO p = new PackagesDAO(session);
+          ArrayList<Packages> al = p.viewPackage(packId);
 
           if (al.isEmpty()) {%>
             <p>No information found for the selected city.</p>
           <%} else {
-            for (City ci : al) {%>
-            <center><img src="<%=ci.getImage()%>" width="300px" height="200px" class="rounded">
-            <p><strong>City:</strong> <%= ci.getCity_name() %></p>
-            <p><strong>Cost: &#8377; </strong> <span id="cost"><%= ci.getCost() %></span></p>
+            for (Packages pa : al) {%>
+            <center><img src="<%=pa.getImage()%>" width="300px" height="200px" class="rounded">
+            <p><strong>City:</strong> <%= pa.getPackage_name() %></p>
+            <p><strong>Cost: &#8377; </strong> <span id="cost"><%= pa.getCost() %></span></p>
             <p><strong>Total People:</strong> <span id="totalPeople">1</span></p></center>
           <%}
           }
@@ -131,7 +133,7 @@
       <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email ID" required>
 
       <label for="people">Number of People:</label>
-      <input type="number" name="people" class="form-control" id="people" value="1" min="1" max="12" required>
+      <input type="number" name="people" class="form-control" id="people" value="1" min="1" max="25" required>
 
       <label for="travelDate">Travel Date:</label>
       <input type="date" name="date" class="form-control" id="travelDate" required>
@@ -142,16 +144,16 @@
       <label for="description">Description (Optional):</label>
       <textarea class="form-control form-textarea" id="description" name="description" rows="3" placeholder="Enter Additional Details"></textarea>
 
-      <% if (cityIdParam != null && !cityIdParam.isEmpty()) {
+      <% if (packageID != null && !packageID.isEmpty()) {
           try {
-            int cityId = Integer.parseInt(cityIdParam);
-            cityDAO c = new cityDAO(session);
-            ArrayList<City> al = c.viewCity(cityId);
-            for (City ci : al) {
+        	  int packId = Integer.parseInt(packageID);
+              PackagesDAO p = new PackagesDAO(session);
+              ArrayList<Packages> al = p.viewPackage(packId);
+            for (Packages pi : al) {
       %>
-          <input type="hidden" name="city" value="<%= ci.getCity_name() %>" />
-          <input type="hidden" name="cost" id="initialCost" value="<%= ci.getCost() %>" />
-          <input type="hidden" name="id" value="<%=ci.getCity_id() %>"/>
+          <input type="hidden" name="city" value="<%=pi.getPackage_name()  %>" />
+          <input type="hidden" name="cost" id="initialCost" value="<%= pi.getCost() %>" />
+          <input type="hidden" name="id" value="<%=pi.getPackage_id() %>"/>
           <input type="hidden" name="uid" value="<%=session.getAttribute("id") %>"/>
           
       <% } } catch (NumberFormatException e) { } } %>

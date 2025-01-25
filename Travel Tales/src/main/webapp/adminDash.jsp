@@ -1,3 +1,5 @@
+<%@page import="com.travel.Entity.Booking"%>
+<%@page import="com.travel.Model.bookingDAO"%>
 <%@page import="com.travel.Entity.Packages"%>
 <%@page import="com.travel.Model.PackagesDAO"%>
 <%@page import="com.travel.Entity.Reviews"%>
@@ -25,6 +27,9 @@
 	ArrayList<Reviews> re=fe.viewReview();
 	PackagesDAO pa=new PackagesDAO(session);
 	ArrayList<Packages> pac=pa.viewPackage();
+	bookingDAO b=new bookingDAO(session);
+	ArrayList<Booking> book=b.getBookings();
+	ArrayList<Booking> packBook=b.getPackageBookings();
 	
 	%>
 <!DOCTYPE html>
@@ -32,7 +37,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin</title>
-     <link rel="icon" href='assets/logo.jpg'>
+    <link rel="icon" href='assets/logo.jpg'>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -70,48 +75,65 @@
 
         main {
             background-image: url('assets/Tours.jpg'); /* Replace with your image URL */
-            background-size: cover; /* Make the image cover the entire main area */
-            background-repeat: no-repeat; /* Prevent repeating */
-            background-position: center; /* Center the image */
-            min-height: 100vh; /* Ensure it fits the viewport height */
-            color: white; /* Adjust text color for readability */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            min-height: 100vh;
+            color: white;
         }
 
-        .card-title {
-            text-align: center;
-        }
-
+        /* Cards */
         .card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 200px; /* Set consistent width */
+            height: 200px; /* Set consistent height */
+            text-align: center;
             margin: 15px;
+            text-decoration:none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* Media Queries for responsiveness */
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            
+        }
+        .title{
+        	margin-top: 20px;
+        }
+
+        /* Responsive grid layout */
+        .card-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Responsive adjustments */
         @media (max-width: 768px) {
             .container-fluid {
                 margin-left: 0;
             }
+
             .sidebar {
                 width: 100%;
                 position: relative;
-                margin-top: 0;
             }
+
             .sidebar a {
                 text-align: center;
             }
-        }
 
-        .card-columns {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
+            main {
+                padding: 15px;
+            }
         }
-
     </style>
 </head>
 <body>
@@ -120,119 +142,100 @@
         <div class="row">
             <!-- Sidebar -->
             <nav class="col-md-3 col-lg-2 sidebar shadow-lg p-3 bg-body-tertiary">
-                <h5 class="mb-3">DashBoard</h5>
+                <h5 class="mb-3">Dashboard</h5>
                 <ul class="nav flex-column">
-                    <li class="nav-item mb-2">
-                        <a href="viewCity.jsp" class="nav-link">Cities</a>
-                    </li>
-                    <li class="nav-item mb-2">
-                        <a href="viewPlace.jsp" class="nav-link">Places</a>
-                    </li>
-                    <li class="nav-item mb-2">
-                        <a href="viewUsers.jsp" class="nav-link">View Users</a>
-                    </li>
-                    <li class="nav-item mb-2">
-                        <a href="viewBooking.jsp" class="nav-link">Booking Status</a>
-                    </li>
-                    <li class="nav-item mb-2">
-                        <a href="viewReviews.jsp" class="nav-link">Feedback</a>
-                    </li>
-                    <li class="nav-item mb-2">
-                        <a href="viewGuide.jsp" class="nav-link">Guides</a>
-                    </li>
-                    <li class="nav-item mb-2">
-                        <a href="viewPackage.jsp" class="nav-link">View Packages</a>
-                    </li>
+                    <li class="nav-item mb-2"><a href="viewCity.jsp" class="nav-link">Cities</a></li>
+                    <li class="nav-item mb-2"><a href="viewPlace.jsp" class="nav-link">Places</a></li>
+                    <li class="nav-item mb-2"><a href="viewUsers.jsp" class="nav-link">View Users</a></li>
+                    <li class="nav-item mb-2"><a href="viewBooking.jsp" class="nav-link">Booking Status</a></li>
+                    <li class="nav-item mb-2"><a href="viewPackageBooking.jsp" class="nav-link">Package Bookings</a></li>
+                    <li class="nav-item mb-2"><a href="viewReviews.jsp" class="nav-link">Feedback</a></li>
+                    <li class="nav-item mb-2"><a href="viewGuide.jsp" class="nav-link">Guides</a></li>
+                    <li class="nav-item mb-2"><a href="viewPackage.jsp" class="nav-link">View Packages</a></li>
                 </ul>
             </nav>
 
             <%if(session.getAttribute("uname")!=null){ %>
             <!-- Main Content -->
             <main class="col-md-9 col-lg-10">
-            
-            <div class="container mt-5">
-                <div class="d-flex flex-wrap justify-content-center">
-                    <!-- Card 1 -->
-                    <a href="viewCity.jsp" class="card shadow" style="width: auto;">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Cities</h5>
-                        </div>
-                        <hr class="m-0">
-                        <div class="card-body">
-                            <h5 class="card-title"><%=city.size() %></h5>
-                        </div>
-                    </a>
+                <div class="container mt-5">
+                    <div class="card-columns">
+                        <!-- Card 1 -->
+                        <a href="viewCity.jsp" class="card shadow">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Cities</h5>
+                                <hr class="m-0">
+                                <h5 class="title card-title"><%=city.size() %></h5>
+                            </div>
+                        </a>
 
-                    <!-- Card 2 -->
-                    <a href="viewBooking.jsp" class="card shadow" style="width: auto;">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Bookings</h5>
-                        </div>
-                        <hr class="m-0">
-                        <div class="card-body">
-                            <h5 class="card-title">0</h5>
-                        </div>
-                    </a>
+                        <!-- Card 2 -->
+                        <a href="viewBooking.jsp" class="card shadow">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Bookings</h5>
+                                <hr class="m-0">
+                                <h5 class="title card-title"><%=book.size()%></h5>
+                            </div>
+                        </a>
 
-                    <!-- Card 3 -->
-                    <a href="viewGuide.jsp" class="card shadow" style="width: auto;">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Guides</h5>
-                        </div>
-                        <hr class="m-0">
-                        <div class="card-body">
-                            <h5 class="card-title"><%=guide.size() %></h5>
-                        </div>
-                    </a>
+                        <!-- Card 3 -->
+                        <a href="viewPackageBooking.jsp" class="card shadow">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Package Bookings</h5>
+                                <hr class="m-0">
+                                <h5 class="title card-title"><%=packBook.size()%></h5>
+                            </div>
+                        </a>
 
-                    <!-- Card 4 -->
-                    <a href="viewUsers.jsp" class="card shadow" style="width: auto;">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Users</h5>
-                        </div>
-                        <hr class="m-0">
-                        <div class="card-body">
-                            <h5 class="card-title"><%=customer.size() %></h5>
-                        </div>
-                    </a>
+                        <!-- Card 4 -->
+                        <a href="viewGuide.jsp" class="card shadow">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Guides</h5>
+                                <hr class="m-0">
+                                <h5 class="title card-title"><%=guide.size() %></h5>
+                            </div>
+                        </a>
 
-                    <!-- Card 5 -->
-                    <a href="viewPlace.jsp" class="card shadow" style="width: auto;">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Places</h5>
-                        </div>
-                        <hr class="m-0">
-                        <div class="card-body">
-                            <h5 class="card-title"><%= place.size()%></h5>
-                        </div>
-                    </a>
+                        <!-- Card 5 -->
+                        <a href="viewUsers.jsp" class="card shadow">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Users</h5>
+                                <hr class="m-0">
+                                <h5 class="title card-title"><%=customer.size() %></h5>
+                            </div>
+                        </a>
 
-                    <!-- Card 6 -->
-                    <a href="page.jsp" class="card shadow" style="width: auto;">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Feedbacks</h5>
-                        </div>
-                        <hr class="m-0">
-                        <div class="card-body">
-                            <h5 class="card-title"><%=re.size() %></h5>
-                        </div>
-                    </a>
-                    
-                    <a href="addPackages.jsp" class="card shadow" style="width: auto;">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Packages</h5>
-                        </div>
-                        <hr class="m-0">
-                        <div class="card-body">
-                            <h5 class="card-title"><%=pac.size() %></h5>
-                        </div>
-                    </a>
+                        <!-- Card 6 -->
+                        <a href="viewPlace.jsp" class="card shadow">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Places</h5>
+                                <hr class="m-0">
+                                <h5 class="title card-title"><%=place.size()%></h5>
+                            </div>
+                        </a>
+
+                        <!-- Card 7 -->
+                        <a href="page.jsp" class="card shadow">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Feedbacks</h5>
+                                <hr class="m-0">
+                                <h5 class="title card-title"><%=re.size() %></h5>
+                            </div>
+                        </a>
+
+                        <!-- Card 8 -->
+                        <a href="viewPackage.jsp" class="card shadow">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Packages</h5>
+                                <hr class="m-0">
+                                <h5 class="title card-title"><%=pac.size() %></h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </div>
-
             </main>
             <%} else { %>
-                <h3 class="text-center position-absolute top-25 end-0 mt-5">Please Login now to access your profile...</h3>
+            <h3 class="text-center position-absolute top-25 end-0 mt-5">Please Login to access your profile...</h3>
             <%} %>
         </div>
     </div>

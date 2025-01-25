@@ -45,6 +45,7 @@
 <body>
 <%@include file="guideHeader.jsp" %>
 <%if(session.getAttribute("uname")!=null) {%>
+
 <form class="search-bar" role="search">
   <div style="position: relative; width: 100%;">
     <input class="form-control" id="search" type="text" placeholder="Search User here.." style="padding-right: 35px;">

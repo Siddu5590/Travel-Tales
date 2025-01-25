@@ -76,7 +76,7 @@
 		</thead>
 		<tbody id="table">
 		<%bookingDAO book=new bookingDAO(session);
-		ArrayList<Booking> arr=book.getBookings();
+		ArrayList<Booking> arr=book.getPackageBookings();
 		
 		for(Booking b: arr) {%>
 			<tr>
@@ -95,6 +95,7 @@
 				<form action="booking" method="post">
 				<input type="hidden" name="id" value="<%=b.getBooking_id() %>">
 				<button class="btn btn-danger btn-sm w-100 text-center" name="admincancel" id="cancel">Cancel</button>
+				<button class="btn btn-success btn-sm mt-1 w-100 text-center" name="confirm">Confirm</button>
 				</form>
 				<%} %>
 				</td>
