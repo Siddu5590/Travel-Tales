@@ -209,7 +209,7 @@ public class guideDAO {
 		String status="";
 		PreparedStatement ps=null;
 		int count=0,count1=0;
-		String date="";
+		String date="Available";
 		try {
 			st=con.createStatement();
 			count=st.executeUpdate("update booking set status='Confirmed',remarks='Guide Accepted the Booking' where booking_id='"+id+"';");
@@ -220,17 +220,20 @@ public class guideDAO {
 			{
 				if(rs1.getString("slot_time").equals(rs.getString("travel_date")))
 				{
-					
+					System.out.println("Success");
+					date="Unavailable";
+					break;
 				}
 			}
 			
 			ps=con.prepareStatement("insert into guide_avail values(0,?,?,?,?)");
 			ps.setString(1,rs.getString("travel_date"));
 			ps.setString(2,date );
-			
 			ps.setInt(3, g.getGuide_id());
 			ps.setInt(4, id);
 			ps.execute();
+			
+			
 			
 			if(count>0) {
 				status="success";
@@ -245,7 +248,7 @@ public class guideDAO {
 		}
 		
 		return status;
-		
 	}
+	
 }
 	

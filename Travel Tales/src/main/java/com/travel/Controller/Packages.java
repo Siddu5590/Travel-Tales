@@ -31,13 +31,13 @@ public class Packages extends HttpServlet {
 			String name=req.getParameter("name");
 			String image=req.getParameter("image");
 			String price=req.getParameter("cost");
-			String numpeople=req.getParameter("no_people");
+//			String numpeople=req.getParameter("no_people");
 			String numdays=req.getParameter("days");
 			
 			Double cost=Double.parseDouble(price);
-			int no_people=Integer.parseInt(numpeople);
+			//int no_people=Integer.parseInt(numpeople);
 			int days=Integer.parseInt(numdays);
-			String status=pack.addPackage(name, image, cost, no_people, days);
+			String status=pack.addPackage(name, image, cost,  days);
 			
 			
 			if(status.equals("existed"))
@@ -63,14 +63,14 @@ public class Packages extends HttpServlet {
 			String name=req.getParameter("name");
 			String image=req.getParameter("image");
 			String price=req.getParameter("cost");
-			String numpeople=req.getParameter("no_people");
+//			String numpeople=req.getParameter("no_people");
 			String numdays=req.getParameter("days");
 			
 			Double cost=Double.parseDouble(price);
-			int no_people=Integer.parseInt(numpeople);
+//			int no_people=Integer.parseInt(numpeople);
 			int days=Integer.parseInt(numdays);
 			
-			String status=pack.updatePack(id,name,image,cost,no_people,days);
+			String status=pack.updatePack(id,name,image,cost,days);
 			if(status.equals("success")) {
 				req.setAttribute("status", "Package Updated Successfully...");
 				RequestDispatcher rd=req.getRequestDispatcher("editpackage.jsp?p_id="+id);

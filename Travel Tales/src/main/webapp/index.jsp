@@ -293,7 +293,7 @@
      ArrayList<Packages> all=pa.viewPackage();
      Iterator<Packages> itr=all.iterator();
      //nothe package
-     itr.hasNext(); {
+     if(itr.hasNext()) {
     	 Packages p=itr.next();%>
     	 
     	 
@@ -307,7 +307,7 @@
                 </div></a>
                 <p class="card-text"><strong>Package Name:</strong> <%= p.getPackage_name() %></p>
                 <p class="card-text"><strong>Cost:</strong> <%= p.getCost() %></p>
-                <p class="card-text"><strong>Number of peoples:</strong> <%= p.getNo_of_people() %></p>
+                
                 <p class="card-text"><strong>No_of_Days:</strong> <%= p.getNo_days() %></p>
          
                 <%if(session.getAttribute("uname")!=null){ %>
@@ -321,7 +321,7 @@
     	<%} %>
     	
     	 <!-- South Karnataka -->
-    	<%itr.hasNext(); {
+    	<%if(itr.hasNext()) {
     	 Packages p=itr.next();%>
         <div class="product-container">
        
@@ -332,7 +332,7 @@
                 </div></a>
                 <p class="card-text"><strong>Package Name:</strong> <%= p.getPackage_name() %></p>
                 <p class="card-text"><strong>Cost:</strong> <%= p.getCost() %></p>
-                <p class="card-text"><strong>Number of peoples:</strong> <%= p.getNo_of_people() %></p>
+                
                 <p class="card-text"><strong>No_of_Days:</strong> <%= p.getNo_days() %></p>
          
                 <%if(session.getAttribute("uname")!=null){ %>
@@ -347,7 +347,7 @@
     	
     	
     	 <!-- Overall Karnataka -->
-    	<% itr.hasNext(); {
+    	<% if(itr.hasNext()) {
     	 Packages p=itr.next();%>
         <div class="product-container">
     	   <div class="product-card ">
@@ -357,7 +357,7 @@
                 </div></a>
                 <p class="card-text"><strong>Package Name:</strong> <%= p.getPackage_name() %></p>
                 <p class="card-text"><strong>Cost:</strong> <%= p.getCost() %></p>
-                <p class="card-text"><strong>Number of peoples:</strong> <%= p.getNo_of_people() %></p>
+                
                 <p class="card-text"><strong>No_of_Days:</strong> <%= p.getNo_days() %></p>
          
                 <%if(session.getAttribute("uname")!=null){ %>
