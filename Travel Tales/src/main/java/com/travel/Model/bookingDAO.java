@@ -120,7 +120,11 @@ public class bookingDAO {
 		
 		return status;
 	}
+<<<<<<< HEAD
 	
+=======
+	//te get all bookings
+>>>>>>> branch 'subbranch' of https://github.com/Siddu5590/Travel-Tales.git
 	public ArrayList<Booking>  getBookings()
 	{
 		PreparedStatement ps=null;
