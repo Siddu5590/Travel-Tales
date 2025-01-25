@@ -119,7 +119,7 @@
                             <i class="fa-solid fa-user"></i> <%= session.getAttribute("uname") %>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item mb-2 bg-transparent" href="resetPassword.jsp"><i class="fas fa-key"></i> Reset Pin</a></li>
+                            <li><a class="dropdown-item mb-2 bg-transparent" href="guideResetPassword.jsp"><i class="fas fa-key"></i> Reset Pin</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <form action="signup" method="post">
