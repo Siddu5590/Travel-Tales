@@ -49,6 +49,7 @@ public class Guide extends HttpServlet {
 			{
 				int book_id=Integer.parseInt(req.getParameter("id"));
 				
+				
 				String status=g.acceptBooking(book_id);
 				if (status.equals("success")) {
 					req.setAttribute("status", "Booking Accepted");

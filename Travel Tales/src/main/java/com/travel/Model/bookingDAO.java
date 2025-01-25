@@ -119,6 +119,7 @@ public class bookingDAO {
 		
 		return status;
 	}
+	//te get all bookings
 	public ArrayList<Booking>  getBookings()
 	{
 		PreparedStatement ps=null;

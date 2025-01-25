@@ -17,6 +17,7 @@ public class guideDAO {
 
 	private Connection con;
 	HttpSession se;
+	Guide g=new Guide();
 
 	public guideDAO(HttpSession session) {
 		String url = "jdbc:mysql://localhost:3306/travel_tales";
@@ -49,7 +50,7 @@ public class guideDAO {
 			boolean b = rs.next();//print
 			
 			if (b == true) {
-				Guide g=new Guide();
+				
 				g.setGuide_id(rs.getInt("guide_id"));
 				g.setGuide_name(rs.getString("name"));
 				g.setLocation(rs.getString("location"));
@@ -206,10 +207,30 @@ public class guideDAO {
 	{
 		Statement st=null;
 		String status="";
-		int count=0;
+		PreparedStatement ps=null;
+		int count=0,count1=0;
+		String date="";
 		try {
 			st=con.createStatement();
 			count=st.executeUpdate("update booking set status='Confirmed',remarks='Guide Accepted the Booking' where booking_id='"+id+"';");
+			ResultSet rs=st.executeQuery("select travel_date from booking where booking_id='"+id+"'");
+			ResultSet rs1=st.executeQuery("select avail from guide_avail where guide_id='"+g.getGuide_id()+"'");
+			rs.next();
+			while(rs1.next())
+			{
+				if(rs1.getString("slot_time").equals(rs.getString("travel_date")))
+				{
+					
+				}
+			}
+			
+			ps=con.prepareStatement("insert into guide_avail values(0,?,?,?,?)");
+			ps.setString(1,rs.getString("travel_date"));
+			ps.setString(2,date );
+			
+			ps.setInt(3, g.getGuide_id());
+			ps.setInt(4, id);
+			ps.execute();
 			
 			if(count>0) {
 				status="success";
