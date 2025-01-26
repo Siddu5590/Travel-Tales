@@ -1,3 +1,4 @@
+<%@page import="com.travel.Entity.Guide_Avail"%>
 <%@page import="com.travel.Entity.Booking"%>
 <%@page import="com.travel.Model.guideDAO"%>
 <%@page import="com.travel.Entity.Guide"%>
@@ -73,14 +74,17 @@
 		</thead>
 		<tbody id="table">
 		<%guideDAO book=new guideDAO(session);
-		ArrayList<Booking> arr=book.viewBookings();
+		
+		ArrayList<Guide_Avail> g=book.getAvail();
 		int sl_no=1;
-		for(Booking b: arr) {%>
+		for(Guide_Avail g1: g) {%>
 			<tr>
 				<td><%=sl_no %></td>
-				<td><%=b.getName() %></td>
-				<td><%=b.getPhone() %></td>
-				<td><%=b.getCity() %></td>
+				<td><%=g1.getBName() %></td>
+				<td><%=g1.getbNumber()%></td>
+				<td><%=g1.getCity() %></td>
+				<td><%=g1.getSlot_date() %></td>
+				<td><%=g1.getAvail() %></td>
 				<%-- <td><%=b.getLocation() %></td>
 				<td><%=b.getTravel_date() %></td>
 				<td><%=b.getStatus() %></td>

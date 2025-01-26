@@ -7,7 +7,10 @@ public class Guide_Avail {
 	private String slot_date;
 	private String avail;
 	private int  book_id;
-	
+	private String BName;
+	private String bNumber;
+	private String city;
+ 	
 	
 	public int getId() {
 		return id;
@@ -38,6 +41,24 @@ public class Guide_Avail {
 	}
 	public void setBook_id(int book_id) {
 		this.book_id = book_id;
+	}
+	public String getBName() {
+		return BName;
+	}
+	public void setBName(String bName) {
+		BName = bName;
+	}
+	public String getbNumber() {
+		return bNumber;
+	}
+	public void setbNumber(String bNumber) {
+		this.bNumber = bNumber;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
 	}
 	
 	

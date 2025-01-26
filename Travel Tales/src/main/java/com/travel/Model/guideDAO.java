@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import com.travel.Entity.Booking;
 import com.travel.Entity.Guide;
+import com.travel.Entity.Guide_Avail;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -205,7 +206,6 @@ public class guideDAO {
 	
 	public String acceptBooking(int id) {
 	    String status = "failure"; // Default status
-	    String dateStatus = "Available";
 	    String confirmStatus = "Confirmed";
 	    String remarks = "Guide Accepted the Booking";
 
@@ -237,7 +237,7 @@ public class guideDAO {
 	                try (ResultSet rs1 = selectAvailabilityStmt.executeQuery()) {
 	                    while (rs1.next()) {
 	                        if (travelDate.equals(rs1.getString("slot_time"))) {
-	                            dateStatus = "Unavailable";
+	                            status = "Unavailable";
 	                            status="Your slot is unavailable for this booking time";
 	                            return status;
 	                            
@@ -270,7 +270,7 @@ public class guideDAO {
 	                
 	                // Insert availability record
 	                insertAvailabilityStmt.setString(1, travelDate);
-	                insertAvailabilityStmt.setString(2, dateStatus);
+	                insertAvailabilityStmt.setString(2, "Available");
 	                insertAvailabilityStmt.setInt(3, gid);
 	                insertAvailabilityStmt.setInt(4, id);
 	                insertAvailabilityStmt.executeUpdate();
@@ -281,6 +281,7 @@ public class guideDAO {
 	        if (updateCount > 0) {
 	            status = "success";
 	        }
+	        
 
 	    } catch (SQLException e) {
 	        e.printStackTrace(); // Replace with proper logging in production
@@ -288,6 +289,30 @@ public class guideDAO {
 	    }
 
 	    return status;
+	}
+	public ArrayList<Guide_Avail> getAvail()
+	{
+		Statement st=null;
+		ResultSet rs=null;
+		ArrayList<Guide_Avail> al=new ArrayList<>();
+		try {
+			st=con.createStatement();
+			rs=st.executeQuery("select b.uname,b.phone,b.city,g.slot_time,g.avail from booking b join guide_avail g on b.booking_id = g.booking_id;");
+			while(rs.next())
+			{
+				Guide_Avail g=new Guide_Avail();
+				g.setBName(rs.getString("uname"));
+				g.setbNumber(rs.getString("phone"));
+				g.setCity(rs.getString("city"));
+				g.setSlot_date(rs.getString("slot_time"));
+				g.setAvail(rs.getString("avail"));
+				al.add(g);
+			}
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return al;
 	}
 
 	
