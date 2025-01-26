@@ -60,8 +60,8 @@
 			<tr>
 				
 				<th>Sl. No.</th>
-				<th>Booking Name</th>
-				<th>Booking Number</th>
+				<th>Customer Name</th>
+				<th>Customer Number</th>
 				<th>City Name</th>
 				<th>Slot Date</th>
 				<th>Availability</th>

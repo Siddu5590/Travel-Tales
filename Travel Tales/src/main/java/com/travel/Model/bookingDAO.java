@@ -214,5 +214,27 @@ public class bookingDAO {
 		return book;
 		
 	}
+	public String confirmBooking(int id) {
+		Statement st=null;
+		String status="";
+		int count=0;
+		try {
+			st=con.createStatement();
+			count=st.executeUpdate("update booking set status='Confirmed', remarks='Your Booking is Confirmed' where booking_id='"+id+"';");
+			
+			if(count>0) {
+				status="success";
+			}
+			else {
+				status="failure";
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return status;
+	}
 	
 }

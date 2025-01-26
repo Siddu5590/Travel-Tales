@@ -15,6 +15,10 @@
   <link rel="icon" href='assets/logo.jpg'>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
   <style>
     body {
@@ -76,7 +80,6 @@
     .btn {
       font-size: 1rem;
       font-weight: bold;
-      width: 100%;
       margin-top: 20px;
     }
   </style>
@@ -127,7 +130,7 @@
       <input type="text" name="name" class="form-control" id="name" placeholder="Enter Your Name" required>
 
       <label for="phone">Phone Number:</label>
-      <input type="tel" name="phone" class="form-control" id="phone" placeholder="Enter Phone Number" required>
+      <input type="tel" name="phone" class="form-control" id="phone" placeholder="Enter Phone Number" min="10" maxlength="10" required>
 
       <label for="email">Email ID:</label>
       <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email ID" required>
@@ -160,7 +163,7 @@
 
       <input type="hidden" name="book_date" id="book_date" value="" />
 
-      <button type="submit" value="book" name="book" class="btn btn-primary">Book Now</button>
+      <center><button type="submit" value="book" name="book" class="btn btn-primary w-50">Book Now</button></center>
     </form>
   </div>
 </div>
@@ -204,14 +207,22 @@
     String message = (String) request.getAttribute("status");
     request.removeAttribute("status");
   %>
-  alert("<%= message %>");
+  Swal.fire({
+	    icon:"success",
+	    title: 'Success..',
+	    text: "<%= message %>"
+	});
   <% } %>
 
   <% if (request.getAttribute("failure") != null) { 
     String message = (String) request.getAttribute("failure");
     request.removeAttribute("failure");
   %>
-  alert("<%= message %>");
+  Swal.fire({
+	    icon:"error",
+	    title: 'Oooops..',
+	    text: "<%= message %>"
+	});
   <% } %>
 </script>
 

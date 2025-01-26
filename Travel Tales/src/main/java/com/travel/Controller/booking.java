@@ -77,6 +77,24 @@ public class booking extends HttpServlet{
 					rd.forward(req, res);
 				}
 			}
+			//booking confirm by guide
+			else if(req.getParameter("confirm")!=null)
+			{
+				int id=Integer.parseInt(req.getParameter("id"));
+				String status=b.confirmBooking(id);
+				if(status.equals("success"))
+				{
+					req.setAttribute("status", "Booking Confirmed Successfully");
+					RequestDispatcher rd=req.getRequestDispatcher("viewPackageBooking.jsp?city_id="+id);
+					rd.forward(req, res);
+				}
+				else if(status.equals("failure"))
+				{
+					req.setAttribute("failure", "Failed to Confirm the Booking due to some error");
+					RequestDispatcher rd=req.getRequestDispatcher("viewPackageBooking.jsp?city_id="+id);
+					rd.forward(req, res);
+				}
+			}
 			
 			//booking cancel by admin
 			else if(req.getParameter("admincancel")!=null)
