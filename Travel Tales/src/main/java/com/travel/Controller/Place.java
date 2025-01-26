@@ -19,9 +19,7 @@ public class Place extends HttpServlet
 
 	protected void processRequest(HttpServletRequest req, HttpServletResponse res) throws Exception 
 	{
-//		 res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
-//	     res.setHeader("Pragma", "no-cache"); // HTTP 1.0
-//	     res.setDateHeader("Expires", 0); 
+//		 
 	        
 		res.setContentType("text/html;charset=UTF-8");
 		 PrintWriter out = res.getWriter();
@@ -30,6 +28,8 @@ public class Place extends HttpServlet
 		//Customer c=new Customer();
 		
 		try {
+			
+			//add place
 			if(req.getParameter("addPlace")!=null) {
 				String name=req.getParameter("name");
 				String img=req.getParameter("image");
@@ -57,6 +57,8 @@ public class Place extends HttpServlet
 					}
 					
 				}
+			
+			//delete place
 			else if(req.getParameter("delete")!=null) {
 				int id=Integer.parseInt(req.getParameter("pid"));
 				

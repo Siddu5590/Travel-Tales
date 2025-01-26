@@ -59,13 +59,13 @@
                 <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
             </div>
             <div class="mb-3">
-                <label for="newPassword" class="form-label"><strong>Old Password</strong></label>
-                <input type="password" name="password" id="newPassword" class="form-control" placeholder="Enter new password" required>
+                <label for="password" class="form-label"><strong>Old Password</strong></label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Enter old password" required>
                 
             </div>
             <div class="mb-3">
                 <label for="confirmPassword" class="form-label"><strong>New Password</strong></label>
-                <input type="password" name="newpassword" id="confirmPassword" class="form-control" placeholder="Confirm your password" required>
+                <input type="password" name="newpassword" id="confirmPassword" class="form-control" placeholder="Enter your password" required>
             </div>
             <%if(session.getAttribute("uname")!=null){ %>
             <button type="submit" class="btn btn-primary w-100" name="reset">Reset Password</button>

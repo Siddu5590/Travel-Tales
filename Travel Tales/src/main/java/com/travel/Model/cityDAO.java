@@ -28,7 +28,8 @@ public class cityDAO {
 	            e.printStackTrace();
 	        }
 	    }
-
+	    
+	    //adding city to db
 	    public String addCity(String name,String img, double cost) {
 	        PreparedStatement ps;
 	        String status = "";
@@ -60,6 +61,7 @@ public class cityDAO {
 	        return status;
 	    }
 	    
+	    //retreving city details from db
 	    public ArrayList<City> viewCity()
 	    {
 	    	Statement st=null;
@@ -88,6 +90,7 @@ public class cityDAO {
 	    	return city;
 	    }
 
+	  //deleting city details from db
 		public String deleteCity(int id) {
 			Statement st=null;
 			String status="";
@@ -112,6 +115,8 @@ public class cityDAO {
 			
 			return status;
 		}
+		
+		//Updating city details and storing modified details in db
 		public String editCity(int id, String City_name, double cost, String image) {
 			// TODO Auto-generated method stub
 			Statement st=null;
@@ -137,7 +142,7 @@ public class cityDAO {
 		
 		
 	
-		
+		//retreving city details from db based on city name
 		public ArrayList<String> getCities()
 		{
 			ArrayList<String> al=new ArrayList<>();
@@ -159,6 +164,7 @@ public class cityDAO {
 			 return al;
 		}
 		
+		//retreving city details from db based on city id
 		public ArrayList<City> viewCity(int id)
 	    {
 	    	Statement st=null;
@@ -187,7 +193,4 @@ public class cityDAO {
 	    	return city;
 	    }
 
-		
-
-		
 }

@@ -30,6 +30,7 @@ public class Feedback {
 		
 	}
 
+	//adding feedback details into db
 	public String insertFeedback(String name, String phone, String email, String review, String rating) {
 		Statement st=null;
 		String status="";
@@ -62,6 +63,8 @@ public class Feedback {
 		return status;
 		
 	}
+	
+	//retreving all reviews from db
 	public ArrayList<Reviews> viewReview()
 	{
 		Statement st=null;
@@ -91,6 +94,8 @@ public class Feedback {
 		
 	}
 
+	
+	//deleting reviews from db
 	public String deleteReview(int id) {
 		Statement st=null;
 		String status="";

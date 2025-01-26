@@ -28,6 +28,7 @@ public class placeDAO {
 	        }
 	    }
 
+	  //adding place details into db
 	    public String addPlace(String name,String img, String loc,String desc,String city) {
 	        PreparedStatement ps=null;
 	        String status = "";
@@ -72,7 +73,7 @@ public class placeDAO {
 	        return status;
 	    }
 	    
-	    
+	  //deleting place details from db
 		public String deletePlace(int id) {
 			Statement st=null;
 			String status="";
@@ -96,6 +97,7 @@ public class placeDAO {
 			return status;
 		}
 		
+		//retreiving place details from db
 		public ArrayList<Place> viewPlace()
 	    {
 	    	Statement st=null;
@@ -127,7 +129,7 @@ public class placeDAO {
 	    	return place;
 	    }
 
-		
+		//retreiving place details from db based on city id
 		public ArrayList<Place> viewPlace(int city_id)
 	    {
 	    	Statement st=null;
@@ -158,6 +160,8 @@ public class placeDAO {
 	    	
 	    	return place;
 	    }
+		
+		//retreiving count of place details from db
 		public int getPlacesCount(int id)
 		{
 			int count=0;
@@ -179,7 +183,7 @@ public class placeDAO {
 			return count;
 		}
 
-		
+		//retreiving place details from db based on place_id
 		public ArrayList<Place> getPlace(int id)
 	    {
 	    	Statement st=null;
@@ -211,6 +215,7 @@ public class placeDAO {
 	    	return place;
 	    }
 
+		//updating place details from db
 		public String editPlace(int id, String name, String image, String city, String location, String desc ) {
 			Statement st=null;
 			String status="";
@@ -241,11 +246,7 @@ public class placeDAO {
 			}
 			
 			return status;
-		
 		 
 		}
-		
-		
-		
 		
 }

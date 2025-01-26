@@ -26,6 +26,7 @@ public class Packages extends HttpServlet {
 		PackagesDAO pack=new PackagesDAO(session);
 		
 		
+		//adding packages by admin
 		if(req.getParameter("addPackage")!=null)
 		{
 			String name=req.getParameter("name");
@@ -57,6 +58,8 @@ public class Packages extends HttpServlet {
 				rd.forward(req, res);
 			}
 		}
+		
+		//updating package details by admin
 		else if(req.getParameter("updatepackage")!=null)
 		{
 			int id=Integer.parseInt(req.getParameter("id"));
@@ -84,6 +87,7 @@ public class Packages extends HttpServlet {
 			
 		}
 		
+		//deleting the packages
 		else if(req.getParameter("delete")!=null)
 		{
 			int id=Integer.parseInt(req.getParameter("cid"));

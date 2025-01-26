@@ -25,6 +25,8 @@ public class city extends HttpServlet
 		//Customer c=new Customer();
 		
 		try {
+			
+			//adding city by admin
 			if(req.getParameter("addCity")!=null) {
 				String name=req.getParameter("name");
 				String img=req.getParameter("image");
@@ -51,6 +53,8 @@ public class city extends HttpServlet
 					}
 					
 				}
+			
+			//delete city
 			else if(req.getParameter("delete")!=null) {
 				int id=Integer.parseInt(req.getParameter("cid"));
 				
@@ -69,6 +73,8 @@ public class city extends HttpServlet
 				}
 				
 			}
+			
+			//update city details
 			else if(req.getParameter("updateCity")!=null) {
 				int id=Integer.parseInt(req.getParameter("id"));
 				double cost=Double.parseDouble(req.getParameter("cost"));
@@ -88,9 +94,6 @@ public class city extends HttpServlet
 					
 				}
 			}
-				
-			
-			
 			
 		}
 		catch (Exception e) {

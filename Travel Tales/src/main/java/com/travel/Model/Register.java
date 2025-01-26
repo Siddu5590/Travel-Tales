@@ -34,6 +34,8 @@ public class Register {
 		}
 	}
 
+	
+	//customer registration
 	public String signup(String name, String phone, String mail, String password) {
 		String status = "";
 		PreparedStatement ps = null;
@@ -71,6 +73,7 @@ public class Register {
 		return status;
 	}
 
+	//customer login and storing customer details in session object
 	public String login(String mail, String password) {
 		String status1 = "";
 
@@ -110,6 +113,8 @@ public class Register {
 
 	}
 
+	
+	//changing customer password
 	public String forgotPass(String email, String password) {
 		PreparedStatement ps;
 		String status = "";
@@ -133,6 +138,8 @@ public class Register {
 
 	}
 
+	
+	//updating customer details
 	public String updatedata(String name, String mail, String phone) {
 		String status = "";
 		PreparedStatement ps = null;
@@ -168,6 +175,7 @@ public class Register {
 		return status;
 	}
 	
+	//retriving customer details from db
 	public ArrayList<Customer> viewUsers()
 	{
 		Statement st=null;
@@ -197,6 +205,8 @@ public class Register {
 		return customer;
 	}
 
+	
+	//deleting customer details from db
 	public String deleteUser(int id) {
 		Statement st=null;
 		int count=0;
@@ -222,7 +232,8 @@ public class Register {
 
 	
 
-	public String getPassword(String email, String oldpass) {
+	//getting customer password and email id from db
+	public String getPassword(String email, String password) {
 		String status = "";
 	       PreparedStatement ps = null;
 	       ResultSet rs = null;
@@ -230,7 +241,7 @@ public class Register {
 	       try {
 	           ps = con.prepareStatement(query);
 	           ps.setString(1, email);
-	           ps.setString(2, oldpass);
+	           ps.setString(2, password);
 	           rs = ps.executeQuery();
 	           if (rs.next()) {
 	               status = "success";
@@ -244,6 +255,8 @@ public class Register {
 	       return status;
 	}
 
+	
+	//reseting password
 	public String resetPass(String email, String newpass) {
 		String status = "";
 	       PreparedStatement ps = null;

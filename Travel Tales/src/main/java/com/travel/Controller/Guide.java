@@ -45,6 +45,8 @@ public class Guide extends HttpServlet {
 				}
 
 			}
+			
+			//booking confirmed by guide
 			else if(req.getParameter("acceptBook")!=null)
 			{
 				int book_id=Integer.parseInt(req.getParameter("id"));
@@ -62,7 +64,7 @@ public class Guide extends HttpServlet {
 				}
 			}
 			
-			// add guide
+			// add guide by admin
 			else if (req.getParameter("guide") != null) {
 				String name = req.getParameter("name");
 				String phone = req.getParameter("phone");
@@ -86,7 +88,7 @@ public class Guide extends HttpServlet {
 				}
 
 			}
-			// delete guide
+			// delete guide by admin
 			else if (req.getParameter("deleteGuide") != null) {
 				int id = Integer.parseInt(req.getParameter("id"));
 
@@ -101,7 +103,8 @@ public class Guide extends HttpServlet {
 					rd.forward(req, res);
 				}
 			}
-			// update guide
+			
+			// update guide details by admin
 			else if (req.getParameter("updateguide") != null) {
 				int id = Integer.parseInt(req.getParameter("id"));
 				String name = req.getParameter("name");
@@ -122,7 +125,7 @@ public class Guide extends HttpServlet {
 				}
 
 			}
-			//Forgot password
+			//Forgot password for guide
 			else if(req.getParameter("forgot")!=null) {
 				String email=req.getParameter("email");
 				String password=req.getParameter("newpassword");
@@ -149,7 +152,7 @@ public class Guide extends HttpServlet {
 				}
 			}
 			
-			//reset password
+			//reset password for guide
 			else if(req.getParameter("reset")!=null)
 			{
 				String eamil = req.getParameter("email");

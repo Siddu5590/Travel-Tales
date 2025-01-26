@@ -27,6 +27,8 @@ public class bookingDAO {
 			e.printStackTrace();
 		}	
 	}
+	
+	//adding bookings into db
 	public String addBooking(int user_id, String name,String ph,String email,String city,int noPl,String date,Double cost,String desc, String loc)
 	{
 		
@@ -61,6 +63,7 @@ public class bookingDAO {
 		
 	}
 	
+	//retreiving all booking details based on user id
 	public ArrayList<Booking>  viewBookings()
 	{
 		PreparedStatement ps=null;
@@ -120,6 +123,8 @@ public class bookingDAO {
 		
 		return status;
 	}
+	
+	//retreiving all booking details based on city name 
 	public ArrayList<Booking>  getBookings()
 	{
 		PreparedStatement ps=null;
@@ -180,6 +185,7 @@ public class bookingDAO {
 		return status;
 	}
 	
+	//retreiving all booking details based on package name
 	public ArrayList<Booking>  getPackageBookings()
 	{
 		PreparedStatement ps=null;
@@ -214,6 +220,8 @@ public class bookingDAO {
 		return book;
 		
 	}
+	
+	//confirm package bookings by admin
 	public String confirmBooking(int id) {
 		Statement st=null;
 		String status="";

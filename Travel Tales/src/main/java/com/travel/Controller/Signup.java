@@ -174,14 +174,16 @@ public class Signup extends HttpServlet {
 				}
 			}
 			
+			
+			//reset password
 			else if(req.getParameter("reset")!=null)
 			{
-				String eamil = req.getParameter("email");
+				String email = req.getParameter("email");
                 String password = req.getParameter("password");
                 String newpassword = req.getParameter("newpassword");
                 if (password.equals(newpassword)) {
 
-                    String s = reg.getPassword(eamil, password);
+                    String s = reg.getPassword(email, password);
                     
                     if (s.equals("success") && (password.equals(newpassword))) {
                         req.setAttribute("failure", "New Password is same as old Password");
@@ -190,7 +192,7 @@ public class Signup extends HttpServlet {
                          
                     }
                 } else {
-                    String status = reg.resetPass(eamil, newpassword);
+                    String status = reg.resetPass(email, newpassword);
                      if (status.equals("success")) {
                         req.setAttribute("status", "Password changed successfully");
                         RequestDispatcher rd = req.getRequestDispatcher("resetPassword.jsp");

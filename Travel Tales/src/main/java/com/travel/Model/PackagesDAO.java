@@ -29,6 +29,7 @@ public class PackagesDAO {
         }
     }
     
+    //adding package details into db
     public String addPackage(String name, String image, double cost, int days) {
     	
     	PreparedStatement ps=null;
@@ -70,6 +71,8 @@ public class PackagesDAO {
 		return status;
     	
     }
+    
+    //retreiving package details from db
     public ArrayList<Packages> viewPackage()
     {
     	Statement st=null;
@@ -100,6 +103,8 @@ public class PackagesDAO {
 		return pa;
     	
     }
+    
+  //retreiving package details from db based on package Id
     public ArrayList<Packages> viewPackage(int id)
     {
     	Statement st=null;
@@ -131,6 +136,7 @@ public class PackagesDAO {
     	
     }
 
+  //Updating package details from db
 	public String updatePack(int id, String name, String image, Double cost, int days) {
 		Statement st=null;
 		String status="";
@@ -154,6 +160,7 @@ public class PackagesDAO {
 		return status;
 	}
 
+	//Deleting package details from db
 	public String deletePack(int id) {
 		Statement st=null;
 		int count=0;

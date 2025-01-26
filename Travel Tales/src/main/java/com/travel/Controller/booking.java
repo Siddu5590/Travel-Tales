@@ -77,6 +77,7 @@ public class booking extends HttpServlet{
 					rd.forward(req, res);
 				}
 			}
+			
 			//booking confirm by guide
 			else if(req.getParameter("confirm")!=null)
 			{

@@ -33,7 +33,7 @@ public class Guide1 {
 		}
 	}
 	
-
+	//inserting guide details into db
 	public String addguide(String name,String phone,String mail,String age, String city) {
 		String status="";
 		PreparedStatement ps=null;
@@ -75,6 +75,7 @@ public class Guide1 {
 		return status;
 	}
 	
+	//retreving guide details from db
 	public ArrayList<Guide> viewGuide(){
 		Statement st=null;
 		ResultSet rs=null;
@@ -103,7 +104,7 @@ public class Guide1 {
 		return guide;
 	}
 
-
+	//deleting guide details from db
 	public String deleteguide(int id) {
 		Statement st=null;
 		String status="";
@@ -130,6 +131,8 @@ public class Guide1 {
 		
 		return status;
 	}
+	
+	//retreving guide details from db based on guide id
 	public ArrayList<Guide> viewGuide(int id){
 		Statement st=null;
 		ResultSet rs=null;
@@ -158,7 +161,7 @@ public class Guide1 {
 		return guide;
 	}
 
-
+	//updating guide details into db
 	public String updateGuide(int id, String name, String phone, String email, int age, String city) {
 		Statement st=null;
 		String status="";
