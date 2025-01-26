@@ -215,7 +215,7 @@
                         </a>
 
                         <!-- Card 7 -->
-                        <a href="page.jsp" class="card shadow">
+                        <a href="viewReviews.jsp" class="card shadow">
                             <div class="card-body">
                                 <h5 class="card-title">Total Feedbacks</h5>
                                 <hr class="m-0">

@@ -55,7 +55,7 @@
                                 </span>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
                             </div>
-                            <a id="a1" href="forgotPassword.jsp" class="forgot text-end">Forget password?</a>
+                            <a id="a1" href="guideforgotPassword.jsp" class="forgot text-end">Forget password?</a>
                             <center>
                                 <button type="submit" class="btn btn-primary w-25 mb-3 mt-3" name="login">Login</button>
                             </center>

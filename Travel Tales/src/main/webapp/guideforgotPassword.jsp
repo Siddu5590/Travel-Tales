@@ -22,7 +22,7 @@
         }
         .reset-password-container {
             max-width: 400px;
-            margin: 150px auto;
+            margin: 50px auto;
             padding: 20px;
             background: #ffffff;
             border: 1px solid #dee2e6;
@@ -53,30 +53,69 @@
 <%@include file="header.jsp" %>
     <div class="reset-password-container">
         <h3 class="text-center">Reset Password</h3>
-        <form id="resetPasswordForm" action="signup" method="post">
+        <form id="resetPasswordForm" action="guide" method="post">
             <div class="mb-3">
                 <label for="email" class="form-label"><strong>Email ID</strong></label>
                 <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
             </div>
             <div class="mb-3">
-                <label for="newPassword" class="form-label"><strong>Old Password</strong></label>
-                <input type="password" name="password" id="newPassword" class="form-control" placeholder="Enter new password" required>
-                
+                <label for="newPassword" class="form-label"><strong>New Password</strong></label>
+                <input type="password" name="newpassword" id="newPassword" class="form-control" placeholder="Enter new password" required>
+                <ul class="validation-list mt-2">
+                    <li id="length" class="invalid">At least 8 characters <span>&#10060;</span></li>
+                    <li id="uppercase" class="invalid">At least 1 uppercase letter <span>&#10060;</span></li>
+                    <li id="lowercase" class="invalid">At least 1 lowercase letter <span>&#10060;</span></li>
+                    <li id="special" class="invalid">At least 1 special character <span>&#10060;</span></li>
+                </ul>
             </div>
             <div class="mb-3">
-                <label for="confirmPassword" class="form-label"><strong>New Password</strong></label>
-                <input type="password" name="newpassword" id="confirmPassword" class="form-control" placeholder="Confirm your password" required>
+                <label for="confirmPassword" class="form-label"><strong>Confirm Password</strong></label>
+                <input type="password" name="confirmpassword" id="confirmPassword" class="form-control" placeholder="Confirm your password" required>
             </div>
-            <%if(session.getAttribute("uname")!=null){ %>
-            <button type="submit" class="btn btn-primary w-100" name="reset">Reset Password</button>
-            <%} %>
+            <button type="submit" class="btn btn-primary w-100" name="forgot">Reset Password</button>
         </form>
     </div>
 
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        
+        const newPassword = document.getElementById('newPassword');
+        const confirmPassword = document.getElementById('confirmPassword');
+
+        const lengthCriteria = document.getElementById('length');
+        const uppercaseCriteria = document.getElementById('uppercase');
+        const lowercaseCriteria = document.getElementById('lowercase');
+        const specialCriteria = document.getElementById('special');
+
+        const passwordRegex = {
+            length: /.{8,}/,
+            uppercase: /[A-Z]/,
+            lowercase: /[a-z]/,
+            special: /[^a-zA-Z0-9]/
+        };
+
+        newPassword.addEventListener('input', () => {
+            validatePassword();
+        });
+
+        function validatePassword() {
+            validateCriterion(passwordRegex.length, newPassword.value, lengthCriteria);
+            validateCriterion(passwordRegex.uppercase, newPassword.value, uppercaseCriteria);
+            validateCriterion(passwordRegex.lowercase, newPassword.value, lowercaseCriteria);
+            validateCriterion(passwordRegex.special, newPassword.value, specialCriteria);
+        }
+
+        function validateCriterion(regex, value, element) {
+            if (regex.test(value)) {
+                element.classList.remove('invalid');
+                element.classList.add('valid');
+                element.querySelector('span').innerHTML = '&#10003;';
+            } else {
+                element.classList.remove('valid');
+                element.classList.add('invalid');
+                element.querySelector('span').innerHTML = '&#10060;';
+            }
+        }
 
         <% if (request.getAttribute("status") != null) { 
             String message = (String) request.getAttribute("status");

@@ -193,7 +193,7 @@ public class Signup extends HttpServlet {
                     String status = reg.resetPass(eamil, newpassword);
                      if (status.equals("success")) {
                         req.setAttribute("status", "Password changed successfully");
-                        RequestDispatcher rd = req.getRequestDispatcher("login.jsp");
+                        RequestDispatcher rd = req.getRequestDispatcher("resetPassword.jsp");
                         rd.forward(req, res);
                      }
                      else if(status.equals("failure"))
@@ -204,9 +204,6 @@ public class Signup extends HttpServlet {
                      }
                 }
 			}
-			
-		
-			
 			
 		}
 		catch (Exception e) {

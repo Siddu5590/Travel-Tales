@@ -112,7 +112,7 @@
             <input type="email" id="email" name="email" value="<%=g.getGuide_email()%>">
 
             <label for="age">Age:</label>
-            <input type="number" id="age" name="age" min="18" max="100" value="<%=g.getGuide_age()%>">
+            <input type="number" id="age" name="age" min="18" max="60" value="<%=g.getGuide_age()%>">
             
            <% cityDAO c=new cityDAO(session);
            ArrayList<City> al=c.viewCity(g.getGuide_id());

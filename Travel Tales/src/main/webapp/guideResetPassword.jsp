@@ -50,10 +50,10 @@
     </style>
 </head>
 <body>
-<%@include file="header.jsp" %>
+<%@include file="guideHeader.jsp" %>
     <div class="reset-password-container">
         <h3 class="text-center">Reset Password</h3>
-        <form id="resetPasswordForm" action="signup" method="post">
+        <form id="resetPasswordForm" action="guide" method="post">
             <div class="mb-3">
                 <label for="email" class="form-label"><strong>Email ID</strong></label>
                 <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>

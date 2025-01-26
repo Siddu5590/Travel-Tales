@@ -122,6 +122,65 @@ public class Guide extends HttpServlet {
 				}
 
 			}
+			//Forgot password
+			else if(req.getParameter("forgot")!=null) {
+				String email=req.getParameter("email");
+				String password=req.getParameter("newpassword");
+				String confirm =req.getParameter("confirmpassword");
+				
+				if(password.equals(confirm)) {
+					String status=g.forgotPass(email,password);
+					
+				 if(status.equals("success")) {
+					 	req.setAttribute("status", "Password Updated Successfully...");
+						RequestDispatcher rd=req.getRequestDispatcher("guideforgotPassword.jsp");
+						rd.forward(req, res);
+					}
+					else if(status.equals("failure")) {
+						req.setAttribute("failure", "Failed to update password.!!");
+						RequestDispatcher rd=req.getRequestDispatcher("guideforgotPassword.jsp");
+						rd.forward(req, res);
+					}
+				}
+				else {
+					req.setAttribute("failure", "Password Mismatch.!!");
+					RequestDispatcher rd=req.getRequestDispatcher("guideforgotPassword.jsp");
+					rd.forward(req, res);
+				}
+			}
+			
+			//reset password
+			else if(req.getParameter("reset")!=null)
+			{
+				String eamil = req.getParameter("email");
+                String password = req.getParameter("password");
+                String newpassword = req.getParameter("newpassword");
+                if (password.equals(newpassword)) {
+
+                    String s = g.getPassword(eamil, password);
+                    
+                    if (s.equals("success") && (password.equals(newpassword))) {
+                        req.setAttribute("failure", "New Password is same as old Password");
+                        RequestDispatcher rd = req.getRequestDispatcher("guideResetPassword.jsp");
+                        rd.forward(req, res);
+                         
+                    }
+                } else {
+                    String status = g.resetPass(eamil, newpassword);
+                     if (status.equals("success")) {
+                        req.setAttribute("status", "Password changed successfully");
+                        RequestDispatcher rd = req.getRequestDispatcher("guideDash.jsp");
+                        rd.forward(req, res);
+                     }
+                     else if(status.equals("failure"))
+                     {
+                    	 req.setAttribute("failure", "failed to change the Password ");
+                         RequestDispatcher rd = req.getRequestDispatcher("guideResetPassword.jsp");
+                         rd.forward(req, res); 
+                     }
+                }
+			}
+			
 		
 		} catch (Exception e) {
 			e.printStackTrace();
