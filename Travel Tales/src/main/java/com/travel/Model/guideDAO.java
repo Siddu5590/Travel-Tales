@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import com.travel.Entity.Booking;
 import com.travel.Entity.Guide;
 import com.travel.Entity.Guide_Avail;
@@ -65,7 +64,6 @@ public class guideDAO {
 				status1 = "failure";
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -104,7 +102,6 @@ public class guideDAO {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return book;
@@ -195,7 +192,6 @@ public class guideDAO {
 	public String resetPass(String email, String newpass) {
 		String status = "";
 	       PreparedStatement ps = null;
-	       boolean res;
 	       try {
 	           ps = con.prepareStatement("update guide set password =  ? where  email =  ?");
 	           ps.setString(1, newpass);
@@ -207,7 +203,7 @@ public class guideDAO {
 	               status = "failed";
 	           }
 	       } catch (SQLException e) {
-	// TODO Auto-generated catch block
+	
 	           e.printStackTrace();
 	       }
 	       return status;
@@ -215,48 +211,31 @@ public class guideDAO {
 	
 	//accept booking for guide
 	public String acceptBooking(int id) {
-	    String status = "failure"; // Default status
+	    String status = "failure"; 
 	    String confirmStatus = "Confirmed";
 	    String remarks = "Guide Accepted the Booking";
 
-	    String updateBookingQuery = "UPDATE booking SET status = ?, remarks = ? WHERE booking_id = ?";
-	    String selectTravelDateQuery = "SELECT travel_date FROM booking WHERE booking_id = ?";
-	    String selectAvailabilityQuery = "SELECT slot_time FROM guide_avail WHERE guide_id = ?";
-	    String insertAvailabilityQuery = "INSERT INTO guide_avail VALUES (0, ?, ?, ?, ?)";
+	    try {
+	         PreparedStatement updateBookingStmt = con.prepareStatement("UPDATE booking SET status = ?, remarks = ? WHERE booking_id = ?");
+	         // Update booking status
+		        updateBookingStmt.setString(1, confirmStatus);
+		        updateBookingStmt.setString(2, remarks);
+		        updateBookingStmt.setInt(3, id);
+		        int updateCount = updateBookingStmt.executeUpdate();
+		        
+	         PreparedStatement selectTravelDateStmt = con.prepareStatement("SELECT travel_date FROM booking WHERE booking_id = ?");
+	         // Fetch travel date
+		        selectTravelDateStmt.setInt(1, id);
+		        ResultSet rs = selectTravelDateStmt.executeQuery(); {
+		            if (rs.next()) {
+		                String travelDate = rs.getString("travel_date");
+		                
+		     
+	         
+	         PreparedStatement insertAvailabilityStmt = con.prepareStatement("INSERT INTO guide_avail VALUES (0, ?, ?, ?, ?)"); 
 
-	    try (PreparedStatement updateBookingStmt = con.prepareStatement(updateBookingQuery);
-	         PreparedStatement selectTravelDateStmt = con.prepareStatement(selectTravelDateQuery);
-	         PreparedStatement selectAvailabilityStmt = con.prepareStatement(selectAvailabilityQuery);
-	         PreparedStatement insertAvailabilityStmt = con.prepareStatement(insertAvailabilityQuery)) {
-
-	        // Update booking status
-	        updateBookingStmt.setString(1, confirmStatus);
-	        updateBookingStmt.setString(2, remarks);
-	        updateBookingStmt.setInt(3, id);
-	        int updateCount = updateBookingStmt.executeUpdate();
-
-	        // Fetch travel date
-	        selectTravelDateStmt.setInt(1, id);
-	        try (ResultSet rs = selectTravelDateStmt.executeQuery()) {
-	            if (rs.next()) {
-	                String travelDate = rs.getString("travel_date");
-	                System.out.println(travelDate);
-	                
-	                // Check guide availability
-	                selectAvailabilityStmt.setInt(1, g.getGuide_id());
-	                try (ResultSet rs1 = selectAvailabilityStmt.executeQuery()) {
-	                    while (rs1.next()) {
-	                        if (travelDate.equals(rs1.getString("slot_time"))) {
-	                            status = "Unavailable";
-	                            status="Your slot is unavailable for this booking time";
-	                            return status;
-	                            
-	                        }
-	                        System.out.println(rs1.getString("slot_time"));
-	                    }
-	                }
+	         
 	                Object idObj = se.getAttribute("id");
-
 	                int gid = 0; // Default value
 	                if (idObj != null) {
 	                    if (idObj instanceof Integer) {
@@ -264,12 +243,9 @@ public class guideDAO {
 	                        gid = (Integer) idObj;
 	                    } else if (idObj instanceof String) {
 	                        // If the object is a String
-	                        try {
+	                        
 	                            gid = Integer.parseInt((String) idObj);
-	                        } catch (NumberFormatException e) {
-	                            System.err.println("Invalid number format: " + idObj);
-	                            // Handle the exception (e.g., log it or throw a custom exception)
-	                        }
+	                        
 	                    } else {
 	                        System.err.println("Invalid attribute type: " + idObj.getClass());
 	                    }
