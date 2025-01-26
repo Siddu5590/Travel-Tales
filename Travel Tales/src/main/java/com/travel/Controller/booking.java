@@ -40,11 +40,11 @@ public class booking extends HttpServlet{
 				Double cost=Double.parseDouble(req.getParameter("cost"));
 				String desc=req.getParameter("description");
 				String loc=req.getParameter("loc");
-				String bookDate=req.getParameter("book_date");
+//				String bookDate=req.getParameter("book_date");
 				String id=req.getParameter("id");
 				
 				
-				String status=b.addBooking(user_id,name, ph, email, city, noPl, date, cost, desc, loc,bookDate);
+				String status=b.addBooking(user_id,name, ph, email, city, noPl, date, cost, desc, loc);
 				
 				if(status.equals("success"))
 				{

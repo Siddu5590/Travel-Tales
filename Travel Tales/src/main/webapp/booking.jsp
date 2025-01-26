@@ -156,7 +156,7 @@
           
       <% } } catch (NumberFormatException e) { } } %>
 
-      <input type="hidden" name="book_date" id="book_date" value="" />
+      <!-- <input type="hidden" name="book_date" id="book_date" value="" /> -->
 
       <button type="submit" value="book" name="book" class="btn btn-primary">Book Now</button>
     </form>
@@ -199,18 +199,27 @@
 
 
   <% if (request.getAttribute("status") != null) { 
-    String message = (String) request.getAttribute("status");
-    request.removeAttribute("status");
-  %>
-  alert("<%= message %>");
-  <% } %>
+        String message = (String) request.getAttribute("status");
+        request.removeAttribute("status");
+    %>
+    Swal.fire({
+        icon:"success",
+        title: 'Success...',
+        text: "<%= message %>"
+    });
+    <% } %>
 
-  <% if (request.getAttribute("failure") != null) { 
-    String message = (String) request.getAttribute("failure");
-    request.removeAttribute("failure");
-  %>
-  alert("<%= message %>");
-  <% } %>
+    <% if (request.getAttribute("failure") != null) { 
+        String message = (String) request.getAttribute("failure");
+        request.removeAttribute("failure");
+    %>
+    Swal.fire({
+        icon:"error",
+        title: 'Oooops..',
+        text: "<%= message %>"
+    });
+    <% } %>
+
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

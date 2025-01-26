@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Booking Details</title>
+<title>Guide Avail Details</title>
  <link rel="icon" href='assets/logo.jpg'>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -53,16 +53,16 @@
 </form>
 
 <div class="users">
-	<h3 class="bg-primary text-white p-2">All Bookings</h3>
+	<h3 class="bg-primary text-white p-2">Availability</h3>
 	<table class="table table-bordered table-primary">
 		<thead>
 			<tr>
 				
 				<th>Sl. No.</th>
-				<th>Booking Id</th>
-				<th>Guide Id</th>
-				<th>Guide Name</th>
+				<th>Booking Name</th>
+				<th>Booking Number</th>
 				<th>City Name</th>
+				<th>Slot Date</th>
 				<th>Availability</th>
 				<!-- <th>Pickup Point</th>
 				<th>Travel Date</th>
@@ -74,15 +74,12 @@
 		<tbody id="table">
 		<%guideDAO book=new guideDAO(session);
 		ArrayList<Booking> arr=book.viewBookings();
-		
+		int sl_no=1;
 		for(Booking b: arr) {%>
 			<tr>
-				
+				<td><%=sl_no %></td>
 				<td><%=b.getName() %></td>
 				<td><%=b.getPhone() %></td>
-				<td><%=b.getEmail() %></td>
-				<td><%=b.getPeoples() %></td>
-				<td>&#8377; <%=b.getCost() %></td>
 				<td><%=b.getCity() %></td>
 				<%-- <td><%=b.getLocation() %></td>
 				<td><%=b.getTravel_date() %></td>
@@ -98,7 +95,7 @@
 				</td> --%>
 				
 			</tr>
-			<%} %>
+			<% sl_no++;} %>
 			
 		</tbody>
 		

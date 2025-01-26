@@ -27,25 +27,25 @@ public class bookingDAO {
 			e.printStackTrace();
 		}	
 	}
-	public String addBooking(int user_id, String name,String ph,String email,String city,int noPl,String date,Double cost,String desc, String loc,String bookDate)
+	public String addBooking(int user_id, String name,String ph,String email,String city,int noPl,String date,Double cost,String desc, String loc)
 	{
 		
 		PreparedStatement ps=null;
 		String status="";
 		try {
-			ps=(PreparedStatement) con.prepareStatement("insert into booking (booking_id,uname, phone, email,no_of_people, cost, city, book_date,travel_date,pickup_location ,status,description,user_id,remarks) values(0,?,?,?,?,?,?,?,sysdate(),?,?,?,?,?)");
-			ps.setString(1,name);
-			ps.setString(2,ph);
-			ps.setString(3,email);
-			ps.setInt(4,noPl);
-			ps.setDouble(5,cost);
+			ps=(PreparedStatement) con.prepareStatement("insert into booking  values(0,?,?,?,?,?,?,?,sysdate(),?,?,?,?,?)");
+			ps.setInt(1, user_id);
+			ps.setString(2,name);
+			ps.setString(3,ph);
+			ps.setString(4,email);
+			ps.setInt(5,noPl);
+			ps.setDouble(6,cost);
 			//System.out.println(city);
-			ps.setString(6,city);
-			ps.setString(7,date);
-			ps.setString(8,loc);
-			ps.setString(9,"pending");
-			ps.setString(10,desc);
-			ps.setInt(11, user_id);
+			ps.setString(7,city);
+			ps.setString(8,date);
+			ps.setString(9,loc);
+			ps.setString(10,"pending");
+			ps.setString(11,desc);
 			ps.setString(12, "\0");
 			int a=ps.executeUpdate();
 			if(a>0)

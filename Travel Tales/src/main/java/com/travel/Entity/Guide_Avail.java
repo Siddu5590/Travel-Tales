@@ -6,6 +6,7 @@ public class Guide_Avail {
 	private int guide_id;
 	private String slot_date;
 	private String avail;
+	private int  book_id;
 	
 	
 	public int getId() {
@@ -31,6 +32,12 @@ public class Guide_Avail {
 	}
 	public void setAvail(String avail) {
 		this.avail = avail;
+	}
+	public int getBook_id() {
+		return book_id;
+	}
+	public void setBook_id(int book_id) {
+		this.book_id = book_id;
 	}
 	
 	

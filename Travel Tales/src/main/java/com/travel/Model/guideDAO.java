@@ -203,52 +203,93 @@ public class guideDAO {
 	       return status;
 	}
 	
-	public String acceptBooking(int id)
-	{
-		Statement st=null;
-		String status="";
-		PreparedStatement ps=null;
-		int count=0,count1=0;
-		String date="Available";
-		try {
-			st=con.createStatement();
-			count=st.executeUpdate("update booking set status='Confirmed',remarks='Guide Accepted the Booking' where booking_id='"+id+"';");
-			ResultSet rs=st.executeQuery("select travel_date from booking where booking_id='"+id+"'");
-			ResultSet rs1=st.executeQuery("select avail from guide_avail where guide_id='"+g.getGuide_id()+"'");
-			rs.next();
-			while(rs1.next())
-			{
-				if(rs1.getString("slot_time").equals(rs.getString("travel_date")))
-				{
-					System.out.println("Success");
-					date="Unavailable";
-					break;
-				}
-			}
-			
-			ps=con.prepareStatement("insert into guide_avail values(0,?,?,?,?)");
-			ps.setString(1,rs.getString("travel_date"));
-			ps.setString(2,date );
-			ps.setInt(3, g.getGuide_id());
-			ps.setInt(4, id);
-			ps.execute();
-			
-			
-			
-			if(count>0) {
-				status="success";
-			}
-			else {
-				status="failure";
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return status;
+	public String acceptBooking(int id) {
+	    String status = "failure"; // Default status
+	    String dateStatus = "Available";
+	    String confirmStatus = "Confirmed";
+	    String remarks = "Guide Accepted the Booking";
+
+	    String updateBookingQuery = "UPDATE booking SET status = ?, remarks = ? WHERE booking_id = ?";
+	    String selectTravelDateQuery = "SELECT travel_date FROM booking WHERE booking_id = ?";
+	    String selectAvailabilityQuery = "SELECT slot_time FROM guide_avail WHERE guide_id = ?";
+	    String insertAvailabilityQuery = "INSERT INTO guide_avail VALUES (0, ?, ?, ?, ?)";
+
+	    try (PreparedStatement updateBookingStmt = con.prepareStatement(updateBookingQuery);
+	         PreparedStatement selectTravelDateStmt = con.prepareStatement(selectTravelDateQuery);
+	         PreparedStatement selectAvailabilityStmt = con.prepareStatement(selectAvailabilityQuery);
+	         PreparedStatement insertAvailabilityStmt = con.prepareStatement(insertAvailabilityQuery)) {
+
+	        // Update booking status
+	        updateBookingStmt.setString(1, confirmStatus);
+	        updateBookingStmt.setString(2, remarks);
+	        updateBookingStmt.setInt(3, id);
+	        int updateCount = updateBookingStmt.executeUpdate();
+
+	        // Fetch travel date
+	        selectTravelDateStmt.setInt(1, id);
+	        try (ResultSet rs = selectTravelDateStmt.executeQuery()) {
+	            if (rs.next()) {
+	                String travelDate = rs.getString("travel_date");
+	                System.out.println(travelDate);
+	                
+	                // Check guide availability
+	                selectAvailabilityStmt.setInt(1, g.getGuide_id());
+	                try (ResultSet rs1 = selectAvailabilityStmt.executeQuery()) {
+	                    while (rs1.next()) {
+	                        if (travelDate.equals(rs1.getString("slot_time"))) {
+	                            dateStatus = "Unavailable";
+	                            status="Your slot is unavailable for this booking time";
+	                            return status;
+	                            
+	                        }
+	                        System.out.println(rs1.getString("slot_time"));
+	                    }
+	                }
+	                Object idObj = se.getAttribute("id");
+
+	                int gid = 0; // Default value
+	                if (idObj != null) {
+	                    if (idObj instanceof Integer) {
+	                        // If the object is already an Integer
+	                        gid = (Integer) idObj;
+	                    } else if (idObj instanceof String) {
+	                        // If the object is a String
+	                        try {
+	                            gid = Integer.parseInt((String) idObj);
+	                        } catch (NumberFormatException e) {
+	                            System.err.println("Invalid number format: " + idObj);
+	                            // Handle the exception (e.g., log it or throw a custom exception)
+	                        }
+	                    } else {
+	                        System.err.println("Invalid attribute type: " + idObj.getClass());
+	                    }
+	                } else {
+	                    System.err.println("Attribute 'id' is null.");
+	                }
+
+	                
+	                // Insert availability record
+	                insertAvailabilityStmt.setString(1, travelDate);
+	                insertAvailabilityStmt.setString(2, dateStatus);
+	                insertAvailabilityStmt.setInt(3, gid);
+	                insertAvailabilityStmt.setInt(4, id);
+	                insertAvailabilityStmt.executeUpdate();
+	            }
+	        }
+
+	        // Determine final status
+	        if (updateCount > 0) {
+	            status = "success";
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace(); // Replace with proper logging in production
+	        status = "error: " + e.getMessage();
+	    }
+
+	    return status;
 	}
+
 	
 }
 	
