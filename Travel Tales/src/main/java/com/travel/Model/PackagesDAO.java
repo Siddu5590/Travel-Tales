@@ -123,8 +123,6 @@ public class PackagesDAO {
 //				p.setNo_of_people(rs.getInt("no_people"));
 				p.setNo_days(rs.getInt("days"));
 				pa.add(p);
-				
-				
 			}
 			
 		} catch (SQLException e) {
