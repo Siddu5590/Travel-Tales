@@ -89,7 +89,13 @@
 				<td><%=b.getString("travel_date") %></td>
 				<td><%=b.getString("guide_name") %></td>
 				<td><%=b.getString("g_phone") %></td>
-				<td><%=b.getString("status") %></td>
+				<%if(b.getString("status").equals("Cancelled")){ %>
+				<td class="text text-danger"><%=b.getString("status") %></td>
+				<%}else if(b.getString("status").equals("Confirmed")){ %>
+				<td class="text text-success"><%=b.getString("status") %></td>
+				<%}else if(b.getString("status").equals("pending")){  %>
+				<td class="cancel "><%=b.getString("status") %></td>
+				<%} %>
 				<td><%=b.getString("remarks") %></td>
 				<td>
 				<%if(b.getString("status").equals("pending")){ %>
