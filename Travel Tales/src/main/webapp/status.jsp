@@ -3,6 +3,7 @@
 <%@page import="com.travel.Entity.Customer"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.travel.Model.Register"%>
+<%@page import="java.sql.ResultSet" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -60,12 +61,13 @@
 				
 				<th>Name</th>
 				<th>Number</th>
-				<th>Email</th>
 				<th>Peoples</th>
 				<th>Totoal Cost</th>
 				<th>City Name</th>
 				<th>Pickup Point</th>
 				<th>Travel Date</th>
+				<th>Guide Name</th>
+				<th>Number</th>
 				<th>Status</th>
 				<th>Remark</th>
 				<th>Action</th>
@@ -73,25 +75,26 @@
 		</thead>
 		<tbody id="table">
 		<%bookingDAO book=new bookingDAO(session);
-		ArrayList<Booking> arr=book.viewBookings();
+		ResultSet b=book.viewBookings();
 		
-		for(Booking b: arr) {%>
+		while(b.next()) {%>
 			<tr>
 				
-				<td><%=b.getName() %></td>
-				<td><%=b.getPhone() %></td>
-				<td><%=b.getEmail() %></td>
-				<td><%=b.getPeoples() %></td>
-				<td><%=b.getCost() %></td>
-				<td><%=b.getCity() %></td>
-				<td><%=b.getLocation() %></td>
-				<td><%=b.getTravel_date() %></td>
-				<td><%=b.getStatus() %></td>
-				<td><%=b.getRemarks() %></td>
+				<td><%=b.getString("uname") %></td>
+				<td><%=b.getString("phone") %></td>
+				<td><%=b.getInt("no_of_people") %></td>
+				<td><%=b.getDouble("cost") %></td>
+				<td><%=b.getString("city") %></td>
+				<td><%=b.getString("pickup_location") %></td>
+				<td><%=b.getString("travel_date") %></td>
+				<td><%=b.getString("guide_name") %></td>
+				<td><%=b.getString("g_phone") %></td>
+				<td><%=b.getString("status") %></td>
+				<td><%=b.getString("remarks") %></td>
 				<td>
-				<%if(b.getStatus().equals("pending")){ %>
+				<%if(b.getString("status").equals("pending")){ %>
 				<form action="booking" method="post">
-				<input type="hidden" name="id" value="<%=b.getBooking_id() %>">
+				<input type="hidden" name="id" value="<%=b.getInt("booking_id") %>">
 				<button class="btn btn-danger btn-sm text-center" name="cancel" id="cancel">Cancel</button>
 				</form>
 				<%} %>
