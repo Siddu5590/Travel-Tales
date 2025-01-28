@@ -61,6 +61,10 @@ public class Guide extends HttpServlet {
 					req.setAttribute("failure", "failed to accept the booking");
 					RequestDispatcher rd = req.getRequestDispatcher("guideDash.jsp");
 					rd.forward(req, res);
+				}else if(status.equals("existed")) {
+					req.setAttribute("existed", "You have another booking on the slot ");
+					RequestDispatcher rd = req.getRequestDispatcher("guideDash.jsp");
+					rd.forward(req, res);
 				}
 			}
 			

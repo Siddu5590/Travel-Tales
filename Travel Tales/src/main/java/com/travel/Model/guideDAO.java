@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import com.travel.Entity.Booking;
 import com.travel.Entity.Guide;
@@ -216,6 +218,29 @@ public class guideDAO {
 	    String remarks = "Guide Accepted the Booking";
 
 	    try {
+	    	PreparedStatement selectTravelDateStmt = con.prepareStatement("SELECT travel_date FROM booking WHERE booking_id = ?");
+	         // Fetch travel date
+		        selectTravelDateStmt.setInt(1, id);
+		        String travelDate="";
+		        ResultSet rs = selectTravelDateStmt.executeQuery(); 
+		            if (rs.next()) {
+		                travelDate = rs.getString("travel_date");
+		            }
+		           // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("");
+		            LocalDate dateTime = LocalDate.parse(travelDate);
+		     PreparedStatement getAvailTime=con.prepareStatement("select slot_time from guide_avail where guide_id='"+se.getAttribute("id")+"';");
+		     rs=getAvailTime.executeQuery();
+		     while(rs.next())
+		     {
+		    	 LocalDate slotDate = LocalDate.parse(rs.getString("slot_time"));
+		    	 if(slotDate.equals(dateTime))
+		    	 {
+		    		 status="existed";
+		    		 return status;
+		    	 }
+		     }
+		     
+		     
 	         PreparedStatement updateBookingStmt = con.prepareStatement("UPDATE booking SET status = ?, remarks = ? WHERE booking_id = ?");
 	         // Update booking status
 		        updateBookingStmt.setString(1, confirmStatus);
@@ -223,35 +248,28 @@ public class guideDAO {
 		        updateBookingStmt.setInt(3, id);
 		        int updateCount = updateBookingStmt.executeUpdate();
 		        
-	         PreparedStatement selectTravelDateStmt = con.prepareStatement("SELECT travel_date FROM booking WHERE booking_id = ?");
-	         // Fetch travel date
-		        selectTravelDateStmt.setInt(1, id);
-		        ResultSet rs = selectTravelDateStmt.executeQuery(); {
-		            if (rs.next()) {
-		                String travelDate = rs.getString("travel_date");
+	         
 		                
 		     
 	         
 	         PreparedStatement insertAvailabilityStmt = con.prepareStatement("INSERT INTO guide_avail VALUES (0, ?, ?, ?, ?)"); 
-
 	         
-	                Object idObj = se.getAttribute("id");
-	                int gid = 0; // Default value
-	                if (idObj != null) {
-	                    if (idObj instanceof Integer) {
-	                        // If the object is already an Integer
-	                        gid = (Integer) idObj;
-	                    } else if (idObj instanceof String) {
-	                        // If the object is a String
+	         Object idObj = se.getAttribute("id");
+	         int gid = 0; // Default value
+	         if (idObj != null) {
+	            if (idObj instanceof Integer) {
+	            // If the object is already an Integer
+	               gid = (Integer) idObj;
+	            } else if (idObj instanceof String) {
+	            // If the object is a String
+	               gid = Integer.parseInt((String) idObj);
 	                        
-	                            gid = Integer.parseInt((String) idObj);
-	                        
-	                    } else {
-	                        System.err.println("Invalid attribute type: " + idObj.getClass());
-	                    }
-	                } else {
-	                    System.err.println("Attribute 'id' is null.");
-	                }
+	            } else {
+	               System.err.println("Invalid attribute type: " + idObj.getClass());
+	            }
+	            } else {
+	               System.err.println("Attribute 'id' is null.");
+	            }
 
 	                
 	                // Insert availability record
@@ -260,13 +278,15 @@ public class guideDAO {
 	                insertAvailabilityStmt.setInt(3, gid);
 	                insertAvailabilityStmt.setInt(4, id);
 	                insertAvailabilityStmt.executeUpdate();
-	            }
-	        }
+	            
+	       
 
 	        // Determine final status
 	        if (updateCount > 0) {
 	            status = "success";
 	        }
+	        else
+	        	status="failure";
 	        
 
 	    } catch (SQLException e) {
