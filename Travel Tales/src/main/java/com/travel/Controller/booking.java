@@ -45,8 +45,12 @@ public class booking extends HttpServlet{
 				
 				
 				String status=b.addBooking(user_id,name, ph, email, city, noPl, date, cost, desc, loc);
-				
-				if(status.equals("success"))
+				if(status.equals("existed")) {
+					req.setAttribute("failure", "Already you have Booking on this date");
+					RequestDispatcher rd=req.getRequestDispatcher("booking.jsp?city_id="+id);
+					rd.forward(req, res);
+				}
+				else if(status.equals("success"))
 				{
 					req.setAttribute("status", "Booking Done");
 					RequestDispatcher rd=req.getRequestDispatcher("booking.jsp?city_id="+id);
