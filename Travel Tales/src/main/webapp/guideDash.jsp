@@ -131,6 +131,16 @@ Swal.fire({
     text: "<%= message %>"
 });
 <% } %>
+<% if (request.getAttribute("existed") != null) { 
+    String message = (String) request.getAttribute("existed");
+    request.removeAttribute("existed");
+%>
+Swal.fire({
+    icon:"error",
+    title: 'Oooops..',
+    text: "<%= message %>"
+});
+<% } %>
 
 $(document).ready(function () {
     $("#search").on("keyup", function () {

@@ -64,39 +64,39 @@ public class bookingDAO {
 	}
 	
 	//retreiving all booking details based on user id
-	public ArrayList<Booking>  viewBookings()
+	public ResultSet viewBookings()
 	{
 		PreparedStatement ps=null;
 		ResultSet rs=null;
 		ArrayList<Booking> book=new ArrayList<>();
 		
 		try {
-			ps=(PreparedStatement) con.prepareStatement("select * from booking where user_id='"+se.getAttribute("id")+"'");
+			ps=(PreparedStatement) con.prepareStatement("SELECT b.*, CASE WHEN b.status = 'confirmed' THEN g.name ELSE '\0'  END AS guide_name, CASE WHEN b.status = 'confirmed' THEN g.phone ELSE '\0' END AS g_phone FROM booking b	LEFT JOIN guide_avail ga ON b.booking_id = ga.booking_id LEFT JOIN  guide g ON ga.guide_id = g.guide_id WHERE b.status IN ('Confirmed', 'Cancelled','pending') AND b.user_id='"+se.getAttribute("id")+"';");
 			rs=ps.executeQuery();
-			while(rs.next())
-			{
-				Booking b=new Booking();
-				b.setBooking_id(rs.getInt("booking_id"));
-				b.setName(rs.getString("uname"));
-				b.setEmail(rs.getString("email"));
-				b.setPhone(rs.getString("phone"));
-				b.setPeoples(rs.getInt("no_of_people"));
-				b.setCost(rs.getDouble("cost"));
-				b.setCity(rs.getString("city"));
-				b.setBookk_date(rs.getString("book_date"));
-				b.setTravel_date(rs.getString("travel_date"));
-				b.setLocation(rs.getString("pickup_location"));
-				b.setStatus(rs.getString("status"));
-				b.setDesc(rs.getString("description"));
-				b.setRemarks(rs.getString("remarks"));
-				book.add(b);
-			}
+//			while(rs.next())
+//			{
+//				Booking b=new Booking();
+//				b.setBooking_id(rs.getInt("booking_id"));
+//				b.setName(rs.getString("uname"));
+//				b.setEmail(rs.getString("email"));
+//				b.setPhone(rs.getString("phone"));
+//				b.setPeoples(rs.getInt("no_of_people"));
+//				b.setCost(rs.getDouble("cost"));
+//				b.setCity(rs.getString("city"));
+//				b.setBookk_date(rs.getString("book_date"));
+//				b.setTravel_date(rs.getString("travel_date"));
+//				b.setLocation(rs.getString("pickup_location"));
+//				b.setStatus(rs.getString("status"));
+//				b.setDesc(rs.getString("description"));
+//				b.setRemarks(rs.getString("remarks"));
+//				book.add(b);
+//			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return book;
+		return rs;
 		
 	}
 	//booking cancel method for user
