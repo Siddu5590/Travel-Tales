@@ -37,7 +37,7 @@ public class bookingDAO {
 		String status="";
 		try {
 			st=con.createStatement();
-			rs=st.executeQuery("select * from booking where travel_date='"+date+"' and user_id='"+user_id+"'");
+			rs=st.executeQuery("select * from booking where travel_date='"+date+"' and uname='"+name+"' and user_id='"+user_id+"'");
 			boolean res=rs.next();
 			if(res) {
 				status="existed";
