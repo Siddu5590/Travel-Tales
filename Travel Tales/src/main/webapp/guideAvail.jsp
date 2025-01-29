@@ -75,7 +75,7 @@
 		<tbody id="table">
 		<%guideDAO book=new guideDAO(session);
 		
-		ArrayList<Guide_Avail> g=book.getAvail();
+		ArrayList<Guide_Avail> g=book.getAvail((String)session.getAttribute("location"));
 		int sl_no=1;
 		for(Guide_Avail g1: g) {%>
 			<tr>

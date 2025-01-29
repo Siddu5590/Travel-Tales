@@ -86,7 +86,14 @@
 				<td><%=b.getCity() %></td>
 				<td><%=b.getLocation() %></td>
 				<td><%=b.getTravel_date() %></td>
-				<td><%=b.getStatus() %></td>
+				<%if(b.getStatus().equals("Confirmed")){ %>
+				<td class="text text-success"><%=b.getStatus() %></td>
+				<%}else if(b.getStatus().equals("Cancelled")){ %>
+				<td class="text text-danger"><%=b.getStatus() %></td>
+				<%}else if(b.getStatus().equals("pending")){ %>
+				<td ><%=b.getStatus() %></td>
+				<%} %>
+				
 				<td>
 				<%if(b.getStatus().equals("pending")){ %>
 				<form action="guide" method="post">

@@ -298,14 +298,14 @@ public class guideDAO {
 	}
 	
 	//guide available for particular booking
-	public ArrayList<Guide_Avail> getAvail()
+	public ArrayList<Guide_Avail> getAvail(String loc)
 	{
 		Statement st=null;
 		ResultSet rs=null;
 		ArrayList<Guide_Avail> al=new ArrayList<>();
 		try {
 			st=con.createStatement();
-			rs=st.executeQuery("select b.uname,b.phone,b.city,g.slot_time,g.avail from booking b join guide_avail g on b.booking_id = g.booking_id;");
+			rs=st.executeQuery("select b.uname,b.phone,b.city,g.slot_time,g.avail from booking b join guide_avail g on b.booking_id = g.booking_id where b.city='"+se.getAttribute("loc")+"';");
 			while(rs.next())
 			{
 				Guide_Avail g=new Guide_Avail();
