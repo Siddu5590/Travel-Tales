@@ -31,10 +31,19 @@ public class bookingDAO {
 	//adding bookings into db
 	public String addBooking(int user_id, String name,String ph,String email,String city,int noPl,String date,Double cost,String desc, String loc)
 	{
-		
+		Statement st=null;
 		PreparedStatement ps=null;
+		ResultSet rs=null;
 		String status="";
 		try {
+			st=con.createStatement();
+			rs=st.executeQuery("select * from booking where travel_date='"+date+"' and uname='"+name+"' and user_id='"+user_id+"'");
+			boolean res=rs.next();
+			if(res) {
+				status="existed";
+			}
+			else {
+			
 			ps=(PreparedStatement) con.prepareStatement("insert into booking  values(0,?,?,?,?,?,?,?,sysdate(),?,?,?,?,?)");
 			ps.setInt(1, user_id);
 			ps.setString(2,name);
@@ -54,6 +63,7 @@ public class bookingDAO {
 				status="success";
 			else
 				status="failure";
+			}
 			
 		}catch(Exception e)
 		{

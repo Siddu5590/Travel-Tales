@@ -54,7 +54,7 @@
 </form>
 
 <div class="users">
-	<h3 class="bg-primary text-white">All Bookings</h3>
+	<h3 class="bg-primary text-white p-2">All Bookings</h3>
 	<table class="table table-bordered table-primary">
 		<thead>
 			<tr>
@@ -164,5 +164,6 @@ $(document).ready(function () {
     });
 });
 </script>
+
 </body>
 </html>
