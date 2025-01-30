@@ -72,6 +72,17 @@
         request.removeAttribute("status");
     %>
     Swal.fire({
+        icon: "success",
+        title: "Success...",
+        text: "<%= message %>"
+    });
+    <% } %>
+    
+    <% if (request.getAttribute("failure") != null) { 
+        String message = (String) request.getAttribute("failure");
+        request.removeAttribute("failure");
+    %>
+    Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "<%= message %>"
