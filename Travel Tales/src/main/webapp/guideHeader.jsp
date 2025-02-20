@@ -103,6 +103,10 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 
                 <% if (session.getAttribute("uname") != null) { %>
+                
+                <li class="items nav-item">
+                        <a class="nav-link active" aria-current="page" href="guideDash.jsp" style="color: white;">Dashboard</a>
+                    </li>
                    
                     <li class="items nav-item">
                         <a class="nav-link active" aria-current="page" href="guideAvail.jsp" style="color: white;">Guide Availability</a>
