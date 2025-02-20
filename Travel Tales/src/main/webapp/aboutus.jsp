@@ -167,7 +167,7 @@
     <div class="mvv-container">
         <div  class="mvv-block">
             <div class="image">
-                <img src="https://www.svmsholidays.com/wp-content/uploads/2020/05/Bali-1-scaled-680x500.jpg" alt="">
+                <img src="https://www.svmsholidays.com/wp-content/uploads/2020/05/Bali-1-scaled-680x500.jpg" alt="pic">
             </div>
             <div class="content">
                 <h5>About us</h5>
@@ -179,7 +179,7 @@
 
         <div  class="mvv-block">
             <div class="image">
-                <img src="https://thetelityellowpages.com/wp-content/uploads/2015/09/tours-travel.jpg" alt="">
+                <img src="https://thetelityellowpages.com/wp-content/uploads/2015/09/tours-travel.jpg" alt="pic">
             </div>
             <div class="content">
                 <h5>Who we are</h5>
@@ -195,7 +195,7 @@
 
         <div  class="mvv-block">
             <div class="image">
-                <img src="https://thetravelshots.com/wp-content/uploads/2021/11/solo-travel.jpg" alt="">
+                <img src="https://thetravelshots.com/wp-content/uploads/2021/11/solo-travel.jpg" alt="pic">
             </div>
             <div class="content">
                 <h5>Our Mission</h5>
@@ -208,7 +208,7 @@
 
         <div  class="mvv-block">
             <div class="image">
-                <img src="https://www.thestatesman.com/wp-content/uploads/2018/01/Karnataka.jpg" alt="">
+                <img src="https://www.thestatesman.com/wp-content/uploads/2018/01/Karnataka.jpg" alt="pic">
             </div>
             <div class="content">
                 <h5>Our Vision</h5>
