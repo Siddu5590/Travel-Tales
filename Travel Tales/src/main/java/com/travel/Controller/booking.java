@@ -2,9 +2,6 @@ package com.travel.Controller;
 
 import java.io.IOException;
 
-import java.io.PrintWriter;
-import java.util.ArrayList;
-
 import com.travel.Model.bookingDAO;
 
 import jakarta.servlet.RequestDispatcher;

@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import com.travel.Entity.Customer;
@@ -276,6 +277,52 @@ public class Register {
 	           e.printStackTrace();
 	       }
 	       return status;
+	}
+	
+	//to check and change the booking status after the date expires
+	public void checkBooking()
+	{
+		Statement st=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		try {
+			int id;
+			id=(Integer)se.getAttribute("id");
+			//int id=Integer.parseInt(se.getAttribute("id"));
+//			st=con.createStatement();
+			ps=con.prepareStatement("select * from booking where user_id=? AND status=?;");
+			ps.setInt(1,id);
+			ps.setString(2,"pending");
+			rs=ps.executeQuery();
+			//System.out.println(rs.next());
+			
+			LocalDate today=LocalDate.now();
+			while(rs.next())
+			{
+				PreparedStatement ps1=null;
+				String travelDate=rs.getString("travel_date"); 
+				LocalDate tDate = LocalDate.parse(travelDate);
+				int res=tDate.compareTo(today);
+				if(today.isAfter(tDate) || today.equals(tDate))
+				{
+					System.out.println(tDate);
+					System.out.println(today);
+					int bookId=rs.getInt("booking_id");
+					ps1=con.prepareStatement("update booking set status=?,remarks=? where booking_id=?;");
+					ps1.setString(1, "cancelled");
+					ps1.setString(2,"Sorry, our guides are busy to accpet you booking");
+					ps1.setInt(3, bookId);
+					ps1.executeUpdate();
+				}
+				
+//				System.out.println(dateTime);
+//				System.out.println(today);
+				
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
 	
