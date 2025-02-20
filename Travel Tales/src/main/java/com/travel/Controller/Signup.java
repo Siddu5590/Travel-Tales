@@ -71,6 +71,8 @@ public class Signup extends HttpServlet {
 				
 				if(status.equals("success")) {
 					req.setAttribute("status", "Login Successfull");
+					//here call a method which checks the current date and unaccepted date and cancels it
+					reg.checkBooking();
 					if(session.getAttribute("uname")!=null && session.getAttribute("id").equals(1)) {
 					RequestDispatcher rd =req.getRequestDispatcher("adminDash.jsp");
 					rd.forward(req, res);
